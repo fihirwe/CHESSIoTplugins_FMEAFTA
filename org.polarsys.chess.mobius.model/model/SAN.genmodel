@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.polarsys.chess.mobius.model/src" modelPluginID="org.polarsys.chess.mobius.model"
+    modelName="SAN" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>SAN.ecore</foreignModel>
+  <genPackages prefix="SANModel" basePackage="org.polarsys.chess.mobius.model" disposableProviderFactory="true"
+      ecorePackage="SAN.ecore#/">
+    <genClasses ecoreClass="SAN.ecore#//SANModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//SANModel/node"/>
+      <genOperations ecoreOperation="SAN.ecore#//SANModel/getAllNodes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//NamedElement/name"/>
+      <genOperations ecoreOperation="SAN.ecore#//NamedElement/validate">
+        <genParameters ecoreParameter="SAN.ecore#//NamedElement/validate/diagnostics"/>
+        <genParameters ecoreParameter="SAN.ecore#//NamedElement/validate/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//Node">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//Node/globalVariable"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//ComposedNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//ComposedNode/stateVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//ComposedNode/child"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//SharedState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//SharedState/place"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//SharedState/sharedStates"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//Join"/>
+    <genClasses ecoreClass="SAN.ecore#//Rep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//Rep/numbOfReps"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//AtomicNode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//AtomicNode/place"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//AtomicNode/timedActivity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//AtomicNode/instantaneousActivity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//AtomicNode/inputGate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//AtomicNode/outputGate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//AtomicNode/model"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//Place">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//Place/activity"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//Place/inputGate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//Place/initialState"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//TimedActivity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//TimedActivity/rate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//TimedActivity/timeDistributionFunction"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//InstantaneousActivity"/>
+    <genClasses ecoreClass="SAN.ecore#//InputGate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//InputGate/inputPredicated"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//InputGate/inputFunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//InputGate/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//OutputGate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//OutputGate/outputFunction"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//Activity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//Activity/place"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//Activity/outputGate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//Activity/case"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//Activity/placecase"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//Gate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SAN.ecore#//Gate/place"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//GlobalVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//GlobalVariable/type"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//ActivityPlaceCase">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SAN.ecore#//ActivityPlaceCase/place"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//ActivityPlaceCase/case"/>
+    </genClasses>
+    <genClasses ecoreClass="SAN.ecore#//GraphicalElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//GraphicalElement/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SAN.ecore#//GraphicalElement/y"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SAN.ecore#//Primitive"/>
+  </genPackages>
+</genmodel:GenModel>

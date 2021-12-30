@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">     
+            <menuContribution
+            allPopups="false"            
+            locationURI="menu:org.polarsys.chess.mainMenu?after=chess.menu.basicoperations.id">
+            <menu
+               label="Safety Case"
+            id="chess.menu.safetycase.id">
+         <menu
+               label="Document Generation"
+               id="chess.menu.safetycase.docgen.id">
+            <command
+                  commandId="org.polarsys.chess.diagram.ui.commands.GenerateDocumentCommand"
+                  icon="icons/model_documentation.gif"
+                  style="push">
+            </command>
+         </menu>        
+         </menu>        
+      </menuContribution>
+     <menuContribution
+            allPopups="false"            
+            locationURI="popup:org.polarsys.chess.modelexplorerpopupmenu.id?after=org.eclipse.ui.main.diagramEditorMenu.CHESS.safetyAnalysis">              
+           <menu
+               label="Safety Case"
+            id="org.eclipse.ui.main.diagramEditorMenu.CHESS.safetyCase">
+         <menu
+               label="Document Generation"
+               id="org.eclipse.ui.main.diagramEditorMenu.CHESS.docGen">
+            <command
+                  commandId="org.polarsys.chess.diagram.ui.commands.GenerateDocumentCommand"
+                  icon="icons/model_documentation.gif"
+                  style="push">
+            </command>
+         </menu>        
+         </menu>    
+              </menuContribution>                         
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.polarsys.chess.diagram.ui.commands.ExportComponentToImageCommand"
+            id="org.polarsys.chess.diagram.ui.commands.ExportComponentToImageCommand"
+            name="Export Selected Graphical Component as Image">
+      </command>
+      <command
+            defaultHandler="org.polarsys.chess.diagram.ui.commands.ExportModelToDocumentCommand"
+            id="org.polarsys.chess.diagram.ui.commands.ExportModelToDocumentCommand"
+            name="Export Selected Graphical Component as Document">
+      </command>
+      <command
+            defaultHandler="org.polarsys.chess.diagram.ui.commands.GenerateDocumentCommand"
+            id="org.polarsys.chess.diagram.ui.commands.GenerateDocumentCommand"
+            name="Generate Documentation from selected component">
+      </command>
+   </extension> 
+</plugin>

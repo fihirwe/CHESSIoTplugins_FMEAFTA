@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.polarsys.chess.xtext.fladsl.ide
+Bundle-Vendor: Intecs
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.polarsys.chess.xtext.fladsl.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.polarsys.chess.xtext.fladsl,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.polarsys.chess.xtext.ide,
+ org.polarsys.chess.xtext.ide.contentassist.antlr,
+ org.polarsys.chess.xtext.ide.contentassist.antlr.internal
+Import-Package: org.polarsys.chess.xtext,
+ org.polarsys.chess.xtext.services

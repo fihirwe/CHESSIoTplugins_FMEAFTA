@@ -1,0 +1,31 @@
+[comment encoding = UTF-8 /]
+[module generateAThing('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::polarsys::chess::iot::generator::services::usesUML2Services/]
+[import org::polarsys::chess::iot::generator::statecharts::generateStateMachine/]
+[import org::polarsys::chess::iot::generator::legal::Copyright /]
+[import org::polarsys::chess::iot::generator::things::ThingUtilities /]
+
+[template public generateAThing (component_me : Component,parent_comp:Component,aPackage:Package)]
+[file ('/model/'.concat(parent_comp.name).concat('_subs/').concat(component_me.name).concat('.thingml'), false)]
+[generateCopyright()/]
+
+import "Payloads.thingml"
+
+thing [component_me.name.toUpperFirst()/] includes Payloads 
+	{ 
+	   [getProperties(component_me, aPackage)/]
+
+	   [for (o: Operation | component_me.ownedOperation) separator('\n')]
+	     function  [o.name/]([o.ownedParameter/]) 
+			do
+	    	// TODO functional body
+	     	end
+	   [/for]
+
+		[for (sm: StateMachine | component_me.ownedBehavior)]
+				[generateStateMachine(sm)/]
+		[/for]
+	}
+[/file]
+[/template]

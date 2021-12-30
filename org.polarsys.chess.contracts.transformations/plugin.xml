@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<!--
+   
+    Copyright (c) 2013, 2015 Intecs SpA 
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v2.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v20.html
+   
+    Contributors:
+    Nicholas Pacini nicholas.pacini@intecs.it 
+    Stefano Puri stefano.puri@intecs.it
+    Laura Baracchi  laura.baracchi@intecs.it 
+    Irfan Sljivo irfan.sljivo@mdh.se
+    Initial API and implementation and/or initial documentation
+ -->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category 
+      		id="org.polarsys.chess.contracts.category"
+      		name="Formal Verification Category">
+      </category>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.CheckRefHandler"
+            id="org.polarsys.chess.contracts.transformations.ref.id"
+            name="Check Refinement">
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.CheckImplHandler"
+            id="org.polarsys.chess.contracts.transformations.impl.id"
+            name="Check Implementation">
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.ExportSmv"
+            id="org.polarsys.chess.contracts.transformations.smv.id"
+            name="Export SMV">
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.FTANuSMV3Handler"
+            id="org.polarsys.chess.contracts.transformations.fta3.id"
+            name="FTA NuSMV3">
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.CheckValidPropHandler"
+            id="org.polarsys.chess.contracts.transformations.validProp.id"
+            name="Validate Properties">
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.FTAXSapHandler"
+            id="org.polarsys.chess.contracts.transformations.ftaxsap.id"
+            name="FTA xSAP">
+         <commandParameter
+               id="store_result"
+               name="storeResult"
+               optional="true">
+         </commandParameter>
+      </command>
+      <command
+            categoryId="org.polarsys.chess.contracts.category"
+            defaultHandler="org.polarsys.chess.contracts.transformations.commands.FMEAXSapHandler"
+            id="org.polarsys.chess.contracts.transformations.fmeaxsap.id"
+            name="FMEA xSAP">
+         <commandParameter
+               id="store_result"
+               name="storeResult"
+               optional="true">
+         </commandParameter>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+     		locationURI="menu:org.polarsys.chess.mainMenu?after=org.polarsys.chess.mainmenu.functverification.separator1">
+          <!--menu
+                id="chess.menu.analysis.id"
+                label="Analysis"-->
+             <menu
+                   id="chess.menu.functverification.id"
+                   label="Functional Verification">
+                <command
+                      commandId="org.polarsys.chess.contracts.transformations.ref.id"
+                      label="Check refinement with all weak contracts"
+                      style="push">
+                   <visibleWhen
+                         checkEnabled="false">
+                      <or>
+                         <with
+                               variable="activeEditorId">
+                            <equals
+                                  value="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+                            </equals>
+                         </with>
+                         <with
+                               variable="activeEditorInput">
+                            <adapt
+                                  type="org.eclipse.core.resources.IResource">
+                            </adapt>
+                         </with>
+                      </or>
+                   </visibleWhen>
+                </command>
+                <command
+                      commandId="org.polarsys.chess.contracts.transformations.validProp.id"
+                      label="Automatic selection of weak contracts"
+                      style="push">
+                   <visibleWhen
+                         checkEnabled="false">
+                      <or>
+                         <with
+                               variable="activeEditorId">
+                            <equals
+                                  value="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+                            </equals>
+                         </with>
+                         <with
+                               variable="activeEditorInput">
+                            <adapt
+                                  type="org.eclipse.core.resources.IResource">
+                            </adapt>
+                         </with>
+                      </or>
+                   </visibleWhen>
+                </command>
+             </menu>
+             
+          <!--/menu-->
+	</menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="menu:org.polarsys.chess.mainMenu?after=org.polarsys.chess.mainmenu.dependability.separator2">
+     <menu
+           id="chess.menu.dependability.id"
+           label="Dependability">
+        <command
+              commandId="org.polarsys.chess.contracts.transformations.ftaxsap.id"
+              icon="icons/tree_normal.gif"
+              label="Fault Tree Analysis (FTA with xSAP)"
+              style="push">
+        </command>
+        <command
+              commandId="org.polarsys.chess.contracts.transformations.fmeaxsap.id"
+              icon="icons/table.gif"
+              label=" Failure Mode and Effect Analysis (FMEA with xSAP)"
+              style="push">
+        </command>
+     </menu>
+  </menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="popup:org.polarsys.chess.modelexplorerpopupmenu.id?after=org.eclipse.ui.main.diagramEditorMenu.CHESS.funcVer">
+     <menu
+           id="org.eclipse.ui.main.diagramEditorMenu.CHESS.safetyAnalysis"
+           label="Safety Analysis">
+        <command
+              commandId="org.polarsys.chess.contracts.transformations.ftaxsap.id"
+              icon="icons/tree_normal.gif"
+              label="Fault Tree Analysis (FTA)"
+              style="push">
+        </command>
+        <command
+              commandId="org.polarsys.chess.contracts.transformations.fmeaxsap.id"
+              icon="icons/table.gif"
+              label=" Failure Mode and Effect Analysis (FMEA)"
+              style="push">
+        </command>
+     </menu>
+  </menuContribution>
+   </extension>
+</plugin>

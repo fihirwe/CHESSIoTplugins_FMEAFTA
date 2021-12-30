@@ -1,0 +1,2076 @@
+/*******************************************************************************
+ *               CHESS to SAN transformation
+ *
+ *               Copyright (C) 2019
+ *            			Intecs
+ *
+ *
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License
+ *  v1.0 which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ *******************************************************************************/
+
+//import org.polarsys.CHESS.fla.transformations.utilities.blackboxlibrary;
+
+import CommonUtilities;
+import chess.SANJavaLib;
+
+modeltype CHESS uses chessmlprofile('http://CHESS');
+modeltype CHESSCore uses 'http://CHESS/Core';
+
+modeltype SAN uses 'http://www.polarsys.org/chess/SAN';
+
+modeltype UML uses 'http://www.eclipse.org/uml2/5.0.0/UML';
+modeltype MARTE uses "http://www.eclipse.org/papyrus/MARTE/1";
+modeltype SysML uses "http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows";
+//modeltype IM uses "http://if.dsi.unifi.it/Modeling/DIM";
+
+
+transformation CHESS2SAN(in source : CHESS, out target : SAN);
+
+// Qualified names of stereotypes
+property SANANALYSIS_STEREOTYPE = "CHESS::Dependability::StateBased::StateBasedAnalysis::SANAnalysis";
+property ERRORMODEL_STEREOTYPE ="CHESS::Dependability::ThreatsPropagation::ErrorModel";
+property NORMALSTATE_STEREOTYPE ="CHESS::Dependability::ThreatsPropagation::NormalState";
+property INTERNALFAULT_STEREOTYPE = "CHESS::Dependability::ThreatsPropagation::InternalFault";
+property INTERNALPROPAGATION_STEREOTYPE = "CHESS::Dependability::ThreatsPropagation::InternalPropagation";
+property FAILURE_STEREOTYPE = "CHESS::Dependability::ThreatsPropagation::Failure";
+property ATTACK_STEREOTYPE = "CHESS::Dependability::ThreatsPropagation::Attack";
+property REPAIR_STEREOTYPE = "CHESS::Dependability::StateBased::MaintenanceMonitoring::Repair";
+
+
+// Platform selected by user
+configuration property selectedPlatformQName : String;
+configuration property analysisContextQName : String;
+
+property model : Model;
+property rootComponent : Class;
+property rootComponentInstance : InstanceSpecification;
+property umlInstancesConnectors : Set(UML::InstanceSpecification) = Set{};		--Instances of connectors
+property umlAtomicInstances : Set(UML::InstanceSpecification) = Set{};		--Instances of terminal instances
+property instancePackage : Package;
+
+
+property sbaTransitions : Sequence(OclAny) = Sequence{CHESS::ThreatsPropagation::Failure, CHESS::ThreatsPropagation::InternalPropagation, CHESS::ThreatsPropagation::InternalFault};
+
+property attackScenarios : Set(UML::Interaction) = Set{};
+
+//assumption: <instance_name>.<state_name>
+property rewardStates : Set(String) = Set{};
+property analysisContext : Class;
+
+property OFFSET : Integer = 15;
+property predicateList : List(String) = object List(String){};
+
+property attackScenarioCurrentStartPlace : SAN::Place;
+
+main() {
+	this.model := source.rootObjects()![Model];
+	instancePackage := model.findElementByQualifiedName(selectedPlatformQName).oclAsType(Package);
+	
+	log ("analysis context: " + analysisContextQName);
+	analysisContext := model.findElementByQualifiedName(analysisContextQName).oclAsType(Class);
+	log ("found analysis context: " + analysisContext.name);
+	
+	analysisContext.initAttackScenario();
+	analysisContext.initRewards();
+	
+	this.rootComponentInstance := instancePackage.ownedElement[InstanceSpecification]->
+		selectOne(name = instancePackage.name.substringBefore("_instSpec"));
+	this.rootComponent := instancePackage.ownedElement[InstanceSpecification]->
+		selectOne(name = instancePackage.name.substringBefore("_instSpec")).classifier![Class];
+	//this.rootComponent.ownedComment += object Comment {body := "hello CHESS"; annotatedElement += rootComponent;};
+	//this.rootComponent.UmlComponent2SANnode();
+	var sanModel := this.rootComponentInstance.map UMLInstance2SANModel();
+	//this.rootComponent.UMLSystem2SANModel();
+	
+	//////////////////////////////////////////////////////////////////
+	//failure propagation
+	
+	//retrieve the set of connector instances
+	var instances : Set(UML::Element) = instancePackage.ownedElement->select(i | i.oclIsKindOf(InstanceSpecification));
+				
+	--log ("found instances"+ instances->size().toString());
+	
+	instances -> forEach(instance){
+		if (instance.oclAsType(UML::InstanceSpecification).classifier->isEmpty()){
+			this.umlInstancesConnectors += instance.oclAsType(UML::InstanceSpecification);
+			//log ("found connector "+instance.oclAsType(UML::InstanceSpecification).name);
+		}
+	};
+	
+	//this.umlInstancesConnectors := instances.oclAsType(Set(UML::InstanceSpecification));
+	
+	log ("found connectors"+ umlInstancesConnectors->size().toString());
+	log("checking ports for failure propagation................. ");
+	
+	//fill slot ports connections map
+	var portConnectedMap : Dict(UML::Slot, Set(UML::Slot));
+	this.umlAtomicInstances -> forEach(targetInstance){
+		//get input port
+		var inPorts : Set(UML::Slot) = targetInstance.getPortSlots()->select(p | p.hasInputFlow());
+		inPorts -> forEach(port){
+			log("checking port "+port.definingFeature.name);
+			//get output ports connected
+			var connPortSlots : Set(UML::Slot) := port.getSBAConnections();
+			connPortSlots -> forEach(connectedPortSlot){
+				log("found connected port "+connectedPortSlot.definingFeature.name);
+				var sourceInstance : UML::InstanceSpecification = connectedPortSlot.owner.oclAsType(UML::InstanceSpecification);
+//				if (i.isComposite()){
+//					var downSlots : Set(Slot) := connectedPortSlot.getSBADelegationsDownwards();
+//					downSlots -> forEach (downSlot){
+//						log ("found downSlot "+ downSlot.definingFeature.name);		
+//					};
+//							  
+//				}
+				//now I have the source and the target components
+				//... 
+				
+			};
+			portConnectedMap->put(port, connPortSlots);
+			log("end checking port "+port.definingFeature.name);
+		};
+	};	
+		
+	//for each atomic instance, for each internal propagation
+	this.umlAtomicInstances -> forEach(targetInstance){
+		//check each internalPropagation.externalFaults condition (e.g. iport1.omission)
+		targetInstance.getInternalPropagation()->forEach(internalPropTrans){
+			var internalPropag : CHESS::ThreatsPropagation::InternalPropagation := 
+				internalPropTrans.getStereotypeApplication(INTERNALPROPAGATION_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalPropagation);
+			var faultExpr : String := internalPropag.externalFaults->asSequence()->first();
+			var targetPlace : SAN::Place := internalPropTrans.resolveIn(UML::Transition::UMLInternalPropagationTransition2IncomingFailureXXX)->first();
+			//ASSUMPTION (TBD): expr = portname.failure, i.e. no complex expression with and, or (e.g. (i.e.iport1.omission AND iport2.commission))
+			var targetPortName : String := faultExpr.tokenize(".")->asSequence()->first();
+			var targetFaultName : String := faultExpr.tokenize(".")->asSequence()->at(2);
+			//find the slot of the targetInstance representing the targetPortName referred in the failure expression
+			var targetSlotPort : UML::Slot := targetInstance.slot->select(s | s.definingFeature.name=targetPortName)->asSequence()->first();
+			//now check attached SBAcomponents ports to check if there is a source of the failures referred in the failure expression
+			var sourcePorts : Set(UML::Slot) := portConnectedMap->get(targetSlotPort);
+			sourcePorts -> forEach(sourcePortSlot){
+				//retrieve the source instance
+				var sourceInstance : UML::InstanceSpecification := sourcePortSlot.owner->asSequence()->first()->oclAsType(UML::InstanceSpecification)->asSequence()->first();
+				//check all the failure transition of the source instance
+				sourceInstance.getFailureTransition() -> forEach (failureTrans){
+					var failureSter : CHESS::ThreatsPropagation::Failure := 
+						failureTrans.getStereotypeApplication(FAILURE_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Failure);
+					var failureMode := failureSter.mode->asSequence()->first();
+					if (failureMode.oclIsUndefined())
+						continue;
+					//ASSUMPTION: expr = portname.failure, i.e. no complex expression with 'and'...
+					var sourcePortName : String := failureMode.tokenize(".")->asSequence()->first();
+					var sourceFaultName : String := failureMode.tokenize(".")->asSequence()->at(2);
+					if (sourcePortName = sourcePortSlot.definingFeature.name and sourceFaultName = targetFaultName){
+						log ("found failure connection, atomic model is generated !!! "+faultExpr + " --  "+failureMode);
+						var sourcePlace : Place := failureTrans.resolveIn(UML::Transition::UMLFailureTransition2OutgoingFailureXXX)->first();
+						
+						//Create atomic model reifing the failure propagation
+						//TODO not sure about the source of this mapping... currently I am using the Failure transition
+						//sanModel.node.oclAsType(SAN::Join).child += failureTrans.map Failure2PropagationAtomicModel(sourcePlace, targetPlace, failureTrans, internalPropTrans);
+						var failurePropagAtomicNode : SAN::AtomicNode := failureTrans.Failure2PropagationAtomicModel(sourcePlace, targetPlace, failureTrans, internalPropTrans);
+						sanModel.node.oclAsType(SAN::Join).child += failurePropagAtomicNode;
+						
+						//join the new atomic model with the source and target places via shared variables
+						//create shared variable for sourcePlace
+						var sourceShared : SharedState;
+						var sourceAtomicNode := AtomicNode.allInstances()->select(s | s.place->includes(sourcePlace));						
+						var rep := Rep.allInstances()->select(s | s.child->includes(sourcePlace));
+						var join := Join.allInstances()->select(s | s.child->includes(sourcePlace));
+						var containerSource : SAN::ComposedNode = sourceAtomicNode.container()->asSequence()->first()->oclAsType(SAN::ComposedNode)->asSequence()->first();
+						if (containerSource.isRootJoin()){
+							//nothing to propagate
+						}else{
+							sourceShared := containerSource.getSharedState(containerSource, sourcePlace);
+						};
+						
+						var targetShared : SharedState;
+						var targetAtomicNode := AtomicNode.allInstances()->select(s | s.place->includes(targetPlace));
+						var containerTarget : SAN::ComposedNode = targetAtomicNode.container()->asSequence()->first()->oclAsType(SAN::ComposedNode)->asSequence()->first();
+						if (containerTarget.isRootJoin()){
+							//nothing to propagate
+						}else{
+							targetShared := containerTarget.getSharedState(containerTarget, targetPlace);
+						};
+						//now I can create the Joinin state for the root
+						var rootSharedState : SharedState := object SharedState{};
+						rootSharedState.name := sourcePlace.name;
+						sanModel.node.oclAsType(ComposedNode).stateVariables += rootSharedState;
+						if (sourceShared.oclIsUndefined()){
+							rootSharedState.place += sourcePlace;
+						}else{
+							rootSharedState.sharedStates += sourceShared;
+						};
+						rootSharedState.place += failurePropagAtomicNode.place-> select(s | s.name= sourcePlace.name);
+						
+						rootSharedState := object SharedState{};
+						rootSharedState.name := targetPlace.name;
+						sanModel.node.oclAsType(ComposedNode).stateVariables += rootSharedState;
+						if (targetShared.oclIsUndefined()){
+							rootSharedState.place += targetPlace;
+						}else{
+							rootSharedState.sharedStates += targetShared;
+						};
+						rootSharedState.place += failurePropagAtomicNode.place-> select(s | s.name= targetPlace.name);
+
+						//end joining
+					}
+					
+					
+				}
+			}
+
+		}
+		
+		
+		//end failure propagation
+		///////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////
+	
+	}//for each target
+	
+}
+
+query SAN::Node::isRootJoin():Boolean{
+	return self.container().oclIsKindOf(SAN::SANModel);
+}
+
+query SAN::ComposedNode::getSharedState(inout composed : SAN::ComposedNode , placeToShare: SAN::Place) : SAN::SharedState{
+	var shared : SAN::SharedState;
+	self.stateVariables -> forEach (variable){
+		if (variable.place->includes(placeToShare) and variable.place->size()=1 and variable.sharedStates->isEmpty() ){
+			shared := variable;
+			break;	
+		}
+	};
+	if ( shared.oclIsUndefined()){
+		//create shared
+		shared := object SharedState{};
+		shared.name := placeToShare.name;
+		shared.place += placeToShare;
+		composed.stateVariables += shared;
+	};
+	if (self.container().oclAsType(SAN::Node).isRootJoin()){
+			return shared;
+		}else {
+			return self.container().oclAsType(SAN::ComposedNode).getParentShared(composed, shared);
+		};
+	return shared;
+}
+
+
+query SAN::ComposedNode::getParentShared(inout composed : SAN::ComposedNode, childShared : SAN::SharedState) : SAN::SharedState{
+	var shared : SAN::SharedState;
+	self.stateVariables -> forEach (variable){
+		if (variable.sharedStates->includes(childShared) and variable.place->isEmpty() and variable.sharedStates->size()=1 ){
+			shared := variable;
+			break;	
+		}
+	};
+	
+	if ( shared.oclIsUndefined()){
+		//create shared
+		shared := object SharedState{};
+		shared.name := childShared.name;
+		shared.sharedStates += childShared;
+		composed.stateVariables += shared;
+	};
+	
+	
+		if (self.container().oclAsType(SAN::Node).isRootJoin()){
+			return shared;
+		}else {
+			return self.container().oclAsType(SAN::ComposedNode).getParentShared(composed, shared);
+		};
+}
+
+
+
+
+
+mapping UML::InstanceSpecification::UMLInstance2SANModel() : SAN::SANModel {
+
+	var sanNode : SAN::Node;
+	//the case of just a single terminal node seems unreasonable...
+	sanNode := self.map UMLInstance2ComposedNode(true, 50);
+	result.node := sanNode;
+	result.name := self.name;
+	
+}
+
+
+mapping UML::InstanceSpecification::UMLInstance2ComposedNode(isRootJoin : Boolean, y : Integer) : SAN::ComposedNode {
+
+	init{
+		//A Join in SAN cannot have one child
+		//check  the number of ErrorModelBehaviour instances, indeed the one with no ErrorModel are not mapped to SAN
+		//E.g. in case of A decomposed by B and C, both terminals, if B has ErrorModelBehaviour and C no, then A must be map to Rep 
+		var subInsts = self.getSubInstances();
+		var createRep : Boolean = false;
+		
+		if (subInsts->size() >1){
+			//check actual error model behaviours owned
+			var numb : Integer := 0;
+			subInsts->forEach(inst){
+				if (inst.hasErrorModel()){
+					numb := numb+1;
+				}else{
+					if (inst.hasInternalErrorModelBehaviour() ){
+						numb := numb+1;
+					}
+				};
+				if (numb>1)
+					break;
+			};
+			if (numb>1){
+				result:= object SAN::Join{};
+			}
+			else {
+				createRep := true;
+			}
+		}
+		else{
+			createRep := true;
+		};
+		if (createRep){
+			result := object SAN::Rep{};
+			result.oclAsType(SAN::Rep).numbOfReps:="1";
+		}
+	}
+	
+	var node : SAN::Node;
+	var subInstance : UML::InstanceSpecification;
+	var prop : UML::Property;
+	var x1 : Integer := 50;
+	var y1 : Integer := y;
+	var deltax : Integer := 150;
+	var deltay : Integer := 100;
+	
+	if (self.isComposite()) { //this should be always true
+		//var subInsts =  self.getSubInstances();
+		var subInstSlots = self.getSubInstanceSlots();
+		subInstSlots->forEach(instSlot){
+			var rep : SAN::Rep;
+			prop := instSlot.definingFeature.oclAsType(UML::Property);
+			subInstance := instSlot.value->first().oclAsType(UML::InstanceValue).instance;
+			if ( subInstance.getErrorModel() = null and not subInstance.hasInternalErrorModelBehaviour())
+				continue;
+			
+			//Multiplicity > 1 is mapped to a Rep
+			//TODO use mapping to create Rep????
+			if (prop.getUpper()!=1){
+				rep := object SAN::Rep {};
+				rep.name := "Rep"+subInstance.name;
+				rep.numbOfReps := prop.getUpper().toString();
+				result.child +=rep;
+				rep.x := x1;
+				x1:=x1+deltax;
+				rep.y := y1;
+				y1:= y1+deltay;
+				result.addDoubleGlobalVariable('Num'.concat(rep.name), result);
+			};
+			
+			//TODO: curently if a component has errorModel attached than it is considered terminal: we should also support internal components with error model
+			if (subInstance.isComposite() and  (subInstance.getErrorModel()->oclIsUndefined() or subInstance.getErrorModel() = null)){
+				//map the subinstance
+				var childComposite : SAN::ComposedNode := subInstance.map UMLInstance2ComposedNode(false, y1+deltay);
+				if (not rep.oclIsUndefined()){
+					rep.child := childComposite;
+				}else{
+					result.child += childComposite;
+				};
+				childComposite.x := x1;
+				x1:=x1+deltax;
+				childComposite.y := y1;
+				if (not isRootJoin){
+					log("-------------------------------------");
+					//propagate shared states up in the hierarchy
+					childComposite.stateVariables -> forEach (stateVariable){
+						var shared := stateVariable.map shared2Shared();				
+						if (not rep.oclIsUndefined()){
+							//if childComposite is kinf of Rep: case RepFather->Rep child composite: if RepChild share a place, then RepFather has to share the place as well	
+							//the six lines below should work, I cannot test them now...
+							if (childComposite.oclIsTypeOf(Rep) and stateVariable.place->notEmpty() ){
+								shared.place:=stateVariable.place;
+								shared.sharedStates:=  Sequence {};
+							};
+							rep.stateVariables += shared;
+							shared := shared.map shared2Shared(); //this is the shared for the parent of Rep
+							//check case result(kind of Rep)->rep
+							if (childComposite.oclIsTypeOf(Rep) and stateVariable.place->notEmpty() and result.oclIsTypeOf(Rep)){
+								shared.place:=stateVariable.place ;
+								shared.sharedStates:=  Sequence {};
+							};
+							
+						};
+						result.stateVariables += shared;
+					}
+				}else{ //root join
+					if (not rep.oclIsUndefined()){
+						//case of rootJoin->Rep
+						childComposite.stateVariables -> forEach (stateVariable){
+							var shared := stateVariable.map shared2Shared();
+							//if childComposite is kinf of Rep: case RepFather->Rep child composite: if RepChild share a place, then RepFather has to share the place as well	
+							if (childComposite.oclIsTypeOf(Rep) and stateVariable.place->notEmpty() ){
+								shared.place:= stateVariable.place ;
+								shared.sharedStates:=  Sequence {};
+							};
+							rep.stateVariables += shared;
+						}
+					}
+				};
+				
+			}else{
+			//atomic node
+				//skip components having no error model
+				var errorModel :=subInstance.getErrorModel();
+				if (errorModel->oclIsUndefined() or errorModel->isEmpty()){
+					continue;
+				};
+			
+				var atomicNode : SAN::AtomicNode = subInstance.map UMLInstance2AtomicNode();
+				atomicNode.x := x1;
+				x1:=x1+deltax;
+				atomicNode.y := y1;
+				//register the atomic instance
+				this.umlAtomicInstances += subInstance;
+				if (not rep.oclIsUndefined()){
+					rep.child := atomicNode;
+				}else{
+					result.child += atomicNode;
+				};
+				//check rewards
+				if (not isRootJoin or not rep.oclIsUndefined()){
+					var rewardStates := subInstance.getRewardStates();
+					rewardStates -> forEach(rewardState){
+						log("checking reward state "+rewardState.name);
+						var shared : SAN::SharedState = rewardStates.map State2SharedVariable(subInstance)->asSequence()->first();
+						//get the place corresponding to the state of the subInstance
+						var rewardPlace : SAN::Place = subInstance.getPlace(rewardState);
+						shared.place := rewardPlace;
+						if (not rep.oclIsUndefined()){
+							rep.stateVariables += shared;
+							if (not isRootJoin){
+								var newShared := shared.map shared2Shared();
+								result.stateVariables += newShared;
+								//case Rep1->Rep2->Atomiic: Rep2 share a place, then Rep1 has to share the place as well
+								if (result.oclIsTypeOf(SAN::Rep)){
+									newShared.place += rewardPlace;
+									newShared.sharedStates:=  Sequence {};
+								};
+							}
+						}else
+							if (not isRootJoin){
+								result.stateVariables += shared;
+							}
+					};
+				};
+				
+				//TODO check attack success places, propate them up in the hierarchy
+				if (not isRootJoin or not rep.oclIsUndefined()){
+					var attackSuccessPlaces := atomicNode.getSuccessAttackPlace();
+					attackSuccessPlaces -> forEach (attackSuccessPlace){
+						var msg : UML::Message := attackSuccessPlace.getAttackMessage();
+						--assumption: msg is not void
+						var shared : SAN::SharedState := msg.map Message2SharedVariable(subInstance, attackSuccessPlace);
+						if (not rep.oclIsUndefined()){
+								rep.stateVariables += shared;
+								if (not isRootJoin){
+									var newShared := shared.map shared2Shared();
+									result.stateVariables += newShared;
+								}
+						}else
+							if (not isRootJoin){
+								result.stateVariables += shared;
+							}
+					}
+				}			
+			};
+			if (not rep.oclIsUndefined()){
+				y1:= y1-deltay;
+			}
+		}//for each Slot
+	};
+
+	result.name := self.name;
+	if (isRootJoin){
+	//assumoption: the root system is composed at least of two parts
+		if (not rewardStates->isEmpty()){
+			//Create Reward Atomic Model
+			var rewardModel : SAN::AtomicNode :=  this.analysisContext.map analysisContext2RewardAtomicModel();
+			result.child += rewardModel;
+			rewardModel.x := x1;
+			x1:=x1+deltax;
+			rewardModel.y := y1;
+			//Create Join State Variable
+			rewardModel.place -> forEach (rewardPlace){
+				result.stateVariables += this.analysisContext.map analysisContext2JoinStateVariable(result.oclAsType(SAN::Join), rewardPlace);
+			};
+		};
+		
+		//create nodes in the composed one for each attack scenario
+		this.attackScenarios -> forEach (interaction){
+			var attackScenario : SAN::AtomicNode := interaction.map interaction2AtomicNode();
+			attackScenario.x := x1;
+			x1:=x1+deltax;
+			attackScenario.y := y1;
+			result.child += attackScenario;
+		};
+		//Create Join State Variable to bind attack scenarios and atomic nodes places
+		this.attackScenarios -> forEach(scenario){
+			var msgs := scenario.getAttackMessages();
+			msgs ->forEach (message){
+				result.stateVariables += message.map Message2JoinStateVariable(result.oclAsType(SAN::Join));
+			}
+		};
+		
+		result.x:=400;
+		result.y:=0;
+		
+	}
+}
+
+////TODO: in case the rule is applied to the same failure transition it returns the same target object... currently I have trasformed this mappnig in query below
+//mapping UML::Transition::Failure2PropagationAtomicModelXXX(sourcePlace : SAN::Place, targetPlace : SAN::Place, failureTrans : UML::Transition, internalProp: UML::Transition) : SAN::AtomicNode{
+//	result.name :=sourcePlace.name+"__"+targetPlace.name;
+//	result.model :=sourcePlace.name+"__"+targetPlace.name;
+//	var s := failureTrans.map FailureToPropagationPlace(sourcePlace.name);
+//	var t := internalProp.map FailureToPropagationPlace(targetPlace.name);
+//	
+//	//TODO
+//	var tim : SAN::TimedActivity := object SAN::TimedActivity{};
+//	result.timedActivity += tim;
+//	s.activity += tim;
+//	tim.place += t;
+//	result.place += s;
+//	result.place += t;
+//	
+//}
+
+// this query replaces the mapping above
+query UML::Transition::Failure2PropagationAtomicModel(sourcePlace : SAN::Place, targetPlace : SAN::Place, failureTrans : UML::Transition, internalProp: UML::Transition) : SAN::AtomicNode{
+
+	var res : SAN::AtomicNode = object SAN::AtomicNode{};
+	res.name :=sourcePlace.name+"__"+targetPlace.name;
+	res.model := sourcePlace.name+"__"+targetPlace.name;
+	
+	var s := object SAN::Place{ name := sourcePlace.name};
+	var t := object SAN::Place{name := targetPlace.name};
+	
+	//TODO
+	var tim : SAN::TimedActivity := object SAN::TimedActivity{};
+	tim.name := "propagation";
+	res.timedActivity += tim;
+	s.activity += tim;
+	tim.place += t;
+	res.place += s;
+	res.place += t;
+	return res;
+}
+
+
+mapping UML::Transition::FailureToPropagationPlace(failureExpr : String) : SAN::Place {
+	result.name := failureExpr;
+}
+
+
+
+mapping UML::Message::Message2JoinStateVariable(inout join : SAN::Join) : SAN::SharedState{
+	var attackSuccessPlaces := self.resolveIn(UML::Message::UMLAttackMessage2AttackSuccessPlace, Place);
+	attackSuccessPlaces -> forEach (attackSuccessPlace){
+		join.child -> forEach (childNode){
+			
+			if (childNode.oclIsKindOf(SAN::AtomicNode)){
+				//this is the case of an atomic node directly owned by the root join node
+				childNode.oclAsType(SAN::AtomicNode).place -> forEach(place){
+					if (place = attackSuccessPlace){
+						//create a shared variable
+						result.name := attackSuccessPlace.name;
+						result.place += attackSuccessPlace;
+						result.place += self.resolveoneIn(UML::Message::UMLAttackMessage2AttackSuccessPlaceScenario, Place);
+						break;
+					}
+				}
+			}else{
+				--assumption: there is a composedNode which share the proper state variable for the attackPlace
+				childNode.oclAsType(SAN::ComposedNode).stateVariables -> forEach (state){
+					//TODO I should not rely on the name...
+					if (state.name = attackSuccessPlace.name){
+						result.name := attackSuccessPlace.name;
+						result.sharedStates +=state;
+						result.place += self.resolveoneIn(UML::Message::UMLAttackMessage2AttackSuccessPlaceScenario, Place);
+						break;
+					}
+				}
+			}
+			
+		};
+	}
+}
+
+mapping UML::Interaction::interaction2AtomicNode() : SAN::AtomicNode {
+	result.name := self.name;
+	result.model := self.name;
+	
+	var startx : Integer := 50;
+	var starty : Integer := 100;
+			
+	//start with the set of place and activities which are in commonfor all types of Interaction
+	var placeIdle : Place := object SAN::Place{name := "Idle"; x := startx; y := starty };
+	placeIdle.initialState :=1;
+	result.place +=placeIdle;
+	
+	var placeAttempted : Place := object SAN::Place{name := self.name+"Attempted"; x := startx+300; y := starty};
+	result.place += placeAttempted;
+	
+	var attackTimedActivity : SAN::TimedActivity := object SAN::TimedActivity{name := self.name+"_AttackActivity"; x := startx+150; y := starty};
+	result.timedActivity += attackTimedActivity;
+	var attackScenarioStereo := self.getStereotypeApplication(ATTACK_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::AttackScenario);
+	
+	if (not attackScenarioStereo.frequency->oclIsUndefined() and attackScenarioStereo.frequency != ""){
+		//attackTimedActivity.timeDistributionFunction := attackScenarioStereo.frequency.toString();
+		attackTimedActivity.rate := attackScenarioStereo.frequency.toString();
+	}else{
+		//attackTimedActivity.timeDistributionFunction := self.name +"_intensity";
+		attackTimedActivity.rate := self.name +"_intensity";
+		result.addDoubleGlobalVariable(self.name+"_intensity", result);
+	};
+	
+	placeIdle.activity += attackTimedActivity;
+	attackTimedActivity.place += placeAttempted;
+	var launchedPlace : SAN::Place := object SAN::Place{name := self.name+"Launched"; x:=startx+600; y:=starty-50};
+	result.place += launchedPlace;
+	var blockedPlace : SAN::Place := object SAN::Place{name := self.name+"Blocked"; x:=startx+600; y:=starty+50};
+	result.place += blockedPlace;
+	var blockActivity : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name := self.name+"_BlockActivity"; x := startx+450; y := starty};
+	result.instantaneousActivity += blockActivity;
+	if (not attackScenarioStereo.probSuccess.oclIsUndefined() and attackScenarioStereo.probSuccess!=""){
+		blockActivity._case+="return("+attackScenarioStereo.probSuccess+");";
+		blockActivity._case+="return(1.0-"+attackScenarioStereo.probSuccess+");";
+	}else{
+		//use global variables
+		blockActivity._case+="return("+self.name+"_succ_prob"+");";
+		blockActivity._case+="return (1.0 - "+self.name+"_succ_prob"+");";
+		result.addDoubleGlobalVariable(self.name+"_succ_prob", result);
+	};
+	var case1 : ActivityPlaceCase = object SAN::ActivityPlaceCase{place +=launchedPlace; _case:=1; x:=startx+450; y:=starty-15;};
+	blockActivity.placecase += case1;
+	var case2 : ActivityPlaceCase = object SAN::ActivityPlaceCase{place +=blockedPlace; _case:=2; x:=startx+450; y:=starty;};
+	blockActivity.placecase += case2;
+	
+	placeAttempted.activity += blockActivity;
+	
+	var outGate : SAN::OutputGate := object SAN::OutputGate{name := self.name+"OutputGate"; x:= startx+250; y:= starty-50};
+	result.outputGate += outGate;
+	outGate.outputFunction := "Idle->Mark() = 1;	// Implies continuous attacks with given intensity;";
+	attackTimedActivity.outputGate+= outputGate;
+	
+	//now add Interactions specific nodes
+//	var x2 : Integer := 50;
+//	var y2 : Integer := 250;
+	var orderedList : Sequence(UML::NamedElement) := self.getOrderedAttacksAndFragments();
+	var index : Integer := 0;
+	attackScenarioCurrentStartPlace := launchedPlace;
+	orderedList -> forEach(elem){
+		index := index+1;	
+		if (elem.oclIsTypeOf(Message)){
+			//SINGLE ATTACK TEMPLATE
+			var mess: UML::Message := elem.oclAsType(Message);
+			mess.map UMLAttackMessage2SAN(result, 50, 250*index, attackScenarioCurrentStartPlace);
+		}else{
+			if (elem.oclIsTypeOf(CombinedFragment)){
+				var combFrag : CombinedFragment = elem.oclAsType(CombinedFragment);
+				var operator : String = combFrag.interactionOperator.toString();
+				if (operator.equalsIgnoreCase('alt')){
+					elem.oclAsType(UML::CombinedFragment).map UMLAltFragment2SAN (result, 50, 250*index, attackScenarioCurrentStartPlace, self);
+				}else if (operator.equalsIgnoreCase('opt')){
+					elem.oclAsType(UML::CombinedFragment).map UMLOptFragment2SAN (result, 50, 250*index, attackScenarioCurrentStartPlace, self);
+				} else if (operator.equalsIgnoreCase('loop')) {
+					elem.oclAsType(UML::CombinedFragment).map UMLLoopFragment2SAN (result, 50, 300*index, attackScenarioCurrentStartPlace, self);
+				}
+			};
+			
+		};
+		if (elem.oclIsTypeOf(DurationConstraint)){
+			elem.oclAsType(DurationConstraint).map UMLDurationConstraint2SAN (result, 50, 300*index, attackScenarioCurrentStartPlace, self);	
+		};
+	};
+	
+	//
+
+//	var attackMessages := self.getAttackMessages();
+//	attackMessages -> forEach (attackMessage){
+//		result.place+=attackMessage.map UMLAttackMessage2AttackSuccessPlaceScenario(result);
+//	}
+}
+
+mapping UML::Message::UMLAttackMessage2SAN(inout atomicNode : SAN::AtomicNode, x1:Integer, y1:Integer, inout startNode : SAN::Place) : List(SAN::NamedElement) {
+	
+	var placeFailed : Place := object SAN::Place{name := self.name+"_failed"; x := x1+300; y := y1+50};
+	atomicNode.place += placeFailed;
+	result += placeFailed;
+	var placeSuccess : Place;// := object SAN::Place{name := self.name+"_success"; x := x1+300; y := y1-50};
+	//I need a map for the success place to be able to retrieve later for the shared variables creation...
+	//TODO should I use a mapping (instance, message)->place?
+	placeSuccess := self.map UMLAttackMessage2AttackSuccessPlaceScenario(atomicNode);
+	placeSuccess.x := x1+300;
+	placeSuccess.y := y1-50;
+	atomicNode.place += placeSuccess;
+	result->add(placeSuccess);
+	var placeEnd : Place := object SAN::Place{name := "End"+self.name; x := x1+300; y := y1+100};
+	atomicNode.place += placeEnd;
+	result += placeEnd;
+	var instAct : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name := self.name+"_activity"; x:=x1+150;y:=y1;};
+	atomicNode.instantaneousActivity += instAct;
+	result += instAct;
+	instAct._case += self.name+"_success_prob";	
+	instAct._case += "1.0 - "+self.name+"_success_prob";
+	atomicNode.addDoubleGlobalVariable(self.name+"_success_prob", atomicNode);
+	startNode.activity += instAct;
+	
+	var case1 : ActivityPlaceCase = object SAN::ActivityPlaceCase{place +=placeSuccess; place +=placeEnd; _case:=1; x:=x1+150; y:=y1-15;};
+	instAct.placecase += case1;
+	
+	var case2 : ActivityPlaceCase = object SAN::ActivityPlaceCase{place +=placeFailed; place +=placeEnd; _case:=2; x:=x1+150; y:=y1;};
+	instAct.placecase += case2;
+
+	
+	attackScenarioCurrentStartPlace := placeEnd;
+}
+
+
+mapping UML::CombinedFragment::UMLOptFragment2SAN(inout atomicNode : SAN::AtomicNode, x1:Integer, y1:Integer, inout startNode : SAN::Place, ownerInteraction : UML::Interaction) {
+	var optFragmentName : String = self.name;
+	var operand : UML::InteractionOperand = self.operand->first();
+	var attack : Message = operand.getOperationAttack(ownerInteraction);
+	
+	var endPlace : SAN::Place := object SAN::Place{name := "End"+optFragmentName; x:=x1+250; y:=y1+50};
+	atomicNode.place += endPlace;
+	
+	var fragmentInstActivity : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name := optFragmentName+"Activity"; x:= x1+150; y:=y1};
+	atomicNode.instantaneousActivity += fragmentInstActivity;
+	var predicate : String = operand.getPredicate();
+	fragmentInstActivity._case += "return("+predicate+");";
+	atomicNode.addDoubleGlobalVariable(predicate, atomicNode);
+	fragmentInstActivity._case += "return(1.0 - "+predicate+");";
+	//connect it to the start place
+	startNode.activity += fragmentInstActivity;
+	
+	var attackPlace : SAN::Place := object SAN::Place{name := attack.name; x:=x1+250; y:=y1;};
+	atomicNode.place += attackPlace;
+	
+	
+	var case1 : ActivityPlaceCase := object SAN::ActivityPlaceCase{place +=attackPlace; _case:=1; x:=x1+150; y:=y1-15;};
+	fragmentInstActivity.placecase += case1;
+	case1 := object SAN::ActivityPlaceCase{place +=endPlace;  _case:=2; x:=x1+150; y:=y1;}; 
+	fragmentInstActivity.placecase += case1;
+	
+	var attackInstActivity : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name :=attack.name+"activity"; x:=x1+450; y:= y1};
+	atomicNode.instantaneousActivity += attackInstActivity;
+	attackInstActivity._case += "return("+attack.name+"_success_prob);\t//Attack succeeds";
+	attackInstActivity._case += "return(1.0 -"+attack.name+"_success_prob);\t//Attack fails";
+	atomicNode.addDoubleGlobalVariable(attack.name.concat('_success_prob'), atomicNode);
+	
+	//I need a map for the success place to be able to retrieve later for the shared variables creation...
+	//TODO should I  use a mapping (instance, message)->place?
+	var successPlace : SAN::Place := attack.map UMLAttackMessage2AttackSuccessPlaceScenario(atomicNode);
+	atomicNode.place += successPlace;
+	successPlace.x:=x1+600;
+	successPlace.y:=y1-25;
+	
+	var failedPlace : SAN::Place := object SAN::Place{name:=attack.name+"_failed"; x:=x1+600; y:=y1+25};
+	atomicNode.place += failedPlace;
+	
+	case1 := object SAN::ActivityPlaceCase{place +=successPlace; _case:=1; x:=x1+450; y:=y1-15;};
+	attackInstActivity.placecase += case1;
+	case1 := object SAN::ActivityPlaceCase{place +=failedPlace;  _case:=2; x:=x1+450; y:=y1;}; 
+	attackInstActivity.placecase += case1;
+	
+	attackPlace.activity += attackInstActivity;
+	
+	attackScenarioCurrentStartPlace := endPlace;
+	
+}
+
+
+mapping UML::CombinedFragment::UMLAltFragment2SAN(inout atomicNode : SAN::AtomicNode, x1:Integer, y1:Integer, inout startNode : SAN::Place, ownerInteraction : UML::Interaction) {
+	var altFragmentName : String = self.name;
+	var operands : OrderedSet(InteractionOperand) = self.operand;
+//	var x2 : Integer = 50;
+//	var y2 : Integer = 250;
+	
+	var failedPlace : SAN::Place := object SAN::Place{name := altFragmentName+"_failed"; x:= x1+750; y:= y1+operands->size()*75};
+	atomicNode.place += failedPlace;
+	
+	var endPlace : SAN::Place := object SAN::Place{name := "End"+altFragmentName; x:=x1+250; y:=y1+operands->size()*75};
+	atomicNode.place += endPlace;
+	
+	var fragmentInstActivity : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name := altFragmentName+"Activity"; x:= x1+150+5; y:=y1+5};
+	atomicNode.instantaneousActivity += fragmentInstActivity;
+	
+	//reset predicate list
+	predicateList := object List(String){};
+	operands -> forEach(operand){
+		var predicate : String = operand.getPredicate();
+		fragmentInstActivity._case += "return ("+predicate+");";
+		atomicNode.addDoubleGlobalVariable(predicate, atomicNode);
+	};
+	
+	//comment iterate over the operands
+	var i:Integer:=0;
+	operands -> forEach(operand){
+		i:= i+1;
+		var attack : Message = operand.getOperationAttack(ownerInteraction);
+		if (attack = null){
+			log("*********WARNING: "+self.name+" -> no attack for operand : "+operand.name);
+			continue;
+		};
+		var attackPlace : SAN::Place := object SAN::Place{name:=attack.name;x:=x1+250;y:=y1+75*(i-1)};
+		atomicNode.place += attackPlace;
+		
+		var attackInstActivity : SAN::InstantaneousActivity := object SAN::InstantaneousActivity{name:=attack.name+"_activity";x:=x1+450; y:=y1+75*(i-1)};
+		atomicNode.instantaneousActivity += attackInstActivity;
+		//TODO: is it possible to model success prob?
+		attackInstActivity._case += "return("+attack.name+"_success_prob);\t// Attack succeeds";
+		attackInstActivity._case += "return(1.0 - "+attack.name+"_success_prob);\t// Attack fails";
+		atomicNode.addDoubleGlobalVariable(attack.name.concat('_success_prob'), atomicNode);
+				
+		//I need a map for the success place to be able to retrieve later for the shared variables creation...
+		//TODO should I  use a mapping (instance, message)->place?
+		var successPlace : SAN::Place := attack.map UMLAttackMessage2AttackSuccessPlaceScenario(atomicNode);
+		successPlace.name := attack.name+"_success";
+		successPlace.x := x1+650;
+		successPlace.y := y1+75*(i-1);
+		//var successPlace : SAN::Place := object SAN::Place{name:= attack.name+"_success"; x:= x2+650; y:=y2+75*(i-1)};
+		atomicNode.place += successPlace;
+		
+		//do the connections
+		var activityCase : ActivityPlaceCase := object SAN::ActivityPlaceCase{place +=endPlace; place +=attackPlace; _case:=i; x:=x1+150; y:=y1-getAltOffset(operands->size()-i, operands->size());};
+		fragmentInstActivity.placecase += activityCase;
+
+		attackPlace.activity +=attackInstActivity;
+		
+		activityCase := object SAN::ActivityPlaceCase{place +=successPlace; _case:=1; x:=x1+450; y:=y1+75*(i-1)-15;};
+		attackInstActivity.placecase += activityCase;
+		activityCase := object SAN::ActivityPlaceCase{place +=failedPlace; _case:=2; x:=x1+450; y:=y1+75*(i-1);};
+		attackInstActivity.placecase += activityCase;
+		//end connections
+	};
+	//start place is previous fragment end place
+	startNode.activity  += fragmentInstActivity;
+	
+	attackScenarioCurrentStartPlace := endPlace;
+}
+
+mapping UML::CombinedFragment::UMLLoopFragment2SAN(inout atomicNode : SAN::AtomicNode, x1:Integer, y1:Integer, inout startNode : SAN::Place, ownerInteraction : UML::Interaction) {
+
+	var loopFragmentName : String = self.name;
+	var operand : InteractionOperand = self.operand->first();
+	var attack : Message = operand.getOperationAttack(ownerInteraction);
+	
+	var loopFragmentInstAct : SAN::InstantaneousActivity := object SAN::InstantaneousActivity {name := "SetUp"+loopFragmentName; x:=x1+200; y:= y1};
+	atomicNode.instantaneousActivity += loopFragmentInstAct;
+	
+	var setCounterOutGate : SAN::OutputGate := object SAN::OutputGate{name:= loopFragmentName+"SetCounter"; x:= x1+250; y:= y1-50;};
+	atomicNode.outputGate += setCounterOutGate;
+	var counter : String = operand.getLoopCounter();
+	atomicNode.addDoubleGlobalVariable(counter, atomicNode);
+	setCounterOutGate.outputFunction := loopFragmentName+"Counter-&gt;Mark() = "+counter+";";
+	
+	var counterPlace : SAN::Place := object SAN::Place {name := loopFragmentName+"Counter"; x:= x1+475; y:=y1-50;};
+	atomicNode.place += counterPlace;
+	
+	var loopPlace : SAN::Place := object SAN::Place {name := loopFragmentName+"_loop"; x:= x1+350; y:=y1;};
+	atomicNode.place += loopPlace;
+	
+	var loopDelayTimedActivity := object SAN::TimedActivity{name := loopFragmentName+"_loop_delay"; x:= x1+525; y:= y1;};
+	atomicNode.timedActivity += loopDelayTimedActivity; 
+	loopDelayTimedActivity._case += "return("+attack.name+"_success_prob);\t// Attack succeeds";
+	loopDelayTimedActivity._case += "return(1.0 - "+attack.name+"_success_prob);\t// Attack fails";
+	atomicNode.addDoubleGlobalVariable(attack.name+"_success_prob", atomicNode);
+	//loopDelayTimedActivity.timeDistributionFunction := "return("+loopFragmentName+"_attack_delay);";
+	loopDelayTimedActivity.rate := "return("+loopFragmentName+"_attack_delay);";
+	atomicNode.addDoubleGlobalVariable(loopFragmentName+"_attack_delay", atomicNode);
+	
+	var endPlace : SAN::Place := object SAN::Place {name := "End"+loopFragmentName; x:= x1+800; y:=y1;};
+	atomicNode.place += endPlace;
+	
+	var outGateSuccess : SAN::OutputGate := object SAN::OutputGate{name:= loopFragmentName+"_success"; x:= x1+675; y:= y1-25;};
+	atomicNode.outputGate += outGateSuccess;
+	outGateSuccess.outputFunction := loopFragmentName+"Counter-&gt;Mark()--;\nif("+loopFragmentName+"Counter-&gt;Mark() &gt; 0)
+			\\n  {\\n    "+attack.name+"_success-&gt;Mark()++;\t// Add an attack. 
+			This place may be shared among many instances.\\n\t\t\t\t\t
+			// The token will be taken by one of the instances: 
+			they will compete for the token.\\n    "+loopFragmentName+"_loop-&gt;Mar
+			k() = 1;\t// Continue with the loop\\n  }\\nelse\\n  End"+loopFragmentName+"
+			-&gt;Mark() = 1;\t// Exit from the loop";
+			
+	var outGateBlocked : SAN::OutputGate := object SAN::OutputGate{name:= loopFragmentName+"_blocked"; x:= x1+675; y:= y1+25;};
+	atomicNode.outputGate += outGateBlocked;
+	outGateBlocked.outputFunction := loopFragmentName+"Counter-&gt;Mark()--;\nif("+loopFragmentName+"Counter-&gt;Mark() &gt; 0)
+			\\n  {\\n// This is the branch which corresponds to unsuccessf
+			ul attacks on component.\\n// Hence no token is added to att
+			ack place \\n    "+loopFragmentName+"_loop-&gt;Mark() = 1;\t// Continue
+			 with the loop\\n  }\\nelse\\n  End"+loopFragmentName+"-&gt;Mark() = 1;\t/
+			/ Exit from the loop";
+			
+	//I need a map for the success place to be able to retrieve later for the shared variables creation...
+	//TODO should I  use a mapping (instance, message)->place?
+	var successPlace : SAN::Place := attack.map UMLAttackMessage2AttackSuccessPlaceScenario(atomicNode);
+	successPlace.name := attack.name+"_success";
+	successPlace.x := x1+800;
+	successPlace.y := y1-50;
+	atomicNode.place += successPlace;
+	
+	//now let's do the connections
+	loopFragmentInstAct.outputGate += setCounterOutGate;
+	loopFragmentInstAct.place += loopPlace;
+	loopPlace.activity += loopDelayTimedActivity;
+	
+	var activityCase : ActivityPlaceCase := object SAN::ActivityPlaceCase{place +=outGateSuccess;  _case:=1; x:=x1+525; y:=y1-15;};
+	loopDelayTimedActivity.placecase += activityCase;
+	
+	activityCase := object SAN::ActivityPlaceCase{place +=outGateBlocked;  _case:=2; x:=x1+525; y:=y1;};
+	loopDelayTimedActivity.placecase += activityCase;
+	
+	startNode.activity += loopFragmentInstAct;
+	//end connections
+	
+	attackScenarioCurrentStartPlace := endPlace;
+	
+}
+
+
+mapping UML::DurationConstraint::UMLDurationConstraint2SAN(inout atomicNode : SAN::AtomicNode, x1:Integer, y1:Integer, inout startPlace : SAN::Place, ownerInteraction : UML::Interaction) {
+	var delayName : String = self.name;
+	var endPlace : SAN::Place := object SAN::Place{name := "End"+delayName; x:=x1+300; y:=y1;};
+	atomicNode.place += endPlace;
+	
+	var delayTimedActivity : SAN::TimedActivity := object SAN::TimedActivity{name := delayName+"Activity"; x:=x1+150; y:=y1;};
+	atomicNode.timedActivity += delayTimedActivity;
+	var delay_rate : String := self.getDelay();
+	delayTimedActivity.timeDistributionFunction := "return("+delay_rate+");";
+	delayTimedActivity.rate := "return("+delay_rate+");";
+	atomicNode.addDoubleGlobalVariable(delay_rate, atomicNode);
+	
+	//now let's do the connections
+	delayTimedActivity.place += endPlace;
+	startPlace.activity+=delayTimedActivity;
+	
+	//set nextStart place
+	attackScenarioCurrentStartPlace := endPlace;
+}
+
+
+
+mapping UML::Message::UMLAttackMessage2AttackSuccessPlaceScenario(inout atomicNode : SAN::AtomicNode) : SAN::Place {
+	result.name := self.name +"_success";
+	atomicNode.place += result;
+	//result.inputGate += inputGate;
+}
+
+
+mapping UML::Class::analysisContext2RewardAtomicModel() : SAN::AtomicNode {
+	
+	var index : Integer := 0;
+	var indexY : Integer :=0;
+	this.rewardStates -> forEach (state){
+		index := index+1;
+		indexY := (indexY+1).mod(2);
+		//Create a place
+		//TODO here I should use a map maybe... so retrieve the (UML::State, UML::InstanceSpecification) and map it to a Place
+		var place := object SAN::Place {};
+		place.name := state;
+		result.place += place;
+		place.x := index*150;
+		place.y := 40*indexY;
+	};
+	result.name := self.name+"_reward";
+	result.model := self.name+"_reward";
+}
+
+--assumption: rewardplace is from the rewardModel and has name <instance name>.<state name>
+mapping UML::Class::analysisContext2JoinStateVariable(inout join : SAN::Join, rewardPlace : SAN::Place) : SAN::SharedState {
+	
+		--Assumption: a corresponding shared variable is available in the join node
+		var stateName = rewardPlace.name.substring(rewardPlace.name.lastIndexOf(".")+1, rewardPlace.name.length());
+		join.child -> forEach (childNode){
+		
+			if (not rewardPlace.name.startsWith(childNode.name) and not childNode.oclIsKindOf(SAN::Rep))
+				continue;
+			
+			if (childNode.oclIsKindOf(SAN::AtomicNode)){
+				//this is the case of an atomic node directly owned by the root join node
+				childNode.oclAsType(SAN::AtomicNode).place -> forEach(place){
+					if (place.name = stateName){
+						//create a shared variable
+						
+						result.name := rewardPlace.name;
+						result.place +=place;
+						result.place += rewardPlace;
+						break;
+						
+					}
+				}
+			}else{
+				childNode.oclAsType(SAN::ComposedNode).stateVariables -> forEach (state){
+					if (state.name = rewardPlace.name){
+						result.name := rewardPlace.name;
+						result.sharedStates +=state;
+						result.place += rewardPlace;
+						break;
+					}
+				}
+			}
+			
+		};
+		
+		if (result.name.oclIsUndefined() or result.name=""){
+			log("ERROR : entity not found for reward "+rewardPlace.name);
+		};
+		
+}
+
+
+--rule: shared states propagates from child to parent places
+mapping SAN::SharedState::shared2Shared() : SAN::SharedState {
+	result.name := self.name;
+	--result.place := self.place;
+	result.sharedStates += self;
+}
+
+--a sharedState originating from a state of an instance
+//TODO should shared state originate from UML::AnaylsisContext???
+mapping UML::State::State2SharedVariable(instance : UML::InstanceSpecification) : SAN::SharedState {
+result.name := instance.name+"."+self.name;
+}
+
+--a sharedState originating from an attack message to an instance
+mapping UML::Message::Message2SharedVariable(instance : UML::InstanceSpecification, place : SAN::Place) : SAN::SharedState {
+	result.place := place;
+	result.name := place.name;
+}
+
+
+//multi instance solution
+mapping UML::InstanceSpecification::UMLInstance2AtomicNode() : SAN::AtomicNode {
+	
+	result.name:=self.name;
+	//result.model:=self.classifier->asSequence()->first().name;
+	result.model:=self.name;
+	
+	var errorModel : UML::StateMachine = self.getErrorModel();
+	//TODO: check about regions
+	var trans := errorModel.region->asSequence()->first().transition;
+	var source : UML::State;
+	var target : UML::State;
+	var sourceVertex : UML::Vertex;
+	var targetVertex : UML::Vertex;
+	var normalPlace : SAN::Place;
+	var placeX : Integer :=0;
+	var placeY : Integer :=75;
+	var targetplaceX : Integer :=0;
+	var targetplaceY : Integer :=250;
+	var activityX : Integer :=50;
+	var activityY : Integer :=150;
+	var attackX : Integer :=100;
+	var attackY : Integer :=400;
+	var stateCounter : Integer :=0;
+	var targetStateCounter : Integer :=0;
+	var activityCounter : Integer :=1;
+	var attackCounter : Integer :=1;
+	
+	trans -> forEach(transition){
+		sourceVertex := transition.source->asSequence()->first();
+		targetVertex := transition.target->asSequence()->first();
+		
+		var tupleSelf_SourceVertex :=Tuple{inst=self, vertex =sourceVertex};
+		
+		//var sourcePlace := tupleSelf_SourceVertex.resolveIn(UMLInstance_Vertex2Place)->asSequence()->first();
+		//sourcePlace := tupleSelf_SourceVertex.resolve(Place)->asSequence()->first() ;
+		var sourcePlace : SAN::Place := tupleSelf_SourceVertex.resolveone(Place);
+		
+		if (sourcePlace.oclIsUndefined()){
+		
+			if (sourceVertex.oclIsTypeOf(UML::Pseudostate)){
+				//TODO  pseudostates are not currently supported
+				continue;
+				
+			}else{
+				if (sourceVertex.oclIsTypeOf(UML::State)){
+					//sourcePlace := t.map UMLInstanceVertex2Place();
+					sourcePlace := UMLInstance_Vertex2Place(tupleSelf_SourceVertex);
+					sourcePlace.x := placeX+stateCounter*150;
+					sourcePlace.y := placeY;
+					stateCounter := stateCounter+1;
+					
+					result.place += sourcePlace;
+					if (not sourceVertex.getAppliedStereotype(NORMALSTATE_STEREOTYPE).oclIsUndefined()){
+						log("found normal state "+ sourceVertex.name);
+						normalPlace := sourcePlace;
+					};
+				}
+			}
+		};
+		var targetPlace := targetVertex.resolveoneIn(Vertex::UMLVertex2Place, Place);
+		var tupleSelf_TargetVertex :=Tuple{inst=self, vertex =targetVertex};
+//		targetPlace := tupleSelf_TargetVertex.resolveIn(UMLInstance_Vertex2Place)->asSequence()->first();
+//		targetPlace := tupleSelf_TargetVertex.resolve(Place)->asSequence()->first() ;
+		targetPlace := tupleSelf_TargetVertex.resolveone(Place);
+		
+		if (targetPlace->oclIsUndefined() or targetPlace = null){
+			if (targetVertex.oclIsTypeOf(UML::State)){
+					//var t2 :=Tuple{a=self, b =targetVertex};
+					//targetPlace := t2.map UMLInstanceVertex2Place();
+					targetPlace := UMLInstance_Vertex2Place(tupleSelf_TargetVertex);
+					targetPlace.x := targetplaceX+targetStateCounter*150;
+					targetPlace.y := targetplaceY;
+					targetStateCounter := targetStateCounter+1;
+					result.place += targetPlace;
+				}
+		};
+		
+		//TODO internalPropagation mapping is ongoing, requirements are not clear...
+		if (transition.isStereotyped(INTERNALFAULT_STEREOTYPE) or transition.isStereotyped(REPAIR_STEREOTYPE) or transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+			//create a timedACtivity
+			//log ("found internal fault "+transition.name);
+			var activity : SAN::Activity;// := transition.map UMLTransition2Activity();
+			var transTuple :=Tuple{inst=self, trans =transition};
+			if (transition.isStereotyped(INTERNALFAULT_STEREOTYPE)){
+				activity:= UMLInstance_InternalFaultTransition2TimedActivity(transTuple, result);
+			
+			}else {
+				if (transition.isStereotyped(REPAIR_STEREOTYPE)){
+					activity:= UMLInstance_RepairTransition2TimedActivity(transTuple, result);
+					
+				}
+				else if (transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+					activity:= UMLInstance_InternalPropagationTransition2InstantaneousActivity(transTuple);
+				}
+			};
+			activity.x := activityX+activityCounter*150;
+			activity.y := activityY;
+			activityCounter := activityCounter+1;
+			
+			sourcePlace.activity += activity;
+			activity.place +=targetPlace;
+			activity.name := sourcePlace.name+"_"+targetPlace.name;
+			if (activity.oclIsKindOf(SAN::TimedActivity)) {
+				result.timedActivity+=activity.oclAsType(SAN::TimedActivity);
+			}
+			else{
+				result.instantaneousActivity+=activity.oclAsType(SAN::InstantaneousActivity);
+			};
+			if (transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+				//TODO, for failure propagation, work in progress...
+				var failurePlace : Place := transition->UMLInternalPropagationTransition2IncomingFailureXXX()->asSequence()->first();
+				result.place += failurePlace;
+				failurePlace.x := placeX+stateCounter*150;
+				failurePlace.y := placeY;
+				stateCounter := stateCounter+1;
+				failurePlace.activity += activity;
+				
+			}
+			
+		}else if (transition.isStereotyped(ATTACK_STEREOTYPE)){
+			//create a timedACtivity
+			--log ("found internal fault "+transition.name);
+			var activity : SAN::InstantaneousActivity := transition.map UMLAttackTransition2InstantaneousActivity();
+			activity.x := activityX+activityCounter*150;
+			activity.y := activityY;
+			activityCounter := activityCounter+1;
+			
+			sourcePlace.activity += activity;
+			activity.place +=targetPlace;
+			activity.name := sourcePlace.name+"_"+targetPlace.name;
+			result.instantaneousActivity+=activity;
+			
+			//check attack messages associated (through vulnerability) to the transition
+			var attackMessage : Set(UML::Message) := transition.getAttackMessages();
+			attackMessage -> forEach(message){
+				var inputGate := message.map UMLAttackMessage2InputGate(result, normalPlace);
+				var successPlace := message.map UMLAttackMessage2AttackSuccessPlace(result, inputGate);
+				var confirmedPlace := message.map UMLAttackMessage2AttackConfirmedPlace(result, activity, inputGate);
+				//e.g.: (OptAttackBlock1_portA_success->Mark() > 0) && (OK->Mark() > 0) && (OptAttackBlock1_portA_confirmed->Mark() == 0))
+				inputGate.inputPredicated:="("+successPlace.name+"->Mark() > 0) && ("+normalPlace.name+"->Mark() > 0) && ("+confirmedPlace.name+"->Mark() == 0)";
+				//e.g.: OptAttackBlock1_portA_confirmed->Mark() = 1;
+				inputGate.inputFunction:=confirmedPlace.name+"->Mark() = 1";
+				
+				successPlace.x := attackX+attackCounter*150+50;
+				successPlace.y := attackY+100;
+				confirmedPlace.x := attackX+attackCounter*150+50;
+				confirmedPlace.y := attackY;
+				inputGate.x := attackX+attackCounter*150+50;
+				inputGate.y := attackY+50;
+				attackCounter := attackCounter+1;
+				
+			}
+			
+		}else if (transition.isStereotyped(FAILURE_STEREOTYPE)) {
+			//TODO, for failure propagation, work in progress...
+			var failurePlace : SAN::Place = transition->UMLFailureTransition2OutgoingFailureXXX()->asSequence()->first();
+			result.place += failurePlace;
+			failurePlace.x := targetplaceX+targetStateCounter*150;
+			failurePlace.y := targetplaceY;
+			targetStateCounter := targetStateCounter+1;
+			
+			
+			var transTuple :=Tuple{inst=self, trans =transition};
+			var activity := UMLInstance_FailurePropagationTransition2InstantaneousActivity(transTuple);
+			activity.x := activityX+activityCounter*150;
+			activity.y := activityY;
+			activityCounter := activityCounter+1;
+			result.instantaneousActivity += activity;
+			sourcePlace.activity += activity;
+			activity.place += failurePlace;
+			
+		}
+	
+	};
+
+}
+
+
+
+
+mapping UML::InstanceSpecification::UMLInstance2AtomicNode_no_multi_instance() : SAN::AtomicNode {
+	
+	result.name:=self.name;
+	//result.model:=self.classifier->asSequence()->first().name;
+	result.model:=self.name;
+	
+	var errorModel : UML::StateMachine = self.getErrorModel();
+	//TODO: check about regions
+	var trans := errorModel.region->asSequence()->first().transition;
+	var source : UML::State;
+	var target : UML::State;
+	var sourceVertex : UML::Vertex;
+	var targetVertex : UML::Vertex;
+	var normalPlace : SAN::Place;
+	trans -> forEach(transition){
+		sourceVertex := transition.source->asSequence()->first();
+		targetVertex := transition.target->asSequence()->first();
+		
+		var t :=Set{self, sourceVertex};
+		
+		//t.resolveIn(Tuple(a:InstanceSpecification, b:Vertex)::UMLInstanceVertex2Place);
+		
+		var sourcePlace := sourceVertex.resolveoneIn(Vertex::UMLVertex2Place, Place);
+		if (sourcePlace = null){
+		
+			if (sourceVertex.oclIsTypeOf(UML::Pseudostate)){
+				//TODO for me moment skip pseudostates
+				continue;
+//				var place := sourceVertex.map UMLVertex2Place();
+//				result.place += place;
+				
+			}else{
+				if (sourceVertex.oclIsTypeOf(UML::State)){
+					sourcePlace := sourceVertex.map UMLVertex2Place(self);
+					result.place += sourcePlace;
+					if (not sourceVertex.getAppliedStereotype(NORMALSTATE_STEREOTYPE).oclIsUndefined()){
+						log("found normal state "+ sourceVertex.name);
+						normalPlace := sourcePlace;
+					};
+				}
+			}
+		};
+		var targetPlace := targetVertex.resolveoneIn(Vertex::UMLVertex2Place, Place);
+		if (targetPlace = null){
+			if (targetVertex.oclIsTypeOf(UML::State)){
+					targetPlace := targetVertex.map UMLVertex2Place(self);
+					result.place += targetPlace;
+				}
+		};
+		
+		//TODO actually I am not sure about internalPropagation mapping...
+		if (transition.isStereotyped(INTERNALFAULT_STEREOTYPE) or transition.isStereotyped(REPAIR_STEREOTYPE) or transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+			//create a timedACtivity
+			//log ("found internal fault "+transition.name);
+			var activity : SAN::Activity := transition.map UMLTransition2Activity(result);
+			sourcePlace.activity += activity;
+			activity.place +=targetPlace;
+			activity.name := sourcePlace.name+"_"+targetPlace.name;
+			if (activity.oclIsKindOf(SAN::TimedActivity)) {
+				result.timedActivity+=activity.oclAsType(SAN::TimedActivity);
+			}
+			else{
+				result.instantaneousActivity+=activity.oclAsType(SAN::InstantaneousActivity);
+			};
+			if (transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+				//TODO, for failure propagation, work in progress...
+				result.place += transition->UMLInternalPropagationTransition2IncomingFailureXXX();
+			}
+			
+		}else if (transition.isStereotyped(ATTACK_STEREOTYPE)){
+			//create a timedACtivity
+			--log ("found internal fault "+transition.name);
+			var activity : SAN::InstantaneousActivity := transition.map UMLAttackTransition2InstantaneousActivity();
+			sourcePlace.activity += activity;
+			activity.place +=targetPlace;
+			activity.name := sourcePlace.name+"_"+targetPlace.name;
+			result.instantaneousActivity+=activity;
+			
+			//check attack messages associated (through vulnerability) to the transition
+			var attackMessage : Set(UML::Message) := transition.getAttackMessages();
+			attackMessage -> forEach(message){
+				var inputGate := message.map UMLAttackMessage2InputGate(result, normalPlace);
+				var successPlace := message.map UMLAttackMessage2AttackSuccessPlace(result, inputGate);
+				var confirmedPlace := message.map UMLAttackMessage2AttackConfirmedPlace(result, activity, inputGate);
+				//e.g.: (OptAttackBlock1_portA_success->Mark() > 0) && (OK->Mark() > 0) && (OptAttackBlock1_portA_confirmed->Mark() == 0))
+				inputGate.inputPredicated:="("+successPlace.name+"->Mark() > 0) && ("+normalPlace.name+"->Mark() > 0) && ("+confirmedPlace.name+"->Mark() == 0)";
+				//e.g.: OptAttackBlock1_portA_confirmed->Mark() = 1;
+				inputGate.inputFunction:=confirmedPlace.name+"->Mark() = 1";
+			}
+			
+		}else if (transition.isStereotyped(FAILURE_STEREOTYPE)) {
+			//TODO, for failure propagation, work in progress...
+			result.place += transition->UMLFailureTransition2OutgoingFailureXXX();
+			
+		}
+	
+	};
+
+}
+
+//					add one place for attack_success,
+//					add one place for attack_confirmed,
+//					add an input attack_gate,
+//					connect attack_success with attack_gate,
+//					connect OK(normal state) with attack_gate,
+//					connect attack_confirmed with attack_gate,
+//					connect attack_confirmed with instActivityName/
+mapping UML::Message::UMLAttackMessage2AttackSuccessPlace(inout atomicNode : SAN::AtomicNode, inputGate : SAN::InputGate) : SAN::Place {
+	result.name := self.name +"_success";
+	atomicNode.place += result;
+	result.inputGate += inputGate;
+}
+mapping UML::Message::UMLAttackMessage2AttackConfirmedPlace(inout atomicNode : SAN::AtomicNode, instActivity : SAN::InstantaneousActivity, inputGate : SAN::InputGate) : SAN::Place {
+	result.name := self.name +"_confirmed";
+	atomicNode.place += result;
+	result.activity+=instActivity;
+	result.inputGate += inputGate;
+}
+mapping UML::Message::UMLAttackMessage2InputGate(inout atomicNode : SAN::AtomicNode, inout normalPlace : SAN::Place) : SAN::InputGate {
+	result.name := self.name +"Gate";
+	atomicNode.inputGate += result;
+	normalPlace.inputGate += result;
+	
+
+}
+
+mapping UML::Transition::UMLInternalFaultTransition2TimedActivity(inout atomicNode : SAN::AtomicNode) : SAN::TimedActivity when {self.isStereotyped(INTERNALFAULT_STEREOTYPE)} {
+	var internalFault : CHESS::ThreatsPropagation::InternalFault := self.getStereotypeApplication(INTERNALFAULT_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalFault);
+	result.name := self.name;
+	if (not internalFault.oclAsType(CHESS::ThreatsPropagation::InternalFault).occurrence.oclIsUndefined()){
+		result.rate := internalFault.oclAsType(CHESS::ThreatsPropagation::InternalFault).occurrence.toString();
+	}else{
+		result.rate := self.name+"Rate";
+		atomicNode.addDoubleGlobalVariable(self.name+"Rate", atomicNode);
+	};
+	//TODO distribution function???
+	result.timeDistributionFunction := "exponential";
+}
+
+mapping UML::Transition::UMLRepairTransition2TimedActivity(inout atomicNode : SAN::AtomicNode) : SAN::TimedActivity when {self.isStereotyped(REPAIR_STEREOTYPE)} {
+	var repair : CHESS::MaintenanceMonitoring::Repair := self.getStereotypeApplication(REPAIR_STEREOTYPE).oclAsType(CHESS::MaintenanceMonitoring::Repair);
+	result.name := self.name;
+	if (not repair.probSuccess.oclIsUndefined()){
+		result.rate := repair.probSuccess.toString();
+	}else{
+		result.rate := self.name+"Rate";
+		atomicNode.addDoubleGlobalVariable(self.name+"Rate", atomicNode);	
+	};
+	//TODO distribution function???
+	result.timeDistributionFunction := "exponential";
+}
+
+mapping UML::Transition::UMLInternalPropagationTransition2InstantaneousActivity(inout atomicNode : SAN::AtomicNode) : SAN::InstantaneousActivity when {self.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)} {
+	var internalPropag : CHESS::ThreatsPropagation::InternalPropagation := self.getStereotypeApplication(INTERNALPROPAGATION_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalPropagation);
+	result.name := self.name;
+}
+
+mapping UML::Transition::UMLTransition2Activity(inout atomicNode : SAN::AtomicNode) : SAN::Activity 
+	disjuncts UML::Transition::UMLInternalFaultTransition2TimedActivity, UML::Transition::UMLRepairTransition2TimedActivity, UML::Transition::UMLInternalPropagationTransition2InstantaneousActivity {}
+
+mapping UML::Transition::UMLFailureTransition2OutgoingFailureXXX() : SAN::Place {
+	var failureStereo : CHESS::ThreatsPropagation::Failure := self.getStereotypeApplication(FAILURE_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Failure);
+	result.name := failureStereo.mode->asSequence()->first();
+}
+
+mapping UML::Transition::UMLInternalPropagationTransition2IncomingFailureXXX() : SAN::Place {
+	var internalPropag : CHESS::ThreatsPropagation::InternalPropagation := self.getStereotypeApplication(INTERNALPROPAGATION_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalPropagation);
+	result.name := internalPropag.externalFaults;
+}
+
+
+///////////////MULTI INSTANCE 
+mapping UMLInstance_InternalFaultTransition2TimedActivity(in tup : Tuple(inst:InstanceSpecification , trans:Transition), inout atomicNode : SAN::AtomicNode) : SAN::TimedActivity when {tup.trans.isStereotyped(INTERNALFAULT_STEREOTYPE)} {
+	var internalFault : CHESS::ThreatsPropagation::InternalFault := tup.trans.getStereotypeApplication(INTERNALFAULT_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalFault);
+	result.name := tup.trans.name;
+	if (not internalFault.oclAsType(CHESS::ThreatsPropagation::InternalFault).occurrence.oclIsUndefined()){
+		result.rate := internalFault.oclAsType(CHESS::ThreatsPropagation::InternalFault).occurrence.toString();
+	}
+	else{
+		result.rate := tup.trans.name+"Rate";
+		atomicNode.addDoubleGlobalVariable(tup.trans.name+"Rate", atomicNode);	
+	};
+	//TODO distribution function???
+	result.timeDistributionFunction := "exponential";
+}
+mapping UMLInstance_RepairTransition2TimedActivity(in tup : Tuple(inst:InstanceSpecification , trans:Transition), inout atomicNode : SAN::AtomicNode) : SAN::TimedActivity when {tup.trans.isStereotyped(REPAIR_STEREOTYPE)} {
+	var repair : CHESS::MaintenanceMonitoring::Repair := tup.trans.getStereotypeApplication(REPAIR_STEREOTYPE).oclAsType(CHESS::MaintenanceMonitoring::Repair);
+	result.name := tup.trans.name;
+	if (not repair.probSuccess.oclIsUndefined()){
+		result.rate := repair.probSuccess.toString();
+	}else{
+		result.rate := tup.trans.name+"Rate";
+		atomicNode.addDoubleGlobalVariable(tup.trans.name+"Rate", atomicNode);	
+	};
+	//TODO distribution function???
+	result.timeDistributionFunction := "exponential";
+}
+mapping UMLInstance_InternalPropagationTransition2IncomingFailureXXX(in tup : Tuple(inst:InstanceSpecification , trans:Transition)) : SAN::Place {
+	var internalPropag : CHESS::ThreatsPropagation::InternalPropagation := tup.trans.getStereotypeApplication(INTERNALPROPAGATION_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalPropagation);
+	result.name := internalPropag.externalFaults;
+}
+
+mapping UMLInstance_InternalPropagationTransition2InstantaneousActivity(in tup : Tuple(inst:InstanceSpecification , trans:Transition)) : SAN::InstantaneousActivity when {tup.trans.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)} {
+	var internalPropag : CHESS::ThreatsPropagation::InternalPropagation := tup.trans.getStereotypeApplication(INTERNALPROPAGATION_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::InternalPropagation);
+	result.name := tup.trans.name;
+}
+
+mapping UMLInstance_FailurePropagationTransition2InstantaneousActivity(in tup : Tuple(inst:InstanceSpecification , trans:Transition)) : SAN::InstantaneousActivity when {tup.trans.isStereotyped(FAILURE_STEREOTYPE)} {
+	var internalPropag : CHESS::ThreatsPropagation::Failure := tup.trans.getStereotypeApplication(FAILURE_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Failure);
+	result.name := tup.trans.name;
+}
+/////////////////////
+
+
+//TODO get a precondition here about attacktransition
+mapping UML::Transition::UMLAttackTransition2InstantaneousActivity() : SAN::InstantaneousActivity {
+	var internalFault : CHESS::ThreatsPropagation::Attack := self.getStereotypeApplication(ATTACK_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Attack);
+	result.name := self.name;
+}
+
+
+mapping UML::Vertex::UMLVertex2Place(instance : InstanceSpecification) : SAN::Place {
+	result.name := self.name;
+	if (not self.getAppliedStereotype(NORMALSTATE_STEREOTYPE).oclIsUndefined()){
+		result.initialState :=1;
+	}else{
+		result.initialState :=0;
+	}
+}
+
+mapping Tuple(a:InstanceSpecification , b:Vertex)::UMLInstanceVertex2Place() : SAN::Place {
+	result.name := self.b.name;
+	if (not self.b.getAppliedStereotype(NORMALSTATE_STEREOTYPE).oclIsUndefined()){
+		result.initialState :=1;
+	}else{
+		result.initialState :=0;
+	}
+}
+
+mapping UMLInstance_Vertex2Place(in tup : Tuple(inst:InstanceSpecification , vertex:Vertex)) : SAN::Place{
+	result.name := tup.vertex.name;
+	if (not tup.vertex.getAppliedStereotype(NORMALSTATE_STEREOTYPE).oclIsUndefined()){
+		result.initialState :=1;
+	}else{
+		result.initialState :=0;
+	}
+}
+
+//mapping UML::State::UMLState2Place() : SAN::Place {
+//	result.name := self.name;
+//}
+
+//TODO use AnalysisContext.workload property
+//currently I use the 'condition' string property = <interaction1QN>;<Inteaction2QN>;...
+query UML::Class::initAttackScenario_OLD(){
+
+	var analysis : CHESS::StateBasedAnalysis::SANAnalysis := self.getStereotypeApplication(SANANALYSIS_STEREOTYPE).oclAsType(CHESS::StateBasedAnalysis::SANAnalysis);
+	--log("attack scenario QN : "+analysis.condition);
+	var interactions :Collection(String) := analysis.condition.oclAsType(String).trim().tokenize(";").trim();
+	interactions -> forEach(interactionQN){
+		var interaction : UML::Interaction := this.model.findElementByQualifiedName(interactionQN).oclAsType(UML::Interaction);
+		log("attack scenario found : "+interaction.name);
+		this.attackScenarios += interaction;
+	};
+}
+
+query UML::Class::initAttackScenario(){
+
+	var analysis : CHESS::StateBasedAnalysis::SANAnalysis := self.getStereotypeApplication(SANANALYSIS_STEREOTYPE).oclAsType(CHESS::StateBasedAnalysis::SANAnalysis);
+	--log("attack scenario QN : "+analysis.condition);
+	
+	//to be used with the official MARTE release
+	var  workloads : Set(MARTE::GQAM::GaWorkloadBehavior) := analysis.workload->asSet();
+	//to be used with the nightly build MARTE (the one solving CDO issue)
+	//var  workloads : Set(MARTE::GQAMMARTE_AnalysisModel::GQAM::GaWorkloadBehavior) := analysis.workload->asSet();
+	
+	workloads -> forEach(workload){
+		var named :=workload.base_NamedElement;
+		//ocl check does not work...
+		//if (named->oclIsTypeOf(UML::Interaction)){
+			log("attack scenario found : "+named.name);
+			this.attackScenarios += named.oclAsType(UML::Interaction);
+		//}
+	};
+
+}
+
+
+query UML::Class::initRewards(){
+	var analysis : CHESS::StateBasedAnalysis::SANAnalysis := self.getStereotypeApplication(SANANALYSIS_STEREOTYPE).oclAsType(CHESS::StateBasedAnalysis::SANAnalysis);
+	
+	analysis.context-> forEach (reward){
+		if (reward.toString().startsWith('*.')){  //support for wildcard, e.g. *.ErrorState ->all instances having ErorState are interested by the reward
+			var stateName := reward.toString().substring(3, reward.toString().size());
+			//check all errorModel instances
+			var children := getAllErrorModelBehaviourInstance();
+			var errorModel : UML::StateMachine;
+			children -> forEach(child){
+				errorModel := child.getErrorModel();
+				//if (errorModel != null and not errorModel->oclIsInvalid()){ //this is actually guaranteed
+					var vertexes := errorModel.region->asSequence()->first().oclAsType(UML::Region).subvertex;
+					vertexes ->forEach(vertex){
+						if (vertex.name = stateName){
+							this.rewardStates  += child.name+"."+vertex.oclAsType(UML::State).name;
+						}
+					}
+				//}
+			}
+		}else{
+			//TODO here I just copy the name of the state from the analysis context...for each state, I should check that it exist actually in the model
+			//Assumption: reward = <instance name>.<error model state name>
+			this.rewardStates+=reward;
+		}
+	};
+	this.rewardStates -> forEach(state){
+		log("reward states of interest: " + state);
+	};
+	
+}
+
+query getAllErrorModelBehaviourInstance() : Set(UML::InstanceSpecification){
+	var set := instancePackage.ownedElement->selectByKind(InstanceSpecification)->select(i:InstanceSpecification | not (i->oclAsType(UML::InstanceSpecification).getErrorModel()=null));
+	return set;
+}
+
+//returns the UML Messages associated (through vulnerability) to transition
+query UML::Transition::getAttackMessages() : Set(UML::Message){
+
+	var attack := self.getStereotypeApplication(ATTACK_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Attack);
+	var vuln := attack.vulnerability;
+	
+	var messages : Set(UML::Message) = Set{};
+	this.attackScenarios -> forEach(scenario){
+		scenario.ownedElement -> forEach(element){
+			if (element.isStereotyped(ATTACK_STEREOTYPE)){
+				var attackMsg := element.getStereotypeApplication(ATTACK_STEREOTYPE).oclAsType(CHESS::ThreatsPropagation::Attack);
+				if (attackMsg.vulnerability=(attack.vulnerability)){
+					messages += element.oclAsType(UML::Message);
+				}
+			}
+		}
+	};
+	return messages;
+}
+
+
+query UML::Interaction::getAttackMessages() : Set(UML::Message){
+	var messages : Set(UML::Message) = Set{};
+	self.ownedElement -> forEach(element){
+		if (element.isStereotyped(ATTACK_STEREOTYPE)){
+			messages += element.oclAsType(UML::Message);
+		}
+	};
+	return messages;
+}
+
+
+--Returns the reward states of interest for the given instance
+--assumption: rewards states have been previously retrieved
+--assumption: rewards states have been provided as string <instance name>.<state name>
+query UML::InstanceSpecification::getRewardStates() : Set(UML::State){
+	var states : Set(UML::State) = Set{};
+	this.rewardStates -> forEach(state){
+				
+		var instanceName : String := state.substring(1, state.lastIndexOf(".")-1);
+		if (self.name=instanceName){
+			var stateName = state.substring(state.lastIndexOf(".")+1, state.size());
+			--log("rewards state name: " + stateName);
+			var errorModel : UML::StateMachine = self.getErrorModel();
+			
+			//TODO: check about regions
+			var vertexes := errorModel.region->asSequence()->first().oclAsType(UML::Region).subvertex;
+			vertexes ->forEach(vertex){
+				if (vertex.name = stateName){
+					states  += vertex.oclAsType(UML::State);
+				}
+			}
+		}
+	};
+	return states;
+}
+
+--self has been already be mapped to an AtomicNode
+query UML::InstanceSpecification::getRewardsPlaces() : Set(SAN::Place){
+	var places : Set(SAN::Place) = Set{};
+	var states := self.getRewardStates();
+	states->forEach(state){
+		//find the place of the node originating from self which has been derived from 'state'
+		var atomic : SAN::AtomicNode := self.resolveoneIn(UML::InstanceSpecification::UMLInstance2AtomicNode, SAN::AtomicNode);
+		atomic.place -> forEach(place){
+			if (place.name = state.name){
+				places += place;
+				continue;
+			}
+		}
+		
+	};
+	return places;
+}
+
+--returns the place corresponding to the given instance's' state
+--self has been already be mapped to an AtomicNode
+query UML::InstanceSpecification::getPlace(state : UML::State) : SAN::Place{
+	
+	//find the place of the node originating from self which has been derived from 'state'
+	var atomic : SAN::AtomicNode := self.resolveoneIn(UML::InstanceSpecification::UMLInstance2AtomicNode, SAN::AtomicNode);
+	atomic.place -> forEach(place){
+		if (place.name = state.name){
+			return place;
+		}
+	};
+	return null;	
+}
+
+--returns the places corresponding to success attack owned by the given AtomicNode
+query SAN::AtomicNode::getSuccessAttackPlace() : Set(SAN::Place){
+	var places : Set(SAN::Place) = Set{};
+	self.place -> forEach(place){
+		var source := place.invresolveIn(UML::Message::UMLAttackMessage2AttackSuccessPlace);
+		if (not source->asSequence()->isEmpty()){
+			var msg = source->asSequence()->first();
+			places += place;
+			--log ("found success attack mesasge "+ msg.oclAsType(Message).name);
+		}
+	};
+	return places;
+}
+
+--return the Message from which the given Place has been mapped, if any
+query SAN::Place::getAttackMessage() : UML::Message {
+	var msg : UML::Message;
+	var source := self.invresolveIn(UML::Message::UMLAttackMessage2AttackSuccessPlace);
+	if (not source->asSequence()->isEmpty()){
+		msg := source->asSequence()->first();
+	};
+	return msg;
+}
+
+
+helper UML::InstanceSpecification::hasErrorModel() : Boolean =
+	self.getErrorModel() != null;
+
+helper UML::InstanceSpecification::getErrorModel() : UML::StateMachine =
+ self.classifier.oclAsType(UML::Class).ownedBehavior->selectOne(sm : UML::StateMachine | sm.isStereotyped(ERRORMODEL_STEREOTYPE)).oclAsType(StateMachine);
+ 
+ query UML::InstanceSpecification::getInternalPropagation() : Set(UML::Transition) {
+ 	var res : Set(UML::Transition);
+ 	var trans := self.getErrorModel().region->asSequence()->first().transition;
+	trans -> forEach(transition){
+ 		if (transition.isStereotyped(INTERNALPROPAGATION_STEREOTYPE)){
+ 			res += transition;
+ 		}
+ 	};
+ 	return res;
+ }
+ 
+  query UML::InstanceSpecification::getFailureTransition() : Set(UML::Transition) {
+ 	var res : Set(UML::Transition);
+ 	var trans := self.getErrorModel().region->asSequence()->first().transition;
+	trans -> forEach(transition){
+ 		if (transition.isStereotyped(FAILURE_STEREOTYPE)){
+ 			res += transition;
+ 		}
+ 	};
+ 	return res;
+ }
+
+
+//query UML::InstanceSpecification::hasInternalInstancesWithErroModel() : Boolean {
+//	var childs := self.getSubInstances();
+//	childs -> forEach(child){
+//		if (not child.getErrorModel()->oclIsUndefined())
+//			return true;
+//		if (child.getSubInstances()->size() >0){
+//			var res = child.hasInternalInstancesWithErroModel();
+//			if (res){
+//				return true;
+//			}
+//		}
+//			
+//	};
+//	return false;
+//}
+
+--------------------------------------------------------------------
+-- Helpers to get, start from a given InstanceSpecification,
+-- port instances and subcomponent instances
+--------------------------------------------------------------------
+helper UML::InstanceSpecification::getPortSlots() : Set(UML::Slot) = 
+	self.slot->select(s | s.definingFeature.oclIsKindOf(UML::Port));
+
+helper UML::InstanceSpecification::getSubInstanceSlots() : Set(UML::Slot) =
+	self.slot->select(s | not s.definingFeature.oclIsKindOf(UML::Port));
+
+query UML::InstanceSpecification::getSubInstances() : Set(UML::InstanceSpecification) {
+	var slots : Set(UML::Slot) = self.getSubInstanceSlots()->select(s | s.value->first().oclIsKindOf(UML::InstanceValue));
+	var instances : Set(UML::InstanceSpecification);
+	slots -> forEach(slot){
+		instances += slot.value.oclAsType(UML::InstanceValue).instance;
+	};
+	--log("subinstances of "+self.name+" = "+instances->size().toString());
+	return instances;
+}
+
+
+query UML::InstanceSpecification::getAllSubInstances() : List(UML::InstanceSpecification) {
+	var res : List(UML::InstanceSpecification);
+	var instances : Set(UML::InstanceSpecification);
+	instances := self.getSubInstances();
+	var sub : Set(UML::InstanceSpecification);
+	instances->forEach(instance){
+		res->add(instance);
+		var sub2 = instance.getAllSubInstances();
+		sub2 -> forEach (instance2) {
+			res->add(instance2);
+		};
+	};
+	return res;
+}
+
+query UML::InstanceSpecification::hasInternalErrorModelBehaviour() : Boolean {
+	var b: Boolean = not self.getAllSubInstances()->select(inst : InstanceSpecification | inst.getErrorModel() != null)->isEmpty();
+	//log("*************"+self.name+" has internal errorModel "+b.toString());
+	return b;
+}
+
+
+
+helper UML::InstanceSpecification::isSubInstanceOf(parent : UML::InstanceSpecification) : Boolean =
+	parent.getSubInstances()->includes(self);
+	
+helper UML::InstanceSpecification::isComposite() : Boolean =
+	self.getSubInstances()->notEmpty();
+
+
+
+--------------------------------------------------------------------
+-- Helpers to explore the model and get the component that is
+-- connected to the other side of a port
+--------------------------------------------------------------------
+
+--Get connectors that are linked to a certain port instance
+helper UML::Slot::getConnectors() : Set(UML::InstanceSpecification) =
+	this.umlInstancesConnectors->
+				select(c | not c.slot->select(s | s.definingFeature = self.definingFeature 
+					and s.value->first().oclAsType(UML::InstanceValue).instance = self.owningInstance)->isEmpty());
+					
+query UML::Slot::getConnectorsDEBUG() : Set(UML::InstanceSpecification) {
+	var se : Set(UML::InstanceSpecification) := this.umlInstancesConnectors->
+				select(c | not c.slot->select(s | s.definingFeature = self.definingFeature 
+					and s.value->first().oclAsType(UML::InstanceValue).instance = self.owningInstance)->isEmpty());
+	log ("getConnectors - found "+se->size().toString());
+	return se;
+}
+					
+--Is the connector instance a "normal" connection
+--betweentwo components at the same level?
+--THIS HELPER DOES NOT WORK, IT RETURNS ALWAYS INVALID... 
+helper UML::InstanceSpecification::isConnectionORIG() : Boolean = 
+	let sl : OrderedSet(UML::Slot) = self.slot->asOrderedSet() in
+	let i1 : UML::InstanceSpecification = sl->first().value->first().oclAsType(UML::InstanceValue).instance in
+	let i2 : UML::InstanceSpecification = sl->last().value->first().oclAsType(UML::InstanceValue).instance in
+	if (i1.oclIsUndefined() or i2.oclIsUndefined()) then false 
+	else {
+		not i1.isSubInstanceOf(i2) and not i2.isSubInstanceOf(i1)
+	}
+	endif;
+	
+--Is the connector instance a "normal" connection
+--betweentwo components at the same level?
+query UML::InstanceSpecification::isConnection() : Boolean {
+	var res  : Boolean;
+	var slots : OrderedSet(UML::Slot) = self.slot->asOrderedSet();
+	var i1 : InstanceSpecification = slots->first().value->first().oclAsType(UML::InstanceValue).instance;
+	var i2 : InstanceSpecification = slots->last().value->first().oclAsType(UML::InstanceValue).instance;
+	
+	if (i1.oclIsUndefined() or i2.oclIsUndefined()) then {
+	 res := false;
+	}
+	else {
+		res :=not i1.isSubInstanceOf(i2) and not i2.isSubInstanceOf(i1);
+	}
+	endif;
+	return res;
+}
+
+--Is the connector instance a delegation?
+helper UML::InstanceSpecification::isDelegation() : Boolean = 
+	let sl : OrderedSet(UML::Slot) = self.slot->asOrderedSet() in
+	let i1 : UML::InstanceSpecification = sl->first().value->first().oclAsType(UML::InstanceValue).instance in
+	let i2 : UML::InstanceSpecification = sl->last().value->first().oclAsType(UML::InstanceValue).instance in
+	i1.isSubInstanceOf(i2) or i2.isSubInstanceOf(i1);
+	
+	
+	
+	--Get the target of connection taking into account SBA stereotypes,
+--i.e., get the first slot whose owning instance has SBA information.
+--(it can be even the slot directly connected to the one under examination)
+--Stefano: I have added self to the set of port for which immediate and delegation down has to be cheked
+helper UML::Slot::getSBAConnections() : Set(UML::Slot) =
+	self.getSBADelegationsUpwards()->union(self->asBag())->
+		collect(d | d.getConnectedImmediate())->flatten()->
+		collect(sl | sl.getSBADelegationsDownwards())->flatten()->asSet();	
+		
+		
+		
+--Get the target of delegation taking into account SBA stereotypes,
+--i.e., get the first slot whose owning instance has SBA information.
+--(it can be even the slot under examination itself)
+helper UML::Slot::getSBADelegationsDownwardsORIG() : Set(UML::Slot) =
+	let inst : UML::InstanceSpecification = self.owner.oclAsType(UML::InstanceSpecification) in
+	let deleg : Set(UML::Slot) = self.getDelegationEndsDownwards() in
+	if deleg->isEmpty() or 
+		inst.getSubInstances().getErrorModel()->oclIsUndefined() or 
+		inst.getSubInstances()->isEmpty() 
+	then
+		Set{self}
+	else
+		deleg->collect(e | e.getSBADelegationsDownwards())->flatten()->asSet()
+	endif;
+	
+--Get the target of delegation taking into account SBA stereotypes,
+--i.e., get the first slot whose owning instance has SBA information.
+--(it can be even the slot under examination itself)
+query UML::Slot::getSBADelegationsDownwards() : Set(UML::Slot) {
+
+	if (self.owner.oclAsType(UML::InstanceSpecification).getErrorModel()->oclIsUndefined())
+		return Set{self};
+
+	var res = let inst : UML::InstanceSpecification = self.owner.oclAsType(UML::InstanceSpecification) in
+	let deleg : Set(UML::Slot) = self.getDelegationEndsDownwards() in
+	if deleg->isEmpty() or 
+		--not (inst.getErrorModel()->oclIsUndefined()) or 
+		inst.getSubInstances()->isEmpty() 
+	then
+		Set{self}
+	else
+		deleg->collect(e | e.getSBADelegationsDownwards())->flatten()->asSet()
+	endif;
+	
+	--log("getSBADelegationsDownwards for " + self.definingFeature.name +" , res  is "+res->size().toString());
+	
+	return res;
+}
+		
+helper UML::Slot::getSBADelegationsUpwards() : Set(UML::Slot) =
+	let inst : UML::InstanceSpecification = self.owner.oclAsType(UML::InstanceSpecification) in
+	let deleg : Set(UML::Slot) = self.getDelegationEndsUpwards() in
+	if deleg->isEmpty() then
+		Set{self}
+	else
+		deleg->collect(e | e.getSBADelegationsUpwards())->flatten()->asSet()
+	endif;
+
+--Get taget(s) of delegation in sub-instances
+helper UML::Slot::getDelegationEndsDownwards() : Set(UML::Slot) = 
+	self.getDelegationEnds()->select(s | s.owner.oclAsType(UML::InstanceSpecification).isSubInstanceOf(self.owner.oclAsType(UML::InstanceSpecification)))->asSet();
+
+--Get source(s) of delegation in parent instance
+helper UML::Slot::getDelegationEndsUpwards() : Set(UML::Slot) = 
+	self.getDelegationEnds()->select(s | self.owner.oclAsType(UML::InstanceSpecification).isSubInstanceOf(s.owner.oclAsType(UML::InstanceSpecification)))->asSet();
+	
+--Get port instances that receive/send delegation from/to a certain port instance
+helper UML::Slot::getDelegationEnds() : Set(UML::Slot) =
+	let connectorsSlots : Set(UML::Slot) =
+	self.getConnectors()->select(c | c.isDelegation())->
+							collect(c | c.slot)->
+							flatten()->
+							select(s | s.definingFeature <> self.definingFeature)->asSet()
+	in
+	connectorsSlots->collect(s | s.value.oclAsType(InstanceValue).instance.slot->
+									select(sl | sl.definingFeature = s.definingFeature))->flatten()->asSet();
+	
+	
+--Get port instances that are *directly* connected to a certain port instance
+helper UML::Slot::getConnectedImmediateORIG() : Set(UML::Slot) =
+	let connectorsSlots : Set(UML::Slot) = 
+	self.getConnectors()->select(c | c.isConnection())->
+							collect(c | c.slot)->
+							flatten()->
+							select(s | s.definingFeature <> self.definingFeature)->asSet()
+	in
+	connectorsSlots->collect(s | s.value.oclAsType(UML::InstanceValue).instance.slot->
+									select(sl | sl.definingFeature = s.definingFeature))->flatten()->asSet();
+									
+query UML::Slot::getConnectedImmediate() : Set(UML::Slot) {
+	var res := let connectorsSlots : Set(UML::Slot) = 
+	self.getConnectors()->select(c | c.isConnection())->
+							collect(c | c.slot)->
+							flatten()->
+							select(s | s.definingFeature <> self.definingFeature)->asSet()
+	in
+	connectorsSlots->collect(s | s.value.oclAsType(UML::InstanceValue).instance.slot->
+									select(sl | sl.definingFeature = s.definingFeature))->flatten()->asSet();
+	--log("getConnectedImmediate for slot "+self.definingFeature.name+" , res is "+res->size().toString());
+	return res;
+}
+									
+									
+query UML::Slot::getConnectedImmediateDEBUG() : Set(UML::Slot) {
+	
+	var se : Set(UML::Slot) :=
+	let connectorsSlots : Set(UML::Slot) = 
+	self.getConnectors()->select(c | c.isConnection())->
+							collect(c | c.slot)->
+							flatten()->
+							select(s | s.definingFeature <> self.definingFeature)->asSet()
+	in
+	connectorsSlots->collect(s | s.value.oclAsType(UML::InstanceValue).instance.slot->
+									select(sl | sl.definingFeature = s.definingFeature))->flatten()->asSet();
+								
+	return se;								
+}
+	
+------------------------------------------------------------------------------
+--Helpers for attack scenarios
+------------------------------------------------------------------------------
+
+
+
+
+--------------------------------------------------------------------
+-- Check if a Port (or Slot) has input or output dataflow
+--------------------------------------------------------------------
+helper UML::Slot::hasInputFlow() : Boolean = self.definingFeature.oclAsType(UML::Port).hasInputFlow();
+helper UML::Slot::hasOutputFlow() : Boolean = self.definingFeature.oclAsType(UML::Port).hasOutputFlow();
+
+helper  UML::Port::hasInputFlow() : Boolean =
+	let flowport : SysML::FlowPort = SysML::FlowPort.allInstances()->select(c | c.base_Port = self)->asSequence()->first() in
+	
+		if not flowport.oclIsUndefined() then 
+			flowport.hasInputFlow() 
+		else
+			false
+	 endif;
+	 
+helper UML::Port::hasOutputFlow() : Boolean =
+	
+	let flowport : SysML::FlowPort = SysML::FlowPort.allInstances()->select(c | c.base_Port = self)->asSequence()->first() in
+		if not flowport.oclIsUndefined() then flowport.hasOutputFlow() 
+		 else
+				false
+	endif;
+	
+helper SysML::FlowPort::hasInputFlow() : Boolean = self.direction.toString() <> 'out';
+helper SysML::FlowPort::hasOutputFlow() : Boolean = self.direction.toString() = 'out';
+
+helper SAN::Node::addDoubleGlobalVariable(glob : String, inout node : SAN::Node){
+	if(glob.startsWith("1.0")){
+		return;
+	};
+	var globVar : SAN::GlobalVariable := object SAN::GlobalVariable{name := glob; type := "double";};
+	node.globalVariable += globVar;
+} 
+
+helper UML::InteractionOperand::getPredicate() : String{
+	var pred : String  = self.name;
+	var valSpec: ValueSpecification  = self.guard.specification;
+	if(valSpec.oclIsTypeOf(LiteralString)){
+		var litStr: LiteralString  = valSpec.oclAsType(LiteralString);
+		if(litStr.value="else" and not predicateList->isEmpty()){
+			var s : String := predicateList->size().toString(); 
+			log("predicate list "+ s);
+			
+			pred := "1.0 - (";
+			var first : Boolean := true;
+			predicateList -> forEach (predicate){
+				if(first){
+					pred :=pred + predicate;
+					first := false;
+				}else{
+					pred:=pred+" + " + predicate;
+				};
+			};
+			pred:= pred +')';
+		}else{
+			pred := litStr.value;
+			//add it to current predicate list:
+			predicateList->add(pred);
+		};
+	};	
+	return pred;	
+}
+
+query UML::InteractionOperand::getOperationAttack(ownerInteraction:UML::Interaction) : UML::Message{
+	var msg : Message;
+	ownerInteraction.getAttackMessages()->forEach(message){
+		if(message.sendEvent.oclIsTypeOf(MessageOccurrenceSpecification)){
+			var	msgOcc : MessageOccurrenceSpecification := message.sendEvent.oclAsType(MessageOccurrenceSpecification);
+				if (msgOcc.enclosingOperand != null and msgOcc.enclosingOperand=self){
+					msg := message;
+					break;//TODO what about multiple attack in the same operand?
+				}
+		}
+	};
+	return msg;
+}
+
+query getAltOffset(index: Integer, size: Integer) : Integer {
+		var res:Real := (index +1 - size/2)*OFFSET; //size is even
+		if(size.mod(2) != 0){ //size is odd
+			res := (index - size/2)*OFFSET;
+		};
+		return res.floor()+1;
+	}
+
+helper UML::InteractionOperand::getLoopCounter() : String{
+	var res : String  = "counter";
+	//maxint can be literal string or int
+	var valSpec : UML::ValueSpecification  := self.guard.maxint;
+	if(valSpec.oclIsTypeOf(UML::LiteralString)){
+		var litStr: LiteralString = valSpec.oclAsType(UML::LiteralString);
+		res:= litStr.value;
+	}else if(valSpec.oclIsTypeOf(LiteralInteger)){
+		var litInt : LiteralInteger  = valSpec.oclAsType(LiteralInteger);
+		res := litInt.value.toString();
+	};
+	//minint is expected to be = 1
+	//moreover: the loop counter should be a short variable in Mobius
+	return res;
+}
+
+helper UML::DurationConstraint::getDelay() : String{
+	var res : String = "delay";
+	var duration : DurationConstraint = self.oclAsType(DurationConstraint);
+	var durInt : DurationInterval = duration.specification.oclAsType(DurationInterval);
+		// min/max duration interval
+	var litStrMin : LiteralString;
+	var litStrMax : LiteralString;
+	var durMin : Duration := durInt.min.oclAsType(Duration);
+	var durMax : Duration := durInt.max.oclAsType(Duration);
+		
+	if(durMin.expr.oclIsTypeOf(LiteralString) and durMax.expr.oclIsTypeOf(LiteralString)){
+			litStrMin :=  durMin.expr.oclAsType(LiteralString);
+			litStrMax :=  durMin.expr.oclAsType(LiteralString);
+			if(litStrMin.value=litStrMax.value){
+				res := litStrMin.value;
+			}
+		};
+	return res;
+}

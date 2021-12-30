@@ -1,0 +1,70 @@
+[comment
+/*********************************************************************
+* Copyright (c) 2019 Intecs Solutions SpA
+*
+* This program and the accompanying materials are made
+* available under the terms of the Eclipse Public License 2.0
+* which is available at https://www.eclipse.org/legal/epl-2.0/
+*
+* SPDX-License-Identifier: EPL-2.0
+*
+* Contributors: 
+*   Intecs Solutions - Initial API and implementation
+*   
+**********************************************************************/
+/]
+[comment encoding = UTF-8 /]
+[module projectFileTemplate_sanmodel('http://www.polarsys.org/chess/SAN')/]
+
+
+[template public projectFileTemplate_sanmodel(sanmodel : SANModel, projectName : String)]
+	
+	[comment @main /]
+	[file (projectName.concat('.prj'), false, 'UTF-8')]
+<?xml version="1.0" encoding="ASCII"?>
+<models:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:models="http://www.mobius.illinois.edu/projects" name="[projectName/]" lastSavedVersion="2.5.9.201902201008">
+	[let nodes : Sequence(Node) = sanmodel.getAllNodes()->asSequence()]
+	[for (node : Node | nodes)]
+	[if (node.oclIsKindOf(AtomicNode))]
+	<atomic key="[node.oclAsType(AtomicNode).model.replaceAll('\\.', '_')/]">
+      <value name="[node.oclAsType(AtomicNode).model.replaceAll('\\.', '_')/]" type="SAN Model"/>
+   	</atomic>
+	[else]
+	[if (node.oclIsKindOf(ComposedNode) and node.eContainer().oclIsKindOf(SANModel))]
+	<composed key="[node.name.replaceAll('\\.', '_')/]">
+      <value name="[node.name.replaceAll('\\.', '_')/]" category="Composed" type="Rep/Join Model"/>	
+   	</composed>
+	[/if]
+	[/if]
+	[/for]
+	[/let]
+
+</models:Project>
+	[/file]
+[/template]
+
+
+[comment  to handle start place of fragments in a sequence diagram /]
+[query public getStartPlace(ctx : OclAny) : String =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'getStartPlace()', Sequence{})/]
+
+[query public getStartX(ctx : OclAny) : Integer =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'getStartX()', Sequence{})/]
+
+[query public getStartY(ctx : OclAny) : Integer =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'getStartY()', Sequence{})/]
+
+[query public setStartPlace(startPlace : String) : OclAny =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'setStartPlace(java.lang.String)', Sequence{startPlace})/]
+
+[query public setStartX(startX : Integer) : OclAny =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'setStartX(java.lang.Integer)', Sequence{startX})/]
+
+[query public setStartY(startY : Integer) : OclAny =
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'setStartY(java.lang.Integer)', Sequence{startY})/]
+
+[query public getEmptyStringSet(traceCtx : OclAny) : Set(String) = 
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'getEmptyStringSet()', Sequence{}) /]
+
+[query public addToGlobalVars(name : String, globalvars : Set(String)) : OclAny = 
+invoke('org.polarsys.chess.mobius.utils.TransformationUtil', 'addToGlobalVars(java.lang.String, java.util.Set)', Sequence{name, globalvars}) /]

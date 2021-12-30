@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+<!--
+   
+    Copyright (c) 2013, 2015 Intecs SpA 
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v2.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v20.html
+   
+    Contributors:
+    Nicholas Pacini nicholas.pacini@intecs.it 
+    Stefano Puri stefano.puri@intecs.it
+    Laura Baracchi  laura.baracchi@intecs.it  
+    Initial API and implementation and/or initial documentation
+ -->
+<plugin>
+   <extension point="org.polarsys.chess.addprofile">
+      <client class="org.polarsys.chess.contracts.chessextension.managers.ApplyCHESSContractProfile"/>
+   </extension>
+   
+   <!-- CHESS Selection listener -->
+   <extension point="org.polarsys.chess.selectionListener">
+    <listener name="CHESS Contract selection listener" realization="org.polarsys.chess.contracts.chessextension.listeners.SelectionListener">
+    </listener>
+    </extension>
+    
+    <extension
+        point="org.eclipse.ui.commands">
+      <command
+            id="org.polarsys.chess.contracts.chessextension.setContractRefinement"
+            name="Set Contract Refinement">
+      </command>
+    </extension> 
+    
+    <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.polarsys.chess.contracts.chessextension.popup.commands.SetContractRefinement"
+            commandId="org.polarsys.chess.contracts.chessextension.setContractRefinement">
+      </handler>
+    </extension> 
+   
+   <extension point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener name="org.polarsys.chess.contracts.chessextension.listener1" realization="org.polarsys.chess.contracts.chessextension.listeners.PapyrusModelListener">
+      </listener>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor contributorId="TreeOutlinePage">
+            <!--tabDescriptorProvider="org.polarsys.chess.contracts.chessextension.propertytab.ContractsPropertyTabDescriptorProvider"-->
+         <propertyCategory category="ContractProperty"/>
+      </propertyContributor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="TreeOutlinePage">
+         	<propertyTab afterTab="advanced" category="ContractProperty" id="Contracts" label="CHESSs"/>
+      </propertyTabs>
+   </extension>
+   
+   
+   
+    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor contributorId="TreeOutlinePage">
+            <!--tabDescriptorProvider="org.polarsys.chess.contracts.chessextension.propertytab.ContractsPropertyTabDescriptorProvider"-->
+         <propertyCategory category="FormalProperty"/>
+      </propertyContributor>
+   </extension>
+   
+   <!--extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="TreeOutlinePage">
+         	<propertyTab afterTab="advanced" category="FormalProperty" id="FormalProperty" label="OpenCert"/>
+      </propertyTabs>
+   </extension>
+   
+   
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor contributorId="TreeOutlinePage">
+         <propertyCategory category="OpenCertProperty"/>
+      </propertyContributor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs contributorId="TreeOutlinePage">
+         	<propertyTab afterTab="advanced" category="OpenCertProperty" id="OpenCert" label="OpenCert"/>
+      </propertyTabs>
+   </extension-->
+   
+   
+   
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections">
+	<propertySections contributorId="TreeOutlinePage">
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyBlock" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyClass" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyComponent" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyBlock" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockCompositeEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyBlock" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockPropertyCompositeEditPartSection" id="ContractPropertyBlockProperty" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyCompositeEditPart"/> 
+		</propertySection>	
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyClassComposite" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockEditPartSection" id="ContractPropertyComponentComposite" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeEditPart"/> 
+		</propertySection>
+		<propertySection class="org.polarsys.chess.contracts.chessextension.propertytab.BlockPropertyCompositeEditPartSection" id="ContractPropertyCompositeProperty" tab="Contracts">
+	   		<input type="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN"/> 
+		</propertySection>	
+		
+		
+	</propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
+         <menu
+               icon="icons/CHESSicon.gif"
+               id="org.polarsys.chess.modelexplorerpopupmenu.id"
+               label="CHESS">
+            <command
+                  commandId="org.polarsys.chess.contracts.chessextension.setContractRefinement"
+                  label="Set Contract Refinement"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+  
+</plugin>

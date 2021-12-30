@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated SAN2 -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.polarsys.chess.mobius.model.SAN.presentation.SANModelModelWizardID"
+            name="%_UI_SANModelModelWizard_label"
+            class="org.polarsys.chess.mobius.model.SAN.presentation.SANModelModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SANModelModelFile.gif">
+         <description>%_UI_SANModelModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated SAN2 -->
+      <editor
+            id="org.polarsys.chess.mobius.model.SAN.presentation.SANModelEditorID"
+            name="%_UI_SANModelEditor_label"
+            icon="icons/full/obj16/SANModelModelFile.gif"
+            extensions="sanmodel"
+            class="org.polarsys.chess.mobius.model.SAN.presentation.SANModelEditor"
+            contributorClass="org.polarsys.chess.mobius.model.SAN.presentation.SANModelActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

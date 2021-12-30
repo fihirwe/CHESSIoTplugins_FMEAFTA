@@ -1,0 +1,19 @@
+[comment encoding = UTF-8 /]
+[module generatePayloads('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import org::polarsys::chess::iot::generator::legal::Copyright /]
+
+[template public generatePayloads (component_me : Component,parent_comp:Component,aPackage:Package)]
+
+[file ('/model/'.concat(parent_comp.name).concat('_subs/').concat('Payload.thingml'), false, 'UTF-8')]
+
+[generateCopyright()/]
+
+Thing fragment Payloads {
+//all system's messages declarartions
+}
+
+
+[/file]
+[/template]
+
+

@@ -1,0 +1,336 @@
+/*Add multiplicity to the Port label in all diagrams*/ 
+
+Connector {
+	routing: Rectilinear;
+}
+
+Port {
+	maskLabel: direction name type multiplicity;
+}
+
+/*Hide stereotype labels in IBD */
+InternalBlockDiagram Label[type=StereotypeLabel]{
+	visible: false;
+}
+
+/*Hide stereotype labels for flowports */
+[appliedStereotypes~=FlowPort] > Label:StereotypeLabel{ 
+	visible:false;
+}
+
+/*Add multiplicity to the subcomponent label in IBD*/ 
+InternalBlockDiagram Property {
+	maskLabel: name type multiplicity;
+}
+
+/*Shows the transition guard instead of "..." */
+Transition > Label {
+bodyCutLength: 5;
+indicateParameters: true;
+}
+Transition { /* for internal transitions */
+bodyCutLength: 5;
+indicateParameters: true;
+}
+
+ /* remove the tag <<part>> on blocks */
+Property {
+    displayTags: false;
+}
+
+/*Hide the labels sourceMultiplicity and targetMultiplicity of the association*/
+Association > Label:sourceMultiplicity {
+	visible:false;
+} 
+Association > Label:targetMultiplicity {
+	visible:false;
+}
+
+/*Add multiplicity to the association labels*/ 
+Association > Label:sourceRole {
+	maskLabel: name multiplicity;
+} 
+Association > Label:targetRole {
+	maskLabel: name multiplicity;
+}
+ 
+/*Hide the label name of the association*/
+Association > Label:name {
+	visible:false;
+}
+Connector > Label:name {
+	visible:false;
+}
+
+/**SYSML */
+
+BlockDefinitionDiagram Compartment,
+ParametricDiagram Compartment,
+RequirementDiagram Compartment,
+InternalBlockDiagram Compartment{
+	visible: false;
+	showTitle: true;
+}
+
+Compartment[kind=structure]{
+	showTitle: false;
+}
+
+Package > Compartment[kind=packagedElements],
+Model > Compartment[kind=packagedElements]{
+	visible: true;
+	showTitle: false;
+}
+
+/*
+[appliedStereotypes~="Block"] > Compartment[kind=properties],
+[appliedStereotypes~="Block"] > Compartment[kind=operations],
+[appliedStereotypes~="Block"] > Compartment[kind=constraints]{
+	visible: true;
+}*/
+
+
+[appliedStereotypes~="Block"] > Compartment[kind=properties]{
+	visible: true;
+}
+
+
+[appliedStereotypes~="Block"] > Compartment[kind=operations],
+[appliedStereotypes~="Block"] > Compartment[kind=constraints]{
+	visible: false;
+}
+
+
+[appliedStereotypes~="ConstraintBlock"] > Compartment[kind=parameters],
+[appliedStereotypes~="ConstraintBlock"] > Compartment[kind=constraints]{
+	visible: true;
+}
+
+BlockDefinitionDiagram DataType > Compartment[kind=properties],
+BlockDefinitionDiagram Enumeration > Compartment[kind=literals],
+BlockDefinitionDiagram InstanceSpecification > Compartment[kind=slots],
+BlockDefinitionDiagram Interface > Compartment[kind=properties],
+BlockDefinitionDiagram Interface > Compartment[kind=operations]{
+	visible: true;
+}
+
+
+[appliedStereotypes~="FlowSpecification"] > Compartment[kind=flowproperties]{
+	visible: true;
+}
+
+[appliedStereotypes~="ValueType"] > Compartment[kind=properties],
+[appliedStereotypes~="ValueType"] > Compartment[kind=operations]{
+	visible: true;
+}
+
+InternalBlockDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure],
+InternalBlockDiagram Property > Compartment[kind=structure]{
+	visible: true;
+}
+
+ParametricDiagram Property > Compartment[kind=structure],
+ParametricDiagram [appliedStereotypes~="Block"] > Compartment[kind=structure],
+ParametricDiagram [appliedStereotypes~="ConstraintBlock"] > Compartment[kind=structure]{
+	visible: true;
+}
+
+Port[appliedStereotypes~="SysML::PortAndFlows::FlowPort"] > Label{
+
+    
+    maskLabel: name;
+}
+
+/*END SYSML */
+
+
+/*PAPYRUS THEME */
+/*****************************************************************************
+ * Copyright (c) 2012 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *****************************************************************************/
+ 
+/* 
+ *	Papyrus CSS v0.9
+ */
+
+* {
+	
+	/**
+	*	GMF Display
+	*/
+
+	fillColor:#C3D1D5;
+	
+	/* 	fontHeight:9; */
+	
+	/** 
+	*	Gradient 
+	*/
+	
+	/* 	gradientColor:white; */
+	/* 	gradientStyle:vertical; */
+	
+	/*  
+	*	Global gradient (Equivalent to the latter)
+	*/
+	
+	gradient: white vertical; /* vertical white; is currently invalid */
+	
+	/* 
+	*	Global gradient (2)
+	*	Unsupported by diagrams (Color2 is unused) 
+	*/
+	
+	/* 	gradient:white blue vertical */
+	
+	/**
+	*	UML Display
+	*/
+	
+	elementIcon: true;
+	/* 	shadow:false; */
+	/* 	qualifiedNameDepth:Full; */
+	
+	/** 
+	* 	UML Stereotypes display 
+	*/
+	
+	/* 	stereotypeDisplay:"Text and Icon"; */
+	/* 	textAlignment:Vertical; */
+	/* 	displayPlace:"With brace"; */
+}
+
+Class {
+	fillColor: #C3D7DD;
+}
+
+Comment {
+	fillColor: #FFFFCC;
+}
+
+Constraint {
+	fillColor: #C8FFE6;
+}
+
+Package {
+	fillColor: white;
+}
+
+Operation[isAbstract=true] {
+	italic:true;
+}
+
+/** This is the Diagram's root element. It doesn't support 
+gradient and should have the same color as the diagram */
+SequenceDiagram > Interaction {
+	fillColor:white;
+}
+
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment, 
+SequenceDiagram CombinedFragment,ConsiderIgnoreFragment * {
+	fillColor:white;
+}
+
+TimingDiagram OccurrenceSpecification,MessageOccurrenceSpecification {
+	fillColor: #006000;
+	lineColor: #006000;
+}
+
+TimingDiagram Lifeline {
+	gradient: white vertical;
+	fontHeight: 12;
+}
+
+TimingDiagram StateInvariant {
+	lineColor: black;
+	fillColor: #9BC7CC;
+	gradient: white vertical;
+}
+
+TimingDiagram Interaction {
+	fillColor: #9BC7CC;
+	gradient: none;
+}
+
+TimingDiagram Gate {
+	fillColor: #2A52BE;
+	lineColor: #2A52BE;
+}
+
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] Property,
+ParametricDiagram [appliedStereotypes~=ConstraintProperty] {
+	elementIcon:false;
+}
+
+Label {
+	elementIcon: false;
+}
+
+ActivityDiagram Activity *,InteractionOverviewDiagram Activity * {
+	elementIcon:false; 
+}
+
+/* no gradiant for symbol to permit to change color */
+ActivityDiagram MergeNode, 
+ActivityDiagram ActivityFinalNode, 
+ActivityDiagram FlowFinalNode, 
+ActivityDiagram DecisionNode, 
+ActivityDiagram SendSignalAction,
+ActivityDiagram AcceptEventAction,
+InteractionOverviewDiagram MergeNode, 
+InteractionOverviewDiagram ActivityFinalNode, 
+InteractionOverviewDiagram FlowFinalNode, 
+InteractionOverviewDiagram DecisionNode
+{
+	gradient:none;
+	fillColor:white;
+}
+
+ActivityDiagram InitialNode,
+InteractionOverviewDiagram InitialNode{
+	gradient:none;
+	fillColor:black;
+}
+
+ClassDiagram Dependency{
+	fillColor:Black;
+	gradient:none;
+}
+
+/*
+ * The Actor element icon is not useful either
+ */
+UseCaseDiagram Actor {
+	elementIcon:false;
+}
+
+TimingDiagram * {
+	gradient:none;
+}
+
+UseCaseDiagram UseCase {
+	fillColor:white;
+}
+
+StateMachineDiagram Pseudostate[kind="exitPoint"],
+StateMachineDiagram Pseudostate[kind="entryPoint"]
+{
+	fillColor:white;
+}
+
+StateMachineDiagram Pseudostate[kind="initial"],
+StateMachineDiagram Pseudostate[kind="junction"]
+{
+	gradient:none;
+	fillColor:black;
+}
+
+/*END PAPYRUS THEME */

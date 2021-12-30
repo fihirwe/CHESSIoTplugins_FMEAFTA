@@ -1,0 +1,8 @@
+org.polarsys.chess.xtext.ui
+org.polarsys.chess.xtext.ui.contentassist
+org.polarsys.chess.xtext.ui.contentassist.antlr
+org.polarsys.chess.xtext.ui.contentassist.antlr.internal
+org.polarsys.chess.xtext.ui.internal
+org.polarsys.chess.xtext.ui.labeling
+org.polarsys.chess.xtext.ui.outline
+org.polarsys.chess.xtext.ui.quickfix
