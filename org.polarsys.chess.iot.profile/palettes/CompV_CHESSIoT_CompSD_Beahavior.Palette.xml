@@ -36,23 +36,23 @@
 			<aspectTool description="Create a GenericIoTAction" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif" id="GenericIoTAction" name="GenericIoTAction" refToolId="clazz.tool.class">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::GenericIoTAction"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Generic"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>			
 			
-			<aspectTool description="Create a SendPayload" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" id="SendPayload" name="SendPayload" refToolId="clazz.tool.class">
+			<aspectTool description="Create a Send action" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" id="Send" name="Send (action)" refToolId="clazz.tool.class">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::SendPayload"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Send"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>	
 			
-			<aspectTool description="Create a ReceivePayload" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" id="ReceivePayload" name="ReceivePayload" refToolId="clazz.tool.class">
+			<aspectTool description="Create a Receive action" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" id="Receive" name="Receive (action)" refToolId="clazz.tool.class">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::ReceivePayload"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Receive"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>	
