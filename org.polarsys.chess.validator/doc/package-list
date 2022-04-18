@@ -1,8 +1,0 @@
-org.polarsys.chess.validator
-org.polarsys.chess.validator.automatedActions
-org.polarsys.chess.validator.command
-org.polarsys.chess.validator.command.util
-org.polarsys.chess.validator.constraints
-org.polarsys.chess.validator.libs
-org.polarsys.chess.validator.managers
-org.polarsys.chess.validator.messages
