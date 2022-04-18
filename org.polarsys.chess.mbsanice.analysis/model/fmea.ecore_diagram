@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_dxPTkEKzEey8kZXsw5fahg" type="Ecore" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_d0Cv8EKzEey8kZXsw5fahg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0Cv8kKzEey8kZXsw5fahg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0Cv80KzEey8kZXsw5fahg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0Cv9EKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0Cv9UKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0Cv9kKzEey8kZXsw5fahg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0Cv90KzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0Cv-EKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0Cv-UKzEey8kZXsw5fahg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0Cv-kKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0Cv-0KzEey8kZXsw5fahg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="fmea.ecore#//Row"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_d0Cv8UKzEey8kZXsw5fahg" x="155" y="12" width="48" height="56"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_d0Cv_EKzEey8kZXsw5fahg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0Cv_kKzEey8kZXsw5fahg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXAEKzEey8kZXsw5fahg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXAUKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXAkKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXA0KzEey8kZXsw5fahg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXBEKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXBUKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXBkKzEey8kZXsw5fahg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXB0KzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXCEKzEey8kZXsw5fahg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="fmea.ecore#//InterPort"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_d0Cv_UKzEey8kZXsw5fahg" x="329" y="12" width="76" height="56"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_d0DXCUKzEey8kZXsw5fahg" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0DXC0KzEey8kZXsw5fahg" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXDEKzEey8kZXsw5fahg" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXDUKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXDkKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXD0KzEey8kZXsw5fahg" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXEEKzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXEUKzEey8kZXsw5fahg"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_d0DXEkKzEey8kZXsw5fahg" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_d0DXE0KzEey8kZXsw5fahg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_d0DXFEKzEey8kZXsw5fahg"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="fmea.ecore#//Fmea"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_d0DXCkKzEey8kZXsw5fahg" x="12" y="12" width="64" height="64"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_dxPTkUKzEey8kZXsw5fahg"/>
+  <element xmi:type="ecore:EPackage" href="fmea.ecore#/"/>
+  <edges xmi:type="notation:Connector" xmi:id="_d0LS0EKzEey8kZXsw5fahg" type="4003" source="_d0Cv8EKzEey8kZXsw5fahg" target="_d0Cv_EKzEey8kZXsw5fahg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0LS00KzEey8kZXsw5fahg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_d0LS1EKzEey8kZXsw5fahg" x="-12" y="13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0LS1UKzEey8kZXsw5fahg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_d0LS1kKzEey8kZXsw5fahg" x="6" y="13"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_d0LS0UKzEey8kZXsw5fahg" fontName="Segoe UI"/>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_d0Z8UkKzEey8kZXsw5fahg" name="junctionPoints" stringValue="()"/>
+    <element xmi:type="ecore:EReference" href="fmea.ecore#//Row/interPorts"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_d0LS0kKzEey8kZXsw5fahg" points="[0, 0, -126, 0]$[126, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_d0Z8UEKzEey8kZXsw5fahg" id="(1.0,0.5)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_d0Z8UUKzEey8kZXsw5fahg" id="(0.0,0.5)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_d0NvEEKzEey8kZXsw5fahg" type="4003" source="_d0DXCUKzEey8kZXsw5fahg" target="_d0Cv8EKzEey8kZXsw5fahg">
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0NvE0KzEey8kZXsw5fahg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_d0NvFEKzEey8kZXsw5fahg" x="-12" y="13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_d0NvFUKzEey8kZXsw5fahg" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_d0NvFkKzEey8kZXsw5fahg" y="13"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_d0NvEUKzEey8kZXsw5fahg" fontName="Segoe UI"/>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_d0Z8VUKzEey8kZXsw5fahg" name="junctionPoints" stringValue="()"/>
+    <element xmi:type="ecore:EReference" href="fmea.ecore#//Fmea/row"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_d0NvEkKzEey8kZXsw5fahg" points="[0, 0, -88, 0]$[88, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_d0Z8U0KzEey8kZXsw5fahg" id="(1.0,0.5)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_d0Z8VEKzEey8kZXsw5fahg" id="(0.0,0.5)"/>
+  </edges>
+</notation:Diagram>

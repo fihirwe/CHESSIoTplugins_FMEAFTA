@@ -1,0 +1,50 @@
+[comment encoding = Cp1252 /]
+[module DeploymentServices('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[query public hasStereotype(clz : Class, nam : String) : Boolean
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','hasStereotype(org.eclipse.uml2.uml.Class, java.lang.String)', Sequence{clz, nam})
+/]
+
+[query public checkAppliedStereotype(comp : Class, nam : String) : Boolean
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','checkAppliedStereotype(org.eclipse.uml2.uml.Class, java.lang.String)', Sequence{comp, nam})
+/]
+
+[query public checkContainThatClass(comp : Component, str1 : String) : Boolean
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','checkContainThatClass(org.eclipse.uml2.uml.Component, java.lang.String)', Sequence{comp,str1})
+/]
+
+[query public checkIfVirtualCompIsThere() : Boolean
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','checkIfVirtualCompIsThere()', Sequence{})
+/]
+[query public getMillisecond() : String
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getMillisecond()', Sequence{})
+/]
+
+[query public printMe(nam2 : String) : String
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','printMe(java.lang.String)', Sequence{nam2})
+/]
+[query public getComponentsProperties(component : Component, aPackage: Package) : Sequence(Property)
+	= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getComponentsProperties(org.eclipse.uml2.uml.Component,org.eclipse.uml2.uml.Package)', Sequence{component,aPackage})
+/]
+
+[query public getSubClass(c : Component, aPackage: Package) : Sequence(Class) 
+= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getSubClass(org.eclipse.uml2.uml.Component,org.eclipse.uml2.uml.Package)', Sequence{c,aPackage})
+/]
+
+[query public getSubComNames(component : Component) : Sequence(String) 
+= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getSubComNames(org.eclipse.uml2.uml.Component)', Sequence{component})
+/]
+
+
+[query public getReceivePayloads(port : Port) : Sequence(Class) 
+= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getReceivePayloads(org.eclipse.uml2.uml.Port)', Sequence{port})
+/]
+
+[query public getSentPayloads(port : Port) : Sequence(Class) 
+= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getReceivePayloads(org.eclipse.uml2.uml.Port)', Sequence{port})
+/]
+
+
+[query public getActionName(action : OclAny) : String =
+invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices', 'getActionName(org.eclipse.emf.ecore.EObject)', Sequence{action})/]
+

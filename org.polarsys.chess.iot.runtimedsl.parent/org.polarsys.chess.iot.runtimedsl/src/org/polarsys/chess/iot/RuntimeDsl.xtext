@@ -1,0 +1,40 @@
+grammar org.polarsys.chess.iot.RuntimeDsl with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate runtimeDsl "http://www.polarsys.org/chess/iot/RuntimeDsl"
+
+Model:
+	'Environment:' name=ID
+	module+=Module*;
+Module:
+	'--Begin-Module--'
+		'name:' name=ID
+		(uses+=Uses)*
+		'action:' 
+			(action +=start | 
+			action +=stop | 
+			action +=restart | 
+			action +=redeploy | 
+			action +=log |
+			action +=monitor |
+			action+=run)*
+	'--End-Module--';
+start:
+	'START-service' name=ID;
+stop:
+	'STOP-service' name=ID;
+restart:
+	'RESTART-service' name=ID;
+redeploy:
+	'REDEPLOY-service' name=ID;
+log:
+	'LOG-service' name=ID;
+monitor:
+	'MONITOR-service' name=ID
+	'period:' value=NUMBER 'ms';
+run:
+	'RUN-module' module=[Module];
+Uses:
+	'use' module=[Module];
+terminal NUMBER returns ecore::EBigDecimal:
+	('0'..'9')* ('.' ('0'..'9')+)?;

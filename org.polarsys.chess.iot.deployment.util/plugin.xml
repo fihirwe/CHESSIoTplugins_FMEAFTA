@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            name="CHESSIoT"
+            nameFilter="*.*"
+            class="org.polarsys.chess.iot.deployment.util.properties.IoTPropertyPage"
+            id="org.polarsys.chess.iot.deployment.util.properties.samplePropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.core.resources.IFile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.modelListener">
+      <listener
+            name="org.polarsys.chess.iot.deployment.util.listeners"
+            realization="org.polarsys.chess.iot.deployment.util.listeners.EnvironmentListerner">
+      </listener>
+   </extension>
+
+</plugin>

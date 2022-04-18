@@ -1,0 +1,6 @@
+org.polarsys.chess.monitoring.monitoringxml
+org.polarsys.chess.monitoring.monitoringxml.impl
+org.polarsys.chess.monitoring.monitoringxml.popup.actions
+org.polarsys.chess.monitoring.monitoringxml.util
+org.polarsys.chess.monitoring.preferences
+org.polarsys.chess.monitoring.traceanalyser

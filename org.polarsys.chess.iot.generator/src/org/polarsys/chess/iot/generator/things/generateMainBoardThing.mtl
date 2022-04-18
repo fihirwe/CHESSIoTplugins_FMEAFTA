@@ -1,0 +1,79 @@
+[comment encoding = UTF-8 /]
+[module generateMainBoardThing('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import org::polarsys::chess::iot::generator::services::usesUML2Services/]
+[import org::polarsys::chess::iot::generator::statecharts::generateStateMachine/]
+[import org::polarsys::chess::iot::generator::util::ThingUtilities /]
+[import org::polarsys::chess::iot::generator::legal::Copyright /]
+[import org::polarsys::chess::iot::generator::payloads::generatePayloads /]
+[comment][/comment]
+
+
+[template public generateMainThing(component_me : Component,aPackage:Package, VE:Component){
+CSPort : String = 'MARTE::MARTE_DesignModel::GCM::ClientServerPort';
+IoTPort : String = 'CHESSIoT::CHESSIoTSoftware::IoTPort';
+PayloadStr : String = 'CHESSIoT::CHESSIoTSoftware::Payload';
+}]
+[file ('/'+VE.name+'/'.concat(component_me.name).concat('.thingml'), false)]
+[generateCopyright()/]
+import "../util/_Datatypes.thingml"
+import "../util/_Timer.thingml"
+[generateImport(component_me,aPackage,VE)/]
+[generatePayloads()/]
+thing [component_me.name.toUpperFirst()/] includes TimerMsgs[includeParts(VE)/] { 
+[comment]------------Generating components ports and properties -----[/comment]
+[generatePropertiesAndPorts(component_me)/]
+[comment]----------GENERATING FUNCTIONS----------------[/comment]
+[for (o: Operation | component_me.ownedOperation) separator('\n')]
+function  [o.name/]([o.ownedParameter/]) 
+	do
+	/*** TO BE IMPLEMENTED ***/
+ 	end
+[/for]
+[comment]----------GENERATING STATE MACHINES----------------[/comment]
+[for (sm : StateMachine | component_me.allOwnedElements()->filter(StateMachine))]
+[generateStateMachine(sm,component_me)/]
+[/for]
+}
+
+protocol Timer;
+
+configuration [component_me.name+'App'/]{
+	[let parts : Set(Property) = VE.getAllAttributes()]
+	[for (part : Property | parts)]
+	instance [part.name+'Obj'/] : [part.type.name/]
+	[/for]
+	[for (conector : Connector | VE.ownedConnector)]
+	connector [for (p : Property | parts)][if (conector.end->first().partWithPort.name.toLowerCase() = p.name.toLowerCase())][p.name+'Obj'/].[conector.end->first().role.name/][/if][/for] => [for (p : Property | parts)][if (conector.end->last().partWithPort.name.toLowerCase() = p.name.toLowerCase())][p.name+'Obj'/].[conector.end->last().role.name/][/if][/for]
+	[/for]
+	[for (p : Property | parts)]
+	[for (VE : Component |  aPackage.allOwnedElements()->filter(Component)->select(tr : Component |p.type.name=tr.name))]
+	[for (port : Port | VE.ownedPort ->select(tr : Port |tr.name.contains('Timer') or tr.name.contains('tic') ) )]
+	connector [p.name+'Obj'/].[port.name/] over Timer
+	[/for]
+	[/for]
+	[/for]
+	[for (p2 : Property | parts)]
+	[for (component : Component |  aPackage.allOwnedElements()->filter(Component))]
+	[if (p2.type.name=component.name)]
+	[let props : OrderedSet(Property) = component.ownedAttribute->filter(Property)]
+	[for (prop : Property | props)]
+	[if (prop.oclIsTypeOf(Port))]
+	[let port : Port = prop.oclAsType(Port)]
+	[if (port.getAppliedStereotype(IoTPort)->notEmpty())]
+	[if(port.getValue(port.getAppliedStereotype(IoTPort), 'connectionPins').toString().size()>0)]
+	[for(it : OclAny | port.getValue(port.getAppliedStereotype(IoTPort), 'connectionPins'))]
+		set [p2.name+'Obj'/].PIN[it.toString()/] = [it.toString()/]
+	[/for]
+	[/if]
+	[/if]
+	[/let]
+	[/if]
+	[/for]
+	[/let]
+	[/if]
+	[/for]
+	[/for]
+	[/let]
+	}
+[/file]
+[/template]

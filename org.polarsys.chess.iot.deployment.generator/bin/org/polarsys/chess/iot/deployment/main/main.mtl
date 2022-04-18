@@ -1,0 +1,60 @@
+[comment encoding = UTF-8 /]
+[module main('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::polarsys::chess::iot::deployment::legal::Copyright/]
+[import org::polarsys::chess::iot::deployment::legal::License/]
+[import org::polarsys::chess::iot::deployment::service::DeploymentServices/]
+[import org::polarsys::chess::iot::deployment::artifacts::generateBroker/]
+[import org::polarsys::chess::iot::deployment::artifacts::generateExternalService /]
+[import org::polarsys::chess::iot::deployment::artifacts::generateDataDistributionService /]
+[import org::polarsys::chess::iot::deployment::artifacts::generateStorageService /]
+[import org::polarsys::chess::iot::deployment::artifacts::generateEndUserApplication /]
+[template public generateDeployemnt(model: uml:: Model){
+System :String ='CHESSIoT::CHESSIoTDeployment::System';
+CloudNodeStereo : String ='CHESSIoT::CHESSIoTDeployment::CloudNode';
+FogNodeStereo : String ='CHESSIoT::CHESSIoTDeployment::FogNode';
+}]
+[comment @main/]
+[for (elt:Package|model.ownedElement->filter(Package))]
+[if (elt.name='modelDeploymentView')]
+[for (node : Component |  elt.allOwnedElements()->filter(Component))]
+[if(node.getAppliedStereotype(CloudNodeStereo)->notEmpty())]
+[generateInfrastructure(node.name+'_cloud',node, elt)/]
+[elseif (node.getAppliedStereotype(FogNodeStereo)->notEmpty())]
+[generateInfrastructure(node.name+'_fog',node, elt)/]	
+[/if]				 
+[/for]
+[/if]
+[/for]
+[/template]
+
+[template public generateInfrastructure(name : String,node : Component, elt:Package ){
+ExternalService : String = 'CHESSIoT::CHESSIoTDeployment::ExternalService';
+DataDistributionService : String = 'CHESSIoT::CHESSIoTDeployment::DataDistributionService';
+MQTTBroker : String = 'CHESSIoT::CHESSIoTDeployment::MQTTBroker';
+ServiceST : String = 'CHESSIoT::CHESSIoTDeployment::Service';
+StorageService : String = 'CHESSIoT::CHESSIoTDeployment::StorageService';
+}]
+[file ('/'+name+'/docker-compose.yaml', false, 'UTF-8')]
+[generateCopyright()/]
+[generateLicense()/]
+version: "3.9"
+services:
+[for(c:Class | getSubClass(node,elt))]
+[if(c.getAppliedStereotype(MQTTBroker)->notEmpty())]
+[generateBroker(c,node,'/'+name+'/')/]
+[elseif(c.getAppliedStereotype(DataDistributionService)->notEmpty())]
+[generateStorageService(c,node)/]
+[elseif(c.getAppliedStereotype(StorageService)->notEmpty())]
+[generateDataDistributionService(c,node)/]
+[elseif(c.getAppliedStereotype(ExternalService)->notEmpty())]
+[generateExternalService(c,node)/]
+[/if]
+[/for]
+networks:
+[for(c:Class | getSubClass(node,elt))]
+  [c.name/]_net:
+    driver: bridge
+[/for]
+[/file]
+[/template]

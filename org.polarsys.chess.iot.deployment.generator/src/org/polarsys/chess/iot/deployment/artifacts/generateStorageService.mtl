@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[module generateStorageService('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateStorageService(c : Class, EV: Class){
+StorageService : String = 'CHESSIoT::CHESSIoTDeployment::StorageService';}]
+
+    [c.name/]:
+        image: [c.name/]
+        hostname: [EV.name/]
+        ports:
+            [for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'ports'))]
+            - [it.toString()/]:[it.toString()/]
+            [/for]
+        volumes:
+            [for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'volumes'))]
+            - [it.toString()/]:[it.toString()/]
+            [/for]
+
+[/template]

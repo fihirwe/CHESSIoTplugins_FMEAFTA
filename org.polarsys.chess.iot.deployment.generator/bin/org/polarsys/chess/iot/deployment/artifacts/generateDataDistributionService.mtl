@@ -1,0 +1,20 @@
+[comment encoding = UTF-8 /]
+[module generateDataDistributionService('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateDataDistributionService(c : Class, EV: Class){
+DataDistributionService : String = 'CHESSIoT::CHESSIoTDeployment::DataDistributionService';}]
+
+    [c.name/]:
+        image: [c.name/]
+        hostname: [EV.name/]
+        ports:
+            [for(it : OclAny | c.getValue(c.getAppliedStereotype(DataDistributionService), 'ports'))]
+            - [it.toString()/]:[it.toString()/]
+            [/for]
+        volumes:
+            [for(it : OclAny | c.getValue(c.getAppliedStereotype(DataDistributionService), 'volumes'))]
+            - [it.toString()/]:[it.toString()/]
+            [/for]
+
+[/template]

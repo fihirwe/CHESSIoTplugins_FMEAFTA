@@ -1,0 +1,574 @@
+/*******************************************************************************
+ * Copyright (c) 2021, Intecs Solutions Spa 
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *  
+ *   Contributors:
+ *   Felicien Ihirwe
+ *   Initial API and implementation and/or initial documentation
+ *******************************************************************************/
+/**
+ */
+
+
+pre{
+	"Running Analysis -------------------------".println();
+	var mapping : Sequence ;
+	var ftas : Sequence ;
+	var parents : Sequence;
+	var events : Sequence;
+	var count : Integer;
+	count=0;
+	mapping = emftanew!FTAModel.allInstances();
+
+	for(ft in mapping){
+		if(ft.events.size()>1){
+			var fta = new emfta!FTAModel;
+			fta.name = ft.name;
+			ftas.add(fta);
+		}
+		
+	}
+}
+
+
+rule topEvent2FTA
+transform ftSource : emftanew!FTAModel
+to evTarget : emfta!Event{
+	var firstelement : Boolean = true;
+	for(ftTarget in ftas){
+		ftTarget.name.println();
+		if(firstelement = true){
+			for(evSource in ftSource.events){
+				if(ftTarget.name = "Fault Tree of "+evSource.name){
+					var nevEv= new emfta!Event;
+					nevEv.name=evSource.name;
+					//give the event a type using the new metamodel
+					nevEv= AssignNewType(evSource,nevEv);
+					if(evSource.gate.events.size()>1){
+						nevEv.gate=getGate(evSource.description);
+						nevEv.probability=evSource.probability;
+						ftTarget.events.add(nevEv);
+						firstelement=false;
+						for(event in evSource.gate.events){
+	
+							if(event.type.name="Basic"){
+								var localEv= new emfta!Event;
+								localEv.name=event.name;
+								localEv.type= emfta!EventType#Basic;
+								localEv.description=event.description;
+								localEv.probability=event.probability;
+								nevEv.gate.events.add(localEv);
+								ftTarget.events.add(localEv);
+								parents.add(nevEv);
+							}
+							else if(event.type.name="External"){
+								var localEv= new emfta!Event;
+								localEv.name=event.name;
+								localEv.type= emfta!EventType#External;
+								localEv.description=event.description;
+								localEv.probability=event.probability;
+								nevEv.gate.events.add(localEv);
+								ftTarget.events.add(localEv);
+								parents.add(nevEv);
+							}
+							else if(event.type.name="Intermediate"){
+								
+								if(event.gate.events.size()>1){
+									var localEv= new emfta!Event;
+									localEv.name=event.name;
+									localEv= AssignNewType(event,localEv);
+									localEv.gate=getGate(event.description);
+									localEv.description=event.description;
+									localEv.probability=event.probability;
+									nevEv.gate.events.add(localEv);
+									ftTarget.events.add(localEv);
+									generateFollowings(event,localEv,ftTarget);
+								}
+								else if(event.gate.events.size()=1){		
+									generateFollowings(event,nevEv,ftTarget);
+								}
+							}
+						}
+					}
+					else if(evSource.gate.events.size()=1){
+						
+//						for(event in evSource.gate.events){
+							getTheNextEvenWithOneEvent(evSource,localEv,ftTarget,firstelement);
+							
+							
+//							
+//							
+//							
+//							
+////							"---------".println();
+////							event.description.println();
+////							evSource.description.println();
+////							"^^^^^^^^^^^^^^^^^^^^^^^".println();
+//							if(event.type.name="Basic"){
+//								nevEv.gate=getGate(evSource.description);
+//								nevEv.probability=evSource.probability;
+//								ftTarget.events.add(nevEv);
+//								firstelement=false;
+//								var localEv= new emfta!Event;
+//								localEv.name=event.name;
+//								localEv.type= emfta!EventType#Basic;
+//								localEv.description=event.description;
+//								localEv.probability=event.probability;
+//								nevEv.gate.events.add(localEv);
+//								ftTarget.events.add(localEv);
+//								parents.add(nevEv);
+//							}
+//							else if(event.type.name="External"){
+//								nevEv.gate=getGate(evSource.description);
+//								nevEv.probability=evSource.probability;
+//								
+//								ftTarget.events.add(nevEv);
+//								firstelement=false;
+//								var localEv= new emfta!Event;
+//								localEv.name=event.name;
+//								localEv.type= emfta!EventType#External;
+//								localEv.description=event.description;
+//								localEv.probability=event.probability;
+//								nevEv.gate.events.add(localEv);
+//								ftTarget.events.add(localEv);
+//								parents.add(nevEv);
+//							}
+//							else if(event.type.name="Intermediate"){
+//
+//									if(getEventCount(event.gate)>1){
+//										nevEv.gate=getGate(event.description);
+//										nevEv.description=event.description;
+//										nevEv.probability=event.probability;
+//										ftTarget.events.add(nevEv);
+//										firstelement=false;
+//										generateFollowings(event,nevEv,ftTarget);
+//									}
+//									else if(getEventCount(event.gate)=1){
+//											getTheNextEvenWithOneEvent(event,nevEv,ftTarget,firstelement);
+//									}
+//								
+//							}
+//						}
+					}
+				}
+			}
+		}	
+		
+		
+		for(event in ftTarget.events){
+			if(event.name=ftTarget.name){
+				if (event.probability=0){
+					var eventProb=1;
+	//				get the gate atached to it (in cas it is a OR gate
+					if(event.gate.type.name="OR"){
+	//					check all following events and check if they are among the system's events
+						for(ev in event.gate.events){
+	//						sometimes these attached event includes the original events that why it need to be excluded
+							if(not(ev.name = event.name) and ftTarget.events.contains(ev)){
+								"eventProb state............".println();
+								eventProb.println();
+								"..............................".println();
+								if(ev.type.name="Intermediate"){
+									"____________________Call recursion down from OR______________".println();
+	//								Need futher processing... 
+									var p=getProbability(ev,event.gate,ftTarget).asDouble();
+									eventProb=eventProb*(1-p);
+	
+								}			
+								else{
+									eventProb=eventProb*(1-ev.probability);
+								}
+							}
+	
+						}
+						"UP OR SET-for-- ".println();
+						event.probability=(1-eventProb).asDouble();
+						event.name.println();
+						event.probability.asString().println();
+						"-------------------------------------------------------".println();
+					}
+					else if(event.gate.type.name="AND"){
+						for(ev in event.gate.events){
+							if(not(ev.name = event.name) and ftTarget.events.contains(ev)){
+								"eventProb state............".println();
+								eventProb.println();
+								"..............................".println();
+								if(ev.type.name="Intermediate"){
+									"____________________Call recursion down from AND______________".println();
+									var p=getProbability(ev,event.gate,ftTarget).asDouble();
+									eventProb=eventProb*p;
+								}			
+								else{
+									eventProb=eventProb*(ev.probability);
+								}
+							}
+	
+						}
+						"UP AND SET-for-- ".println();
+						event.probability=(eventProb).asDouble();
+						event.name.println();
+						event.probability.asString().println();
+						"-------------------------------------------------------".println();
+					}
+				}
+			}
+		}
+	}
+}
+
+
+operation getTheNextEvenWithOneEvent(evSource: emftanew!Event, nevEv : emfta!Event, ftTarget : emfta!FTAModel,firstelement : Boolean) : Sequence{
+	for(event in evSource.gate.events){
+
+		if(event.type.name="Basic"){
+			
+			nevEv.gate=getGate(evSource.description);
+			nevEv.probability=evSource.probability;
+			ftTarget.events.add(nevEv);
+			firstelement=false;
+			var localEv= new emfta!Event;
+			localEv.name=event.name;
+			localEv.type= emfta!EventType#Basic;
+			localEv.description=event.description;
+			localEv.probability=event.probability;
+			nevEv.gate.events.add(localEv);
+			ftTarget.events.add(localEv);
+			parents.add(nevEv);
+		}
+		else if(event.type.name="External"){
+			nevEv.gate=getGate(evSource.description);
+			nevEv.probability=evSource.probability;
+			ftTarget.events.add(nevEv);
+			firstelement=false;
+			var localEv= new emfta!Event;
+			localEv.name=event.name;
+			localEv.type= emfta!EventType#External;
+			localEv.description=event.description;
+			localEv.probability=event.probability;
+			nevEv.gate.events.add(localEv);
+			ftTarget.events.add(localEv);
+			parents.add(nevEv);
+		}
+		else if(event.type.name="Intermediate"){
+			
+			if(event.description.split("_").get(1)=evSource.description.split("_").get(1)){
+				if(event.gate.events.size()>1){
+					nevEv.gate=getGate(event.description);
+					nevEv.description=event.description;
+					nevEv.probability=event.probability;
+					ftTarget.events.add(nevEv);
+					firstelement=false;
+					generateFollowings(event,nevEv,ftTarget);
+				}
+				else if(event.gate.events.size()=1){
+					getTheNextEvenWithOneEvent(event,nevEv,ftTarget,firstelement);
+				}
+				
+			}
+			else{
+				
+				//in case the two single events are not the same
+				//implement the source and check the next event properties
+				
+				nevEv.gate=getGate(evSource.description);
+				nevEv.description=evSource.description;
+				nevEv.probability=evSource.probability;
+				ftTarget.events.add(nevEv);
+				firstelement=false;
+				
+				if(event.gate.events.size()>1){
+					
+					// if greater than one and different form source.. implement that
+					var localEv= new emfta!Event;
+					localEv.name=event.name;
+					localEv= AssignNewType(event,localEv);
+					localEv.gate.events.add(localEv);
+					localEv.gate=getGate(event.description);
+					localEv.description=event.description;
+					localEv.probability=event.probability;
+					nevEv.gate.events.add(localEv);
+					ftTarget.events.add(localEv);
+
+					generateFollowings(event,localEv,ftTarget);
+				}
+				else if(getEventCount(event.gate)=1){
+					
+					// else implement half and look the next different of many child event
+					
+//					nevEv.gate=getGate(evSource.description);
+//					nevEv.description=evSource.description;
+//					nevEv.probability=evSource.probability;
+//					ftTarget.events.add(nevEv);
+//					firstelement=false;
+					var localEv= new emfta!Event;
+					localEv.name=event.name;
+					localEv= AssignNewType(event,localEv);
+					nevEv.gate.events.add(localEv);
+					getTheNextEvenWithOneEvent(event,localEv,ftTarget,firstelement);
+				}			
+			}
+			
+			
+			
+			
+//			if(getEventCount(event.gate)>1){
+//				nevEv.gate=getGate(event.description);
+//				nevEv.description=event.description;
+//				nevEv.probability=event.probability;
+//				ftTarget.events.add(nevEv);
+//				firstelement=false;
+//				generateFollowings(event,nevEv,ftTarget);
+//			}
+//			else if(getEventCount(event.gate)=1){
+////				"Hereeeeeeeeeeeee-------------------------------".println();
+////				event.description.split("_").get(1).println();
+//				
+//				
+//				if(event.description.split("_").get(1)=evSource.description.split("_").get(1)){
+//					getTheNextEvenWithOneEvent(event,nevEv,ftTarget,firstelement);
+//				}
+//				else{
+//					"Hereeeeeeeeeeeee-------------------------------".println();
+//					event.description.asString().println();
+//					evSource.description.asString().println();
+//				}
+//				
+//			}
+			
+			
+			
+			
+		}
+	}
+}
+
+
+operation getProbability(lookEv: emfta!Event, gate : emfta!Gate, ftTarget:emfta!FTAModel) : Any{
+	var eProb=1;
+	//Same process but here we need to return the lookEV probability
+	if(lookEv.gate.type.name="OR"){
+		for(ev in lookEv.gate.events){
+
+			if(not(ev.name = lookEv.name) and ftTarget.events.contains(ev)){
+
+				if(ev.type.name="Intermediate"){
+					"____________________call recursion donw again from OR_____________________".println();
+					var p=getProbability(ev,lookEv.gate,ftTarget).asDouble();
+					eProb=eProb*(1-p);
+				}			
+				else{
+					eProb=eProb*(1-ev.probability);
+				}
+			}
+
+		}
+		"Down OR set for".println();
+		lookEv.probability=(1-eProb).asDouble();
+		lookEv.name.println();
+		lookEv.probability.asString().println();
+		
+		return lookEv.probability;
+	}
+	else if(lookEv.gate.type.name="AND"){
+		for(ev in lookEv.gate.events){
+			if(not(ev.name = lookEv.name) and ftTarget.events.contains(ev)){
+
+				if(ev.type.name="Intermediate"){
+					"____________________call recursion donw again from AND_____________________".println();
+					var p=getProbability(ev,lookEv.gate,ftTarget).asDouble();
+					eProb=eProb*p;
+				}			
+				else{
+					eProb=eProb*(ev.probability);
+				}
+				
+			}
+
+		}
+		"Down AND set for".println();
+		lookEv.probability=(eProb).asDouble();
+		lookEv.name.println();
+		lookEv.probability.asString().println();
+		
+		return lookEv.probability;
+	}
+
+	return lookEv.probability;
+}
+
+
+
+
+operation generateFollowings(lookEv: emftanew!Event, grobalEv : emfta!Event, ft : emfta!FTAModel) : Sequence{
+
+	if(getEventCount(lookEv.gate)>1){
+		for(event in lookEv.gate.events){
+
+			if(event.type.name="Basic"){
+				var localEvInt= new emfta!Event;
+				localEvInt.name=event.name;
+				localEvInt.type= emfta!EventType#Basic;
+				localEvInt.description=event.description;
+				localEvInt.probability=event.probability;
+				grobalEv.gate.events.add(localEvInt);
+				ft.events.add(localEvInt);
+				parents.add(grobalEv);
+			}
+			else if(event.type.name="External"){
+				var localEvInt= new emfta!Event;
+				localEvInt.name=event.name;
+				localEvInt.type= emfta!EventType#External;
+				localEvInt.description=event.description;
+				localEvInt.probability=event.probability;
+				grobalEv.gate.events.add(localEvInt);
+				ft.events.add(localEvInt);
+				parents.add(grobalEv);
+			}
+			else 
+			{
+				if(getEventCount(event.gate)>1){
+					var localEv= new emfta!Event;
+					localEv.name=event.name;
+					localEv= AssignNewType(event,localEv);
+					localEv.gate=getGate(event.description);
+					localEv.description=event.description;
+					localEv.probability=event.probability;
+					grobalEv.gate.events.add(localEv);
+					ft.events.add(localEv);
+					generateFollowings(event,localEv,ft);
+
+				}
+
+				else if(getEventCount(event.gate)=1){
+					
+					if(event.description.split("_").get(1)=lookEv.description.split("_").get(1)){			
+						generateFollowings(event,grobalEv,ft);
+					}
+					else{
+						"Hereeeeeeeeeeeee-------------------------------".println();
+						event.description.asString().println();
+						lookEv.description.asString().println();
+					}
+					
+					
+					
+				}
+			}
+		}
+	}
+	else if(getEventCount(lookEv.gate)=1){
+
+		var event;
+		for(event1 in lookEv.gate.events){
+			event=event1;
+		}
+
+		if(event.type.name="Basic"){
+			var localEvInt= new emfta!Event;
+			localEvInt.name=event.name;
+			localEvInt.type= emfta!EventType#Basic;
+			localEvInt.description=event.description;
+			localEvInt.probability=event.probability;
+			grobalEv.gate.events.add(localEvInt);
+			ft.events.add(localEvInt);
+			parents.add(grobalEv);
+		}
+		else if(event.type.name="External"){
+			var localEvInt= new emfta!Event;
+			localEvInt.name=event.name;
+			localEvInt.type= emfta!EventType#External;
+			localEvInt.description=event.description;
+			localEvInt.probability=event.probability;
+			grobalEv.gate.events.add(localEvInt);
+			ft.events.add(localEvInt);
+			parents.add(grobalEv);
+		}
+		else
+		{
+
+			if(getEventCount(event.gate)>1){
+				var localEv= new emfta!Event;
+				localEv.name=event.name;
+				localEv= AssignNewType(event,localEv);
+				localEv.gate=getGate(event.description);
+				localEv.description=event.description;
+				localEv.probability=event.probability;
+				grobalEv.gate.events.add(localEv);
+				ft.events.add(localEv);
+				generateFollowings(event,localEv,ft);
+
+			}
+
+			else if (getEventCount(event.gate)=1){
+				
+				if(event.description.split("_").get(1)=lookEv.description.split("_").get(1)){			
+					generateFollowings(event,grobalEv,ft);
+				}
+				else{
+					"Hereeeeeeeeeeeee-------------------------------".println();
+					event.description.asString().println();
+					lookEv.description.asString().println();
+				}
+				
+			}
+		}
+	}
+	//	return parents;
+}
+
+
+
+
+
+operation getGate(st : String): emfta!Gate{
+	var g=new emfta!Gate;
+	for (gate in emftanew!Gate.allInstances()){
+		if(gate.description = st){
+			if(gate.type.name="OR"){
+				g.type=emfta!GateType#OR;
+			}
+			else{
+				g.type=emfta!GateType#AND;
+			}
+
+			g.description=gate.description;
+			for(oldEv in gate.events){
+				var evTemp=new emfta!Event;
+				evTemp.name=oldEv.name;
+				evTemp=AssignNewType(oldEv,evTemp);
+				evTemp.description=oldEv.description;
+				g.events.add(evTemp);
+			}
+			g.nbOccurrences=gate.nbOccurrences;
+			return g;
+		}
+	}
+}
+
+operation AssignNewType(oldEv: emftanew!Event,evTemp: emfta!Event):emfta!Event{
+	if(oldEv.type.name="External"){
+		evTemp.type=emfta!EventType#External;
+	}
+	else if(oldEv.type.name="Basic") {
+		evTemp.type=emfta!EventType#Basic;
+	}
+	else {
+		evTemp.type=emfta!EventType#Intermediate;
+	}
+	return evTemp;
+}
+
+
+operation getEventCount(gate :emftanew!Gate): Integer{
+	return gate.events.size();
+}
+operation getEventCountTarget(gate :emfta!Gate): Integer{
+	return gate.events.size();
+}
+

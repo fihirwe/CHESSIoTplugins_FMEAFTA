@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.polarsys.chess.feature"
+      label="CHESS with IoT extension and FT, FMEA, ThingML model generation support"
+      version="1.0.6.qualifier"
+      provider-name="Intecs Solutions SpA">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <plugin
+         id="org.polarsys.chess.chessmlprofile"
+         download-size="996"
+         install-size="4764"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.profile"
+         download-size="172"
+         install-size="631"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.diagram.ui"
+         download-size="36"
+         install-size="81"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.diagramsCreator"
+         download-size="93"
+         install-size="205"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.functionBehaviors.functionBehaviorEditor"
+         download-size="279"
+         install-size="980"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.validator"
+         download-size="168"
+         install-size="374"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.wizards"
+         download-size="19"
+         install-size="36"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.checkers"
+         download-size="45"
+         install-size="88"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.OSSImporter"
+         download-size="45"
+         install-size="115"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.cleanCExporter"
+         download-size="8"
+         install-size="13"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.codegen.ada"
+         download-size="107"
+         install-size="322"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.commands"
+         download-size="26"
+         install-size="59"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.constraints.constraintEditor"
+         download-size="6"
+         install-size="9"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.chessextension"
+         download-size="49"
+         install-size="101"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.contractEditor"
+         download-size="26"
+         install-size="55"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.contractPropertyManager"
+         download-size="13"
+         install-size="20"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.hierarchicalContractView"
+         download-size="13"
+         install-size="20"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.integration"
+         download-size="13"
+         install-size="19"
+         version="1.0.0.qualifier"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.refinementView"
+         download-size="13"
+         install-size="20"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.safetyAnalysis"
+         download-size="8"
+         install-size="16"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.transformations"
+         download-size="186"
+         install-size="1610"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.validation"
+         download-size="15"
+         install-size="28"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.contracts.verificationService"
+         download-size="37"
+         install-size="93"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.discovery"
+         download-size="9"
+         install-size="11"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.m2m"
+         download-size="143"
+         install-size="441"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.monitoring"
+         download-size="100"
+         install-size="346"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.multicore"
+         download-size="94"
+         install-size="215"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.paramArchConfigurator"
+         download-size="225"
+         install-size="286"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.patterns"
+         download-size="41"
+         install-size="80"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.patterns.library"
+         download-size="78"
+         install-size="189"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.patterns.profile"
+         download-size="51"
+         install-size="197"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.properties.propertyEditor"
+         download-size="6"
+         install-size="9"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.smvExporter"
+         download-size="13"
+         install-size="24"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.statebased"
+         download-size="232"
+         install-size="1559"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.tradeoffAnalysis"
+         download-size="23"
+         install-size="45"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mainmenu"
+         download-size="3"
+         install-size="5"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mobius"
+         download-size="82"
+         install-size="268"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mobius.model"
+         download-size="69"
+         install-size="165"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mobius.model.edit"
+         download-size="57"
+         install-size="101"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mobius.model.editor"
+         download-size="66"
+         install-size="126"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mobius.preferences"
+         download-size="4"
+         install-size="3"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.tabbedproperties"
+         download-size="166"
+         install-size="750"
+         version="1.0.0.202006110729"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.FPTC2FLABehavior"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.faultTreeAnalysis"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.faultTreeGenerator"
+         download-size="0"
+         install-size="0"
+         version="1.0.6.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.flamm"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.flaxml"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.fla.transformations"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.iot.extension"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.iot.generator"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"/>
+
+   <plugin
+         id="org.polarsys.chess.iot.generator.ui"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.iot.monitoring"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mbsanice.analysis"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.mbsanice.fmea"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.service"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.xtext.fladsl"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.xtext.fladsl.ide"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.xtext.fladsl.ui"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.xtext.global"
+         download-size="0"
+         install-size="0"
+         version="1.0.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.core"
+         download-size="0"
+         install-size="0"
+         version="1.0.5.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="org.polarsys.chess.iot.profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

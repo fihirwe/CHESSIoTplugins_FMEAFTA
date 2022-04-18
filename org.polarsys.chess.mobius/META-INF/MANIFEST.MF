@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mobius Integration
+Bundle-SymbolicName: org.polarsys.chess.mobius;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Eclipse Chess Project
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.resources;bundle-version="3.11.1",
+ org.eclipse.acceleo.engine,
+ org.eclipse.uml2.uml;bundle-version="5.2.3",
+ org.polarsys.chess.service,
+ org.polarsys.chess.core,
+ org.eclipse.papyrus.editor,
+ org.eclipse.papyrus.marte.static.profile,
+ org.polarsys.chess.chessmlprofile,
+ org.polarsys.chess.mobius.preferences,
+ org.eclipse.acceleo.parser;bundle-version="3.6.6",
+ org.eclipse.m2m.qvt.oml;bundle-version="3.6.0",
+ org.eclipse.m2m.qvt.oml.project;bundle-version="3.6.0",
+ org.eclipse.m2m.qvt.oml.runtime;bundle-version="3.6.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.8.0",
+ org.polarsys.chess.mobius.model
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.polarsys.chess.mobius.dialogs,
+ org.polarsys.chess.mobius.handlers,
+ org.polarsys.chess.mobius.templates,
+ org.polarsys.chess.mobius.transformations,
+ org.polarsys.chess.mobius.utils
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.polarsys.chess.mobius.Activator
+Import-Package: org.eclipse.debug.core

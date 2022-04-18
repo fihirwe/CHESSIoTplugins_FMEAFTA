@@ -1,0 +1,6 @@
+org.polarsys.chess.multicore
+org.polarsys.chess.multicore.commands
+org.polarsys.chess.multicore.dialogs
+org.polarsys.chess.multicore.model
+org.polarsys.chess.multicore.partitioning
+org.polarsys.chess.multicore.utils

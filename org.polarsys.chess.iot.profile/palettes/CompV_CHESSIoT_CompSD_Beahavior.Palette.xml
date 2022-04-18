@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+   
+    Copyright (c) 2021 Intecs SpA 
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v2.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v20.html
+   
+    Contributors:
+    Felicien Ihirwe
+ -->
+
+<paletteDefinition>
+	<content>		
+<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif" id="CHESSIoT_CSD_SW_DRAWER" name="IoT_Behavior">
+
+			<aspectTool description="Create a Payload" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message.gif" id="Payload" name="Payload" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Payload"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a PayloadParameter" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_synchCall.gif" id="PayloadContent" name="PayloadContent" refToolId="clazz.tool.property">
+			</aspectTool>
+
+			<aspectTool description="Create a ConditionEvent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif" id="ConditionEvent" name="ConditionEvent" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::ConditionEvent"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create a InternalEvent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif" id="InternalEvent" name="InternalEvent" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::InternalEvent"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>				
+			<aspectTool description="Create a GenericIoTAction" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif" id="GenericIoTAction" name="Generic (action)" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Generic"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>			
+			
+			<aspectTool description="Create a Send action" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif" id="Send" name="Send (action)" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Send"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a guard" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Trigger.gif" id="Guard" name="Guard" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTSoftware::Guard"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>	
+			
+</drawer>
+
+
+<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSEdgeBehavioralDrawerIDIoT" name="Connectors">
+			<aspectTool description="Create a generalization"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+				id="Gen1" name="Generalization"
+				refToolId="clazz.tool.generalization" />
+			<aspectTool description="Create a Realization"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+				id="real1" name="Realization"
+				refToolId="clazz.tool.realization" />
+			<aspectTool description="Create a Composition"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association_composite.gif"
+				id="ass2" name="Composition"
+				refToolId="clazz.tool.association">
+				<postAction
+					id="org.eclipse.papyrus.postaction.associationendactionprovider">
+					<associationEnd index="1" name="source" />
+					<associationEnd index="0" name="target">
+						<aggregation value="composite" />
+						<multiplicity value="1..1" />
+						<owner value="Class" />
+					</associationEnd>
+				</postAction>
+			</aspectTool>
+			<aspectTool description="Create an Association"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+				id="ass3" name="Association"
+				refToolId="clazz.tool.association">
+				<postAction
+					id="org.eclipse.papyrus.postaction.associationendactionprovider">
+					<associationEnd index="1" name="source" />
+					<associationEnd index="0" name="target">
+						<aggregation value="none" />
+						<multiplicity value="1..1" />
+						<owner value="Class" />
+					</associationEnd>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a Dependency"
+				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+				id="dep1" name="Dependency"
+				refToolId="clazz.tool.dependency" />
+			<aspectTool description="Creation of a link for comment\constraint" id="clazz.tool.link_13167799276791ss" name="Link" refToolId="clazz.tool.link"/>
+				
+		</drawer>
+		
+	</content>
+</paletteDefinition>

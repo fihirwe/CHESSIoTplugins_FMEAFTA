@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.polarsys.chess.mbsanice.analysis.import.rules.id"
+            name="Import-FLA-Rules">
+      </command>
+      <command
+            id="org.polarsys.chess.mbsanice.analysis.export.rules.id"
+            name="Generate Template">
+      </command>
+      <command
+            id="org.polarsys.chess.mbsanice.analysis.fmea.id"
+            name="Generate FMEA table">
+      </command>
+      <command
+            id="it.intecs.chess.mbsanice.diagram.connect.parts.id"
+            name="Connect Parts">
+      </command>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               id="org.polarsys.chess.mainMenu"
+               label="CHESS"
+               mnemonic="E">
+            <menu
+                  id="chess.menu.import.id"
+                  label="Import">
+                  <command
+                        commandId="org.polarsys.chess.mbsanice.analysis.import.rules.id"
+                        label="Import FLA Rules (xlsx)"
+                        style="push">
+                     <visibleWhen
+                           checkEnabled="false">
+                        <or>
+                           <with
+                                 variable="activeEditorId">
+                              <equals
+                                    value="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+                              </equals>
+                           </with>
+                           <with
+                                 variable="activeEditorInput">
+                              <adapt
+                                    type="org.eclipse.core.resources.IResource">
+                                 <test
+                                       property="org.eclipse.core.resources.projectNature"
+                                       value="org.polarsys.chess.CHESSNature">
+                                 </test>
+                              </adapt>
+                           </with>
+                        </or>
+                     </visibleWhen>
+                  </command>
+            </menu>
+            <menu
+                  id="chess.menu.export.id"
+                  label="Export">
+                  <command
+                        commandId="org.polarsys.chess.mbsanice.analysis.export.rules.id"
+                        label="Generate XSLX Template for FLA"
+                        style="push">
+                     <visibleWhen
+                           checkEnabled="false">
+                        <or>
+                           <with
+                                 variable="activeEditorId">
+                              <equals
+                                    value="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+                              </equals>
+                           </with>
+                           <with
+                                 variable="activeEditorInput">
+                              <adapt
+                                    type="org.eclipse.core.resources.IResource">
+                                 <test
+                                       property="org.eclipse.core.resources.projectNature"
+                                       value="org.polarsys.chess.CHESSNature">
+                                 </test>
+                              </adapt>
+                           </with>
+                        </or>
+                     </visibleWhen>
+                  </command>
+            </menu>
+         </menu>
+      </menuContribution>
+      <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
+      	<menu
+             icon="icons/CHESSicon.gif"
+             id="org.polarsys.chess.diagram.editor.popupmenu.id"
+             label="CHESS-MBSANICE">
+             <command
+                    commandId="it.intecs.chess.mbsanice.diagram.connect.parts.id"
+                    label="Connect compatible parts"
+                    style="push">
+                    <visibleWhen
+                           checkEnabled="false">
+                        <or>
+                           <with
+                                 variable="activeEditorId">
+                              <equals
+                                    value="org.eclipse.uml2.uml.editor.presentation.UMLEditorID">
+                              </equals>
+                           </with>
+                           <with
+                                 variable="activeEditorInput">
+                              <adapt
+                                    type="org.eclipse.core.resources.IResource">
+                                 <test
+                                       property="org.eclipse.core.resources.projectNature"
+                                       value="org.polarsys.chess.CHESSNature">
+                                 </test>
+                              </adapt>
+                           </with>
+                        </or>
+                     </visibleWhen>
+             </command>           
+        </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.polarsys.chess.mainMenu?after=org.polarsys.chess.mainmenu.dependability.separator1">
+         <menu
+               id="chess.menu.dependability.id"
+               label="Dependability">
+            <command
+                  commandId="org.polarsys.chess.mbsanice.analysis.fmea.id"
+                  label="Generate FMEA table (Concerto-FLA)"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+     		class="org.polarsys.chess.mbsanice.analysis.commands.ImportFLARulesCommand"
+            commandId="org.polarsys.chess.mbsanice.analysis.import.rules.id">
+      </handler>
+      <handler
+     		class="org.polarsys.chess.mbsanice.analysis.commands.GenerateFLARulesTemplateCommand"
+            commandId="org.polarsys.chess.mbsanice.analysis.export.rules.id">
+      </handler>
+      <handler
+     		class="org.polarsys.chess.mbsanice.analysis.commands.FMEACommand"
+            commandId="org.polarsys.chess.mbsanice.analysis.fmea.id">
+      </handler>
+      <handler
+     		class="org.polarsys.chess.mbsanice.analysis.commands.ConnectPartsCommand"
+            commandId="it.intecs.chess.mbsanice.diagram.connect.parts.id">
+      </handler>
+    </extension>
+    
+    <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
+      <themeContribution
+            id="it.intecs.chess.mbsanice.theme">
+         <stylesheet
+               stylesheetPath="theme/chess.css">
+         </stylesheet>
+      </themeContribution>
+      <themeDefinition
+            id="it.intecs.chess.mbsanice.theme"
+            label="MSBA-NICE theme">
+      </themeDefinition>
+   </extension>
+    
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.polarsys.chess.preferences"
+            class="org.polarsys.chess.mbsanice.analysis.preferences.MBSANICEPreferencePage"
+            id="org.polarsys.chess.preferences.mbsanice"
+            name="MBSANice">
+      </page>
+   </extension>
+    
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated fmea -->
+      <package
+            uri="mbsanice.fmea"
+            class="fmea.FmeaPackage"
+            genModel="model/fmea.genmodel"/>
+   </extension>
+
+</plugin>

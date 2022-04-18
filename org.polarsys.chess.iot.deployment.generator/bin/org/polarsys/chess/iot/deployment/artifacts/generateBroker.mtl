@@ -1,0 +1,74 @@
+[comment encoding = UTF-8 /]
+[module generateBroker('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import org::polarsys::chess::iot::deployment::service::DeploymentServices /]
+
+[template public generateBroker(c : Class, EV: Class,path:String){
+MQTTBroker : String = 'CHESSIoT::CHESSIoTDeployment::MQTTBroker';}]
+[if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'type').toString().toLowerCase().contains('mosquitto'))]
+  [c.name/]:
+    image: eclipse-mosquitto
+    hostname: [EV.name/]
+    container_name: [c.name/]
+    ports:
+	  [if (not c.getValue(c.getAppliedStereotype(MQTTBroker), 'volumes')->isEmpty())]
+      [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
+      [if(it.toString().contains('1883'))]- [it.toString()/]:1883 /tcp[elseif (it.toString().contains('9001'))]- [it.toString()/]:9001 /udp[/if]
+      [/for]
+      [else]
+      [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/]
+      - 1883:1883 /tcp
+      - 9001:9001 /udp
+      [/if]
+    [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
+    volumes:
+      - ./conf:/mosquitto/conf
+      - ./data:/mosquitto/data
+      - ./log:/mosquitto/log
+    [/if]
+    networks:
+      - [c.name/]_net
+[file (path+'mosquitto.conf', false, 'UTF-8')]
+[if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
+persistence true
+persistence_location /mosquitto/data/
+log_dest file /mosquitto/log/mosquitto.log
+[else]
+persistence false
+[/if]
+listerning [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))][if(it.toString().contains('1883'))][it.toString()/][/if][/for]
+## Authentication ##
+[if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'anonymous').toString().toLowerCase().contains('true'))]
+allow_anonymous true
+[else]
+allow_anonymous false
+password_file /mosquitto/config/password.txt
+[file (path+'password.txt', false, 'UTF-8')]
+username: [c.getValue(c.getAppliedStereotype(MQTTBroker), 'username')/]
+password: [c.getValue(c.getAppliedStereotype(MQTTBroker), 'password')/]
+[/file]
+[/if]
+[/file]
+[elseif (c.getValue(c.getAppliedStereotype(MQTTBroker), 'type').toString().toLowerCase().contains('rabbitmq'))]
+  [c.name/]:
+    image: rabbitmq:3-management-alpine
+    hostname: [EV.name/]
+    container_name: [c.name/]
+    ports:
+	  [if (not c.getValue(c.getAppliedStereotype(MQTTBroker), 'volumes')->isEmpty())]
+      [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
+      [if(it.toString().contains('5672'))]- [it.toString()/]:5672 /tcp[elseif (it.toString().contains('15672'))]- [it.toString()/]:15672 /udp[/if]
+      [/for]
+      [else]
+      [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/]
+      - 5672:5672 /tcp
+      - 15672:15672 /udp
+      [/if]
+    [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    [/if]
+    networks:
+      - [c.name/]_net
+[/if]
+[/template]

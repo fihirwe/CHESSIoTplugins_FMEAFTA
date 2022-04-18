@@ -1,0 +1,215 @@
+/*******************************************************************************
+ * Copyright (c) 2021, Intecs Solutions SpA
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *  
+ *   Contributors:
+ *   Felicien Ihirwe
+ *   Initial API and implementation and/or initial documentation
+ *******************************************************************************/
+/**
+ */
+
+
+pre{
+	"Running transformation-------------------------".println();
+	var mapping : Sequence ;
+	var ftas : Sequence ;
+	var parents : Sequence;
+	var events : Sequence;
+	var portNames : Sequence;
+	var count : Integer;
+	count=0;
+	mapping = flamm!Port.allInstances();
+
+	for(port in mapping){
+		if(port.owner.parent.isUndefined()and port.owner.outputPorts.contains(port)){
+			for(f in port.failures){
+				if(f.id.contains("noFailure") = false){
+					var fta = new emfta!FTAModel;
+					fta.name ="Fault Tree of "+ port.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ port.owner.name+" at "+port.name+" port";
+					ftas.add(fta);
+				}
+			}
+		}
+	}
+}
+
+rule outputOfComposite2FTA
+transform c : flamm!CompositeComponent
+to ev : emfta!Event{
+	guard : c.parent.isUndefined()
+	for(p in mapping){
+		if(p.owner.parent.isUndefined()and p.owner.outputPorts.contains(p)){
+			for(f in p.failures){
+//				f.id.println();
+				for(ft in ftas){
+					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ p.owner.name+" at "+p.name+" port"){
+						var e= new emfta!Event;
+						e.name = p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ p.owner.name+" at "+p.name+" port";
+						e.type = emfta!EventType#Intermediate;
+						var gate : new emfta!Gate;
+						e.gate = gate;
+						e.gate.type = emfta!GateType#OR;
+						e.description=""+ftas.getCount()+"_"+f.id;
+						e.gate.description=""+e.description;
+						ft.events.add(e);
+						for(con in p.connectedPorts){
+							parents.clear();
+							con.generateFollowings(f,con,ft,e);						}
+					}
+				}
+			}
+		}
+	}
+
+	//	for(ft in ftas){
+	//		if(ft.events.size()<2){
+	//			ftas.remove(ft);
+	//		}
+	//		
+	//	}
+	//clean Fault trees
+	var k=0;
+	while(k<ftas.size()){
+		var ft= ftas.at(k);
+		ft.name.println();
+		ft.events.size().println();
+		if(ft.events.size()=1){
+			ft.name="FT_residue";
+		}
+		k=k+1;
+	}
+}
+
+operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
+	if(con.owner.parent.isDefined()){
+		if(con.owner.type.name="SimpleComponent"){
+//			"PROCESSING................... ".println();
+			for(rul in con.owner.rules){
+				for(outexp in rul.outputExpression){
+					if(outexp.port = con) //check also if a no failure outputs is there  and discard it
+					{
+						for(f1 in outexp.failures){
+							if(f1.id=f.id){
+								var eventSp : new emfta!Event;
+								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL EFFECT <"+f1.id+"> in "+ outexp.port.owner.name+" at "+outexp.port.name+" port";
+//								outexp.port.name.println();
+								eventSp.type = emfta!EventType#Intermediate;
+								var gate : new emfta!Gate;
+								eventSp.gate = gate;
+								eventSp.gate.type = emfta!GateType#AND;
+								eventSp.description=""+ftas.getCount()+"_"+f1.id;
+								eventSp.gate.description=""+eventSp.description;
+								ft.events.add(eventSp);
+								e.gate.events.add(eventSp);
+								parents.add(eventSp);
+								for(inpexp in rul.inputExpression){
+									for(f2 in inpexp.failures){
+										if(f2.id.contains("wildcard")=false){
+											if(f2.id.contains("noFailure")=true){
+												if(rul.inputExpression.size()=1){
+													var ev : new emfta!Event;
+													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE in "+ inpexp.port.owner.name+" ==> "+f1.id+" at "+outexp.port.name+" port";
+//													inpexp.port.name.println();
+													ev.type = emfta!EventType#Basic;
+													ev.description=""+ftas.getCount()+"_"+f1.id;
+													eventSp.gate.events.add(ev);
+													ft.events.add(ev);
+													parents.add(ev);
+												}
+												else{
+												var tempF=true;
+												for(inpexp2 in rul.inputExpression){
+													for(f3 in inpexp2.failures){
+														if(f3.id.contains("noFailure")=false){
+															tempF=false;
+															
+															break;
+															}
+														}
+												}
+//												eventSp.gate.events.size().println();
+												if(tempF=true and eventSp.gate.events.size()=0){
+													var ev : new emfta!Event;
+													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE in "+ inpexp.port.owner.name+" ==>"+f1.id+" at "+outexp.port.name+" port";
+//													inpexp.port.name.println();
+													ev.type = emfta!EventType#Basic;
+													ev.description=""+ftas.getCount()+"_"+f1.id;
+													eventSp.gate.events.add(ev);
+													ft.events.add(ev);
+													parents.add(ev);
+													}
+												}
+												
+											}
+	
+											else{
+												var ev : new emfta!Event;
+												ev.name = inpexp.port.name+"+"+f2.id+" \n--------------\n LOCAL EFFECT <"+f2.id+"> in "+ inpexp.port.owner.name+" at "+inpexp.port.name+" port";
+//												inpexp.port.name.println();
+												ev.type = emfta!EventType#Intermediate;
+												var gate : new emfta!Gate;
+												ev.gate = gate;
+												ev.gate.type = emfta!GateType#OR;
+												ev.description=""+ftas.getCount()+"_"+f2.id;
+												ev.gate.description=""+ev.description;
+												eventSp.gate.events.add(ev);
+												ft.events.add(ev);
+												parents.add(ev);
+												for(neWcon in inpexp.port.connectedPorts){
+													con.generateFollowings(f2,neWcon,ft,ev);
+												}
+											}
+										}
+									}
+								}	
+							}
+
+						}
+
+					}
+				}
+			}
+		}
+		else{
+			if(con.owner.outputPorts.contains(con)){
+				for(p in con.connectedPorts){
+					if(not p.owner.inputPorts.contains(p) and not (p.owner=con.owner.parent)){
+						p.generateFollowings(f,p,ft,e);
+					}
+				}
+			}
+			else if(con.owner.inputPorts.contains(con)){
+				for(p in con.connectedPorts){
+					if(p.owner.parent=con.owner and p.owner.inputPorts.contains(p)){
+					}
+					else{
+						p.generateFollowings(f,p,ft,e);
+					}
+				}
+			}
+		}
+	}
+	else{
+		var ev : new emfta!Event;
+		ev.name =con.name+"+"+f.id+" \n--------------\n INJECTED FAULT <"+f.id+"> at "+ con.name+" port of "+con.owner.name;
+		ev.type = emfta!EventType#External;
+		ev.description=""+ftas.getCount()+"_"+f.id;
+		e.gate.events.add(ev);
+		ft.events.add(ev);
+		parents.add(e);
+	}
+
+	return parents;
+}
+
+operation Any getCount(): Integer{
+	count=count+1;
+	return count;
+}
