@@ -43,7 +43,7 @@ public class UpdatePobabilities {
 			File[] files = path.listFiles();
 			long max=0;
 			for(File prob : files) {
-				if(prob.isFile() && prob.getName().contains("xlsx")) {
+				if(prob.isFile() && prob.getName().contains("xlsx")&& prob.getName().contains("Probability")) {
 
 					String[] name= prob.getName().split("_");
 					long id= Long.valueOf(name[name.length-2]);
@@ -78,26 +78,9 @@ public class UpdatePobabilities {
 
 								iterable_element.setProbability(ParseExcel.getProbabilityByName(excelData,cellKeys));	
 							}
-							//System.out.println("After "+iterable_element.getName());
 						}
-//						else if(type.equalsIgnoreCase("External")){
-//							String name= iterable_element.getName().replaceAll("\n", "").replaceAll("-", "");
-//							if(name!=null){
-//								String[] 
-//								String newName=ParseExcel.getDescriptionByName(excelData,cellKeys);
-//								if(!newName.equals("NULL")){
-//									iterable_element.setName(newName);
-//								}
-//
-//								iterable_element.setProbability(ParseExcel.getProbabilityByName(excelData,cellKeys));	
-//							}
-//
-//
-//						}
 
 					}
-					//			resource2 = resourceSet.createResource(ftaResourceFileURI);
-					//				resource.getContents().add(bb);
 				}
 				resource.save(Collections.EMPTY_MAP);
 			}
@@ -111,7 +94,7 @@ public class UpdatePobabilities {
 
 	private static String[] getInternalFailureKeys(String eventName) {
 		String [] keys= new String[3];
-		String[] a = eventName.split("==>")[0].split(" ");
+		String[] a = eventName.split(" ");
 		keys[0]=a[0].split("\\+")[0];
 		keys[1]=a[0].split("\\+")[1];
 		keys[2]=a[a.length-1];		

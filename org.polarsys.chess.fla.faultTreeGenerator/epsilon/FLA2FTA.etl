@@ -32,7 +32,7 @@ pre{
 			for(f in port.failures){
 				if(f.id.contains("noFailure") = false){
 					var fta = new emfta!FTAModel;
-					fta.name ="Fault Tree of "+ port.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ port.owner.name+" at "+port.name+" port";
+					fta.name ="Fault Tree of "+ port.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+port.name+" port in "+port.owner.name;
 					ftas.add(fta);
 				}
 			}
@@ -47,11 +47,10 @@ to ev : emfta!Event{
 	for(p in mapping){
 		if(p.owner.parent.isUndefined()and p.owner.outputPorts.contains(p)){
 			for(f in p.failures){
-//				f.id.println();
 				for(ft in ftas){
-					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ p.owner.name+" at "+p.name+" port"){
+					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+p.name+" port in "+p.owner.name){
 						var e= new emfta!Event;
-						e.name = p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> in "+ p.owner.name+" at "+p.name+" port";
+						e.name = p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+p.name+" port in "+p.owner.name;
 						e.type = emfta!EventType#Intermediate;
 						var gate : new emfta!Gate;
 						e.gate = gate;
@@ -61,7 +60,8 @@ to ev : emfta!Event{
 						ft.events.add(e);
 						for(con in p.connectedPorts){
 							parents.clear();
-							con.generateFollowings(f,con,ft,e);						}
+							con.generateNext(f,con,ft,e);						
+							}
 					}
 				}
 			}
@@ -87,19 +87,17 @@ to ev : emfta!Event{
 	}
 }
 
-operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
+operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
 	if(con.owner.parent.isDefined()){
 		if(con.owner.type.name="SimpleComponent"){
-//			"PROCESSING................... ".println();
 			for(rul in con.owner.rules){
 				for(outexp in rul.outputExpression){
-					if(outexp.port = con) //check also if a no failure outputs is there  and discard it
+					if(outexp.port = con)
 					{
 						for(f1 in outexp.failures){
 							if(f1.id=f.id){
 								var eventSp : new emfta!Event;
-								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL EFFECT <"+f1.id+"> in "+ outexp.port.owner.name+" at "+outexp.port.name+" port";
-//								outexp.port.name.println();
+								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL EFFECT <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
 								eventSp.type = emfta!EventType#Intermediate;
 								var gate : new emfta!Gate;
 								eventSp.gate = gate;
@@ -115,8 +113,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 											if(f2.id.contains("noFailure")=true){
 												if(rul.inputExpression.size()=1){
 													var ev : new emfta!Event;
-													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE in "+ inpexp.port.owner.name+" ==> "+f1.id+" at "+outexp.port.name+" port";
-//													inpexp.port.name.println();
+													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
 													ev.type = emfta!EventType#Basic;
 													ev.description=""+ftas.getCount()+"_"+f1.id;
 													eventSp.gate.events.add(ev);
@@ -134,11 +131,9 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 															}
 														}
 												}
-//												eventSp.gate.events.size().println();
 												if(tempF=true and eventSp.gate.events.size()=0){
 													var ev : new emfta!Event;
-													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE in "+ inpexp.port.owner.name+" ==>"+f1.id+" at "+outexp.port.name+" port";
-//													inpexp.port.name.println();
+													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
 													ev.type = emfta!EventType#Basic;
 													ev.description=""+ftas.getCount()+"_"+f1.id;
 													eventSp.gate.events.add(ev);
@@ -151,8 +146,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 	
 											else{
 												var ev : new emfta!Event;
-												ev.name = inpexp.port.name+"+"+f2.id+" \n--------------\n LOCAL EFFECT <"+f2.id+"> in "+ inpexp.port.owner.name+" at "+inpexp.port.name+" port";
-//												inpexp.port.name.println();
+												ev.name = inpexp.port.name+"+"+f2.id+" \n--------------\n LOCAL EFFECT <"+f2.id+"> at "+inpexp.port.name+" port in "+ inpexp.port.owner.name;
 												ev.type = emfta!EventType#Intermediate;
 												var gate : new emfta!Gate;
 												ev.gate = gate;
@@ -163,7 +157,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 												ft.events.add(ev);
 												parents.add(ev);
 												for(neWcon in inpexp.port.connectedPorts){
-													con.generateFollowings(f2,neWcon,ft,ev);
+													con.generateNext(f2,neWcon,ft,ev);
 												}
 											}
 										}
@@ -181,7 +175,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 			if(con.owner.outputPorts.contains(con)){
 				for(p in con.connectedPorts){
 					if(not p.owner.inputPorts.contains(p) and not (p.owner=con.owner.parent)){
-						p.generateFollowings(f,p,ft,e);
+						p.generateNext(f,p,ft,e);
 					}
 				}
 			}
@@ -190,7 +184,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 					if(p.owner.parent=con.owner and p.owner.inputPorts.contains(p)){
 					}
 					else{
-						p.generateFollowings(f,p,ft,e);
+						p.generateNext(f,p,ft,e);
 					}
 				}
 			}
@@ -198,7 +192,7 @@ operation flamm!Port generateFollowings(f : flamm!Failure, con : flamm!Port, ft 
 	}
 	else{
 		var ev : new emfta!Event;
-		ev.name =con.name+"+"+f.id+" \n--------------\n INJECTED FAULT <"+f.id+"> at "+ con.name+" port of "+con.owner.name;
+		ev.name =con.name+"+"+f.id+" \n--------------\n INJECTED FAULT <"+f.id+"> at "+ con.name+" port in "+con.owner.name;
 		ev.type = emfta!EventType#External;
 		ev.description=""+ftas.getCount()+"_"+f.id;
 		e.gate.events.add(ev);

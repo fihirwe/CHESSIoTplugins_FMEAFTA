@@ -39,14 +39,12 @@ transform ftSource : emftanew!FTAModel
 to evTarget : emfta!Event{
 	var firstelement : Boolean = true;
 	for(ftTarget in ftas){
-//		ftTarget.name.println();
 		if(firstelement = true){
 			for(evSource in ftSource.events){
 				if(ftTarget.name = "Fault Tree of "+evSource.name){
 					var nevEv= new emfta!Event;
 					nevEv.name=evSource.name;
 					if(evSource.gate.events.size()>1){
-						//give the event a type using the new metamodel
 						nevEv= AssignNewType(evSource,nevEv);
 						nevEv.gate=getGate(evSource.description);
 						nevEv.probability=evSource.probability;
@@ -60,9 +58,14 @@ to evTarget : emfta!Event{
 				}
 			}
 		}
+		"1------> Cleaning fault tree on ".println();
+		ftTarget.name.println();
 		cleanTree(ftTarget);
+		"------> Calculating probailities ".println();
+		ftTarget.name.println();
 		for(event in ftTarget.events){
 			if("Fault Tree of "+event.name=ftTarget.name){
+				
 				if (event.probability=0){
 					var eventProb=1;
 	//				get the gate atached to it (in cas it is a OR gate
@@ -103,7 +106,7 @@ to evTarget : emfta!Event{
 			}
 		}
 		
-		
+		cleanGates(ftTarget);
 	}
 }
 operation getTheNextEvenWithOneEvent(evSource: emftanew!Event, nevEv : emfta!Event, ftTarget : emfta!FTAModel,firstelement : Boolean) : Sequence{
@@ -165,7 +168,10 @@ operation getTheNextEvenWithOneEvent(evSource: emftanew!Event, nevEv : emfta!Eve
 		else if(event.type.name="Intermediate"){
 			if(event.description.split("_").get(1)=evSource.description.split("_").get(1)){
 				if(event.gate.events.size()>1){
-					nevEv.name=evSource.name;
+					
+					if(firstelement=false){
+						nevEv.name=evSource.name;
+					}
 					nevEv= AssignNewType(event,nevEv);
 					nevEv.gate=getGate(event.description);
 					nevEv.description=event.description;
@@ -341,11 +347,20 @@ operation cleanTree(ftTarget : emfta!FTAModel) : Any{
 			i=i+1;
 		}
 		k=k+1;
-	}
-	
-	
-	
-	
+	}	
 }
 
-
+operation cleanGates(ftTarget : emfta!FTAModel) : Any{
+	var k=0;
+	var gates= emfta!Gate.allInstances();
+	var toRemove : emfta!Event;
+	while(k<gates.size()){
+//		"I'm in-----------------------------";
+		var gate= gates.at(k);
+			if(gate.events.size()<4){
+				gate.type=emfta!GateType#INTERMEDIATE;
+				gate.description="";
+			}
+		k=k+1;
+	}	
+}

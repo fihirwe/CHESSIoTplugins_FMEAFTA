@@ -99,7 +99,7 @@ public class FLAProbabilitySet {
 								String[] outRule= outExp.split(",");
 								for(String out:outRule){
 									if (expressions[0].contains("*")) {
-										devices.add(p.getName().toUpperCase()+" ==>> "+expressions[0]+"->"+out+";");
+										devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
 									}
 									else{
 										String []inExp= expressions[0].split(",");
@@ -111,7 +111,7 @@ public class FLAProbabilitySet {
 											}
 										}
 										if (internalFailure) {
-											devices.add(p.getName().toUpperCase()+" ==>> "+expressions[0]+"->"+out+";");
+											devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
 										} 
 									}
 
@@ -153,7 +153,7 @@ public class FLAProbabilitySet {
 
 								String failure= a.toString().substring(1, a.toString().length()-1);
 								if(!failure.contains("noFailure")){
-									devices.add(owner.getName().toUpperCase()+" ==> INJECTED <"+failure+"> failure at "+((Property)element).getName()+" port;");						
+									devices.add(owner.getName().toUpperCase()+": injected <"+failure+"> failure at "+((Property)element).getName()+" port;");						
 								}
 							}
 						}
