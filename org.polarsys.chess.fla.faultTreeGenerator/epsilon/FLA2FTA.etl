@@ -42,7 +42,7 @@ pre{
 
 rule outputOfComposite2FTA
 transform c : flamm!CompositeComponent
-to ev : emfta!Event{
+to ev : emfta!FTAModel{
 	guard : c.parent.isUndefined()
 	for(p in mapping){
 		if(p.owner.parent.isUndefined()and p.owner.outputPorts.contains(p)){
@@ -60,21 +60,14 @@ to ev : emfta!Event{
 						ft.events.add(e);
 						for(con in p.connectedPorts){
 							parents.clear();
-							con.generateNext(f,con,ft,e);						
-							}
+							con.recurseFaultTree(f,con,ft,e);						
+						}
 					}
 				}
 			}
 		}
 	}
 
-	//	for(ft in ftas){
-	//		if(ft.events.size()<2){
-	//			ftas.remove(ft);
-	//		}
-	//		
-	//	}
-	//clean Fault trees
 	var k=0;
 	while(k<ftas.size()){
 		var ft= ftas.at(k);
@@ -87,7 +80,7 @@ to ev : emfta!Event{
 	}
 }
 
-operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
+operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
 	if(con.owner.parent.isDefined()){
 		if(con.owner.type.name="SimpleComponent"){
 			for(rul in con.owner.rules){
@@ -124,9 +117,8 @@ operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emft
 												var tempF=true;
 												for(inpexp2 in rul.inputExpression){
 													for(f3 in inpexp2.failures){
-														if(f3.id.contains("noFailure")=false){
+														if(f3.id.contains("noFailure")=false and f3.id.contains("wildcard")=false){
 															tempF=false;
-															
 															break;
 															}
 														}
@@ -157,7 +149,7 @@ operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emft
 												ft.events.add(ev);
 												parents.add(ev);
 												for(neWcon in inpexp.port.connectedPorts){
-													con.generateNext(f2,neWcon,ft,ev);
+													con.recurseFaultTree(f2,neWcon,ft,ev);
 												}
 											}
 										}
@@ -175,7 +167,7 @@ operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emft
 			if(con.owner.outputPorts.contains(con)){
 				for(p in con.connectedPorts){
 					if(not p.owner.inputPorts.contains(p) and not (p.owner=con.owner.parent)){
-						p.generateNext(f,p,ft,e);
+						p.recurseFaultTree(f,p,ft,e);
 					}
 				}
 			}
@@ -184,7 +176,7 @@ operation flamm!Port generateNext(f : flamm!Failure, con : flamm!Port, ft : emft
 					if(p.owner.parent=con.owner and p.owner.inputPorts.contains(p)){
 					}
 					else{
-						p.generateNext(f,p,ft,e);
+						p.recurseFaultTree(f,p,ft,e);
 					}
 				}
 			}

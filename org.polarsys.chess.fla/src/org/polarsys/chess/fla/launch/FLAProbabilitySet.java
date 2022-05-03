@@ -94,8 +94,18 @@ public class FLAProbabilitySet {
 							String rules[]= ruleString.split(";");
 
 							for(String rule: rules){
+								if (rule.trim().length()>0) {
+									
+								
 								String expressions[]=rule.split("->");
-								String outExp= expressions[1];
+								String outExp = null;
+								
+								try {
+									outExp= expressions[1];
+								} catch (Exception e) {
+									MessageDialog.openError(activeShell, "CHESS", "Unable to load the probility set!!.. One rule is set incorrectly! "+rule);
+								}
+								 
 								String[] outRule= outExp.split(",");
 								for(String out:outRule){
 									if (expressions[0].contains("*")) {
@@ -118,7 +128,7 @@ public class FLAProbabilitySet {
 								}
 							}
 
-
+							}
 
 
 							//							S

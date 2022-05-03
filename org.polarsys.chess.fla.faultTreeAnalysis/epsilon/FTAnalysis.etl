@@ -30,7 +30,7 @@ pre{
 			var fta = new emfta!FTAModel;
 			fta.name = ft.name;
 			ftas.add(fta);
-		}
+		} 
 	}
 }
 
@@ -359,7 +359,7 @@ operation cleanGates(ftTarget : emfta!FTAModel) : Any{
 		var gate= gates.at(k);
 			if(gate.events.size()<4){
 				gate.type=emfta!GateType#INTERMEDIATE;
-				gate.description="";
+				gate.description="propagations and/or \n transformations";
 			}
 		k=k+1;
 	}	
