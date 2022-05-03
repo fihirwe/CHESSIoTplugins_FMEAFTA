@@ -1,8 +1,8 @@
-# CHESS tool extension with IoT design constructs FMEA, and Fault Tree Analysis.
+# CHESS tool extension with IoT design constructs, FMEA, and Fault Tree Analysis.
 
    **---- FINISHED IMPLEMENTATION ----**
    
-     - CHESSML lanaguage extended with IoT constructs
+     - CHESSIoT DSL (CHESSML lanaguage extended with IoT constructs)
      - Perform safety analysis on designed system (cross -domain) 
      - Basic failure probaility assisgnment and generate probability file.
      - Fully generated FMEA table
