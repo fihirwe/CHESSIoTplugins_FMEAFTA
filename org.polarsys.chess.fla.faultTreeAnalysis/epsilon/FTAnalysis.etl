@@ -214,6 +214,33 @@ operation getTheNextEvenWithOneEvent(evSource: emftanew!Event, nevEv : emfta!Eve
 				}			
 			}	
 		}
+		else if(event.type.name="Undevelopped"){
+			if(firstelement=true){
+				nevEv= AssignNewType(evSource,nevEv);
+				nevEv.gate=getGate(evSource.description);
+				nevEv.description=evSource.description;
+				nevEv.probability=evSource.probability;
+				ftTarget.events.add(nevEv);
+				firstelement=false;
+				var localEv= new emfta!Event;
+				localEv.name=event.name;
+				localEv.type= emfta!EventType#Undevelopped;
+				localEv.description=event.description;
+				localEv.probability=event.probability;
+				nevEv.gate.events.add(localEv);
+				ftTarget.events.add(localEv);
+				parents.add(nevEv);	
+			}
+			else{
+				firstelement=false;
+				nevEv.name=event.name;
+				nevEv.type= emfta!EventType#Undevelopped;
+				nevEv.description=event.description;
+				nevEv.probability=event.probability;
+				ftTarget.events.add(nevEv);
+				parents.add(nevEv);			
+			}
+		}
 	}
 }
 

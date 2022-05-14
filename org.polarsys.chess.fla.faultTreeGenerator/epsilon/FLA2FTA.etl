@@ -32,7 +32,7 @@ pre{
 			for(f in port.failures){
 				if(f.id.contains("noFailure") = false){
 					var fta = new emfta!FTAModel;
-					fta.name ="Fault Tree of "+ port.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+port.name+" port in "+port.owner.name;
+					fta.name ="Fault Tree of "+ port.name+"+"+f.id+" \n--------------\n TOP FAILURE <"+f.id+"> at "+port.name+" port in "+port.owner.name;
 					ftas.add(fta);
 				}
 			}
@@ -48,9 +48,9 @@ to ev : emfta!FTAModel{
 		if(p.owner.parent.isUndefined()and p.owner.outputPorts.contains(p)){
 			for(f in p.failures){
 				for(ft in ftas){
-					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+p.name+" port in "+p.owner.name){
+					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP FAILURE <"+f.id+"> at "+p.name+" port in "+p.owner.name){
 						var e= new emfta!Event;
-						e.name = p.name+"+"+f.id+" \n--------------\n TOP EVENT <"+f.id+"> at "+p.name+" port in "+p.owner.name;
+						e.name = p.name+"+"+f.id+" \n--------------\n TOP FAILURE <"+f.id+"> at "+p.name+" port in "+p.owner.name;
 						e.type = emfta!EventType#Intermediate;
 						var gate : new emfta!Gate;
 						e.gate = gate;
@@ -63,14 +63,46 @@ to ev : emfta!FTAModel{
 							con.recurseFaultTree(f,con,ft,e);						
 						}
 					}
+					//take care of undevelopped events, While loop used to avoid concurrent modification error
+					var k1=0;
+					while(k1<ft.events.size()){
+						var event= ft.events.at(k1);
+						if(event.type.name="Intermediate"){
+							if(event.gate.events.size()<1){
+								"---------------------------- I GOT ONEEEEEE -----------------------------".println();
+								var eventSp : new emfta!Event;
+								eventSp.name= "UNDEVELOPED FAILURE";
+								eventSp.type = emfta!EventType#Undevelopped;
+								eventSp.description="unknown_undeveloped";
+								ft.events.add(eventSp);
+								event.gate.events.add(eventSp);
+								parents.add(eventSp);
+							}
+							//take care of internal propagation and transformation gate differences
+							if(event.gate.events.size()=1){
+								for(v1 in event.gate.events){
+									if(event.description.split("_").get(1)=v1.description.split("_").get(1)){
+										event.gate.type = emfta!GateType#OR;
+									}
+								}
+								
+								
+							}	
+							
+						}
+						k1=k1+1;
+					}
 				}
 			}
 		}
 	}
 
+	// rename the undevelopped tree.. this will be removed when an issue of (*) notation is resolved
 	var k=0;
 	while(k<ftas.size()){
 		var ft= ftas.at(k);
+		
+		
 		ft.name.println();
 		ft.events.size().println();
 		if(ft.events.size()=1){
@@ -78,6 +110,7 @@ to ev : emfta!FTAModel{
 		}
 		k=k+1;
 	}
+	
 }
 
 operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : emfta!FTAModel, e : emfta!Event) : Sequence{
@@ -90,7 +123,7 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 						for(f1 in outexp.failures){
 							if(f1.id=f.id){
 								var eventSp : new emfta!Event;
-								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL EFFECT <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
+								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL FAILURE <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
 								eventSp.type = emfta!EventType#Intermediate;
 								var gate : new emfta!Gate;
 								eventSp.gate = gate;
@@ -114,6 +147,7 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 													parents.add(ev);
 												}
 												else{
+													//check if all input failures are noFailures
 												var tempF=true;
 												for(inpexp2 in rul.inputExpression){
 													for(f3 in inpexp2.failures){
@@ -123,6 +157,7 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 															}
 														}
 												}
+												// add a internal failure only if no one was added before
 												if(tempF=true and eventSp.gate.events.size()=0){
 													var ev : new emfta!Event;
 													ev.name =outexp.port.name+"+"+f1.id+" \n--------------\n INTERNAL FAILURE <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
@@ -137,8 +172,14 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 											}
 	
 											else{
+//												if(inpexp.failures.size()=1){
+//													if(f1.id=f2.id){
+//														//INTERNAL PROPAGATION
+//														eventSp.gate.type = emfta!GateType#OR;
+//													}
+//												}
 												var ev : new emfta!Event;
-												ev.name = inpexp.port.name+"+"+f2.id+" \n--------------\n LOCAL EFFECT <"+f2.id+"> at "+inpexp.port.name+" port in "+ inpexp.port.owner.name;
+												ev.name = inpexp.port.name+"+"+f2.id+" \n--------------\n LOCAL FAILURE <"+f2.id+"> at "+inpexp.port.name+" port in "+ inpexp.port.owner.name;
 												ev.type = emfta!EventType#Intermediate;
 												var gate : new emfta!Gate;
 												ev.gate = gate;
@@ -184,7 +225,7 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 	}
 	else{
 		var ev : new emfta!Event;
-		ev.name =con.name+"+"+f.id+" \n--------------\n INJECTED FAULT <"+f.id+"> at "+ con.name+" port in "+con.owner.name;
+		ev.name =con.name+"+"+f.id+" \n--------------\n INJECTED FAILURE <"+f.id+"> at "+ con.name+" port in "+con.owner.name;
 		ev.type = emfta!EventType#External;
 		ev.description=""+ftas.getCount()+"_"+f.id;
 		e.gate.events.add(ev);

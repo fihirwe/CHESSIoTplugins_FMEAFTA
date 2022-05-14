@@ -62,12 +62,18 @@ public class ParseExcel {
 	}
 
 
-	public static String getDescriptionByName(List<FailureData> excelData,String[] name){
+	public static String getDescriptionByName(List<FailureData> excelData,String[] name, boolean basic){
 		for (FailureData failureData : excelData) {
 			String desc= failureData.getName().toLowerCase();
 			if (desc.contains(name[0].toLowerCase()) && desc.contains(name[1].toLowerCase()) && desc.contains(name[2].toLowerCase())) {
 				if (failureData.getDescription().replaceAll(" ", "").length()>0) {
-					return name[0]+"+"+name[1]+" \n--------------\n "+failureData.getDescription();
+					if(basic=true){
+						return name[0]+"+"+name[1]+" \n--------------\n INTERNAL FAILURE: "+failureData.getDescription();
+					}
+					else{
+						return name[0]+"+"+name[1]+" \n--------------\n INJECTED FAILURE: "+failureData.getDescription();
+					}
+					
 				}
 
 			}

@@ -53,7 +53,7 @@ public class UpdatePobabilities {
 				}
 			}
 			File probFile= new File(path+"/"+activeProjectName+"_Probability_"+max+"_.xlsx");
-			System.err.println("PARSING "+probFile+" probability file");
+			System.out.println("PARSING THE PROBABILITY FILE: "+probFile);
 			if(probFile.exists()){
 				List<FailureData> excelData=ParseExcel.parse(probFile);
 				for (int i = 0; i < nFTs; i++) {
@@ -61,17 +61,19 @@ public class UpdatePobabilities {
 //					System.out.println("Processing "+ftmodel.toString());
 					for (Event iterable_element : ftmodel.getEvents()) {
 						String type=iterable_element.getType().name();
-						if (!type.equalsIgnoreCase("Intermediate")){
+						if (!type.equalsIgnoreCase("Intermediate") && !type.equalsIgnoreCase("Undevelopped")){
 							String name= iterable_element.getName().replaceAll("\n", "").replaceAll("-", "");
 							if(name!=null){
 								String[] cellKeys=null;
+								String newName=null;
 								if(type.equalsIgnoreCase("Basic")){
 									cellKeys= getInternalFailureKeys(name);
+									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,true);
 								}else{
 									cellKeys= getExternalFailureKeys(name);
+									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,false);
 								}
 								
-								String newName=ParseExcel.getDescriptionByName(excelData,cellKeys);
 								if(!newName.equals("NULL")){
 									iterable_element.setName(newName);
 								}
@@ -83,6 +85,7 @@ public class UpdatePobabilities {
 					}
 				}
 				resource.save(Collections.EMPTY_MAP);
+				System.out.println("Finished updating probability in the model");
 			}
 			else{
 				System.out.println("No probaility file found");
