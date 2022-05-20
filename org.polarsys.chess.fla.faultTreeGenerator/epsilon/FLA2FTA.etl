@@ -106,7 +106,8 @@ to ev : emfta!FTAModel{
 		ft.name.println();
 		ft.events.size().println();
 		if(ft.events.size()=1){
-			ft.name="FT_residue";
+			ftas.remove(ft);
+//			ft.name="FT_residue";
 		}
 		k=k+1;
 	}

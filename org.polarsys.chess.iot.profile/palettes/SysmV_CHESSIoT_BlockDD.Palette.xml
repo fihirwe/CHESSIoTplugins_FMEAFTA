@@ -17,7 +17,7 @@
          <aspectTool description="Create a SystemHW" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="SystemHW" name="SystemHW(Block)" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::SYSTEM_Hw" />
+                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::System" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -83,24 +83,17 @@
       </drawer>
       
         <drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif" id="CHESSIoT_BDD_DRAWER_APPLICATION" name="Aplication_Layer">
-         <aspectTool description="Create an Active ConsumerEntity " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="ActiveConsumerEntity" name="ActiveConsumerEntity" refToolId="blockdefinition_modelelements.tool.block">
+         <aspectTool description="Create an Active ExternalService " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="ActiveExternalService" name="ActiveExternalService" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::Active" />
+                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::ActiveService" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
-         <aspectTool description="Create an Passive ConsumerEntity " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="PassiveConsumerEntity" name="PassiveConsumerEntity" refToolId="blockdefinition_modelelements.tool.block">
+         <aspectTool description="Create an Passive ExternalService " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="PassiveExternalService" name="PassiveExternalService" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::Passive" />
-               </stereotypesToApply>
-            </postAction>
-         </aspectTool>
-		 <aspectTool description="Create a HumanUser" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="HumanUser" name="HumanUser" refToolId="blockdefinition_modelelements.tool.block">
-            <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-               <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::HumanUser" />
+                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::PassiveService" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>

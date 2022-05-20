@@ -68,10 +68,10 @@ public class UpdatePobabilities {
 								String newName=null;
 								if(type.equalsIgnoreCase("Basic")){
 									cellKeys= getInternalFailureKeys(name);
-									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,true);
+									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,"INTERNAL FAILURE <"+cellKeys[1]+"> \n");
 								}else{
 									cellKeys= getExternalFailureKeys(name);
-									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,false);
+									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,"INTERNAL FAILURE <"+cellKeys[1]+"> \n");
 								}
 								
 								if(!newName.equals("NULL")){
