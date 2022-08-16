@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
-  <mtl:Module name="generateExternalService" nsURI="org::polarsys::chess::iot::deployment::artifacts::generateExternalService" startHeaderPosition="29" endHeaderPosition="259">
+  <mtl:Module name="generateExternalService" nsURI="org::polarsys::chess::iot::deployment::artifacts::generateExternalService" startHeaderPosition="30" endHeaderPosition="266">
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
@@ -13,7 +13,7 @@
           </initExpression>
         </variable>
       </init>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;    "/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;    "/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateExternalService/c">
@@ -21,7 +21,7 @@
         </source>
         <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":&#xA;        image: "/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":&#xD;&#xA;        image: "/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateExternalService/c">
@@ -29,7 +29,7 @@
         </source>
         <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;        hostname: "/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;        hostname: "/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="ocl.ecore:VariableExp" name="EV" referredVariable="/0/generateExternalService/EV">
@@ -37,7 +37,7 @@
         </source>
         <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;        ports:&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;        ports:&#xD;&#xA;"/>
       <body xsi:type="mtl:ForBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="            - "/>
         <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
@@ -53,7 +53,7 @@
             <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
           </source>
         </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
         <loopVariable name="it">
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
         </loopVariable>
@@ -78,7 +78,7 @@
           <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
         </iterSet>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="        volumes:&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="        volumes:&#xD;&#xA;"/>
       <body xsi:type="mtl:ForBlock">
         <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="            - "/>
         <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
@@ -94,7 +94,7 @@
             <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
           </source>
         </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
         <loopVariable name="it">
           <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
         </loopVariable>
@@ -119,7 +119,7 @@
           <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
         </iterSet>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
       <parameter name="c">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </parameter>
@@ -257,243 +257,243 @@
   </ocl.ecore:Variable>
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/generateExternalService">
-      <details key="start" value="105"/>
-      <details key="end" value="685"/>
+      <details key="start" value="109"/>
+      <details key="end" value="704"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateExternalService/@init">
-      <details key="start" value="167"/>
-      <details key="end" value="245"/>
+      <details key="start" value="171"/>
+      <details key="end" value="250"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.2" references="/0/generateExternalService/@init/@variable.0">
-      <details key="start" value="169"/>
-      <details key="end" value="243"/>
+      <details key="start" value="174"/>
+      <details key="end" value="248"/>
       <details key="line" value="6"/>
     </eAnnotations>
     <eAnnotations source="positions.3" references="/0/generateExternalService/@init/@variable.0/%">
-      <details key="start" value="196"/>
-      <details key="end" value="243"/>
+      <details key="start" value="201"/>
+      <details key="end" value="248"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateExternalService/%">
-      <details key="start" value="247"/>
-      <details key="end" value="252"/>
+      <details key="start" value="253"/>
+      <details key="end" value="259"/>
       <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateExternalService/%.1">
-      <details key="start" value="253"/>
-      <details key="end" value="259"/>
+      <details key="start" value="260"/>
+      <details key="end" value="266"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/generateExternalService/%.1/c">
-      <details key="start" value="253"/>
-      <details key="end" value="254"/>
+      <details key="start" value="260"/>
+      <details key="end" value="261"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/generateExternalService/%.2">
-      <details key="start" value="261"/>
-      <details key="end" value="278"/>
+      <details key="start" value="268"/>
+      <details key="end" value="286"/>
       <details key="line" value="8"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/generateExternalService/%.3">
-      <details key="start" value="279"/>
-      <details key="end" value="285"/>
+      <details key="start" value="287"/>
+      <details key="end" value="293"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/generateExternalService/%.3/c">
-      <details key="start" value="279"/>
-      <details key="end" value="280"/>
+      <details key="start" value="287"/>
+      <details key="end" value="288"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/generateExternalService/%.4">
-      <details key="start" value="287"/>
-      <details key="end" value="306"/>
+      <details key="start" value="295"/>
+      <details key="end" value="315"/>
       <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/generateExternalService/%.5">
-      <details key="start" value="307"/>
-      <details key="end" value="314"/>
+      <details key="start" value="316"/>
+      <details key="end" value="323"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/generateExternalService/%.5/EV">
-      <details key="start" value="307"/>
-      <details key="end" value="309"/>
+      <details key="start" value="316"/>
+      <details key="end" value="318"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/generateExternalService/%.6">
-      <details key="start" value="316"/>
-      <details key="end" value="332"/>
+      <details key="start" value="325"/>
+      <details key="end" value="343"/>
       <details key="line" value="11"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/generateExternalService/%.7">
-      <details key="start" value="344"/>
-      <details key="end" value="492"/>
+      <details key="start" value="355"/>
+      <details key="end" value="505"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.15" references="/0/generateExternalService/%.7/%">
-      <details key="start" value="426"/>
-      <details key="end" value="440"/>
+      <details key="start" value="438"/>
+      <details key="end" value="452"/>
       <details key="line" value="13"/>
     </eAnnotations>
     <eAnnotations source="positions.16" references="/0/generateExternalService/%.7/%.1">
-      <details key="start" value="441"/>
-      <details key="end" value="454"/>
+      <details key="start" value="453"/>
+      <details key="end" value="466"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.17" references="/0/generateExternalService/%.7/%.1/it">
-      <details key="start" value="441"/>
-      <details key="end" value="443"/>
+      <details key="start" value="453"/>
+      <details key="end" value="455"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/generateExternalService/%.7/%.2">
-      <details key="start" value="456"/>
-      <details key="end" value="457"/>
+      <details key="start" value="468"/>
+      <details key="end" value="469"/>
       <details key="line" value="13"/>
     </eAnnotations>
     <eAnnotations source="positions.19" references="/0/generateExternalService/%.7/%.3">
-      <details key="start" value="458"/>
-      <details key="end" value="471"/>
+      <details key="start" value="470"/>
+      <details key="end" value="483"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.20" references="/0/generateExternalService/%.7/%.3/it">
-      <details key="start" value="458"/>
-      <details key="end" value="460"/>
+      <details key="start" value="470"/>
+      <details key="end" value="472"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.21" references="/0/generateExternalService/%.7/%.4">
-      <details key="start" value="473"/>
-      <details key="end" value="474"/>
+      <details key="start" value="485"/>
+      <details key="end" value="487"/>
       <details key="line" value="14"/>
     </eAnnotations>
     <eAnnotations source="positions.22" references="/0/generateExternalService/%.7/it">
-      <details key="start" value="349"/>
-      <details key="end" value="360"/>
+      <details key="start" value="360"/>
+      <details key="end" value="371"/>
       <details key="line" value="12"/>
     </eAnnotations>
     <eAnnotations source="positions.23" references="/0/generateExternalService/%.7/%.5">
-      <details key="start" value="363"/>
-      <details key="end" value="423"/>
+      <details key="start" value="374"/>
+      <details key="end" value="434"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.24" references="/0/generateExternalService/%.7/%.5/c">
-      <details key="start" value="363"/>
-      <details key="end" value="364"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/generateExternalService/%.7/%.5/%">
-      <details key="start" value="374"/>
-      <details key="end" value="413"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/generateExternalService/%.7/%.5/%/c">
       <details key="start" value="374"/>
       <details key="end" value="375"/>
       <details key="line" value="0"/>
     </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateExternalService/%.7/%.5/%">
+      <details key="start" value="385"/>
+      <details key="end" value="424"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateExternalService/%.7/%.5/%/c">
+      <details key="start" value="385"/>
+      <details key="end" value="386"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
     <eAnnotations source="positions.27" references="/0/generateExternalService/%.7/%.5/%/ExternalService">
-      <details key="start" value="397"/>
-      <details key="end" value="412"/>
+      <details key="start" value="408"/>
+      <details key="end" value="423"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.28" references="/0/generateExternalService/%.7/%.5/%.1">
-      <details key="start" value="415"/>
-      <details key="end" value="422"/>
+      <details key="start" value="426"/>
+      <details key="end" value="433"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.29" references="/0/generateExternalService/%.8">
-      <details key="start" value="493"/>
-      <details key="end" value="510"/>
+      <details key="start" value="507"/>
+      <details key="end" value="525"/>
       <details key="line" value="15"/>
     </eAnnotations>
     <eAnnotations source="positions.30" references="/0/generateExternalService/%.9">
-      <details key="start" value="522"/>
-      <details key="end" value="672"/>
+      <details key="start" value="537"/>
+      <details key="end" value="689"/>
       <details key="line" value="16"/>
     </eAnnotations>
     <eAnnotations source="positions.31" references="/0/generateExternalService/%.9/%">
-      <details key="start" value="606"/>
-      <details key="end" value="620"/>
+      <details key="start" value="622"/>
+      <details key="end" value="636"/>
       <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.32" references="/0/generateExternalService/%.9/%.1">
-      <details key="start" value="621"/>
-      <details key="end" value="634"/>
+      <details key="start" value="637"/>
+      <details key="end" value="650"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.33" references="/0/generateExternalService/%.9/%.1/it">
-      <details key="start" value="621"/>
-      <details key="end" value="623"/>
+      <details key="start" value="637"/>
+      <details key="end" value="639"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.34" references="/0/generateExternalService/%.9/%.2">
-      <details key="start" value="636"/>
-      <details key="end" value="637"/>
+      <details key="start" value="652"/>
+      <details key="end" value="653"/>
       <details key="line" value="17"/>
     </eAnnotations>
     <eAnnotations source="positions.35" references="/0/generateExternalService/%.9/%.3">
-      <details key="start" value="638"/>
-      <details key="end" value="651"/>
+      <details key="start" value="654"/>
+      <details key="end" value="667"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.36" references="/0/generateExternalService/%.9/%.3/it">
-      <details key="start" value="638"/>
-      <details key="end" value="640"/>
+      <details key="start" value="654"/>
+      <details key="end" value="656"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.37" references="/0/generateExternalService/%.9/%.4">
-      <details key="start" value="653"/>
-      <details key="end" value="654"/>
+      <details key="start" value="669"/>
+      <details key="end" value="671"/>
       <details key="line" value="18"/>
     </eAnnotations>
     <eAnnotations source="positions.38" references="/0/generateExternalService/%.9/it">
-      <details key="start" value="527"/>
-      <details key="end" value="538"/>
+      <details key="start" value="542"/>
+      <details key="end" value="553"/>
       <details key="line" value="16"/>
     </eAnnotations>
     <eAnnotations source="positions.39" references="/0/generateExternalService/%.9/%.5">
-      <details key="start" value="541"/>
-      <details key="end" value="603"/>
+      <details key="start" value="556"/>
+      <details key="end" value="618"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.40" references="/0/generateExternalService/%.9/%.5/c">
-      <details key="start" value="541"/>
-      <details key="end" value="542"/>
+      <details key="start" value="556"/>
+      <details key="end" value="557"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.41" references="/0/generateExternalService/%.9/%.5/%">
-      <details key="start" value="552"/>
-      <details key="end" value="591"/>
+      <details key="start" value="567"/>
+      <details key="end" value="606"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.42" references="/0/generateExternalService/%.9/%.5/%/c">
-      <details key="start" value="552"/>
-      <details key="end" value="553"/>
+      <details key="start" value="567"/>
+      <details key="end" value="568"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.43" references="/0/generateExternalService/%.9/%.5/%/ExternalService">
-      <details key="start" value="575"/>
-      <details key="end" value="590"/>
+      <details key="start" value="590"/>
+      <details key="end" value="605"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.44" references="/0/generateExternalService/%.9/%.5/%.1">
-      <details key="start" value="593"/>
-      <details key="end" value="602"/>
+      <details key="start" value="608"/>
+      <details key="end" value="617"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/generateExternalService/%.10">
-      <details key="start" value="673"/>
-      <details key="end" value="674"/>
+      <details key="start" value="691"/>
+      <details key="end" value="693"/>
       <details key="line" value="19"/>
     </eAnnotations>
     <eAnnotations source="positions.46" references="/0/generateExternalService/c">
-      <details key="start" value="146"/>
-      <details key="end" value="155"/>
+      <details key="start" value="150"/>
+      <details key="end" value="159"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.47" references="/0/generateExternalService/EV">
-      <details key="start" value="157"/>
-      <details key="end" value="166"/>
+      <details key="start" value="161"/>
+      <details key="end" value="170"/>
       <details key="line" value="5"/>
     </eAnnotations>
   </ecore:EAnnotation>
