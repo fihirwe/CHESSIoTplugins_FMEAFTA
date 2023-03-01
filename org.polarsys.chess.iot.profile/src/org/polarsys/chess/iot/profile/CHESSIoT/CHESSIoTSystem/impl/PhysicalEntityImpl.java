@@ -20,33 +20,12 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalEntityImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalEntityImpl#getPhysicalentity <em>Physicalentity</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalEntity {
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int ID_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected int id = ID_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getPhysicalentity() <em>Physicalentity</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -74,27 +53,6 @@ public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalE
 	@Override
 	protected EClass eStaticClass() {
 		return CHESSIoTSystemPackage.Literals.PHYSICAL_ENTITY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(int newId) {
-		int oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_ENTITY__ID, oldId, id));
 	}
 
 	/**
@@ -143,8 +101,6 @@ public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__ID:
-				return getId();
 			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__PHYSICALENTITY:
 				if (resolve) return getPhysicalentity();
 				return basicGetPhysicalentity();
@@ -160,9 +116,6 @@ public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__ID:
-				setId((Integer)newValue);
-				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__PHYSICALENTITY:
 				setPhysicalentity((PhysicalEntity)newValue);
 				return;
@@ -178,9 +131,6 @@ public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__ID:
-				setId(ID_EDEFAULT);
-				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__PHYSICALENTITY:
 				setPhysicalentity((PhysicalEntity)null);
 				return;
@@ -196,28 +146,10 @@ public class PhysicalEntityImpl extends PhysicalElementImpl implements PhysicalE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__ID:
-				return id != ID_EDEFAULT;
 			case CHESSIoTSystemPackage.PHYSICAL_ENTITY__PHYSICALENTITY:
 				return physicalentity != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
-		result.append(id);
-		result.append(')');
-		return result.toString();
 	}
 
 } //PhysicalEntityImpl

@@ -26,7 +26,7 @@ pre{
 	var count : Integer;
 	count=0;
 	mapping = flamm!Port.allInstances();
-
+	"Started the transformation-------------------------".println();
 	for(port in mapping){
 		if(port.owner.parent.isUndefined()and port.owner.outputPorts.contains(port)){
 			for(f in port.failures){
@@ -47,8 +47,10 @@ to ev : emfta!FTAModel{
 	for(p in mapping){
 		if(p.owner.parent.isUndefined()and p.owner.outputPorts.contains(p)){
 			for(f in p.failures){
+			"Transforming-------------------------".println();
 				for(ft in ftas){
 					if(ft.name = "Fault Tree of "+p.name+"+"+f.id+" \n--------------\n TOP FAILURE <"+f.id+"> at "+p.name+" port in "+p.owner.name){
+					f.id.println();
 						var e= new emfta!Event;
 						e.name = p.name+"+"+f.id+" \n--------------\n TOP FAILURE <"+f.id+"> at "+p.name+" port in "+p.owner.name;
 						e.type = emfta!EventType#Intermediate;
@@ -123,6 +125,8 @@ operation flamm!Port recurseFaultTree(f : flamm!Failure, con : flamm!Port, ft : 
 					{
 						for(f1 in outexp.failures){
 							if(f1.id=f.id){
+							"F1 DOWN PRINT------------------".println();
+							f1.id.println();
 								var eventSp : new emfta!Event;
 								eventSp.name= outexp.port.name+"+"+f1.id+" \n--------------\n LOCAL FAILURE <"+f1.id+"> at "+outexp.port.name+" port in "+ outexp.port.owner.name;
 								eventSp.type = emfta!EventType#Intermediate;

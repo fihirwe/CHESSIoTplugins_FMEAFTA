@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:MQTTPort:payloadType"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:MQTTPort:brokerAdress"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:MQTTPort:topic"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:MQTTPort:type"></ppe:EnumCombo>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiInteger input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:IoTPort:connectionPins"></ppe:MultiInteger>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:IoTPort:send_payload"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:IoTPort:receive_payload"></ppe:MultiReference>
+	</Composite>
+</Composite>

@@ -52,7 +52,7 @@
                label="Dependability">
             <command
                   commandId="ftAnalysis.commands.analyseFT"
-                  label="Analyse FT generated from Concerto-FLA"
+                  label="Analyse the generate Fault-Tree"
                   style="push">
             </command>
          </menu>

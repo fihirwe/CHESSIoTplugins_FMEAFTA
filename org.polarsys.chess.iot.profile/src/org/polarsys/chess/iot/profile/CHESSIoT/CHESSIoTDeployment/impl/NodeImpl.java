@@ -2,7 +2,11 @@
  */
 package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -10,9 +14,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import org.eclipse.uml2.uml.Component;
 
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node;
 
 /**
@@ -23,55 +31,14 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getOpSystem <em>Op System</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getBase_Component <em>Base Component</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getMemory <em>Memory</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getMachine <em>Machine</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl#getDeploymentagent <em>Deploymentagent</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getOpSystem() <em>Op System</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOpSystem()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OP_SYSTEM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getOpSystem() <em>Op System</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOpSystem()
-	 * @generated
-	 * @ordered
-	 */
-	protected String opSystem = OP_SYSTEM_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getBase_Component() <em>Base Component</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -83,24 +50,24 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	protected Component base_Component;
 
 	/**
-	 * The default value of the '{@link #getMemory() <em>Memory</em>}' attribute.
+	 * The cached value of the '{@link #getMachine() <em>Machine</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemory()
+	 * @see #getMachine()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MEMORY_EDEFAULT = null;
+	protected EList<Machine> machine;
 
 	/**
-	 * The cached value of the '{@link #getMemory() <em>Memory</em>}' attribute.
+	 * The cached value of the '{@link #getDeploymentagent() <em>Deploymentagent</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemory()
+	 * @see #getDeploymentagent()
 	 * @generated
 	 * @ordered
 	 */
-	protected String memory = MEMORY_EDEFAULT;
+	protected EList<DeploymentAgent> deploymentagent;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,48 +86,6 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	@Override
 	protected EClass eStaticClass() {
 		return CHESSIoTDeploymentPackage.Literals.NODE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.NODE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getOpSystem() {
-		return opSystem;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOpSystem(String newOpSystem) {
-		String oldOpSystem = opSystem;
-		opSystem = newOpSystem;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.NODE__OP_SYSTEM, oldOpSystem, opSystem));
 	}
 
 	/**
@@ -206,8 +131,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getMemory() {
-		return memory;
+	public EList<Machine> getMachine() {
+		if (machine == null) {
+			machine = new EObjectResolvingEList<Machine>(Machine.class, this, CHESSIoTDeploymentPackage.NODE__MACHINE);
+		}
+		return machine;
 	}
 
 	/**
@@ -215,11 +143,11 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMemory(String newMemory) {
-		String oldMemory = memory;
-		memory = newMemory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.NODE__MEMORY, oldMemory, memory));
+	public EList<DeploymentAgent> getDeploymentagent() {
+		if (deploymentagent == null) {
+			deploymentagent = new EObjectResolvingEList<DeploymentAgent>(DeploymentAgent.class, this, CHESSIoTDeploymentPackage.NODE__DEPLOYMENTAGENT);
+		}
+		return deploymentagent;
 	}
 
 	/**
@@ -230,15 +158,13 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CHESSIoTDeploymentPackage.NODE__NAME:
-				return getName();
-			case CHESSIoTDeploymentPackage.NODE__OP_SYSTEM:
-				return getOpSystem();
 			case CHESSIoTDeploymentPackage.NODE__BASE_COMPONENT:
 				if (resolve) return getBase_Component();
 				return basicGetBase_Component();
-			case CHESSIoTDeploymentPackage.NODE__MEMORY:
-				return getMemory();
+			case CHESSIoTDeploymentPackage.NODE__MACHINE:
+				return getMachine();
+			case CHESSIoTDeploymentPackage.NODE__DEPLOYMENTAGENT:
+				return getDeploymentagent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -248,20 +174,20 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CHESSIoTDeploymentPackage.NODE__NAME:
-				setName((String)newValue);
-				return;
-			case CHESSIoTDeploymentPackage.NODE__OP_SYSTEM:
-				setOpSystem((String)newValue);
-				return;
 			case CHESSIoTDeploymentPackage.NODE__BASE_COMPONENT:
 				setBase_Component((Component)newValue);
 				return;
-			case CHESSIoTDeploymentPackage.NODE__MEMORY:
-				setMemory((String)newValue);
+			case CHESSIoTDeploymentPackage.NODE__MACHINE:
+				getMachine().clear();
+				getMachine().addAll((Collection<? extends Machine>)newValue);
+				return;
+			case CHESSIoTDeploymentPackage.NODE__DEPLOYMENTAGENT:
+				getDeploymentagent().clear();
+				getDeploymentagent().addAll((Collection<? extends DeploymentAgent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,17 +201,14 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CHESSIoTDeploymentPackage.NODE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case CHESSIoTDeploymentPackage.NODE__OP_SYSTEM:
-				setOpSystem(OP_SYSTEM_EDEFAULT);
-				return;
 			case CHESSIoTDeploymentPackage.NODE__BASE_COMPONENT:
 				setBase_Component((Component)null);
 				return;
-			case CHESSIoTDeploymentPackage.NODE__MEMORY:
-				setMemory(MEMORY_EDEFAULT);
+			case CHESSIoTDeploymentPackage.NODE__MACHINE:
+				getMachine().clear();
+				return;
+			case CHESSIoTDeploymentPackage.NODE__DEPLOYMENTAGENT:
+				getDeploymentagent().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -299,36 +222,14 @@ public class NodeImpl extends MinimalEObjectImpl.Container implements Node {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CHESSIoTDeploymentPackage.NODE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CHESSIoTDeploymentPackage.NODE__OP_SYSTEM:
-				return OP_SYSTEM_EDEFAULT == null ? opSystem != null : !OP_SYSTEM_EDEFAULT.equals(opSystem);
 			case CHESSIoTDeploymentPackage.NODE__BASE_COMPONENT:
 				return base_Component != null;
-			case CHESSIoTDeploymentPackage.NODE__MEMORY:
-				return MEMORY_EDEFAULT == null ? memory != null : !MEMORY_EDEFAULT.equals(memory);
+			case CHESSIoTDeploymentPackage.NODE__MACHINE:
+				return machine != null && !machine.isEmpty();
+			case CHESSIoTDeploymentPackage.NODE__DEPLOYMENTAGENT:
+				return deploymentagent != null && !deploymentagent.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", opSystem: ");
-		result.append(opSystem);
-		result.append(", memory: ");
-		result.append(memory);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NodeImpl

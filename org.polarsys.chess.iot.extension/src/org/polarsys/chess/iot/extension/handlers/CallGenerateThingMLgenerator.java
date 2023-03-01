@@ -5,7 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.polarsys.chess.iot.generator.ui.thingml.GenerateThingML;
+import org.polarsys.chess.iot.software.generator.ui.thingml.GenerateThingML;
 
 public class CallGenerateThingMLgenerator extends AbstractHandler {
 	@Override

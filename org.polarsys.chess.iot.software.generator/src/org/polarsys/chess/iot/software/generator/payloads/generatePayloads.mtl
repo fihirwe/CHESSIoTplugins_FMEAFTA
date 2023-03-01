@@ -1,0 +1,17 @@
+[comment encoding = UTF-8 /]
+[module generatePayloads('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import org::polarsys::chess::iot::software::generator::legal::Copyright /]
+[import org::polarsys::chess::iot::software::generator::services::usesUML2Services /]
+
+
+[template public generatePayloads(component : Component){
+Payload : String = 'CHESSIoT::CHESSIoTSoftware::Payload';}]
+thing fragment [component.name+'Messages'/] {
+[if (checkContainThatClass(component,'Payload'))]
+	[for (pay : Class | component.allOwnedElements()->filter(Class) ->select(pay2: Class | pay2.getAppliedStereotype(Payload)->notEmpty() and not pay2.name.contains('timer') and not pay2.name.contains('_tic')))]
+	message [pay.name/]([getPayParameters(pay)/]);
+	[/for]
+[/if]
+}
+[/template]
+[template public getPayParameters(payload : Class)][for (param : Property | payload.ownedAttribute)][if(i>1)],[/if][param.name/] : Long [/for][/template]

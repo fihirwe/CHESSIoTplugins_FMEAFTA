@@ -2,7 +2,7 @@
  */
 package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment;
 
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.VirtualBoard;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,8 +13,7 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.VirtualBoard;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getDeviceresources <em>Deviceresources</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getPysicalDevice <em>Pysical Device</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getIotdevice <em>Iotdevice</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getDeviceNode()
@@ -23,55 +22,19 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.VirtualBoard;
  */
 public interface DeviceNode extends Node {
 	/**
-	 * Returns the value of the '<em><b>Deviceresources</b></em>' reference.
+	 * Returns the value of the '<em><b>Iotdevice</b></em>' reference list.
+	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Deviceresources</em>' reference isn't clear,
+	 * If the meaning of the '<em>Iotdevice</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Deviceresources</em>' reference.
-	 * @see #setDeviceresources(DeviceResources)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getDeviceNode_Deviceresources()
+	 * @return the value of the '<em>Iotdevice</em>' reference list.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getDeviceNode_Iotdevice()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	DeviceResources getDeviceresources();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getDeviceresources <em>Deviceresources</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Deviceresources</em>' reference.
-	 * @see #getDeviceresources()
-	 * @generated
-	 */
-	void setDeviceresources(DeviceResources value);
-
-	/**
-	 * Returns the value of the '<em><b>Pysical Device</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pysical Device</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pysical Device</em>' reference.
-	 * @see #setPysicalDevice(VirtualBoard)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getDeviceNode_PysicalDevice()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	VirtualBoard getPysicalDevice();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getPysicalDevice <em>Pysical Device</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pysical Device</em>' reference.
-	 * @see #getPysicalDevice()
-	 * @generated
-	 */
-	void setPysicalDevice(VirtualBoard value);
+	EList<OnDeviceApp> getIotdevice();
 
 } // DeviceNode

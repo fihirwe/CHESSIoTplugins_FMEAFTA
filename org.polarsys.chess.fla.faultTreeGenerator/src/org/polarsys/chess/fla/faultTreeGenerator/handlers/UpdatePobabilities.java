@@ -71,7 +71,7 @@ public class UpdatePobabilities {
 									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,"INTERNAL FAILURE <"+cellKeys[1]+"> \n");
 								}else{
 									cellKeys= getExternalFailureKeys(name);
-									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,"INTERNAL FAILURE <"+cellKeys[1]+"> \n");
+									newName=ParseExcel.getDescriptionByName(excelData,cellKeys,"EXTERNAL FAILURE <"+cellKeys[1]+"> \n");
 								}
 								
 								if(!newName.equals("NULL")){

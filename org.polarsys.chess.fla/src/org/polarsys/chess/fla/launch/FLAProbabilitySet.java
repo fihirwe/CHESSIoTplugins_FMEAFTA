@@ -95,38 +95,42 @@ public class FLAProbabilitySet {
 
 							for(String rule: rules){
 								if (rule.trim().length()>0) {
-									
-								
-								String expressions[]=rule.split("->");
-								String outExp = null;
-								
-								try {
-									outExp= expressions[1];
-								} catch (Exception e) {
-									MessageDialog.openError(activeShell, "CHESS", "Unable to load the probility set!!.. One rule is set incorrectly! "+rule);
-								}
-								 
-								String[] outRule= outExp.split(",");
-								for(String out:outRule){
-									if (expressions[0].contains("*")) {
-										devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
-									}
-									else{
-										String []inExp= expressions[0].split(",");
-										boolean internalFailure=true;
-										for (String string : inExp) {
-											if (!string.contains("noFailure")) {
-												internalFailure=false;
-												break;
-											}
-										}
-										if (internalFailure) {
-											devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
-										} 
+
+
+									String expressions[]=rule.split("->");
+									String outExp = null;
+
+									try {
+										outExp= expressions[1];
+									} catch (Exception e) {
+										MessageDialog.openError(activeShell, "CHESS", "Unable to load the probility set!!.. One rule is set incorrectly! "+rule);
 									}
 
+									String[] outRule= outExp.split(",");
+									for(String out:outRule){
+										if(!out.contains("noFailure")){
+											if (expressions[0].contains("*")) {
+												devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
+											}
+											else{
+												String []inExp= expressions[0].split(",");
+												boolean internalFailure=true;
+												for (String string : inExp) {
+													if (!string.contains("noFailure")) {
+														internalFailure=false;
+														break;
+													}
+												}
+												if (internalFailure) {
+													devices.add(p.getName().toUpperCase()+": "+expressions[0]+"->"+out+";");
+												} 
+											}
+
+
+
+										}
+									}
 								}
-							}
 
 							}
 

@@ -13,10 +13,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getClients <em>Clients</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getDeviceresources <em>Deviceresources</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getContainer <em>Container</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getDevicenode <em>Devicenode</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getCloudnode <em>Cloudnode</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getFogNode()
@@ -24,54 +22,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FogNode extends Node {
-	/**
-	 * Returns the value of the '<em><b>Clients</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Clients</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Clients</em>' reference list.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getFogNode_Clients()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	EList<DeviceNode> getClients();
-
-	/**
-	 * Returns the value of the '<em><b>Deviceresources</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Deviceresources</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Deviceresources</em>' reference list.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getFogNode_Deviceresources()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	EList<FogOrchestrator> getDeviceresources();
-
-	/**
-	 * Returns the value of the '<em><b>Container</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' reference list.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getFogNode_Container()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	EList<Container> getContainer();
-
 	/**
 	 * Returns the value of the '<em><b>Devicenode</b></em>' reference list.
 	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode}.
@@ -87,5 +37,23 @@ public interface FogNode extends Node {
 	 * @generated
 	 */
 	EList<DeviceNode> getDevicenode();
+
+	/**
+	 * Returns the value of the '<em><b>Cloudnode</b></em>' reference list.
+	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode}.
+	 * It is bidirectional and its opposite is '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getFognode <em>Fognode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cloudnode</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cloudnode</em>' reference list.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getFogNode_Cloudnode()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getFognode
+	 * @model opposite="fognode" required="true" ordered="false"
+	 * @generated
+	 */
+	EList<CloudNode> getCloudnode();
 
 } // FogNode

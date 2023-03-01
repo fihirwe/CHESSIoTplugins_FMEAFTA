@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
-  <mtl:Module name="generateDataDistributionService" nsURI="org::polarsys::chess::iot::deployment::artifacts::generateDataDistributionService" startHeaderPosition="30" endHeaderPosition="298">
+  <mtl:Module name="generateDataDistributionService" nsURI="org::polarsys::chess::iot::deployment::artifacts::generateDataDistributionService" startHeaderPosition="30" endHeaderPosition="296">
     <input>
       <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
     </input>
@@ -13,7 +13,7 @@
           </initExpression>
         </variable>
       </init>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;    "/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    "/>
       <body xsi:type="ocl.ecore:PropertyCallExp">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
@@ -37,89 +37,189 @@
         </source>
         <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;&#x9;&#x9;container_name: "/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;        ports:&#xD;&#xA;"/>
-      <body xsi:type="mtl:ForBlock">
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="            - "/>
-        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.7/it">
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="      &#x9;&#x9;- "/>
+          <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.9/%/it">
+              <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+            </source>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":"/>
+          <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.9/%/it">
+              <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+            </source>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+          <loopVariable name="it">
             <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          </source>
-        </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":"/>
-        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.7/it">
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:OperationCallExp">
             <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          </source>
-        </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
-        <loopVariable name="it">
-          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-        </loopVariable>
-        <iterSet xsi:type="ocl.ecore:OperationCallExp">
-          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
-            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp">
-            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
             <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
             </source>
-            <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+            <argument xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+              </source>
+              <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
+            </argument>
+            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="ports">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             </argument>
-            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
+          </iterSet>
+        </body>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="/11/Set(OclAny)">
+              <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL/Annotations">
+                <details key="IMPLICIT_SET_CONVERSION" value="true"/>
+              </eAnnotations>
+              <part xsi:type="ocl.ecore:CollectionItem">
+                <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+                <item xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:OperationCallExp">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+                    <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                    </source>
+                    <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+                      <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                    </argument>
+                    <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
+                  </argument>
+                  <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="ports">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
+                </item>
+              </part>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/size"/>
+          </source>
+          <argument xsi:type="ocl.ecore:IntegerLiteralExp" integerSymbol="1">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
           </argument>
-          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="ports">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          </argument>
-          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
-        </iterSet>
+          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E"/>
+        </ifExpr>
+        <else>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" #no ports specified&#xA;"/>
+        </else>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="        volumes:&#xD;&#xA;"/>
-      <body xsi:type="mtl:ForBlock">
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="            - "/>
-        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.9/it">
-            <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          </source>
-        </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":"/>
-        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.9/it">
-            <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          </source>
-        </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
-        <loopVariable name="it">
-          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-        </loopVariable>
-        <iterSet xsi:type="ocl.ecore:OperationCallExp">
-          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-          <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
-            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp">
-            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+      <body xsi:type="mtl:IfBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;volumes:&#xD;&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="            - "/>
+          <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="it" referredVariable="/0/generateDataDistributionService/%.10/%.1/it">
+              <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+            </source>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=":"/>
+          <body xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
               <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
             </source>
-            <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_data_"/>
+          <body xsi:type="ocl.ecore:VariableExp" name="i" referredVariable="/26">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+          <loopVariable name="it">
+            <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+            </source>
+            <argument xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+              </source>
+              <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
+            </argument>
+            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="volumes">
               <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
             </argument>
-            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
-          </argument>
-          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="volumes">
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
+          </iterSet>
+        </body>
+        <ifExpr xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/contains">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+          <source xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_OclAny_Class/toString">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                </source>
+                <argument xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Stereotype"/>
+                  <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+                    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:VariableExp" name="DataDistributionService" referredVariable="/0/generateDataDistributionService/@init/@variable.0">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotype"/>
+                </argument>
+                <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="persistence">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
+              </source>
+            </source>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/toLowerCase"/>
+          </source>
+          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="true">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </argument>
-          <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getValue"/>
-        </iterSet>
+        </ifExpr>
       </body>
-      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;networks:&#xD;&#xA;&#x9;&#x9;- "/>
+      <body xsi:type="ocl.ecore:PropertyCallExp">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generateDataDistributionService/c">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </source>
+        <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_net"/>
       <parameter name="c">
         <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </parameter>
@@ -133,6 +233,13 @@
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
         <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
       </eAnnotations>
+      <eOperations name="contains">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+        <eParameters name="substring">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
@@ -219,20 +326,13 @@
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
   </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
-  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(OclAny)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+    </eClassifiers>
+  </ecore:EPackage>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="i">
-    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
@@ -251,6 +351,33 @@
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="i">
     <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -258,7 +385,7 @@
   <ecore:EAnnotation source="positions">
     <eAnnotations source="positions.0" references="/0/generateDataDistributionService">
       <details key="start" value="117"/>
-      <details key="end" value="752"/>
+      <details key="end" value="1065"/>
       <details key="line" value="5"/>
     </eAnnotations>
     <eAnnotations source="positions.1" references="/0/generateDataDistributionService/@init">
@@ -278,220 +405,380 @@
     </eAnnotations>
     <eAnnotations source="positions.4" references="/0/generateDataDistributionService/%">
       <details key="start" value="285"/>
-      <details key="end" value="291"/>
+      <details key="end" value="289"/>
       <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.5" references="/0/generateDataDistributionService/%.1">
-      <details key="start" value="292"/>
-      <details key="end" value="298"/>
+      <details key="start" value="290"/>
+      <details key="end" value="296"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.6" references="/0/generateDataDistributionService/%.1/c">
-      <details key="start" value="292"/>
-      <details key="end" value="293"/>
+      <details key="start" value="290"/>
+      <details key="end" value="291"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.7" references="/0/generateDataDistributionService/%.2">
-      <details key="start" value="300"/>
-      <details key="end" value="318"/>
-      <details key="line" value="8"/>
+      <details key="start" value="298"/>
+      <details key="end" value="316"/>
+      <details key="line" value="7"/>
     </eAnnotations>
     <eAnnotations source="positions.8" references="/0/generateDataDistributionService/%.3">
-      <details key="start" value="319"/>
-      <details key="end" value="325"/>
+      <details key="start" value="317"/>
+      <details key="end" value="323"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.9" references="/0/generateDataDistributionService/%.3/c">
-      <details key="start" value="319"/>
-      <details key="end" value="320"/>
+      <details key="start" value="317"/>
+      <details key="end" value="318"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.10" references="/0/generateDataDistributionService/%.4">
-      <details key="start" value="327"/>
-      <details key="end" value="347"/>
-      <details key="line" value="10"/>
+      <details key="start" value="325"/>
+      <details key="end" value="345"/>
+      <details key="line" value="9"/>
     </eAnnotations>
     <eAnnotations source="positions.11" references="/0/generateDataDistributionService/%.5">
-      <details key="start" value="348"/>
-      <details key="end" value="355"/>
+      <details key="start" value="346"/>
+      <details key="end" value="353"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.12" references="/0/generateDataDistributionService/%.5/EV">
-      <details key="start" value="348"/>
-      <details key="end" value="350"/>
+      <details key="start" value="346"/>
+      <details key="end" value="348"/>
       <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.13" references="/0/generateDataDistributionService/%.6">
-      <details key="start" value="357"/>
+      <details key="start" value="355"/>
       <details key="end" value="375"/>
-      <details key="line" value="11"/>
+      <details key="line" value="10"/>
     </eAnnotations>
     <eAnnotations source="positions.14" references="/0/generateDataDistributionService/%.7">
-      <details key="start" value="387"/>
-      <details key="end" value="545"/>
-      <details key="line" value="12"/>
-    </eAnnotations>
-    <eAnnotations source="positions.15" references="/0/generateDataDistributionService/%.7/%">
-      <details key="start" value="478"/>
-      <details key="end" value="492"/>
-      <details key="line" value="13"/>
-    </eAnnotations>
-    <eAnnotations source="positions.16" references="/0/generateDataDistributionService/%.7/%.1">
-      <details key="start" value="493"/>
-      <details key="end" value="506"/>
+      <details key="start" value="376"/>
+      <details key="end" value="382"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.17" references="/0/generateDataDistributionService/%.7/%.1/it">
-      <details key="start" value="493"/>
+    <eAnnotations source="positions.15" references="/0/generateDataDistributionService/%.7/c">
+      <details key="start" value="376"/>
+      <details key="end" value="377"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateDataDistributionService/%.8">
+      <details key="start" value="384"/>
+      <details key="end" value="402"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateDataDistributionService/%.9">
+      <details key="start" value="414"/>
+      <details key="end" value="704"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateDataDistributionService/%.9/%">
+      <details key="start" value="509"/>
+      <details key="end" value="659"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateDataDistributionService/%.9/%/%">
+      <details key="start" value="600"/>
+      <details key="end" value="610"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateDataDistributionService/%.9/%/%.1">
+      <details key="start" value="611"/>
+      <details key="end" value="624"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateDataDistributionService/%.9/%/%.1/it">
+      <details key="start" value="611"/>
+      <details key="end" value="613"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateDataDistributionService/%.9/%/%.2">
+      <details key="start" value="626"/>
+      <details key="end" value="627"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateDataDistributionService/%.9/%/%.3">
+      <details key="start" value="628"/>
+      <details key="end" value="641"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateDataDistributionService/%.9/%/%.3/it">
+      <details key="start" value="628"/>
+      <details key="end" value="630"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateDataDistributionService/%.9/%/%.4">
+      <details key="start" value="643"/>
+      <details key="end" value="645"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateDataDistributionService/%.9/%/it">
+      <details key="start" value="514"/>
+      <details key="end" value="525"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateDataDistributionService/%.9/%/%.5">
+      <details key="start" value="528"/>
+      <details key="end" value="596"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateDataDistributionService/%.9/%/%.5/c">
+      <details key="start" value="528"/>
+      <details key="end" value="529"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateDataDistributionService/%.9/%/%.5/%">
+      <details key="start" value="539"/>
+      <details key="end" value="586"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateDataDistributionService/%.9/%/%.5/%/c">
+      <details key="start" value="539"/>
+      <details key="end" value="540"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateDataDistributionService/%.9/%/%.5/%/DataDistributionService">
+      <details key="start" value="562"/>
+      <details key="end" value="585"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateDataDistributionService/%.9/%/%.5/%.1">
+      <details key="start" value="588"/>
+      <details key="end" value="595"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateDataDistributionService/%.9/%.1">
+      <details key="start" value="418"/>
+      <details key="end" value="498"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateDataDistributionService/%.9/%.1/%">
+      <details key="start" value="419"/>
       <details key="end" value="495"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.18" references="/0/generateDataDistributionService/%.7/%.2">
-      <details key="start" value="508"/>
-      <details key="end" value="509"/>
-      <details key="line" value="13"/>
-    </eAnnotations>
-    <eAnnotations source="positions.19" references="/0/generateDataDistributionService/%.7/%.3">
-      <details key="start" value="510"/>
-      <details key="end" value="523"/>
+    <eAnnotations source="positions.35" references="/0/generateDataDistributionService/%.9/%.1/%/%">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.20" references="/0/generateDataDistributionService/%.7/%.3/it">
-      <details key="start" value="510"/>
-      <details key="end" value="512"/>
+    <eAnnotations source="positions.36" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%">
+      <details key="start" value="419"/>
+      <details key="end" value="487"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.21" references="/0/generateDataDistributionService/%.7/%.4">
-      <details key="start" value="525"/>
-      <details key="end" value="527"/>
-      <details key="line" value="14"/>
-    </eAnnotations>
-    <eAnnotations source="positions.22" references="/0/generateDataDistributionService/%.7/it">
-      <details key="start" value="392"/>
-      <details key="end" value="403"/>
-      <details key="line" value="12"/>
-    </eAnnotations>
-    <eAnnotations source="positions.23" references="/0/generateDataDistributionService/%.7/%.5">
-      <details key="start" value="406"/>
-      <details key="end" value="474"/>
+    <eAnnotations source="positions.37" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%/c">
+      <details key="start" value="419"/>
+      <details key="end" value="420"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/generateDataDistributionService/%.7/%.5/c">
-      <details key="start" value="406"/>
-      <details key="end" value="407"/>
+    <eAnnotations source="positions.38" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%/%">
+      <details key="start" value="430"/>
+      <details key="end" value="477"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/generateDataDistributionService/%.7/%.5/%">
-      <details key="start" value="417"/>
-      <details key="end" value="464"/>
+    <eAnnotations source="positions.39" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%/%/c">
+      <details key="start" value="430"/>
+      <details key="end" value="431"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/generateDataDistributionService/%.7/%.5/%/c">
-      <details key="start" value="417"/>
-      <details key="end" value="418"/>
+    <eAnnotations source="positions.40" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%/%/DataDistributionService">
+      <details key="start" value="453"/>
+      <details key="end" value="476"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.27" references="/0/generateDataDistributionService/%.7/%.5/%/DataDistributionService">
-      <details key="start" value="440"/>
-      <details key="end" value="463"/>
+    <eAnnotations source="positions.41" references="/0/generateDataDistributionService/%.9/%.1/%/%/%/%/%.1">
+      <details key="start" value="479"/>
+      <details key="end" value="486"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.28" references="/0/generateDataDistributionService/%.7/%.5/%.1">
-      <details key="start" value="466"/>
-      <details key="end" value="473"/>
+    <eAnnotations source="positions.42" references="/0/generateDataDistributionService/%.9/%.1/%.1">
+      <details key="start" value="496"/>
+      <details key="end" value="497"/>
       <details key="line" value="0"/>
     </eAnnotations>
-    <eAnnotations source="positions.29" references="/0/generateDataDistributionService/%.8">
-      <details key="start" value="547"/>
-      <details key="end" value="565"/>
-      <details key="line" value="15"/>
-    </eAnnotations>
-    <eAnnotations source="positions.30" references="/0/generateDataDistributionService/%.9">
-      <details key="start" value="577"/>
-      <details key="end" value="737"/>
+    <eAnnotations source="positions.43" references="/0/generateDataDistributionService/%.9/%.2">
+      <details key="start" value="669"/>
+      <details key="end" value="699"/>
       <details key="line" value="16"/>
     </eAnnotations>
-    <eAnnotations source="positions.31" references="/0/generateDataDistributionService/%.9/%">
-      <details key="start" value="670"/>
-      <details key="end" value="684"/>
-      <details key="line" value="17"/>
-    </eAnnotations>
-    <eAnnotations source="positions.32" references="/0/generateDataDistributionService/%.9/%.1">
-      <details key="start" value="685"/>
-      <details key="end" value="698"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.33" references="/0/generateDataDistributionService/%.9/%.1/it">
-      <details key="start" value="685"/>
-      <details key="end" value="687"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.34" references="/0/generateDataDistributionService/%.9/%.2">
-      <details key="start" value="700"/>
-      <details key="end" value="701"/>
-      <details key="line" value="17"/>
-    </eAnnotations>
-    <eAnnotations source="positions.35" references="/0/generateDataDistributionService/%.9/%.3">
-      <details key="start" value="702"/>
-      <details key="end" value="715"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.36" references="/0/generateDataDistributionService/%.9/%.3/it">
-      <details key="start" value="702"/>
-      <details key="end" value="704"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.37" references="/0/generateDataDistributionService/%.9/%.4">
-      <details key="start" value="717"/>
-      <details key="end" value="719"/>
-      <details key="line" value="18"/>
-    </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/generateDataDistributionService/%.9/it">
-      <details key="start" value="582"/>
-      <details key="end" value="593"/>
+    <eAnnotations source="positions.44" references="/0/generateDataDistributionService/%.9/%.2/%">
+      <details key="start" value="675"/>
+      <details key="end" value="696"/>
       <details key="line" value="16"/>
-    </eAnnotations>
-    <eAnnotations source="positions.39" references="/0/generateDataDistributionService/%.9/%.5">
-      <details key="start" value="596"/>
-      <details key="end" value="666"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.40" references="/0/generateDataDistributionService/%.9/%.5/c">
-      <details key="start" value="596"/>
-      <details key="end" value="597"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.41" references="/0/generateDataDistributionService/%.9/%.5/%">
-      <details key="start" value="607"/>
-      <details key="end" value="654"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.42" references="/0/generateDataDistributionService/%.9/%.5/%/c">
-      <details key="start" value="607"/>
-      <details key="end" value="608"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.43" references="/0/generateDataDistributionService/%.9/%.5/%/DataDistributionService">
-      <details key="start" value="630"/>
-      <details key="end" value="653"/>
-      <details key="line" value="0"/>
-    </eAnnotations>
-    <eAnnotations source="positions.44" references="/0/generateDataDistributionService/%.9/%.5/%.1">
-      <details key="start" value="656"/>
-      <details key="end" value="665"/>
-      <details key="line" value="0"/>
     </eAnnotations>
     <eAnnotations source="positions.45" references="/0/generateDataDistributionService/%.10">
-      <details key="start" value="739"/>
-      <details key="end" value="741"/>
+      <details key="start" value="708"/>
+      <details key="end" value="1020"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateDataDistributionService/%.10/%">
+      <details key="start" value="833"/>
+      <details key="end" value="845"/>
       <details key="line" value="19"/>
     </eAnnotations>
-    <eAnnotations source="positions.46" references="/0/generateDataDistributionService/c">
+    <eAnnotations source="positions.47" references="/0/generateDataDistributionService/%.10/%.1">
+      <details key="start" value="848"/>
+      <details key="end" value="1011"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateDataDistributionService/%.10/%.1/%">
+      <details key="start" value="941"/>
+      <details key="end" value="955"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateDataDistributionService/%.10/%.1/%.1">
+      <details key="start" value="956"/>
+      <details key="end" value="969"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateDataDistributionService/%.10/%.1/%.1/it">
+      <details key="start" value="956"/>
+      <details key="end" value="958"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateDataDistributionService/%.10/%.1/%.2">
+      <details key="start" value="971"/>
+      <details key="end" value="972"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateDataDistributionService/%.10/%.1/%.3">
+      <details key="start" value="973"/>
+      <details key="end" value="979"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateDataDistributionService/%.10/%.1/%.3/c">
+      <details key="start" value="973"/>
+      <details key="end" value="974"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateDataDistributionService/%.10/%.1/%.4">
+      <details key="start" value="981"/>
+      <details key="end" value="987"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateDataDistributionService/%.10/%.1/i">
+      <details key="start" value="988"/>
+      <details key="end" value="989"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateDataDistributionService/%.10/%.1/%.5">
+      <details key="start" value="991"/>
+      <details key="end" value="993"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateDataDistributionService/%.10/%.1/it">
+      <details key="start" value="853"/>
+      <details key="end" value="864"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateDataDistributionService/%.10/%.1/%.6">
+      <details key="start" value="867"/>
+      <details key="end" value="937"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateDataDistributionService/%.10/%.1/%.6/c">
+      <details key="start" value="867"/>
+      <details key="end" value="868"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateDataDistributionService/%.10/%.1/%.6/%">
+      <details key="start" value="878"/>
+      <details key="end" value="925"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateDataDistributionService/%.10/%.1/%.6/%/c">
+      <details key="start" value="878"/>
+      <details key="end" value="879"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateDataDistributionService/%.10/%.1/%.6/%/DataDistributionService">
+      <details key="start" value="901"/>
+      <details key="end" value="924"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateDataDistributionService/%.10/%.1/%.6/%.1">
+      <details key="start" value="927"/>
+      <details key="end" value="936"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateDataDistributionService/%.10/%.2">
+      <details key="start" value="712"/>
+      <details key="end" value="830"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateDataDistributionService/%.10/%.2/%">
+      <details key="start" value="713"/>
+      <details key="end" value="812"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateDataDistributionService/%.10/%.2/%/%">
+      <details key="start" value="713"/>
+      <details key="end" value="798"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateDataDistributionService/%.10/%.2/%/%/%">
+      <details key="start" value="713"/>
+      <details key="end" value="787"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateDataDistributionService/%.10/%.2/%/%/%/c">
+      <details key="start" value="713"/>
+      <details key="end" value="714"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateDataDistributionService/%.10/%.2/%/%/%/%">
+      <details key="start" value="724"/>
+      <details key="end" value="771"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateDataDistributionService/%.10/%.2/%/%/%/%/c">
+      <details key="start" value="724"/>
+      <details key="end" value="725"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateDataDistributionService/%.10/%.2/%/%/%/%/DataDistributionService">
+      <details key="start" value="747"/>
+      <details key="end" value="770"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.72" references="/0/generateDataDistributionService/%.10/%.2/%/%/%/%.1">
+      <details key="start" value="773"/>
+      <details key="end" value="786"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.73" references="/0/generateDataDistributionService/%.10/%.2/%.1">
+      <details key="start" value="822"/>
+      <details key="end" value="828"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.74" references="/0/generateDataDistributionService/%.11">
+      <details key="start" value="1022"/>
+      <details key="end" value="1039"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.75" references="/0/generateDataDistributionService/%.12">
+      <details key="start" value="1040"/>
+      <details key="end" value="1046"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.76" references="/0/generateDataDistributionService/%.12/c">
+      <details key="start" value="1040"/>
+      <details key="end" value="1041"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.77" references="/0/generateDataDistributionService/%.13">
+      <details key="start" value="1048"/>
+      <details key="end" value="1052"/>
+      <details key="line" value="25"/>
+    </eAnnotations>
+    <eAnnotations source="positions.78" references="/0/generateDataDistributionService/c">
       <details key="start" value="166"/>
       <details key="end" value="175"/>
       <details key="line" value="5"/>
     </eAnnotations>
-    <eAnnotations source="positions.47" references="/0/generateDataDistributionService/EV">
+    <eAnnotations source="positions.79" references="/0/generateDataDistributionService/EV">
       <details key="start" value="177"/>
       <details key="end" value="186"/>
       <details key="line" value="5"/>

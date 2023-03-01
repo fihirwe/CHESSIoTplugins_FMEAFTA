@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
    
-    Copyright (c) 2020 Intecs SpA 
+    Copyright (c) 2022 Intecs SpA 
     All rights reserved. This program and the accompanying materials
     are made available under the terms of the Eclipse Public License v2.0
     which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
    <content>
       <drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif" id="CHESSIoT_BDD_DRAWER_EDGE" name="Edge_Layer">
          
-         <aspectTool description="Create a SystemHW" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="SystemHW" name="SystemHW(Block)" refToolId="blockdefinition_modelelements.tool.block">
+         <aspectTool description="Create a System" iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="SystemHW" name="System(Block)" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::System" />
@@ -34,6 +34,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::PhysicalBoard" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -42,6 +43,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::SensorBlock" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -49,6 +51,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::ActuatingBlock" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -57,6 +60,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::PhysicalElement" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -69,6 +73,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::Gateway" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -76,6 +81,7 @@
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
                   <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::Server" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
@@ -83,17 +89,19 @@
       </drawer>
       
         <drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif" id="CHESSIoT_BDD_DRAWER_APPLICATION" name="Aplication_Layer">
-         <aspectTool description="Create an Active ExternalService " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="ActiveExternalService" name="ActiveExternalService" refToolId="blockdefinition_modelelements.tool.block">
+         <aspectTool description="Create an ActiveEntity " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="ExternalActiveEntity" name="ExternalActiveEntity" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::ActiveService" />
+                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::ExternalActiveEntity" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>
-         <aspectTool description="Create an Passive ExternalService " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="PassiveExternalService" name="PassiveExternalService" refToolId="blockdefinition_modelelements.tool.block">
+         <aspectTool description="Create an Passive PassiveEntity " iconpath="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif" id="ExternalPassiveEntity" name="ExternalPassiveEntity" refToolId="blockdefinition_modelelements.tool.block">
             <postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
                <stereotypesToApply>
-                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::PassiveService" />
+                  <stereotype stereotypeName="CHESSIoT::CHESSIoTSystem::ExternalPassiveEntity" />
+                  <stereotype stereotypeName="CHESS::Dependability::FailurePropagation::FLABehavior" />
                </stereotypesToApply>
             </postAction>
          </aspectTool>

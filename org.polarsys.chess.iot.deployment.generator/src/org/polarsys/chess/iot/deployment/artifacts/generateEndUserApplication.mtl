@@ -4,17 +4,22 @@
 
 [template public generateEndUserApplication(c : Class, EV: Class){
 EndUserApplication : String = 'CHESSIoT::CHESSIoTDeployment::EndUserApplication';}]
-
     [c.name/]:
-        image: [c.name/]
+        image:[if (c.getValue(c.getAppliedStereotype(EndUserApplication), 'name')->notEmpty())][c.getValue(c.getAppliedStereotype(EndUserApplication), 'name')/][else][c.name/][/if]
         hostname: [EV.name/]
+		container_name: [if (c.getValue(c.getAppliedStereotype(EndUserApplication), 'imageURL')->notEmpty())] [c.getValue(c.getAppliedStereotype(EndUserApplication), 'name')/][else][c.name/][/if]
         ports:
-            [for(it : OclAny | c.getValue(c.getAppliedStereotype(EndUserApplication), 'ports'))]
-            - [it.toString()/]:[it.toString()/]
+            [if (c.getValue(c.getAppliedStereotype(EndUserApplication), 'ports')->size()>1)]
+      		[for(it : OclAny | c.getValue(c.getAppliedStereotype(EndUserApplication), 'ports'))]
+      		- [it.toString()/]:[it.toString()/]
+      		[/for]
+      		[else] #no ports specified[/if]
+		[if (c.getValue(c.getAppliedStereotype(EndUserApplication), 'persistence').toString().toLowerCase().contains('true'))]
+		volumes:
+			[for(it : OclAny | c.getValue(c.getAppliedStereotype(EndUserApplication), 'volumes'))]
+            - [it.toString()/]:[c.name/]_data_[i/]
             [/for]
-        volumes:
-            [for(it : OclAny | c.getValue(c.getAppliedStereotype(EndUserApplication), 'volumes'))]
-            - [it.toString()/]:[it.toString()/]
-            [/for]
-
+		[/if]
+		networks:
+		- [c.name/]_net
 [/template]

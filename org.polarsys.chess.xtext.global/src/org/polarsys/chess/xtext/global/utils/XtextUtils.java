@@ -28,6 +28,7 @@ public class XtextUtils {
 		return contextElement;
 	}
 	public static void setContextElement(Object element) {
+//		System.err.println("---------------------"+element.toString());
 		XtextUtils.contextElement = element;
 	}
 	

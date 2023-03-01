@@ -1,0 +1,16 @@
+[comment encoding = UTF-8 /]
+[module generateAnsible('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+
+[template public generateAnsible(name : String,machine : Component, pack:Package)]
+
+[file ('/'+name+'/AgentNode.yaml', false, 'UTF-8')]
+
+# Ansible scripts will be generated here!!
+
+[comment][for (comm : Comment |  pack.allOwnedElements()->filter(Comment))]
+	block_expression
+[/for][/comment]
+[/file]
+
+[/template]

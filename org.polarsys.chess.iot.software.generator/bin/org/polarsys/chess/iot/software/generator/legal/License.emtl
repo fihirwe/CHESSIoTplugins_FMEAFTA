@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="License" nsURI="org::polarsys::chess::iot::software::generator::legal::License" startHeaderPosition="545" endHeaderPosition="-1">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateLicense" visibility="Public">
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="This source code was produced by the &#xD;&#xA;&quot;Thingml code generator for the CHESSIoT component model&quot;.&#xD;&#xA;&#xD;&#xA;Author: Felicien Ihirwe, Intecs Solutions.&#xD;&#xA;Email: felicien.ihirwe@intecs.it&#xD;&#xA;&#xD;&#xA;The code is released under the EPL v1.0 license.&#xD;&#xA;You can find a copy of that license in the current folder of the source code. &#xD;&#xA;&#xD;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/license/Copyright.txt">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="                    Eclipse Public License - v 1.0&#xD;&#xA;&#xD;&#xA;THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE (&quot;AGREEMENT&quot;). ANY USE, REPRODUCTION &#xD;&#xA;OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.&#xD;&#xA;1. DEFINITIONS&#xD;&#xA;&quot;Contribution&quot; means:&#xD;&#xA;a) in the case of the initial Contributor, the initial code and documentation distributed under this Agreement, and&#xD;&#xA;b) in the case of each subsequent Contributor:&#xD;&#xA;i) changes to the Program, and&#xD;&#xA;ii) additions to the Program;&#xD;&#xA;where such changes and/or additions to the Program originate from and are distributed by that particular Contributor. &#xD;&#xA;A Contribution 'originates' from a Contributor if it was added to the Program by such Contributor itself or anyone &#xD;&#xA;acting on such Contributor's behalf. Contributions do not include additions to the Program which: (i) are separate &#xD;&#xA;modules of software distributed in conjunction with the Program under their own license agreement, &#xD;&#xA;and (ii) are not derivative works of the Program.&#xD;&#xA;&quot;Contributor&quot; means any person or entity that distributes the Program.&#xD;&#xA;&quot;Licensed Patents&quot; mean patent claims licensable by a Contributor which are necessarily infringed by the use or &#xD;&#xA;sale of its Contribution alone or when combined with the Program.&#xD;&#xA;&quot;Program&quot; means the Contributions distributed in accordance with this Agreement.&#xD;&#xA;&quot;Recipient&quot; means anyone who receives the Program under this Agreement, including all Contributors.&#xD;&#xA;2. GRANT OF RIGHTS&#xD;&#xA;a) Subject to the terms of this Agreement, each Contributor hereby grants Recipient a non-exclusive, worldwide, &#xD;&#xA;royalty-free copyright license to reproduce, prepare derivative works of, publicly display, publicly perform, &#xD;&#xA;distribute and sublicense the Contribution of such Contributor, if any, and such derivative works, in source &#xD;&#xA;code and object code form.&#xD;&#xA;b) Subject to the terms of this Agreement, each Contributor hereby grants Recipient a non-exclusive, worldwide, &#xD;&#xA;royalty-free patent license under Licensed Patents to make, use, sell, offer to sell, import and otherwise transfer &#xD;&#xA;the Contribution of such Contributor, if any, in source code and object code form. This patent license shall apply &#xD;&#xA;to the combination of the Contribution and the Program if, at the time the Contribution is added by the Contributor, &#xD;&#xA;such addition of the Contribution causes such combination to be covered by the Licensed Patents. The patent license &#xD;&#xA;shall not apply to any other combinations which include the Contribution. No hardware per se is licensed hereunder.&#xD;&#xA;c) Recipient understands that although each Contributor grants the licenses to its Contributions set forth herein, &#xD;&#xA;no assurances are provided by any Contributor that the Program does not infringe the patent or other intellectual &#xD;&#xA;property rights of any other entity. Each Contributor disclaims any liability to Recipient for claims brought by any &#xD;&#xA;other entity based on infringement of intellectual property rights or otherwise. As a condition to exercising the rights &#xD;&#xA;and licenses granted hereunder, each Recipient hereby assumes sole responsibility to secure any other intellectual &#xD;&#xA;property rights needed, if any. For example, if a third party patent license is required to allow Recipient to distribute&#xD;&#xA; the Program, it is Recipient's responsibility to acquire that license before distributing the Program.&#xD;&#xA;d) Each Contributor represents that to its knowledge it has sufficient copyright rights in its Contribution, if any, &#xD;&#xA;to grant the copyright license set forth in this Agreement.&#xD;&#xA;3. REQUIREMENTS&#xD;&#xA;A Contributor may choose to distribute the Program in object code form under its own license agreement, provided that:&#xD;&#xA;a) it complies with the terms and conditions of this Agreement; and&#xD;&#xA;b) its license agreement:&#xD;&#xA;i) effectively disclaims on behalf of all Contributors all warranties and conditions, express and implied, including&#xD;&#xA; warranties or conditions of title and non-infringement, and implied warranties or conditions of merchantability and &#xD;&#xA;fitness for a particular purpose;&#xD;&#xA;ii) effectively excludes on behalf of all Contributors all liability for damages, including direct, indirect, special,&#xD;&#xA; incidental and consequential damages, such as lost profits;&#xD;&#xA;iii) states that any provisions which differ from this Agreement are offered by that Contributor alone and not by any&#xD;&#xA; other party; and&#xD;&#xA;iv) states that source code for the Program is available from such Contributor, and informs licensees how to obtain it &#xD;&#xA;in a reasonable manner on or through a medium customarily used for software exchange.&#xD;&#xA;When the Program is made available in source code form:&#xD;&#xA;a) it must be made available under this Agreement; and&#xD;&#xA;b) a copy of this Agreement must be included with each copy of the Program.&#xD;&#xA;Contributors may not remove or alter any copyright notices contained within the Program.&#xD;&#xA;Each Contributor must identify itself as the originator of its Contribution, if any, in a manner that reasonably allows &#xD;&#xA;subsequent Recipients to identify the originator of the Contribution.&#xD;&#xA;4. COMMERCIAL DISTRIBUTION&#xD;&#xA;Commercial distributors of software may accept certain responsibilities with respect to end users, business partners and &#xD;&#xA;the like. While this license is intended to facilitate the commercial use of the Program, the Contributor who includes &#xD;&#xA;the Program in a commercial product offering should do so in a manner which does not create potential liability for other &#xD;&#xA;Contributors. Therefore, if a Contributor includes the Program in a commercial product offering, such Contributor &#xD;&#xA;(&quot;Commercial Contributor&quot;) hereby agrees to defend and indemnify every other Contributor (&quot;Indemnified Contributor&quot;) &#xD;&#xA;against any losses, damages and costs (collectively &quot;Losses&quot;) arising from claims, lawsuits and other legal actions &#xD;&#xA;brought by a third party against the Indemnified Contributor to the extent caused by the acts or omissions of such &#xD;&#xA;Commercial Contributor in connection with its distribution of the Program in a commercial product offering. &#xD;&#xA;The obligations in this section do not apply to any claims or Losses relating to any actual or alleged intellectual &#xD;&#xA;property infringement. In order to qualify, an Indemnified Contributor must: a) promptly notify the Commercial Contributor &#xD;&#xA;in writing of such claim, and b) allow the Commercial Contributor to control, and cooperate with the Commercial Contributor in, &#xD;&#xA;the defense and any related settlement negotiations. The Indemnified Contributor may participate in any such claim at its &#xD;&#xA;own expense.&#xD;&#xA;For example, a Contributor might include the Program in a commercial product offering, Product X. That Contributor is then &#xD;&#xA;a Commercial Contributor. If that Commercial Contributor then makes performance claims, or offers warranties related to &#xD;&#xA;Product X, those performance claims and warranties are such Commercial Contributor's responsibility alone. Under this section, &#xD;&#xA;the Commercial Contributor would have to defend claims against the other Contributors related to those performance claims and &#xD;&#xA;warranties, and if a court requires any other Contributor to pay any damages as a result, the Commercial Contributor must pay &#xD;&#xA;those damages.&#xD;&#xA;5. NO WARRANTY&#xD;&#xA;EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, THE PROGRAM IS PROVIDED ON AN &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS &#xD;&#xA;OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, &#xD;&#xA;MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Each Recipient is solely responsible for determining the appropriateness &#xD;&#xA;of using and distributing the Program and assumes all risks associated with its exercise of rights under this Agreement , &#xD;&#xA;including but not limited to the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, &#xD;&#xA;programs or equipment, and unavailability or interruption of operations.&#xD;&#xA;6. DISCLAIMER OF LIABILITY&#xD;&#xA;EXCEPT AS EXPRESSLY SET FORTH IN THIS AGREEMENT, NEITHER RECIPIENT NOR ANY CONTRIBUTORS SHALL HAVE ANY LIABILITY FOR ANY &#xD;&#xA;DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING WITHOUT LIMITATION LOST PROFITS), &#xD;&#xA;HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR &#xD;&#xA;OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OR DISTRIBUTION OF THE PROGRAM OR THE EXERCISE OF ANY RIGHTS GRANTED HEREUNDER, &#xD;&#xA;EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.&#xD;&#xA;7. GENERAL&#xD;&#xA;If any provision of this Agreement is invalid or unenforceable under applicable law, it shall not affect the validity or &#xD;&#xA;enforceability of the remainder of the terms of this Agreement, and without further action by the parties hereto, such &#xD;&#xA;provision shall be reformed to the minimum extent necessary to make such provision valid and enforceable.&#xD;&#xA;If Recipient institutes patent litigation against any entity (including a cross-claim or counterclaim in a lawsuit) alleging &#xD;&#xA;that the Program itself (excluding combinations of the Program with other software or hardware) infringes such Recipient's &#xD;&#xA;patent(s), then such Recipient's rights granted under Section 2(b) shall terminate as of the date such litigation is filed.&#xD;&#xA;All Recipient's rights under this Agreement shall terminate if it fails to comply with any of the material terms or conditions &#xD;&#xA;of this Agreement and does not cure such failure in a reasonable period of time after becoming aware of such noncompliance. &#xD;&#xA;If all Recipient's rights under this Agreement terminate, Recipient agrees to cease use and distribution of the Program as &#xD;&#xA;soon as reasonably practicable. However, Recipient's obligations under this Agreement and any licenses granted by Recipient &#xD;&#xA;relating to the Program shall continue and survive.&#xD;&#xA;Everyone is permitted to copy and distribute copies of this Agreement, but in order to avoid inconsistency the Agreement &#xD;&#xA;is copyrighted and may only be modified in the following manner. The Agreement Steward reserves the right to publish new &#xD;&#xA;versions (including revisions) of this Agreement from time to time. No one other than the Agreement Steward has the right to&#xD;&#xA;modify this Agreement. The Eclipse Foundation is the initial Agreement Steward. The Eclipse Foundation may assign the responsibility &#xD;&#xA;to serve as the Agreement Steward to a suitable separate entity. Each new version of the Agreement will be given a distinguishing &#xD;&#xA;version number. The Program (including Contributions) may always be distributed subject to the version of the Agreement under which &#xD;&#xA;it was received. In addition, after a new version of the Agreement is published, Contributor may elect to distribute the Program &#xD;&#xA;(including its Contributions) under the new version. Except as expressly stated in Sections 2(a) and 2(b) above, Recipient receives&#xD;&#xA; no rights or licenses to the intellectual property of any Contributor under this Agreement, whether expressly, by implication, &#xD;&#xA;estoppel or otherwise. All rights in the Program not expressly granted under this Agreement are reserved.&#xD;&#xA;This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of &#xD;&#xA;America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.&#xD;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/license/epl-1.0.txt">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </fileUrl>
+        <charset xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="UTF-8">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </charset>
+      </body>
+      <parameter name="anOclAny">
+        <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateLicense">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateLicense"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="anOclAny">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateLicense">
+      <details key="start" value="606"/>
+      <details key="end" value="12514"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateLicense/%">
+      <details key="start" value="660"/>
+      <details key="end" value="1031"/>
+      <details key="line" value="20"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateLicense/%/%">
+      <details key="start" value="711"/>
+      <details key="end" value="1024"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateLicense/%/%.1">
+      <details key="start" value="667"/>
+      <details key="end" value="691"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateLicense/%/%.2">
+      <details key="start" value="700"/>
+      <details key="end" value="707"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateLicense/%.1">
+      <details key="start" value="1033"/>
+      <details key="end" value="12501"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateLicense/%.1/%">
+      <details key="start" value="1081"/>
+      <details key="end" value="12494"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateLicense/%.1/%.1">
+      <details key="start" value="1039"/>
+      <details key="end" value="1061"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateLicense/%.1/%.2">
+      <details key="start" value="1070"/>
+      <details key="end" value="1077"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateLicense/anOclAny">
+      <details key="start" value="639"/>
+      <details key="end" value="656"/>
+      <details key="line" value="19"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

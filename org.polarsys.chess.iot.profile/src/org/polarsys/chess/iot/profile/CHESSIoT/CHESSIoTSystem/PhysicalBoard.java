@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 public interface PhysicalBoard extends PhysicalElement {
 	/**
 	 * Returns the value of the '<em><b>Model</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model</em>' attribute isn't clear,
@@ -35,24 +34,22 @@ public interface PhysicalBoard extends PhysicalElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' attribute.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel
-	 * @see #setModel(BoardModel)
+	 * @see #setModel(String)
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage#getPhysicalBoard_Model()
-	 * @model required="true" ordered="false"
+	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
 	 * @generated
 	 */
-	BoardModel getModel();
+	String getModel();
 
 	/**
 	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard#getModel <em>Model</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Model</em>' attribute.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel
 	 * @see #getModel()
 	 * @generated
 	 */
-	void setModel(BoardModel value);
+	void setModel(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Gateway</b></em>' reference list.

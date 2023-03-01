@@ -140,13 +140,40 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int SERVICE__SERVICE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__PERSISTENCE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CUSTOM_CONFIG = 9;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICE__CONFIG = 10;
+
+	/**
 	 * The number of structural features of the '<em>Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_FEATURE_COUNT = 8;
+	int SERVICE_FEATURE_COUNT = 11;
 
 	/**
 	 * The number of operations of the '<em>Service</em>' class.
@@ -240,6 +267,33 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int MQTT_BROKER__SERVICE = SERVICE__SERVICE;
 
 	/**
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MQTT_BROKER__PERSISTENCE = SERVICE__PERSISTENCE;
+
+	/**
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MQTT_BROKER__CUSTOM_CONFIG = SERVICE__CUSTOM_CONFIG;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MQTT_BROKER__CONFIG = SERVICE__CONFIG;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -258,22 +312,13 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int MQTT_BROKER__ANONYMOUS = SERVICE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MQTT_BROKER__PERSISTENCE = SERVICE_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MQTT_BROKER__USERNAME = SERVICE_FEATURE_COUNT + 3;
+	int MQTT_BROKER__USERNAME = SERVICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Password</b></em>' attribute.
@@ -282,7 +327,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MQTT_BROKER__PASSWORD = SERVICE_FEATURE_COUNT + 4;
+	int MQTT_BROKER__PASSWORD = SERVICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>MQTT Broker</em>' class.
@@ -291,7 +336,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MQTT_BROKER_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 5;
+	int MQTT_BROKER_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>MQTT Broker</em>' class.
@@ -303,23 +348,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int MQTT_BROKER_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingAgentImpl <em>Orchestrating Agent</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentAgentImpl <em>Deployment Agent</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingAgentImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOrchestratingAgent()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentAgentImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeploymentAgent()
 	 * @generated
 	 */
-	int ORCHESTRATING_AGENT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ORCHESTRATING_AGENT__CONFIGURATION = 0;
+	int DEPLOYMENT_AGENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
@@ -328,35 +364,44 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_AGENT__BASE_CONSTRAINT = 1;
+	int DEPLOYMENT_AGENT__BASE_CONSTRAINT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Orchestrating Agent</em>' class.
+	 * The feature id for the '<em><b>Rules</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_AGENT_FEATURE_COUNT = 2;
+	int DEPLOYMENT_AGENT__RULES = 1;
 
 	/**
-	 * The number of operations of the '<em>Orchestrating Agent</em>' class.
+	 * The number of structural features of the '<em>Deployment Agent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_AGENT_OPERATION_COUNT = 0;
+	int DEPLOYMENT_AGENT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.EndUserApplicationImpl <em>End User Application</em>}' class.
+	 * The number of operations of the '<em>Deployment Agent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.EndUserApplicationImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getEndUserApplication()
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_AGENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ApplicationImpl <em>Application</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ApplicationImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getApplication()
 	 * @generated
 	 */
-	int END_USER_APPLICATION = 3;
+	int APPLICATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -365,7 +410,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__NAME = SERVICE__NAME;
+	int APPLICATION__NAME = SERVICE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
@@ -374,7 +419,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__IMAGE_URL = SERVICE__IMAGE_URL;
+	int APPLICATION__IMAGE_URL = SERVICE__IMAGE_URL;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' attribute list.
@@ -383,7 +428,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__PORTS = SERVICE__PORTS;
+	int APPLICATION__PORTS = SERVICE__PORTS;
 
 	/**
 	 * The feature id for the '<em><b>Volumes</b></em>' attribute list.
@@ -392,7 +437,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__VOLUMES = SERVICE__VOLUMES;
+	int APPLICATION__VOLUMES = SERVICE__VOLUMES;
 
 	/**
 	 * The feature id for the '<em><b>Depends</b></em>' reference.
@@ -401,7 +446,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__DEPENDS = SERVICE__DEPENDS;
+	int APPLICATION__DEPENDS = SERVICE__DEPENDS;
 
 	/**
 	 * The feature id for the '<em><b>Service Priority</b></em>' attribute.
@@ -410,7 +455,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__SERVICE_PRIORITY = SERVICE__SERVICE_PRIORITY;
+	int APPLICATION__SERVICE_PRIORITY = SERVICE__SERVICE_PRIORITY;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -419,7 +464,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__BASE_CLASS = SERVICE__BASE_CLASS;
+	int APPLICATION__BASE_CLASS = SERVICE__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Service</b></em>' reference.
@@ -428,53 +473,62 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__SERVICE = SERVICE__SERVICE;
+	int APPLICATION__SERVICE = SERVICE__SERVICE;
 
 	/**
-	 * The feature id for the '<em><b>Custom Conf</b></em>' attribute.
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION__CUSTOM_CONF = SERVICE_FEATURE_COUNT + 0;
+	int APPLICATION__PERSISTENCE = SERVICE__PERSISTENCE;
 
 	/**
-	 * The number of structural features of the '<em>End User Application</em>' class.
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 1;
+	int APPLICATION__CUSTOM_CONFIG = SERVICE__CUSTOM_CONFIG;
 
 	/**
-	 * The number of operations of the '<em>End User Application</em>' class.
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_USER_APPLICATION_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+	int APPLICATION__CONFIG = SERVICE__CONFIG;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudOrchestratorImpl <em>Cloud Orchestrator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudOrchestratorImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getCloudOrchestrator()
-	 * @generated
-	 */
-	int CLOUD_ORCHESTRATOR = 4;
-
-	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' attribute list.
+	 * The number of structural features of the '<em>Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_ORCHESTRATOR__CONFIGURATION = ORCHESTRATING_AGENT__CONFIGURATION;
+	int APPLICATION_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Application</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION_OPERATION_COUNT = SERVICE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudDepAgentImpl <em>Cloud Dep Agent</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudDepAgentImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getCloudDepAgent()
+	 * @generated
+	 */
+	int CLOUD_DEP_AGENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
@@ -483,25 +537,34 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_ORCHESTRATOR__BASE_CONSTRAINT = ORCHESTRATING_AGENT__BASE_CONSTRAINT;
+	int CLOUD_DEP_AGENT__BASE_CONSTRAINT = DEPLOYMENT_AGENT__BASE_CONSTRAINT;
 
 	/**
-	 * The number of structural features of the '<em>Cloud Orchestrator</em>' class.
+	 * The feature id for the '<em><b>Rules</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_ORCHESTRATOR_FEATURE_COUNT = ORCHESTRATING_AGENT_FEATURE_COUNT + 0;
+	int CLOUD_DEP_AGENT__RULES = DEPLOYMENT_AGENT__RULES;
 
 	/**
-	 * The number of operations of the '<em>Cloud Orchestrator</em>' class.
+	 * The number of structural features of the '<em>Cloud Dep Agent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_ORCHESTRATOR_OPERATION_COUNT = ORCHESTRATING_AGENT_OPERATION_COUNT + 0;
+	int CLOUD_DEP_AGENT_FEATURE_COUNT = DEPLOYMENT_AGENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Cloud Dep Agent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOUD_DEP_AGENT_OPERATION_COUNT = DEPLOYMENT_AGENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl <em>Node</em>}' class.
@@ -514,40 +577,31 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int NODE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Op System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__OP_SYSTEM = 1;
-
-	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__BASE_COMPONENT = 2;
+	int NODE__BASE_COMPONENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * The feature id for the '<em><b>Machine</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__MEMORY = 3;
+	int NODE__MACHINE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Deploymentagent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__DEPLOYMENTAGENT = 2;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -556,7 +610,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 4;
+	int NODE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -578,24 +632,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int FOG_NODE = 5;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_NODE__NAME = NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Op System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_NODE__OP_SYSTEM = NODE__OP_SYSTEM;
-
-	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -605,40 +641,22 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int FOG_NODE__BASE_COMPONENT = NODE__BASE_COMPONENT;
 
 	/**
-	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * The feature id for the '<em><b>Machine</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOG_NODE__MEMORY = NODE__MEMORY;
+	int FOG_NODE__MACHINE = NODE__MACHINE;
 
 	/**
-	 * The feature id for the '<em><b>Clients</b></em>' reference list.
+	 * The feature id for the '<em><b>Deploymentagent</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOG_NODE__CLIENTS = NODE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Deviceresources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_NODE__DEVICERESOURCES = NODE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_NODE__CONTAINER = NODE_FEATURE_COUNT + 2;
+	int FOG_NODE__DEPLOYMENTAGENT = NODE__DEPLOYMENTAGENT;
 
 	/**
 	 * The feature id for the '<em><b>Devicenode</b></em>' reference list.
@@ -647,7 +665,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOG_NODE__DEVICENODE = NODE_FEATURE_COUNT + 3;
+	int FOG_NODE__DEVICENODE = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Cloudnode</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOG_NODE__CLOUDNODE = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Fog Node</em>' class.
@@ -656,7 +683,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOG_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 4;
+	int FOG_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Fog Node</em>' class.
@@ -668,14 +695,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int FOG_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceNodeImpl <em>Device Node</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MachineImpl <em>Machine</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceNodeImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceNode()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MachineImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getMachine()
 	 * @generated
 	 */
-	int DEVICE_NODE = 7;
+	int MACHINE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -684,16 +711,80 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE__NAME = NODE__NAME;
+	int MACHINE__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Op System</b></em>' attribute.
+	 * The feature id for the '<em><b>Address</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE__OP_SYSTEM = NODE__OP_SYSTEM;
+	int MACHINE__ADDRESS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Base Component</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__BASE_COMPONENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Service</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__SERVICE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__MEMORY = 4;
+
+	/**
+	 * The feature id for the '<em><b>OS</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__OS = 5;
+
+	/**
+	 * The number of structural features of the '<em>Machine</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE_FEATURE_COUNT = 6;
+
+	/**
+	 * The number of operations of the '<em>Machine</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceNodeImpl <em>Device Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceNodeImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceNode()
+	 * @generated
+	 */
+	int DEVICE_NODE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
@@ -705,31 +796,31 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int DEVICE_NODE__BASE_COMPONENT = NODE__BASE_COMPONENT;
 
 	/**
-	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * The feature id for the '<em><b>Machine</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE__MEMORY = NODE__MEMORY;
+	int DEVICE_NODE__MACHINE = NODE__MACHINE;
 
 	/**
-	 * The feature id for the '<em><b>Deviceresources</b></em>' reference.
+	 * The feature id for the '<em><b>Deploymentagent</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE__DEVICERESOURCES = NODE_FEATURE_COUNT + 0;
+	int DEVICE_NODE__DEPLOYMENTAGENT = NODE__DEPLOYMENTAGENT;
 
 	/**
-	 * The feature id for the '<em><b>Pysical Device</b></em>' reference.
+	 * The feature id for the '<em><b>Iotdevice</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE__PYSICAL_DEVICE = NODE_FEATURE_COUNT + 1;
+	int DEVICE_NODE__IOTDEVICE = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Device Node</em>' class.
@@ -738,7 +829,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+	int DEVICE_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Device Node</em>' class.
@@ -750,115 +841,41 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int DEVICE_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceResourcesImpl <em>Device Resources</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OnDeviceAppImpl <em>On Device App</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceResourcesImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceResources()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OnDeviceAppImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOnDeviceApp()
 	 * @generated
 	 */
-	int DEVICE_RESOURCES = 8;
+	int ON_DEVICE_APP = 9;
 
 	/**
-	 * The feature id for the '<em><b>Path</b></em>' attribute.
+	 * The feature id for the '<em><b>Langauge</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_RESOURCES__PATH = 0;
+	int ON_DEVICE_APP__LANGAUGE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Base Comment</b></em>' reference.
+	 * The feature id for the '<em><b>Board</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_RESOURCES__BASE_COMMENT = 1;
+	int ON_DEVICE_APP__BOARD = 1;
 
 	/**
-	 * The number of structural features of the '<em>Device Resources</em>' class.
+	 * The feature id for the '<em><b>On Device Resources</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEVICE_RESOURCES_FEATURE_COUNT = 2;
-
-	/**
-	 * The number of operations of the '<em>Device Resources</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEVICE_RESOURCES_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogOrchestratorImpl <em>Fog Orchestrator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogOrchestratorImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getFogOrchestrator()
-	 * @generated
-	 */
-	int FOG_ORCHESTRATOR = 9;
-
-	/**
-	 * The feature id for the '<em><b>Configuration</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_ORCHESTRATOR__CONFIGURATION = ORCHESTRATING_AGENT__CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_ORCHESTRATOR__BASE_CONSTRAINT = ORCHESTRATING_AGENT__BASE_CONSTRAINT;
-
-	/**
-	 * The number of structural features of the '<em>Fog Orchestrator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_ORCHESTRATOR_FEATURE_COUNT = ORCHESTRATING_AGENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Fog Orchestrator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOG_ORCHESTRATOR_OPERATION_COUNT = ORCHESTRATING_AGENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ContainerImpl <em>Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ContainerImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getContainer()
-	 * @generated
-	 */
-	int CONTAINER = 10;
-
-	/**
-	 * The feature id for the '<em><b>Service Hosted</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER__SERVICE_HOSTED = 0;
+	int ON_DEVICE_APP__ON_DEVICE_RESOURCES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
@@ -867,25 +884,25 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER__BASE_COMPONENT = 1;
+	int ON_DEVICE_APP__BASE_COMPONENT = 3;
 
 	/**
-	 * The number of structural features of the '<em>Container</em>' class.
+	 * The number of structural features of the '<em>On Device App</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_FEATURE_COUNT = 2;
+	int ON_DEVICE_APP_FEATURE_COUNT = 4;
 
 	/**
-	 * The number of operations of the '<em>Container</em>' class.
+	 * The number of operations of the '<em>On Device App</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_OPERATION_COUNT = 0;
+	int ON_DEVICE_APP_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudNodeImpl <em>Cloud Node</em>}' class.
@@ -895,25 +912,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getCloudNode()
 	 * @generated
 	 */
-	int CLOUD_NODE = 11;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLOUD_NODE__NAME = NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Op System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLOUD_NODE__OP_SYSTEM = NODE__OP_SYSTEM;
+	int CLOUD_NODE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
@@ -925,31 +924,31 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int CLOUD_NODE__BASE_COMPONENT = NODE__BASE_COMPONENT;
 
 	/**
-	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * The feature id for the '<em><b>Machine</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_NODE__MEMORY = NODE__MEMORY;
+	int CLOUD_NODE__MACHINE = NODE__MACHINE;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' reference list.
+	 * The feature id for the '<em><b>Deploymentagent</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_NODE__CONTAINER = NODE_FEATURE_COUNT + 0;
+	int CLOUD_NODE__DEPLOYMENTAGENT = NODE__DEPLOYMENTAGENT;
 
 	/**
-	 * The feature id for the '<em><b>Cloudresources</b></em>' reference list.
+	 * The feature id for the '<em><b>Fognode</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_NODE__CLOUDRESOURCES = NODE_FEATURE_COUNT + 1;
+	int CLOUD_NODE__FOGNODE = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Cloud Node</em>' class.
@@ -958,7 +957,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLOUD_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+	int CLOUD_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Cloud Node</em>' class.
@@ -968,6 +967,52 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLOUD_NODE_OPERATION_COUNT = NODE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogDepAgentImpl <em>Fog Dep Agent</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogDepAgentImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getFogDepAgent()
+	 * @generated
+	 */
+	int FOG_DEP_AGENT = 11;
+
+	/**
+	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOG_DEP_AGENT__BASE_CONSTRAINT = DEPLOYMENT_AGENT__BASE_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOG_DEP_AGENT__RULES = DEPLOYMENT_AGENT__RULES;
+
+	/**
+	 * The number of structural features of the '<em>Fog Dep Agent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOG_DEP_AGENT_FEATURE_COUNT = DEPLOYMENT_AGENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Fog Dep Agent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOG_DEP_AGENT_OPERATION_COUNT = DEPLOYMENT_AGENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ExternalServiceImpl <em>External Service</em>}' class.
@@ -1050,6 +1095,33 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_SERVICE__SERVICE = SERVICE__SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE__PERSISTENCE = SERVICE__PERSISTENCE;
+
+	/**
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE__CUSTOM_CONFIG = SERVICE__CUSTOM_CONFIG;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_SERVICE__CONFIG = SERVICE__CONFIG;
 
 	/**
 	 * The number of structural features of the '<em>External Service</em>' class.
@@ -1150,6 +1222,33 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_DISTRIBUTION_SERVICE__SERVICE = SERVICE__SERVICE;
+
+	/**
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DISTRIBUTION_SERVICE__PERSISTENCE = SERVICE__PERSISTENCE;
+
+	/**
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DISTRIBUTION_SERVICE__CUSTOM_CONFIG = SERVICE__CUSTOM_CONFIG;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DISTRIBUTION_SERVICE__CONFIG = SERVICE__CONFIG;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -1261,13 +1360,49 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int STORAGE_SERVICE__SERVICE = SERVICE__SERVICE;
 
 	/**
+	 * The feature id for the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_SERVICE__PERSISTENCE = SERVICE__PERSISTENCE;
+
+	/**
+	 * The feature id for the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_SERVICE__CUSTOM_CONFIG = SERVICE__CUSTOM_CONFIG;
+
+	/**
+	 * The feature id for the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_SERVICE__CONFIG = SERVICE__CONFIG;
+
+	/**
+	 * The feature id for the '<em><b>Database Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORAGE_SERVICE__DATABASE_TYPE = SERVICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Storage Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORAGE_SERVICE_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 0;
+	int STORAGE_SERVICE_FEATURE_COUNT = SERVICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Storage Service</em>' class.
@@ -1334,14 +1469,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	int SYSTEM_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingServerImpl <em>Orchestrating Server</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentServerImpl <em>Deployment Server</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingServerImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOrchestratingServer()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentServerImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeploymentServer()
 	 * @generated
 	 */
-	int ORCHESTRATING_SERVER = 16;
+	int DEPLOYMENT_SERVER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Orchestratingagent</b></em>' reference list.
@@ -1350,7 +1485,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_SERVER__ORCHESTRATINGAGENT = 0;
+	int DEPLOYMENT_SERVER__ORCHESTRATINGAGENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Component</b></em>' reference.
@@ -1359,25 +1494,89 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_SERVER__BASE_COMPONENT = 1;
+	int DEPLOYMENT_SERVER__BASE_COMPONENT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Orchestrating Server</em>' class.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_SERVER_FEATURE_COUNT = 2;
+	int DEPLOYMENT_SERVER__NAME = 2;
 
 	/**
-	 * The number of operations of the '<em>Orchestrating Server</em>' class.
+	 * The feature id for the '<em><b>Address</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORCHESTRATING_SERVER_OPERATION_COUNT = 0;
+	int DEPLOYMENT_SERVER__ADDRESS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Deployment Server</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_SERVER_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Deployment Server</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_SERVER_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceDepAgentImpl <em>Device Dep Agent</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceDepAgentImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceDepAgent()
+	 * @generated
+	 */
+	int DEVICE_DEP_AGENT = 17;
+
+	/**
+	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE_DEP_AGENT__BASE_CONSTRAINT = DEPLOYMENT_AGENT__BASE_CONSTRAINT;
+
+	/**
+	 * The feature id for the '<em><b>Rules</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE_DEP_AGENT__RULES = DEPLOYMENT_AGENT__RULES;
+
+	/**
+	 * The number of structural features of the '<em>Device Dep Agent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE_DEP_AGENT_FEATURE_COUNT = DEPLOYMENT_AGENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Device Dep Agent</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEVICE_DEP_AGENT_OPERATION_COUNT = DEPLOYMENT_AGENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.BrokerType <em>Broker Type</em>}' enum.
@@ -1387,7 +1586,17 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getBrokerType()
 	 * @generated
 	 */
-	int BROKER_TYPE = 17;
+	int BROKER_TYPE = 18;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem <em>Operating System</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOperatingSystem()
+	 * @generated
+	 */
+	int OPERATING_SYSTEM = 19;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DDSType <em>DDS Type</em>}' enum.
@@ -1397,7 +1606,17 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDDSType()
 	 * @generated
 	 */
-	int DDS_TYPE = 18;
+	int DDS_TYPE = 20;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database <em>Database</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDatabase()
+	 * @generated
+	 */
+	int DATABASE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.PortType <em>Port Type</em>}' enum.
@@ -1407,7 +1626,17 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getPortType()
 	 * @generated
 	 */
-	int PORT_TYPE = 19;
+	int PORT_TYPE = 22;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee <em>residuee</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getresiduee()
+	 * @generated
+	 */
+	int RESIDUEE = 23;
 
 
 	/**
@@ -1509,6 +1738,39 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EReference getService_Service();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isPersistence <em>Persistence</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Persistence</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isPersistence()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Persistence();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isCustomConfig <em>Custom Config</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Config</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isCustomConfig()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_CustomConfig();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getConfig <em>Config</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Config</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getConfig()
+	 * @see #getService()
+	 * @generated
+	 */
+	EAttribute getService_Config();
+
+	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker <em>MQTT Broker</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1541,17 +1803,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EAttribute getMQTTBroker_Anonymous();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#isPersistence <em>Persistence</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Persistence</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#isPersistence()
-	 * @see #getMQTTBroker()
-	 * @generated
-	 */
-	EAttribute getMQTTBroker_Persistence();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#getUsername <em>Username</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1574,67 +1825,56 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EAttribute getMQTTBroker_Password();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent <em>Orchestrating Agent</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent <em>Deployment Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Orchestrating Agent</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent
+	 * @return the meta object for class '<em>Deployment Agent</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent
 	 * @generated
 	 */
-	EClass getOrchestratingAgent();
+	EClass getDeploymentAgent();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent#getConfiguration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Configuration</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent#getConfiguration()
-	 * @see #getOrchestratingAgent()
-	 * @generated
-	 */
-	EAttribute getOrchestratingAgent_Configuration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent#getBase_Constraint <em>Base Constraint</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent#getBase_Constraint <em>Base Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Constraint</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent#getBase_Constraint()
-	 * @see #getOrchestratingAgent()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent#getBase_Constraint()
+	 * @see #getDeploymentAgent()
 	 * @generated
 	 */
-	EReference getOrchestratingAgent_Base_Constraint();
+	EReference getDeploymentAgent_Base_Constraint();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication <em>End User Application</em>}'.
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent#getRules <em>Rules</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>End User Application</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication
+	 * @return the meta object for the attribute '<em>Rules</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent#getRules()
+	 * @see #getDeploymentAgent()
 	 * @generated
 	 */
-	EClass getEndUserApplication();
+	EAttribute getDeploymentAgent_Rules();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication#getCustomConf <em>Custom Conf</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application <em>Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Custom Conf</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication#getCustomConf()
-	 * @see #getEndUserApplication()
+	 * @return the meta object for class '<em>Application</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application
 	 * @generated
 	 */
-	EAttribute getEndUserApplication_CustomConf();
+	EClass getApplication();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator <em>Cloud Orchestrator</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent <em>Cloud Dep Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Cloud Orchestrator</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator
+	 * @return the meta object for class '<em>Cloud Dep Agent</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent
 	 * @generated
 	 */
-	EClass getCloudOrchestrator();
+	EClass getCloudDepAgent();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode <em>Fog Node</em>}'.
@@ -1645,39 +1885,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFogNode();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getClients <em>Clients</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Clients</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getClients()
-	 * @see #getFogNode()
-	 * @generated
-	 */
-	EReference getFogNode_Clients();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getDeviceresources <em>Deviceresources</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Deviceresources</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getDeviceresources()
-	 * @see #getFogNode()
-	 * @generated
-	 */
-	EReference getFogNode_Deviceresources();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Container</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getContainer()
-	 * @see #getFogNode()
-	 * @generated
-	 */
-	EReference getFogNode_Container();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getDevicenode <em>Devicenode</em>}'.
@@ -1691,6 +1898,17 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EReference getFogNode_Devicenode();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getCloudnode <em>Cloudnode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Cloudnode</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getCloudnode()
+	 * @see #getFogNode()
+	 * @generated
+	 */
+	EReference getFogNode_Cloudnode();
+
+	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node <em>Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1699,28 +1917,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNode();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getName()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EAttribute getNode_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getOpSystem <em>Op System</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Op System</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getOpSystem()
-	 * @see #getNode()
-	 * @generated
-	 */
-	EAttribute getNode_OpSystem();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getBase_Component <em>Base Component</em>}'.
@@ -1734,15 +1930,102 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EReference getNode_Base_Component();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMemory <em>Memory</em>}'.
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMachine <em>Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Memory</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMemory()
+	 * @return the meta object for the reference list '<em>Machine</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMachine()
 	 * @see #getNode()
 	 * @generated
 	 */
-	EAttribute getNode_Memory();
+	EReference getNode_Machine();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getDeploymentagent <em>Deploymentagent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Deploymentagent</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getDeploymentagent()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EReference getNode_Deploymentagent();
+
+	/**
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine <em>Machine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Machine</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine
+	 * @generated
+	 */
+	EClass getMachine();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getName()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EAttribute getMachine_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getAddress <em>Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Address</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getAddress()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EAttribute getMachine_Address();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getBase_Component <em>Base Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Component</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getBase_Component()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EReference getMachine_Base_Component();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getService <em>Service</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Service</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getService()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EReference getMachine_Service();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getMemory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Memory</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getMemory()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EAttribute getMachine_Memory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getOS <em>OS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>OS</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine#getOS()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EAttribute getMachine_OS();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode <em>Device Node</em>}'.
@@ -1755,100 +2038,69 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EClass getDeviceNode();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getDeviceresources <em>Deviceresources</em>}'.
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getIotdevice <em>Iotdevice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Deviceresources</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getDeviceresources()
+	 * @return the meta object for the reference list '<em>Iotdevice</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getIotdevice()
 	 * @see #getDeviceNode()
 	 * @generated
 	 */
-	EReference getDeviceNode_Deviceresources();
+	EReference getDeviceNode_Iotdevice();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getPysicalDevice <em>Pysical Device</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp <em>On Device App</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pysical Device</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode#getPysicalDevice()
-	 * @see #getDeviceNode()
+	 * @return the meta object for class '<em>On Device App</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp
 	 * @generated
 	 */
-	EReference getDeviceNode_PysicalDevice();
+	EClass getOnDeviceApp();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources <em>Device Resources</em>}'.
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getLangauge <em>Langauge</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Device Resources</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources
+	 * @return the meta object for the attribute '<em>Langauge</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getLangauge()
+	 * @see #getOnDeviceApp()
 	 * @generated
 	 */
-	EClass getDeviceResources();
+	EAttribute getOnDeviceApp_Langauge();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources#getPath <em>Path</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getBoard <em>Board</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Path</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources#getPath()
-	 * @see #getDeviceResources()
+	 * @return the meta object for the reference '<em>Board</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getBoard()
+	 * @see #getOnDeviceApp()
 	 * @generated
 	 */
-	EAttribute getDeviceResources_Path();
+	EReference getOnDeviceApp_Board();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources#getBase_Comment <em>Base Comment</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getOnDeviceResources <em>On Device Resources</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Comment</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources#getBase_Comment()
-	 * @see #getDeviceResources()
+	 * @return the meta object for the reference '<em>On Device Resources</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getOnDeviceResources()
+	 * @see #getOnDeviceApp()
 	 * @generated
 	 */
-	EReference getDeviceResources_Base_Comment();
+	EReference getOnDeviceApp_OnDeviceResources();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator <em>Fog Orchestrator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fog Orchestrator</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator
-	 * @generated
-	 */
-	EClass getFogOrchestrator();
-
-	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Container</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container
-	 * @generated
-	 */
-	EClass getContainer();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container#getServiceHosted <em>Service Hosted</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Service Hosted</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container#getServiceHosted()
-	 * @see #getContainer()
-	 * @generated
-	 */
-	EReference getContainer_ServiceHosted();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container#getBase_Component <em>Base Component</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getBase_Component <em>Base Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Component</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container#getBase_Component()
-	 * @see #getContainer()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp#getBase_Component()
+	 * @see #getOnDeviceApp()
 	 * @generated
 	 */
-	EReference getContainer_Base_Component();
+	EReference getOnDeviceApp_Base_Component();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode <em>Cloud Node</em>}'.
@@ -1861,26 +2113,25 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EClass getCloudNode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getContainer <em>Container</em>}'.
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getFognode <em>Fognode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Container</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getContainer()
+	 * @return the meta object for the reference list '<em>Fognode</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getFognode()
 	 * @see #getCloudNode()
 	 * @generated
 	 */
-	EReference getCloudNode_Container();
+	EReference getCloudNode_Fognode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getCloudresources <em>Cloudresources</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent <em>Fog Dep Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Cloudresources</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getCloudresources()
-	 * @see #getCloudNode()
+	 * @return the meta object for class '<em>Fog Dep Agent</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent
 	 * @generated
 	 */
-	EReference getCloudNode_Cloudresources();
+	EClass getFogDepAgent();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.ExternalService <em>External Service</em>}'.
@@ -1922,6 +2173,17 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStorageService();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.StorageService#getDatabaseType <em>Database Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Database Type</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.StorageService#getDatabaseType()
+	 * @see #getStorageService()
+	 * @generated
+	 */
+	EAttribute getStorageService_DatabaseType();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.System <em>System</em>}'.
@@ -1967,36 +2229,68 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EReference getSystem_Base_Component();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer <em>Orchestrating Server</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer <em>Deployment Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Orchestrating Server</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer
+	 * @return the meta object for class '<em>Deployment Server</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer
 	 * @generated
 	 */
-	EClass getOrchestratingServer();
+	EClass getDeploymentServer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer#getOrchestratingagent <em>Orchestratingagent</em>}'.
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getOrchestratingagent <em>Orchestratingagent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Orchestratingagent</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer#getOrchestratingagent()
-	 * @see #getOrchestratingServer()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getOrchestratingagent()
+	 * @see #getDeploymentServer()
 	 * @generated
 	 */
-	EReference getOrchestratingServer_Orchestratingagent();
+	EReference getDeploymentServer_Orchestratingagent();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer#getBase_Component <em>Base Component</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getBase_Component <em>Base Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Base Component</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer#getBase_Component()
-	 * @see #getOrchestratingServer()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getBase_Component()
+	 * @see #getDeploymentServer()
 	 * @generated
 	 */
-	EReference getOrchestratingServer_Base_Component();
+	EReference getDeploymentServer_Base_Component();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getName()
+	 * @see #getDeploymentServer()
+	 * @generated
+	 */
+	EAttribute getDeploymentServer_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getAddress <em>Address</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Address</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer#getAddress()
+	 * @see #getDeploymentServer()
+	 * @generated
+	 */
+	EAttribute getDeploymentServer_Address();
+
+	/**
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent <em>Device Dep Agent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Device Dep Agent</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent
+	 * @generated
+	 */
+	EClass getDeviceDepAgent();
 
 	/**
 	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.BrokerType <em>Broker Type</em>}'.
@@ -2009,6 +2303,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EEnum getBrokerType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem <em>Operating System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Operating System</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem
+	 * @generated
+	 */
+	EEnum getOperatingSystem();
+
+	/**
 	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DDSType <em>DDS Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2019,6 +2323,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	EEnum getDDSType();
 
 	/**
+	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database <em>Database</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Database</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database
+	 * @generated
+	 */
+	EEnum getDatabase();
+
+	/**
 	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.PortType <em>Port Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2027,6 +2341,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getPortType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee <em>residuee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>residuee</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee
+	 * @generated
+	 */
+	EEnum getresiduee();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2126,6 +2450,30 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EReference SERVICE__SERVICE = eINSTANCE.getService_Service();
 
 		/**
+		 * The meta object literal for the '<em><b>Persistence</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__PERSISTENCE = eINSTANCE.getService_Persistence();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Config</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__CUSTOM_CONFIG = eINSTANCE.getService_CustomConfig();
+
+		/**
+		 * The meta object literal for the '<em><b>Config</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVICE__CONFIG = eINSTANCE.getService_Config();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl <em>MQTT Broker</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2152,14 +2500,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EAttribute MQTT_BROKER__ANONYMOUS = eINSTANCE.getMQTTBroker_Anonymous();
 
 		/**
-		 * The meta object literal for the '<em><b>Persistence</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MQTT_BROKER__PERSISTENCE = eINSTANCE.getMQTTBroker_Persistence();
-
-		/**
 		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2176,22 +2516,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EAttribute MQTT_BROKER__PASSWORD = eINSTANCE.getMQTTBroker_Password();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingAgentImpl <em>Orchestrating Agent</em>}' class.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentAgentImpl <em>Deployment Agent</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingAgentImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOrchestratingAgent()
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentAgentImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeploymentAgent()
 		 * @generated
 		 */
-		EClass ORCHESTRATING_AGENT = eINSTANCE.getOrchestratingAgent();
-
-		/**
-		 * The meta object literal for the '<em><b>Configuration</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ORCHESTRATING_AGENT__CONFIGURATION = eINSTANCE.getOrchestratingAgent_Configuration();
+		EClass DEPLOYMENT_AGENT = eINSTANCE.getDeploymentAgent();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Constraint</b></em>' reference feature.
@@ -2199,35 +2531,35 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ORCHESTRATING_AGENT__BASE_CONSTRAINT = eINSTANCE.getOrchestratingAgent_Base_Constraint();
+		EReference DEPLOYMENT_AGENT__BASE_CONSTRAINT = eINSTANCE.getDeploymentAgent_Base_Constraint();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.EndUserApplicationImpl <em>End User Application</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.EndUserApplicationImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getEndUserApplication()
-		 * @generated
-		 */
-		EClass END_USER_APPLICATION = eINSTANCE.getEndUserApplication();
-
-		/**
-		 * The meta object literal for the '<em><b>Custom Conf</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Rules</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute END_USER_APPLICATION__CUSTOM_CONF = eINSTANCE.getEndUserApplication_CustomConf();
+		EAttribute DEPLOYMENT_AGENT__RULES = eINSTANCE.getDeploymentAgent_Rules();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudOrchestratorImpl <em>Cloud Orchestrator</em>}' class.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ApplicationImpl <em>Application</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudOrchestratorImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getCloudOrchestrator()
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ApplicationImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getApplication()
 		 * @generated
 		 */
-		EClass CLOUD_ORCHESTRATOR = eINSTANCE.getCloudOrchestrator();
+		EClass APPLICATION = eINSTANCE.getApplication();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudDepAgentImpl <em>Cloud Dep Agent</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudDepAgentImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getCloudDepAgent()
+		 * @generated
+		 */
+		EClass CLOUD_DEP_AGENT = eINSTANCE.getCloudDepAgent();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogNodeImpl <em>Fog Node</em>}' class.
@@ -2240,36 +2572,20 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EClass FOG_NODE = eINSTANCE.getFogNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Clients</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOG_NODE__CLIENTS = eINSTANCE.getFogNode_Clients();
-
-		/**
-		 * The meta object literal for the '<em><b>Deviceresources</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOG_NODE__DEVICERESOURCES = eINSTANCE.getFogNode_Deviceresources();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOG_NODE__CONTAINER = eINSTANCE.getFogNode_Container();
-
-		/**
 		 * The meta object literal for the '<em><b>Devicenode</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference FOG_NODE__DEVICENODE = eINSTANCE.getFogNode_Devicenode();
+
+		/**
+		 * The meta object literal for the '<em><b>Cloudnode</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOG_NODE__CLOUDNODE = eINSTANCE.getFogNode_Cloudnode();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.NodeImpl <em>Node</em>}' class.
@@ -2282,22 +2598,6 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EClass NODE = eINSTANCE.getNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NODE__NAME = eINSTANCE.getNode_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Op System</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NODE__OP_SYSTEM = eINSTANCE.getNode_OpSystem();
-
-		/**
 		 * The meta object literal for the '<em><b>Base Component</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2306,12 +2606,78 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EReference NODE__BASE_COMPONENT = eINSTANCE.getNode_Base_Component();
 
 		/**
+		 * The meta object literal for the '<em><b>Machine</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__MACHINE = eINSTANCE.getNode_Machine();
+
+		/**
+		 * The meta object literal for the '<em><b>Deploymentagent</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NODE__DEPLOYMENTAGENT = eINSTANCE.getNode_Deploymentagent();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MachineImpl <em>Machine</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MachineImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getMachine()
+		 * @generated
+		 */
+		EClass MACHINE = eINSTANCE.getMachine();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MACHINE__NAME = eINSTANCE.getMachine_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MACHINE__ADDRESS = eINSTANCE.getMachine_Address();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Component</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MACHINE__BASE_COMPONENT = eINSTANCE.getMachine_Base_Component();
+
+		/**
+		 * The meta object literal for the '<em><b>Service</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MACHINE__SERVICE = eINSTANCE.getMachine_Service();
+
+		/**
 		 * The meta object literal for the '<em><b>Memory</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute NODE__MEMORY = eINSTANCE.getNode_Memory();
+		EAttribute MACHINE__MEMORY = eINSTANCE.getMachine_Memory();
+
+		/**
+		 * The meta object literal for the '<em><b>OS</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MACHINE__OS = eINSTANCE.getMachine_OS();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceNodeImpl <em>Device Node</em>}' class.
@@ -2324,74 +2690,46 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EClass DEVICE_NODE = eINSTANCE.getDeviceNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Deviceresources</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Iotdevice</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEVICE_NODE__DEVICERESOURCES = eINSTANCE.getDeviceNode_Deviceresources();
+		EReference DEVICE_NODE__IOTDEVICE = eINSTANCE.getDeviceNode_Iotdevice();
 
 		/**
-		 * The meta object literal for the '<em><b>Pysical Device</b></em>' reference feature.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OnDeviceAppImpl <em>On Device App</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OnDeviceAppImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOnDeviceApp()
 		 * @generated
 		 */
-		EReference DEVICE_NODE__PYSICAL_DEVICE = eINSTANCE.getDeviceNode_PysicalDevice();
+		EClass ON_DEVICE_APP = eINSTANCE.getOnDeviceApp();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceResourcesImpl <em>Device Resources</em>}' class.
+		 * The meta object literal for the '<em><b>Langauge</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceResourcesImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceResources()
 		 * @generated
 		 */
-		EClass DEVICE_RESOURCES = eINSTANCE.getDeviceResources();
+		EAttribute ON_DEVICE_APP__LANGAUGE = eINSTANCE.getOnDeviceApp_Langauge();
 
 		/**
-		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Board</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DEVICE_RESOURCES__PATH = eINSTANCE.getDeviceResources_Path();
+		EReference ON_DEVICE_APP__BOARD = eINSTANCE.getOnDeviceApp_Board();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Comment</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>On Device Resources</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DEVICE_RESOURCES__BASE_COMMENT = eINSTANCE.getDeviceResources_Base_Comment();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogOrchestratorImpl <em>Fog Orchestrator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogOrchestratorImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getFogOrchestrator()
-		 * @generated
-		 */
-		EClass FOG_ORCHESTRATOR = eINSTANCE.getFogOrchestrator();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ContainerImpl <em>Container</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ContainerImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getContainer()
-		 * @generated
-		 */
-		EClass CONTAINER = eINSTANCE.getContainer();
-
-		/**
-		 * The meta object literal for the '<em><b>Service Hosted</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONTAINER__SERVICE_HOSTED = eINSTANCE.getContainer_ServiceHosted();
+		EReference ON_DEVICE_APP__ON_DEVICE_RESOURCES = eINSTANCE.getOnDeviceApp_OnDeviceResources();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Component</b></em>' reference feature.
@@ -2399,7 +2737,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONTAINER__BASE_COMPONENT = eINSTANCE.getContainer_Base_Component();
+		EReference ON_DEVICE_APP__BASE_COMPONENT = eINSTANCE.getOnDeviceApp_Base_Component();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CloudNodeImpl <em>Cloud Node</em>}' class.
@@ -2412,20 +2750,22 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EClass CLOUD_NODE = eINSTANCE.getCloudNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Fognode</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CLOUD_NODE__CONTAINER = eINSTANCE.getCloudNode_Container();
+		EReference CLOUD_NODE__FOGNODE = eINSTANCE.getCloudNode_Fognode();
 
 		/**
-		 * The meta object literal for the '<em><b>Cloudresources</b></em>' reference list feature.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogDepAgentImpl <em>Fog Dep Agent</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.FogDepAgentImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getFogDepAgent()
 		 * @generated
 		 */
-		EReference CLOUD_NODE__CLOUDRESOURCES = eINSTANCE.getCloudNode_Cloudresources();
+		EClass FOG_DEP_AGENT = eINSTANCE.getFogDepAgent();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ExternalServiceImpl <em>External Service</em>}' class.
@@ -2466,6 +2806,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EClass STORAGE_SERVICE = eINSTANCE.getStorageService();
 
 		/**
+		 * The meta object literal for the '<em><b>Database Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute STORAGE_SERVICE__DATABASE_TYPE = eINSTANCE.getStorageService_DatabaseType();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.SystemImpl <em>System</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2500,14 +2848,14 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EReference SYSTEM__BASE_COMPONENT = eINSTANCE.getSystem_Base_Component();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingServerImpl <em>Orchestrating Server</em>}' class.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentServerImpl <em>Deployment Server</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.OrchestratingServerImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOrchestratingServer()
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeploymentServerImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeploymentServer()
 		 * @generated
 		 */
-		EClass ORCHESTRATING_SERVER = eINSTANCE.getOrchestratingServer();
+		EClass DEPLOYMENT_SERVER = eINSTANCE.getDeploymentServer();
 
 		/**
 		 * The meta object literal for the '<em><b>Orchestratingagent</b></em>' reference list feature.
@@ -2515,7 +2863,7 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ORCHESTRATING_SERVER__ORCHESTRATINGAGENT = eINSTANCE.getOrchestratingServer_Orchestratingagent();
+		EReference DEPLOYMENT_SERVER__ORCHESTRATINGAGENT = eINSTANCE.getDeploymentServer_Orchestratingagent();
 
 		/**
 		 * The meta object literal for the '<em><b>Base Component</b></em>' reference feature.
@@ -2523,7 +2871,33 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ORCHESTRATING_SERVER__BASE_COMPONENT = eINSTANCE.getOrchestratingServer_Base_Component();
+		EReference DEPLOYMENT_SERVER__BASE_COMPONENT = eINSTANCE.getDeploymentServer_Base_Component();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPLOYMENT_SERVER__NAME = eINSTANCE.getDeploymentServer_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Address</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEPLOYMENT_SERVER__ADDRESS = eINSTANCE.getDeploymentServer_Address();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceDepAgentImpl <em>Device Dep Agent</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.DeviceDepAgentImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDeviceDepAgent()
+		 * @generated
+		 */
+		EClass DEVICE_DEP_AGENT = eINSTANCE.getDeviceDepAgent();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.BrokerType <em>Broker Type</em>}' enum.
@@ -2536,6 +2910,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EEnum BROKER_TYPE = eINSTANCE.getBrokerType();
 
 		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem <em>Operating System</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OperatingSystem
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getOperatingSystem()
+		 * @generated
+		 */
+		EEnum OPERATING_SYSTEM = eINSTANCE.getOperatingSystem();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DDSType <em>DDS Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2546,6 +2930,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		EEnum DDS_TYPE = eINSTANCE.getDDSType();
 
 		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database <em>Database</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Database
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getDatabase()
+		 * @generated
+		 */
+		EEnum DATABASE = eINSTANCE.getDatabase();
+
+		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.PortType <em>Port Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2554,6 +2948,16 @@ public interface CHESSIoTDeploymentPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum PORT_TYPE = eINSTANCE.getPortType();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee <em>residuee</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.residuee
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.CHESSIoTDeploymentPackageImpl#getresiduee()
+		 * @generated
+		 */
+		EEnum RESIDUEE = eINSTANCE.getresiduee();
 
 	}
 

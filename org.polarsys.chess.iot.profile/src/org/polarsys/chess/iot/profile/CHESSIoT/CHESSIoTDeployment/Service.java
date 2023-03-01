@@ -23,6 +23,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getServicePriority <em>Service Priority</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getService <em>Service</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isPersistence <em>Persistence</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isCustomConfig <em>Custom Config</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getConfig <em>Config</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getService()
@@ -217,5 +220,83 @@ public interface Service extends EObject {
 	 * @generated
 	 */
 	void setService(Service value);
+
+	/**
+	 * Returns the value of the '<em><b>Persistence</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Persistence</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Persistence</em>' attribute.
+	 * @see #setPersistence(boolean)
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getService_Persistence()
+	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isPersistence();
+
+	/**
+	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isPersistence <em>Persistence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Persistence</em>' attribute.
+	 * @see #isPersistence()
+	 * @generated
+	 */
+	void setPersistence(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Custom Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Custom Config</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Custom Config</em>' attribute.
+	 * @see #setCustomConfig(boolean)
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getService_CustomConfig()
+	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isCustomConfig();
+
+	/**
+	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#isCustomConfig <em>Custom Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Custom Config</em>' attribute.
+	 * @see #isCustomConfig()
+	 * @generated
+	 */
+	void setCustomConfig(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Config</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Config</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Config</em>' attribute.
+	 * @see #setConfig(String)
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getService_Config()
+	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @generated
+	 */
+	String getConfig();
+
+	/**
+	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service#getConfig <em>Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Config</em>' attribute.
+	 * @see #getConfig()
+	 * @generated
+	 */
+	void setConfig(String value);
 
 } // Service

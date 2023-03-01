@@ -323,12 +323,12 @@ public class PaletteManager {
 		if (viewName.equals(CHESSProfileManager.IoT_VIEW)){
 
 
+			// COMPONENT VIEW && IoT view!
 			
 			if (diagramName.equals(ViewDiagramAssociations.compositeDiagram) && isComponentActive() ){
 				paletteDrawer.setVisible(false);
-				paletteDrawer.setVisible(false);
 				if ( paletteId.compareTo("CompositeDiagramFunctionalViewDrawerIDIoT")==0||
-						paletteId.compareTo("CompositeFunctionalViewContractDrawerID")==0)
+						paletteId.compareTo("CompositeDiagramSpecialPortsIoT")==0)
 					paletteDrawer.setVisible(true);
 			}
 
@@ -351,11 +351,10 @@ public class PaletteManager {
 					}	
 				}
 				
-
-
-
-
 			}
+			
+			// SYSTEM VIEW && IoT view!
+			
 			if (diagramName.equals("InternalBlock")) {
 				paletteDrawer.setVisible(false);
 				if (paletteId.compareTo("CHESSIoT_IBD_DRAWER") == 0

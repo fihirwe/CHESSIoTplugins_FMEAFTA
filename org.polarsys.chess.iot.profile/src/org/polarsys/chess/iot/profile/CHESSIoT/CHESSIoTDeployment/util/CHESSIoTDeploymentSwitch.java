@@ -7,21 +7,22 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DataDistributionService;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.ExternalService;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.StorageService;
 
@@ -95,23 +96,23 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTDeploymentPackage.ORCHESTRATING_AGENT: {
-				OrchestratingAgent orchestratingAgent = (OrchestratingAgent)theEObject;
-				T result = caseOrchestratingAgent(orchestratingAgent);
+			case CHESSIoTDeploymentPackage.DEPLOYMENT_AGENT: {
+				DeploymentAgent deploymentAgent = (DeploymentAgent)theEObject;
+				T result = caseDeploymentAgent(deploymentAgent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTDeploymentPackage.END_USER_APPLICATION: {
-				EndUserApplication endUserApplication = (EndUserApplication)theEObject;
-				T result = caseEndUserApplication(endUserApplication);
-				if (result == null) result = caseService(endUserApplication);
+			case CHESSIoTDeploymentPackage.APPLICATION: {
+				Application application = (Application)theEObject;
+				T result = caseApplication(application);
+				if (result == null) result = caseService(application);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTDeploymentPackage.CLOUD_ORCHESTRATOR: {
-				CloudOrchestrator cloudOrchestrator = (CloudOrchestrator)theEObject;
-				T result = caseCloudOrchestrator(cloudOrchestrator);
-				if (result == null) result = caseOrchestratingAgent(cloudOrchestrator);
+			case CHESSIoTDeploymentPackage.CLOUD_DEP_AGENT: {
+				CloudDepAgent cloudDepAgent = (CloudDepAgent)theEObject;
+				T result = caseCloudDepAgent(cloudDepAgent);
+				if (result == null) result = caseDeploymentAgent(cloudDepAgent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +129,12 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CHESSIoTDeploymentPackage.MACHINE: {
+				Machine machine = (Machine)theEObject;
+				T result = caseMachine(machine);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CHESSIoTDeploymentPackage.DEVICE_NODE: {
 				DeviceNode deviceNode = (DeviceNode)theEObject;
 				T result = caseDeviceNode(deviceNode);
@@ -135,22 +142,9 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTDeploymentPackage.DEVICE_RESOURCES: {
-				DeviceResources deviceResources = (DeviceResources)theEObject;
-				T result = caseDeviceResources(deviceResources);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CHESSIoTDeploymentPackage.FOG_ORCHESTRATOR: {
-				FogOrchestrator fogOrchestrator = (FogOrchestrator)theEObject;
-				T result = caseFogOrchestrator(fogOrchestrator);
-				if (result == null) result = caseOrchestratingAgent(fogOrchestrator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CHESSIoTDeploymentPackage.CONTAINER: {
-				Container container = (Container)theEObject;
-				T result = caseContainer(container);
+			case CHESSIoTDeploymentPackage.ON_DEVICE_APP: {
+				OnDeviceApp onDeviceApp = (OnDeviceApp)theEObject;
+				T result = caseOnDeviceApp(onDeviceApp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -158,6 +152,13 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 				CloudNode cloudNode = (CloudNode)theEObject;
 				T result = caseCloudNode(cloudNode);
 				if (result == null) result = caseNode(cloudNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CHESSIoTDeploymentPackage.FOG_DEP_AGENT: {
+				FogDepAgent fogDepAgent = (FogDepAgent)theEObject;
+				T result = caseFogDepAgent(fogDepAgent);
+				if (result == null) result = caseDeploymentAgent(fogDepAgent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -188,9 +189,16 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTDeploymentPackage.ORCHESTRATING_SERVER: {
-				OrchestratingServer orchestratingServer = (OrchestratingServer)theEObject;
-				T result = caseOrchestratingServer(orchestratingServer);
+			case CHESSIoTDeploymentPackage.DEPLOYMENT_SERVER: {
+				DeploymentServer deploymentServer = (DeploymentServer)theEObject;
+				T result = caseDeploymentServer(deploymentServer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CHESSIoTDeploymentPackage.DEVICE_DEP_AGENT: {
+				DeviceDepAgent deviceDepAgent = (DeviceDepAgent)theEObject;
+				T result = caseDeviceDepAgent(deviceDepAgent);
+				if (result == null) result = caseDeploymentAgent(deviceDepAgent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -229,47 +237,47 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Orchestrating Agent</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Deployment Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Orchestrating Agent</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Deployment Agent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOrchestratingAgent(OrchestratingAgent object) {
+	public T caseDeploymentAgent(DeploymentAgent object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>End User Application</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Application</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>End User Application</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Application</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEndUserApplication(EndUserApplication object) {
+	public T caseApplication(Application object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Cloud Orchestrator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Cloud Dep Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Cloud Orchestrator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Cloud Dep Agent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCloudOrchestrator(CloudOrchestrator object) {
+	public T caseCloudDepAgent(CloudDepAgent object) {
 		return null;
 	}
 
@@ -304,6 +312,21 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Machine</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Machine</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMachine(Machine object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Device Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -319,47 +342,17 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Device Resources</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>On Device App</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Device Resources</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>On Device App</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDeviceResources(DeviceResources object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fog Orchestrator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fog Orchestrator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFogOrchestrator(FogOrchestrator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseContainer(Container object) {
+	public T caseOnDeviceApp(OnDeviceApp object) {
 		return null;
 	}
 
@@ -375,6 +368,21 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCloudNode(CloudNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fog Dep Agent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fog Dep Agent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFogDepAgent(FogDepAgent object) {
 		return null;
 	}
 
@@ -439,17 +447,32 @@ public class CHESSIoTDeploymentSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Orchestrating Server</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Deployment Server</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Orchestrating Server</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Deployment Server</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOrchestratingServer(OrchestratingServer object) {
+	public T caseDeploymentServer(DeploymentServer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Device Dep Agent</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Device Dep Agent</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDeviceDepAgent(DeviceDepAgent object) {
 		return null;
 	}
 

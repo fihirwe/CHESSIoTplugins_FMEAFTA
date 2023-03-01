@@ -265,6 +265,15 @@ public interface CHESSIoTSoftwareFactory extends EFactory {
 	MQTTPort createMQTTPort();
 
 	/**
+	 * Returns a new object of class '<em>Clock Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Clock Port</em>'.
+	 * @generated
+	 */
+	ClockPort createClockPort();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

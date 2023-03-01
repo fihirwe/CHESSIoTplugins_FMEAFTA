@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Acceleo Sample Module Runtime Plug-in
+Bundle-SymbolicName: org.polarsys.chess.iot.software.generator;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.polarsys.chess.iot.software.generator.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.uml2.uml,
+ org.eclipse.uml2.uml.resources,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ocl,
+ org.eclipse.ocl.ecore,
+ org.eclipse.acceleo.common;bundle-version="3.3.0",
+ org.eclipse.acceleo.model;bundle-version="3.3.0",
+ org.eclipse.acceleo.profiler;bundle-version="3.3.0",
+ org.eclipse.acceleo.engine;bundle-version="3.3.0",
+ com.google.guava,
+ org.eclipse.jface,
+ org.polarsys.chess.iot.profile
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Export-Package: org.polarsys.chess.iot.software.generator,
+ org.polarsys.chess.iot.software.generator.legal,
+ org.polarsys.chess.iot.software.generator.main,
+ org.polarsys.chess.iot.software.generator.payloads,
+ org.polarsys.chess.iot.software.generator.services,
+ org.polarsys.chess.iot.software.generator.statecharts,
+ org.polarsys.chess.iot.software.generator.things,
+ org.polarsys.chess.iot.software.generator.util
+Bundle-ClassPath: bin/

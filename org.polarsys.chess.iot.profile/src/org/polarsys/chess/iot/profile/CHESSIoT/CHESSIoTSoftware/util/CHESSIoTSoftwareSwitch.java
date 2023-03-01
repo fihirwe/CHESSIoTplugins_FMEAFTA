@@ -11,6 +11,7 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Action;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Actuator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Assignemt;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwarePackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Condition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ConditionEvent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Event;
@@ -273,6 +274,13 @@ public class CHESSIoTSoftwareSwitch<T> extends Switch<T> {
 				MQTTPort mqttPort = (MQTTPort)theEObject;
 				T result = caseMQTTPort(mqttPort);
 				if (result == null) result = caseIoTPort(mqttPort);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CHESSIoTSoftwarePackage.CLOCK_PORT: {
+				ClockPort clockPort = (ClockPort)theEObject;
+				T result = caseClockPort(clockPort);
+				if (result == null) result = caseIoTPort(clockPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -682,6 +690,21 @@ public class CHESSIoTSoftwareSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMQTTPort(MQTTPort object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Clock Port</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Clock Port</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClockPort(ClockPort object) {
 		return null;
 	}
 

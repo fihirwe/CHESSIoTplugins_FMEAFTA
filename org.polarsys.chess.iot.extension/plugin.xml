@@ -7,12 +7,25 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="GenerateThingMLmodel"
-            name="Generate ThingML model">
+            id="GenerateArduino"
+            name="For Arduino">
+      </command>
+      <command
+            id="GenerateC"
+            name="For C">
+      </command>
+      <command
+            id="GenerateCPP"
+            name="For C++">
       </command>
       <command
             id="deployemntartifacts"
             name="Generate Deployment Artifacts">
+      </command>
+
+      <command
+            id="GenerateJava"
+            name="For Java">
       </command>
       <command
             id="exportToLowcomotive"
@@ -26,7 +39,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             class="org.polarsys.chess.iot.extension.handlers.CallGenerateThingMLgenerator"
-            commandId="GenerateThingMLmodel">
+            commandId="GenerateJava">
       </handler>
       <handler
             class="org.polarsys.chess.iot.extension.handlers.GenerateDeploymentArtifacts"
@@ -35,6 +48,18 @@
       <handler
             class="org.polarsys.chess.iot.extension.handlers.UploadModelsToRepo"
             commandId="exportToLowcomotive">
+      </handler>
+      <handler
+            class="org.polarsys.chess.iot.extension.handlers.CallGenerateThingMLgenerator"
+            commandId="GenerateArduino">
+      </handler>
+      <handler
+            class="org.polarsys.chess.iot.extension.handlers.CallGenerateThingMLgenerator"
+            commandId="GenerateC">
+      </handler>
+      <handler
+            class="org.polarsys.chess.iot.extension.handlers.CallGenerateThingMLgenerator"
+            commandId="GenerateCPP">
       </handler>
       
    </extension>
@@ -53,15 +78,38 @@
       <menuContribution
             allPopups="false"
             locationURI="menu:org.polarsys.chess.mainMenu?after=chess.menu.tests.id">
+
          <menu
                id="chess.menu.debug.idd"
                label="CHESSIoT">
-            <command
-                  commandId="GenerateThingMLmodel"
-                  icon="/icons/CHESSicon.gif"
-                  style="push"
-                  tooltip="Generate ThingML model">
-            </command>
+                        <menu
+                  id="chess.menu.debug.idd2"
+                  label="GenerateThingMLmodel">
+               <command
+                     commandId="GenerateArduino"
+                     icon="/icons/CHESSicon.gif"
+                     style="push"
+                     tooltip="Generate ThingML model for Arduino">
+               </command>
+               <command
+                     commandId="GenerateC"
+                     icon="/icons/CHESSicon.gif"
+                     style="push"
+                     tooltip="Generate ThingML model for C">
+               </command>
+               <command
+                     commandId="GenerateCPP"
+                     icon="/icons/CHESSicon.gif"
+                     style="push"
+                     tooltip="Generate ThingML model for C++">
+               </command>
+               <command
+                     commandId="GenerateJava"
+                     icon="/icons/CHESSicon.gif"
+                     style="push"
+                     tooltip="Generate ThingML model for Java">
+               </command>
+            </menu>
             <command
                   commandId="deployemntartifacts"
                   icon="/icons/CHESSicon.gif"

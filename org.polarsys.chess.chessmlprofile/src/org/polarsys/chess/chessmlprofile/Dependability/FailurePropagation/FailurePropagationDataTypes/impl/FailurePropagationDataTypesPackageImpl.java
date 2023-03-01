@@ -1,46 +1,38 @@
-/**
- */
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 University of Padova, Intecs
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v2.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v20.html
+ *
+ *
+ *****************************************************************************/
 package org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.impl;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.papyrus.MARTE.MARTEPackage;
-
 import org.eclipse.papyrus.MARTE_Library.BasicNFP_Types.BasicNFP_TypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.GRM_BasicTypes.GRM_BasicTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_DataTypes.MARTE_DataTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MARTE_PrimitivesTypes.MARTE_PrimitivesTypesPackage;
-
 import org.eclipse.papyrus.MARTE_Library.MeasurementUnits.MeasurementUnitsPackage;
-
 import org.eclipse.papyrus.MARTE_Library.RS_Library.RS_LibraryPackage;
-
 import org.eclipse.papyrus.MARTE_Library.TimeLibrary.TimeLibraryPackage;
-
 import org.eclipse.papyrus.MARTE_Library.TimeTypesLibrary.TimeTypesLibraryPackage;
-
+import org.polarsys.chess.chessmlprofile.chessmlprofilePackage;
 import org.polarsys.chess.chessmlprofile.ComponentModel.ComponentModelPackage;
-
 import org.polarsys.chess.chessmlprofile.ComponentModel.impl.ComponentModelPackageImpl;
-
-import org.polarsys.chess.chessmlprofile.Core.CHESSViews.CHESSViewsPackage;
-
-import org.polarsys.chess.chessmlprofile.Core.CHESSViews.impl.CHESSViewsPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Core.CorePackage;
-
+import org.polarsys.chess.chessmlprofile.Core.CHESSViews.CHESSViewsPackage;
+import org.polarsys.chess.chessmlprofile.Core.CHESSViews.impl.CHESSViewsPackageImpl;
 import org.polarsys.chess.chessmlprofile.Core.impl.CorePackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.DependableComponent.DependableComponentPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.DependableComponent.impl.DependableComponentPackageImpl;
-
+import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationPackage;
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.A_avoidable;
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.A_mitigation;
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.C_avoidable;
@@ -52,73 +44,39 @@ import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.Failur
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.FailureType;
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.I_avoidable;
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationDataTypes.I_mitigation;
-
-import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.FailurePropagationPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.FailurePropagation.impl.FailurePropagationPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.MitigationMeans.MitigationMeansPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.MitigationMeans.impl.MitigationMeansPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.FaultTolerance.FaultTolerancePackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.FaultTolerance.impl.FaultTolerancePackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.MaintenanceMonitoring.MaintenanceMonitoringPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.MaintenanceMonitoring.impl.MaintenanceMonitoringPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedAnalysis.StateBasedAnalysisPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedAnalysis.impl.StateBasedAnalysisPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedComponents.StateBasedComponentsPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedComponents.impl.StateBasedComponentsPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedDataTypes.StateBasedDataTypesPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.StateBased.StateBasedDataTypes.impl.StateBasedDataTypesPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Dependability.ThreatsPropagation.ThreatsPropagationPackage;
-
 import org.polarsys.chess.chessmlprofile.Dependability.ThreatsPropagation.impl.ThreatsPropagationPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Expressions.ExpressionsPackage;
-
 import org.polarsys.chess.chessmlprofile.Expressions.impl.ExpressionsPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.ParameterizedArchitecture.ParameterizedArchitecturePackage;
-
 import org.polarsys.chess.chessmlprofile.ParameterizedArchitecture.impl.ParameterizedArchitecturePackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Predictability.ARINCComponentModel.ARINCComponentModelPackage;
-
 import org.polarsys.chess.chessmlprofile.Predictability.ARINCComponentModel.impl.ARINCComponentModelPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Predictability.DeploymentConfiguration.HardwareBaseline.HardwareBaselinePackage;
-
 import org.polarsys.chess.chessmlprofile.Predictability.DeploymentConfiguration.HardwareBaseline.impl.HardwareBaselinePackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Predictability.RTComponentModel.RTComponentModelPackage;
-
+import org.polarsys.chess.chessmlprofile.Predictability.RTComponentModel.RTDataTypes.RTDataTypesPackage;
+import org.polarsys.chess.chessmlprofile.Predictability.RTComponentModel.RTDataTypes.impl.RTDataTypesPackageImpl;
 import org.polarsys.chess.chessmlprofile.Predictability.RTComponentModel.impl.RTComponentModelPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.Safety.SafetyPackage;
-
 import org.polarsys.chess.chessmlprofile.Safety.impl.SafetyPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.StateMachines.StateMachinesPackage;
-
 import org.polarsys.chess.chessmlprofile.StateMachines.impl.StateMachinesPackageImpl;
-
 import org.polarsys.chess.chessmlprofile.SystemModel.STS.STSPackage;
-
 import org.polarsys.chess.chessmlprofile.SystemModel.STS.impl.STSPackageImpl;
-
-import org.polarsys.chess.chessmlprofile.chessmlprofilePackage;
-
 import org.polarsys.chess.chessmlprofile.impl.chessmlprofilePackageImpl;
 
 /**
@@ -154,6 +112,13 @@ public class FailurePropagationDataTypesPackageImpl extends EPackageImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum failureTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum a_avoidableEEnum = null;
 
 	/**
@@ -183,13 +148,6 @@ public class FailurePropagationDataTypesPackageImpl extends EPackageImpl impleme
 	 * @generated
 	 */
 	private EEnum d_mitigationEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum failureTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -361,6 +319,15 @@ public class FailurePropagationDataTypesPackageImpl extends EPackageImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getFailureType() {
+		return failureTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getA_avoidable() {
 		return a_avoidableEEnum;
 	}
@@ -399,15 +366,6 @@ public class FailurePropagationDataTypesPackageImpl extends EPackageImpl impleme
 	 */
 	public EEnum getD_mitigation() {
 		return d_mitigationEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getFailureType() {
-		return failureTypeEEnum;
 	}
 
 	/**

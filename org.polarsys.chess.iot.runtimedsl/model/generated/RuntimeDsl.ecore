@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="runtimeDsl" nsURI="http://www.polarsys.org/chess/iot/RuntimeDsl"
+    nsPrefix="runtimeDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Deployment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plan" upperBound="-1" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="setup" eType="#//BOOLEAN"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="plan" eType="#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" upperBound="-1"
+        eType="#//AbstractAgent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractAgent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superType" eType="#//AbstractAgent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rule" upperBound="-1" eType="#//rule"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="rule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="create" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="start" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="stop" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="restart" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="redeploy" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_address" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="log" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="service_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="log_type" eType="#//LogType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="machine_name" eType="ecore:EDataType platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="rerunAgent" eSuperTypes="#//rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//AbstractAgent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LogType">
+    <eLiterals name="MACHINE" literal="machine"/>
+    <eLiterals name="SERVICE" value="1" literal="service"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN">
+    <eLiterals name="TRUE" literal="true"/>
+    <eLiterals name="FALSE" value="1" literal="false"/>
+  </eClassifiers>
+</ecore:EPackage>

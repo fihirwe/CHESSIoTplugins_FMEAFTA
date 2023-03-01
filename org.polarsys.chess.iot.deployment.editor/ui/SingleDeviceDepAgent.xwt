@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:chessiot="clr-namespace:org.polarsys.chess.iot.deployment.editor.widgets"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<chessiot:DeploymentReferenceDialog
+			property="CHESSIoT:CHESSIoTDeployment:DeviceDepAgent:rules" input="{Binding}"></chessiot:DeploymentReferenceDialog>
+	</Composite>
+</Composite>

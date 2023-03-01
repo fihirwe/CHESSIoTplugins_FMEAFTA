@@ -32,7 +32,6 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.IoTPort;
  * <ul>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ConnectionImpl#getBase_Connector <em>Base Connector</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ConnectionImpl#getIotport <em>Iotport</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ConnectionImpl#getCommMode <em>Comm Mode</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,26 +56,6 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 	 * @ordered
 	 */
 	protected EList<IoTPort> iotport;
-
-	/**
-	 * The default value of the '{@link #getCommMode() <em>Comm Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCommMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COMM_MODE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCommMode() <em>Comm Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCommMode()
-	 * @generated
-	 * @ordered
-	 */
-	protected String commMode = COMM_MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,27 +131,6 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCommMode() {
-		return commMode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCommMode(String newCommMode) {
-		String oldCommMode = commMode;
-		commMode = newCommMode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.CONNECTION__COMM_MODE, oldCommMode, commMode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -181,8 +139,6 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 				return basicGetBase_Connector();
 			case CHESSIoTSystemPackage.CONNECTION__IOTPORT:
 				return getIotport();
-			case CHESSIoTSystemPackage.CONNECTION__COMM_MODE:
-				return getCommMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,9 +159,6 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 				getIotport().clear();
 				getIotport().addAll((Collection<? extends IoTPort>)newValue);
 				return;
-			case CHESSIoTSystemPackage.CONNECTION__COMM_MODE:
-				setCommMode((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -224,9 +177,6 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 			case CHESSIoTSystemPackage.CONNECTION__IOTPORT:
 				getIotport().clear();
 				return;
-			case CHESSIoTSystemPackage.CONNECTION__COMM_MODE:
-				setCommMode(COMM_MODE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -243,26 +193,8 @@ public class ConnectionImpl extends MinimalEObjectImpl.Container implements Conn
 				return base_Connector != null;
 			case CHESSIoTSystemPackage.CONNECTION__IOTPORT:
 				return iotport != null && !iotport.isEmpty();
-			case CHESSIoTSystemPackage.CONNECTION__COMM_MODE:
-				return COMM_MODE_EDEFAULT == null ? commMode != null : !COMM_MODE_EDEFAULT.equals(commMode);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (commMode: ");
-		result.append(commMode);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ConnectionImpl

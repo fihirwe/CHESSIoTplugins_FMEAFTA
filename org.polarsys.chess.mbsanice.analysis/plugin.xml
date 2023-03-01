@@ -135,7 +135,7 @@
                label="Dependability">
             <command
                   commandId="org.polarsys.chess.mbsanice.analysis.fmea.id"
-                  label="Generate FMEA table (Concerto-FLA)"
+                  label="Generate FMEA table"
                   style="push">
             </command>
          </menu>

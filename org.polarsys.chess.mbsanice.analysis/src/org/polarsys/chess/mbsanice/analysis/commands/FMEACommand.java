@@ -282,7 +282,7 @@ public class FMEACommand extends AbstractHandler {
 
 				anaylsisContextName = ((Classifier) elem).getName();
 
-				//TODO now I assume that a constraint is added as child of FailurePropagationAnalysis component to specify the components that can act as source of failure
+//				TODO now I assume that a constraint is added as child of FailurePropagationAnalysis component to specify the components that can act as source of failure
 				componentAsSource = new ArrayList<InstanceSpecification>();
 
 

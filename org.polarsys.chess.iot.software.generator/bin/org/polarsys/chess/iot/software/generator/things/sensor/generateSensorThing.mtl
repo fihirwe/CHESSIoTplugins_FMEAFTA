@@ -1,0 +1,44 @@
+[comment encoding = UTF-8 /]
+[module generateSensorThing('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::polarsys::chess::iot::software::generator::services::usesUML2Services/]
+[import org::polarsys::chess::iot::software::generator::legal::Copyright /]
+[import org::polarsys::chess::iot::software::generator::util::ThingUtilities /]
+[import org::polarsys::chess::iot::software::generator::payloads::generatePayloads /]
+[import org::polarsys::chess::iot::software::generator::things::sensor::generateStateMachineSensor /]
+[import org::polarsys::chess::iot::software::generator::headers::headers /]
+
+[template public generateSensorThing(component_me : Component,aPackage:Package, VEname:String){
+CSPort : String = 'MARTE::MARTE_DesignModel::GCM::ClientServerPort';
+IoTPort : String = 'CHESSIoT::CHESSIoTSoftware::IoTPort';
+PayloadStr : String = 'CHESSIoT::CHESSIoTSoftware::Payload';
+}]
+[file ('/'+VEname+'/'.concat(VEname).concat('_subs/').concat(component_me.name).concat('.thingml'), false)]
+[generateCopyright()/]
+import "../../util/_Datatypes.thingml"
+import "../../util/_Timer.thingml"
+[generatePayloads()/]
+thing [component_me.name.toUpperFirst()/] includes TimerMsgs, [component_me.name+'Messages'/]
+[generateHeader(component_me)/]
+{
+[comment]------------Generating components ports and properties -----[/comment]
+[generatePropertiesAndPorts(component_me)/]
+[comment]----------GENERATING FUNCTIONS----------------[/comment]
+[generateSensorReadFunction(component_me)/]
+[comment]----------GENERATING STATE MACHINES----------------[/comment]
+[for (sm : StateMachine | component_me.allOwnedElements()->filter(StateMachine))]
+[generateStateMachineSensor(sm,component_me)/]
+[/for]
+}
+[/file]
+[/template]
+
+[template public generateSensorReadFunction(component_me : Component)]
+[for (o: Operation | component_me.ownedOperation) separator('\n')]
+function  [o.name/]() : UInt16
+	do
+		return `dht.readTemperature();` as UInt16
+ 	end
+[/for]
+[/template]
+

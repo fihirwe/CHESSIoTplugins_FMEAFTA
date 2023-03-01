@@ -1,0 +1,17 @@
+[comment encoding = UTF-8 /]
+[module headers('http://www.eclipse.org/uml2/5.0.0/UML')]
+[import org::polarsys::chess::iot::software::generator::util::ThingUtilities /]
+[import org::polarsys::chess::iot::software::generator::services::usesUML2Services /]
+
+[template public generateHeader(component : Component){
+sensor : String = 'CHESSIoT::CHESSIoTSoftware::Sensor';}]
+[if (checkSensorTypeAndCategory(component, sensor, 'TempHumidity', 'DHT11'))]
+@c_header "#include <DHT.h>"
+@c_global "DHT dht([getSensorPin(component, sensor)/], DHT11);"
+[elseif (checkSensorTypeAndCategory(component, sensor, 'Ultrasonic', 'HCSR04'))]
+@c_header "#include <hcsr04.h>"
+@c_global "HCSR04 hcsr04([getSensorPin(component, sensor)/], 20, 4000);"
+[/if]
+[/template]
+
+[template public getSensorPin(component : Component, sensor : String)][if(component.getValue(component.getAppliedStereotype(sensor), 'pin')->size()>0)][for (it : OclAny | component.getValue(component.getAppliedStereotype(sensor), 'pin'))][it.toString()/][/for][/if][/template]

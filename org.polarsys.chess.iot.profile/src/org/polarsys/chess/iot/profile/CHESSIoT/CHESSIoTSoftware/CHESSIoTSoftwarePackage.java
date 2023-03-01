@@ -1092,13 +1092,40 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	int SENSOR__STATEMACHINE = VIRTUAL_ELEMENT__STATEMACHINE;
 
 	/**
+	 * The feature id for the '<em><b>Category</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR__CATEGORY = VIRTUAL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR__TYPE = VIRTUAL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Pin</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR__PIN = VIRTUAL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Computingnode</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR__COMPUTINGNODE = VIRTUAL_ELEMENT_FEATURE_COUNT + 0;
+	int SENSOR__COMPUTINGNODE = VIRTUAL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Sensor</em>' class.
@@ -1107,7 +1134,7 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SENSOR_FEATURE_COUNT = VIRTUAL_ELEMENT_FEATURE_COUNT + 1;
+	int SENSOR_FEATURE_COUNT = VIRTUAL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Sensor</em>' class.
@@ -1687,6 +1714,99 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	int MQTT_PORT_OPERATION_COUNT = IO_TPORT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.ClockPortImpl <em>Clock Port</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.ClockPortImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getClockPort()
+	 * @generated
+	 */
+	int CLOCK_PORT = 27;
+
+	/**
+	 * The feature id for the '<em><b>Base Port</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT__BASE_PORT = IO_TPORT__BASE_PORT;
+
+	/**
+	 * The feature id for the '<em><b>Connection Pins</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT__CONNECTION_PINS = IO_TPORT__CONNECTION_PINS;
+
+	/**
+	 * The feature id for the '<em><b>Send payload</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT__SEND_PAYLOAD = IO_TPORT__SEND_PAYLOAD;
+
+	/**
+	 * The feature id for the '<em><b>Receive payload</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT__RECEIVE_PAYLOAD = IO_TPORT__RECEIVE_PAYLOAD;
+
+	/**
+	 * The feature id for the '<em><b>Clock</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT__CLOCK = IO_TPORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Clock Port</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT_FEATURE_COUNT = IO_TPORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Clock Port</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLOCK_PORT_OPERATION_COUNT = IO_TPORT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory <em>Sensor Category</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getSensorCategory()
+	 * @generated
+	 */
+	int SENSOR_CATEGORY = 28;
+
+	/**
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType <em>Sensor Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getSensorType()
+	 * @generated
+	 */
+	int SENSOR_TYPE = 29;
+
+	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.AccessMode <em>Access Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1694,7 +1814,7 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getAccessMode()
 	 * @generated
 	 */
-	int ACCESS_MODE = 27;
+	int ACCESS_MODE = 30;
 
 
 	/**
@@ -2330,6 +2450,39 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	EClass getSensor();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getCategory <em>Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Category</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getCategory()
+	 * @see #getSensor()
+	 * @generated
+	 */
+	EAttribute getSensor_Category();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getType()
+	 * @see #getSensor()
+	 * @generated
+	 */
+	EAttribute getSensor_Type();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getPin <em>Pin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Pin</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getPin()
+	 * @see #getSensor()
+	 * @generated
+	 */
+	EAttribute getSensor_Pin();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor#getComputingnode <em>Computingnode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2516,6 +2669,47 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMQTTPort_Type();
+
+	/**
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort <em>Clock Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Clock Port</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort
+	 * @generated
+	 */
+	EClass getClockPort();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort#getClock <em>Clock</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Clock</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort#getClock()
+	 * @see #getClockPort()
+	 * @generated
+	 */
+	EAttribute getClockPort_Clock();
+
+	/**
+	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory <em>Sensor Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Sensor Category</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory
+	 * @generated
+	 */
+	EEnum getSensorCategory();
+
+	/**
+	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType <em>Sensor Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Sensor Type</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType
+	 * @generated
+	 */
+	EEnum getSensorType();
 
 	/**
 	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.AccessMode <em>Access Mode</em>}'.
@@ -3057,6 +3251,30 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 		EClass SENSOR = eINSTANCE.getSensor();
 
 		/**
+		 * The meta object literal for the '<em><b>Category</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SENSOR__CATEGORY = eINSTANCE.getSensor_Category();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SENSOR__TYPE = eINSTANCE.getSensor_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Pin</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SENSOR__PIN = eINSTANCE.getSensor_Pin();
+
+		/**
 		 * The meta object literal for the '<em><b>Computingnode</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3219,6 +3437,44 @@ public interface CHESSIoTSoftwarePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MQTT_PORT__TYPE = eINSTANCE.getMQTTPort_Type();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.ClockPortImpl <em>Clock Port</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.ClockPortImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getClockPort()
+		 * @generated
+		 */
+		EClass CLOCK_PORT = eINSTANCE.getClockPort();
+
+		/**
+		 * The meta object literal for the '<em><b>Clock</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLOCK_PORT__CLOCK = eINSTANCE.getClockPort_Clock();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory <em>Sensor Category</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getSensorCategory()
+		 * @generated
+		 */
+		EEnum SENSOR_CATEGORY = eINSTANCE.getSensorCategory();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType <em>Sensor Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl#getSensorType()
+		 * @generated
+		 */
+		EEnum SENSOR_TYPE = eINSTANCE.getSensorType();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.AccessMode <em>Access Mode</em>}' enum.

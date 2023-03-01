@@ -13,7 +13,19 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.*;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatingBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Gateway;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.IoTPort;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,20 +120,20 @@ public class CHESSIoTSystemAdapterFactory extends AdapterFactoryImpl {
 				return createConnectionAdapter();
 			}
 			@Override
-			public Adapter caseSYSTEM_Hw(SYSTEM_Hw object) {
-				return createSYSTEM_HwAdapter();
+			public Adapter caseSystem(org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System object) {
+				return createSystemAdapter();
 			}
 			@Override
 			public Adapter caseConsumerEntity(ConsumerEntity object) {
 				return createConsumerEntityAdapter();
 			}
 			@Override
-			public Adapter caseActive(Active object) {
-				return createActiveAdapter();
+			public Adapter caseExternalActiveEntity(ExternalActiveEntity object) {
+				return createExternalActiveEntityAdapter();
 			}
 			@Override
-			public Adapter casePassive(Passive object) {
-				return createPassiveAdapter();
+			public Adapter caseExternalPassiveEntity(ExternalPassiveEntity object) {
+				return createExternalPassiveEntityAdapter();
 			}
 			@Override
 			public Adapter caseBlock(Block object) {
@@ -278,16 +290,16 @@ public class CHESSIoTSystemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw <em>SYSTEM Hw</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System <em>System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System
 	 * @generated
 	 */
-	public Adapter createSYSTEM_HwAdapter() {
+	public Adapter createSystemAdapter() {
 		return null;
 	}
 
@@ -306,30 +318,30 @@ public class CHESSIoTSystemAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active <em>Active</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity <em>External Active Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity
 	 * @generated
 	 */
-	public Adapter createActiveAdapter() {
+	public Adapter createExternalActiveEntityAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive <em>Passive</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity <em>External Passive Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity
 	 * @generated
 	 */
-	public Adapter createPassiveAdapter() {
+	public Adapter createExternalPassiveEntityAdapter() {
 		return null;
 	}
 

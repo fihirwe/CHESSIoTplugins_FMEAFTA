@@ -33,7 +33,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.polarsys.chess.core.util.CHESSProjectSupport;
 import org.polarsys.chess.core.util.uml.ResourceUtils;
 import org.polarsys.chess.core.views.DiagramStatus;
-import org.polarsys.chess.iot.generator.ui.common.GenerateAll;
+import org.polarsys.chess.iot.software.generator.ui.common.GenerateAll;
 import org.polarsys.chess.service.gui.utils.CHESSEditorUtils;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;

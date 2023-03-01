@@ -60,6 +60,24 @@ public class DeploymentServices {
 		return classes;
 	}
 	
+	public List<Component> getSubComponent(Component c,Package aPackage){
+		List<Component> components= new ArrayList<>();
+		if (c.getAllAttributes().size()>0) {
+			for(Property co:c.getAllAttributes()){
+				for(Element elt:aPackage.allOwnedElements()){
+					if(elt instanceof Component) {
+						Component newC= (Component) elt;
+						if(co.getType().getName().equalsIgnoreCase(newC.getName())){
+							components.add((Component) elt);
+						}
+					}
+				}
+			}
+		}
+		return components;
+	}
+	
+	
 	//	public boolean hasStereotype(Class clazz, String stereotypeName) {
 	//		List<Stereotype> stereotypes = clazz.getAppliedStereotypes();
 	//		if(stereotypes.size()==0){

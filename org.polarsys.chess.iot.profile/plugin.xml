@@ -56,9 +56,9 @@
                ID="CompV_CHESSIoT_CompSD_Structure.Palette"
                class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider"
                name="CompV_CHESSIoT_CompSD_Structure.Palette"
-               path="palettes/CompV_CHESSIoT_CompSD_Structure.Palette.xml">
+               path="/palettes/CompV_CHESSIoT_CSD_Structure.Palette.xml">
             <Priority
-                  name="Highest">
+                  name="High">
             </Priority>
             <editor
                   id="org.eclipse.papyrus.uml.diagram.composite">
@@ -151,14 +151,6 @@
       <package
             uri="http:///CHESSIoT/CHESSIoTSoftware.ecore"
             class="org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwarePackage"
-            genModel="CHESSIoT.profile.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated CHESSIoT.profile -->
-      <package
-            uri="http:///CHESSIoT/CHESSIoTOperationalProfile.ecore"
-            class="org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTOperationalProfile.CHESSIoTOperationalProfilePackage"
             genModel="CHESSIoT.profile.genmodel"/>
    </extension>
 

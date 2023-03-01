@@ -307,7 +307,7 @@ public class UtilitiesLibrary {
 	protected static String expressionList2string(List<Expression> list) {
 		String result = "";
 		for (Expression expression : list) {
-//			System.out.println("RULE IS --------- " +expression.toString());
+			System.out.println("RULE IS --------- " +expression.toString());
 			result += expression.getPort().getName() + "." + failureList2String(expression.getFailures()) + ",";
 		}
 		if (result.endsWith(",")) {

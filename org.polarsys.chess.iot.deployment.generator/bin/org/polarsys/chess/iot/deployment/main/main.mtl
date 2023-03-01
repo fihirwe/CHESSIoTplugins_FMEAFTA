@@ -9,52 +9,70 @@
 [import org::polarsys::chess::iot::deployment::artifacts::generateDataDistributionService /]
 [import org::polarsys::chess::iot::deployment::artifacts::generateStorageService /]
 [import org::polarsys::chess::iot::deployment::artifacts::generateEndUserApplication /]
+[import org::polarsys::chess::iot::deployment::util::generateSetup /]
+[import org::polarsys::chess::iot::deployment::ansible::generateAnsible /]
 [template public generateDeployemnt(model: uml:: Model){
 System :String ='CHESSIoT::CHESSIoTDeployment::System';
 CloudNodeStereo : String ='CHESSIoT::CHESSIoTDeployment::CloudNode';
 FogNodeStereo : String ='CHESSIoT::CHESSIoTDeployment::FogNode';
+DeviceNodeStereo: String ='CHESSIoT::CHESSIoTDeployment::DeviceNode';
 }]
 [comment @main/]
 [for (elt:Package|model.ownedElement->filter(Package))]
 [if (elt.name='modelDeploymentView')]
 [for (node : Component |  elt.allOwnedElements()->filter(Component))]
 [if(node.getAppliedStereotype(CloudNodeStereo)->notEmpty())]
-[generateInfrastructure(node.name+'_cloud',node, elt)/]
+[generateMachine(node.name+'_cloud',node, elt)/]
 [elseif (node.getAppliedStereotype(FogNodeStereo)->notEmpty())]
-[generateInfrastructure(node.name+'_fog',node, elt)/]	
-[/if]				 
+[generateMachine(node.name+'_fog',node, elt)/]	
+[elseif (node.getAppliedStereotype(DeviceNodeStereo)->notEmpty())]
+[generateMachine(node.name+'_device',node, elt)/]	
+[/if]			 
 [/for]
 [/if]
 [/for]
 [/template]
 
-[template public generateInfrastructure(name : String,node : Component, elt:Package ){
+[template public generateMachine(name : String,node : Component, elt:Package){
+machinestereo :String ='CHESSIoT::CHESSIoTDeployment::Machine';
+}]
+[for(machine : Component | getSubComponent(node,elt))]
+[if(machine.getAppliedStereotype(machinestereo)->notEmpty())]
+[generateInfrastructure(name,machine,elt)/]
+[/if]
+[/for]
+[/template]
+
+
+[template public generateInfrastructure(name : String,machine : Component, elt:Package ){
 ExternalService : String = 'CHESSIoT::CHESSIoTDeployment::ExternalService';
 DataDistributionService : String = 'CHESSIoT::CHESSIoTDeployment::DataDistributionService';
 MQTTBroker : String = 'CHESSIoT::CHESSIoTDeployment::MQTTBroker';
 ServiceST : String = 'CHESSIoT::CHESSIoTDeployment::Service';
 StorageService : String = 'CHESSIoT::CHESSIoTDeployment::StorageService';
 }]
-[file ('/'+name+'/docker-compose.yaml', false, 'UTF-8')]
+[file ('/'+name+'/'+machine.name+'/docker-compose.yaml', false, 'UTF-8')]
 [generateCopyright()/]
 [generateLicense()/]
 version: "3.9"
 services:
-[for(c:Class | getSubClass(node,elt))]
+[for(c:Class|getSubClass(machine,elt))]
 [if(c.getAppliedStereotype(MQTTBroker)->notEmpty())]
-[generateBroker(c,node,'/'+name+'/')/]
+  [generateBroker(c,machine,'/'+name+'/'+machine.name+'/')/]
 [elseif(c.getAppliedStereotype(DataDistributionService)->notEmpty())]
-[generateStorageService(c,node)/]
+  [generateStorageService(c,machine)/]
 [elseif(c.getAppliedStereotype(StorageService)->notEmpty())]
-[generateDataDistributionService(c,node)/]
+  [generateDataDistributionService(c,machine)/]
 [elseif(c.getAppliedStereotype(ExternalService)->notEmpty())]
-[generateExternalService(c,node)/]
+  [generateExternalService(c,machine)/]
 [/if]
 [/for]
 networks:
-[for(c:Class | getSubClass(node,elt))]
+[for(c:Class | getSubClass(machine,elt))]
   [c.name/]_net:
     driver: bridge
 [/for]
 [/file]
+[generateSetup(name,machine)/]
+[generateAnsible(name, machine,elt)/]
 [/template]

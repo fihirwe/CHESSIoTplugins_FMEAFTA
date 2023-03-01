@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:name"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:IntegerEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:id"></ppe:IntegerEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualBoard:virtualelement"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:virtualelement"></ppe:ReferenceDialog>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:virtualentity"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualBoard:sensor"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualBoard:actuator"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:iotport"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSoftware:VirtualElement:statemachine"></ppe:MultiReference>
+	</Composite>
+</Composite>

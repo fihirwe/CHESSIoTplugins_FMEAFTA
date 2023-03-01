@@ -13,27 +13,27 @@
 
 <paletteDefinition>
 	<content>	
-		<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSIoT_CSD_Deployment_Orchestrators" name="Orchestrators">
-			<aspectTool description="Create a Fog Orchestrator agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="FogOrchestrator" name="Orchestrating agent (Fog)" refToolId="composite.tool.constraint">
+		<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSIoT_CSD_Deployment_Orchestrators" name="Deployment Agents">
+			<aspectTool description="Create a Device DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="DeviceDepAgent" name="Deployment agent (Device)" refToolId="clazz.tool.constraint">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::FogOrchestrator"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::DeviceDepAgent"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a Fog DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="FogDepAgent" name="Deployment agent (Fog)" refToolId="clazz.tool.constraint">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::FogDepAgent"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>	
 			
-			<aspectTool description="Create a Cloud Orchestrator agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="CloudOrchestrator" name="Orchestrating agent (Cloud)" refToolId="composite.tool.constraint">
+			<aspectTool description="Create a Cloud DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="CloudDepAgent" name="Deployment agent (Cloud)" refToolId="clazz.tool.constraint">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::CloudOrchestrator"/>
-					</stereotypesToApply>
-				</postAction>
-			</aspectTool>
-
-			<aspectTool description="Create a Device Resources agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" id="DeviceResources" name="Resources (Device)" refToolId="composite.tool.comment">
-				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::DeviceResources"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::CloudDepAgent"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>

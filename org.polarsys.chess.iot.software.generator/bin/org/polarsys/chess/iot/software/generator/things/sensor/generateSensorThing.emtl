@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="generateSensorThing" nsURI="org::polarsys::chess::iot::software::generator::things::sensor::generateSensorThing" startHeaderPosition="30" endHeaderPosition="185">
+    <input>
+      <takesTypesFrom href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+    </input>
+    <imports href="../../services/usesUML2Services.emtl#/0"/>
+    <imports href="../../legal/Copyright.emtl#/0"/>
+    <imports href="../../util/ThingUtilities.emtl#/0"/>
+    <imports href="../../payloads/generatePayloads.emtl#/0"/>
+    <imports href="generateStateMachineSensor.emtl#/0"/>
+    <imports href="../../headers/headers.emtl#/0"/>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateSensorThing" visibility="Public">
+      <init>
+        <variable name="CSPort">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <initExpression xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="MARTE::MARTE_DesignModel::GCM::ClientServerPort">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </initExpression>
+        </variable>
+        <variable name="IoTPort">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <initExpression xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="CHESSIoT::CHESSIoTSoftware::IoTPort">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </initExpression>
+        </variable>
+        <variable name="PayloadStr">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <initExpression xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="CHESSIoT::CHESSIoTSoftware::Payload">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </initExpression>
+        </variable>
+      </init>
+      <body xsi:type="mtl:FileBlock" openMode="OverWrite">
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="../../legal/Copyright.emtl#/0/generateCopyright"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/10">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;import &quot;../../util/_Datatypes.thingml&quot;&#xD;&#xA;import &quot;../../util/_Timer.thingml&quot;&#xD;&#xA;"/>
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="../../payloads/generatePayloads.emtl#/0/generatePayloads"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="self" referredVariable="/11">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;thing "/>
+        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/toUpperFirst">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+          </source>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" includes TimerMsgs, "/>
+        <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/+">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:PropertyCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+            </source>
+            <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+          </source>
+          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="Messages">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="../../headers/headers.emtl#/0/generateHeader"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;{&#xD;&#xA;"/>
+        <body xsi:type="mtl:TemplateInvocation">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <definition href="../../util/ThingUtilities.emtl#/0/generatePropertiesAndPorts"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+        <body xsi:type="mtl:TemplateInvocation" definition="/0/generateSensorReadFunction">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <argument xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </argument>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+        <body xsi:type="mtl:ForBlock">
+          <body xsi:type="mtl:TemplateInvocation">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <definition href="generateStateMachineSensor.emtl#/0/generateStateMachineSensor"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="sm" referredVariable="/0/generateSensorThing/%/%.14/sm">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+            </argument>
+            <argument xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+              <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+            </argument>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xD;&#xA;"/>
+          <loopVariable name="sm">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+          </loopVariable>
+          <iterSet xsi:type="ocl.ecore:OperationCallExp" eType="/17/Set(StateMachine)" referredOperation="/1/oclstdlib_Collection(T)_Class/filter">
+            <source xsi:type="ocl.ecore:OperationCallExp" eType="/17/Set(Element)">
+              <source xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+                <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+              </source>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/allOwnedElements"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/18/StateMachine">
+              <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+            </argument>
+          </iterSet>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="}&#xD;&#xA;"/>
+        <fileUrl xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/+">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/oclstdlib_String_Class/+">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </source>
+            <argument xsi:type="ocl.ecore:VariableExp" name="VEname" referredVariable="/0/generateSensorThing/VEname">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </argument>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            <source xsi:type="ocl.ecore:OperationCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:OperationCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:OperationCallExp">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  <source xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="/">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </source>
+                  <argument xsi:type="ocl.ecore:VariableExp" name="VEname" referredVariable="/0/generateSensorThing/VEname">
+                    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                  </argument>
+                  <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+                </source>
+                <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_subs/">
+                  <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+              </source>
+              <argument xsi:type="ocl.ecore:PropertyCallExp">
+                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+                <source xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorThing/component_me">
+                  <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+                </source>
+                <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+              </argument>
+              <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+            </source>
+            <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=".thingml">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/concat"/>
+          </argument>
+        </fileUrl>
+      </body>
+      <parameter name="component_me">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+      </parameter>
+      <parameter name="aPackage">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+      </parameter>
+      <parameter name="VEname">
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </parameter>
+    </ownedModuleElement>
+    <ownedModuleElement xsi:type="mtl:Template" name="generateSensorReadFunction" visibility="Public">
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="function  "/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="o" referredVariable="/0/generateSensorReadFunction/%/o">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="() : UInt16&#xD;&#xA;&#x9;do&#xD;&#xA;&#x9;&#x9;return `dht.readTemperature();` as UInt16&#xD;&#xA; &#x9;end&#xD;&#xA;"/>
+        <loopVariable name="o">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+        </loopVariable>
+        <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/17/OrderedSet(Operation)">
+          <source xsi:type="ocl.ecore:VariableExp" name="component_me" referredVariable="/0/generateSensorReadFunction/component_me">
+            <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/ownedOperation"/>
+        </iterSet>
+        <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </each>
+      </body>
+      <parameter name="component_me">
+        <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+      <eOperations name="toUpperFirst">
+        <eAnnotations source="MTL"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eOperations>
+      <eOperations name="+">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="other">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generateSensorThing">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateSensorThing"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="component_me">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+        <eParameters name="aPackage">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        </eParameters>
+        <eParameters name="VEname">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateSensorReadFunction">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generateSensorReadFunction"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="component_me">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateCopyright">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../legal/Copyright.emtl#/0/generateCopyright"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="traceabilityContext">
+          <eType xsi:type="ocl.ecore:AnyType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generatePropertiesAndPorts">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../util/ThingUtilities.emtl#/0/generatePropertiesAndPorts"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="component">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generatePayloads">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../payloads/generatePayloads.emtl#/0/generatePayloads"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="component">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateStateMachineSensor">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="generateStateMachineSensor.emtl#/0/generateStateMachineSensor"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="sm">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+        </eParameters>
+        <eParameters name="owner">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+      </eOperations>
+      <eOperations name="generateHeader">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL">
+          <references href="../../headers/headers.emtl#/0/generateHeader"/>
+        </eAnnotations>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="component">
+          <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+      <eOperations name="filter">
+        <eAnnotations source="MTL non-standard"/>
+        <eType xsi:type="ocl.ecore:CollectionType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+        <eParameters name="filter">
+          <eType xsi:type="ocl.ecore:TypeType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclType"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_Component_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_Class_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_Port_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//Port"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_StateMachine_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_Transition_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//Transition"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="uml_State_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/uml2/5.0.0/UML#//State"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Element)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(StateMachine)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Operation)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="StateMachine">
+      <referredType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//StateMachine"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Component"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generateSensorThing">
+      <details key="start" value="616"/>
+      <details key="end" value="1743"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generateSensorThing/@init">
+      <details key="start" value="710"/>
+      <details key="end" value="905"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generateSensorThing/@init/@variable.0">
+      <details key="start" value="713"/>
+      <details key="end" value="780"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generateSensorThing/@init/@variable.0/%">
+      <details key="start" value="731"/>
+      <details key="end" value="780"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generateSensorThing/@init/@variable.1">
+      <details key="start" value="783"/>
+      <details key="end" value="839"/>
+      <details key="line" value="13"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generateSensorThing/@init/@variable.1/%">
+      <details key="start" value="802"/>
+      <details key="end" value="839"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generateSensorThing/@init/@variable.2">
+      <details key="start" value="842"/>
+      <details key="end" value="901"/>
+      <details key="line" value="14"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generateSensorThing/@init/@variable.2/%">
+      <details key="start" value="864"/>
+      <details key="end" value="901"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generateSensorThing/%">
+      <details key="start" value="908"/>
+      <details key="end" value="1730"/>
+      <details key="line" value="16"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generateSensorThing/%/%">
+      <details key="start" value="1018"/>
+      <details key="end" value="1037"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generateSensorThing/%/%/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generateSensorThing/%/%.1">
+      <details key="start" value="1039"/>
+      <details key="end" value="1117"/>
+      <details key="line" value="18"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generateSensorThing/%/%.2">
+      <details key="start" value="1118"/>
+      <details key="end" value="1136"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generateSensorThing/%/%.2/self">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generateSensorThing/%/%.3">
+      <details key="start" value="1138"/>
+      <details key="end" value="1146"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generateSensorThing/%/%.4">
+      <details key="start" value="1147"/>
+      <details key="end" value="1179"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generateSensorThing/%/%.4/%">
+      <details key="start" value="1147"/>
+      <details key="end" value="1164"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generateSensorThing/%/%.4/%/component_me">
+      <details key="start" value="1147"/>
+      <details key="end" value="1159"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generateSensorThing/%/%.5">
+      <details key="start" value="1181"/>
+      <details key="end" value="1202"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generateSensorThing/%/%.6">
+      <details key="start" value="1203"/>
+      <details key="end" value="1231"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generateSensorThing/%/%.6/%">
+      <details key="start" value="1203"/>
+      <details key="end" value="1220"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generateSensorThing/%/%.6/%/component_me">
+      <details key="start" value="1203"/>
+      <details key="end" value="1215"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generateSensorThing/%/%.6/%.1">
+      <details key="start" value="1221"/>
+      <details key="end" value="1231"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generateSensorThing/%/%.7">
+      <details key="start" value="1233"/>
+      <details key="end" value="1235"/>
+      <details key="line" value="22"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generateSensorThing/%/%.8">
+      <details key="start" value="1236"/>
+      <details key="end" value="1264"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generateSensorThing/%/%.8/component_me">
+      <details key="start" value="1251"/>
+      <details key="end" value="1263"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generateSensorThing/%/%.9">
+      <details key="start" value="1266"/>
+      <details key="end" value="1271"/>
+      <details key="line" value="23"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generateSensorThing/%/%.10">
+      <details key="start" value="1353"/>
+      <details key="end" value="1393"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generateSensorThing/%/%.10/component_me">
+      <details key="start" value="1380"/>
+      <details key="end" value="1392"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generateSensorThing/%/%.11">
+      <details key="start" value="1395"/>
+      <details key="end" value="1397"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generateSensorThing/%/%.12">
+      <details key="start" value="1465"/>
+      <details key="end" value="1505"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generateSensorThing/%/%.12/component_me">
+      <details key="start" value="1492"/>
+      <details key="end" value="1504"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generateSensorThing/%/%.13">
+      <details key="start" value="1507"/>
+      <details key="end" value="1509"/>
+      <details key="line" value="28"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generateSensorThing/%/%.14">
+      <details key="start" value="1581"/>
+      <details key="end" value="1718"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generateSensorThing/%/%.14/%">
+      <details key="start" value="1665"/>
+      <details key="end" value="1708"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generateSensorThing/%/%.14/%/sm">
+      <details key="start" value="1692"/>
+      <details key="end" value="1694"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generateSensorThing/%/%.14/%/component_me">
+      <details key="start" value="1695"/>
+      <details key="end" value="1707"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generateSensorThing/%/%.14/%.1">
+      <details key="start" value="1710"/>
+      <details key="end" value="1712"/>
+      <details key="line" value="31"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generateSensorThing/%/%.14/sm">
+      <details key="start" value="1587"/>
+      <details key="end" value="1604"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generateSensorThing/%/%.14/%.2">
+      <details key="start" value="1607"/>
+      <details key="end" value="1660"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generateSensorThing/%/%.14/%.2/%">
+      <details key="start" value="1607"/>
+      <details key="end" value="1638"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generateSensorThing/%/%.14/%.2/%/component_me">
+      <details key="start" value="1607"/>
+      <details key="end" value="1619"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generateSensorThing/%/%.14/%.2/%.1">
+      <details key="start" value="1647"/>
+      <details key="end" value="1659"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generateSensorThing/%/%.15">
+      <details key="start" value="1720"/>
+      <details key="end" value="1723"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generateSensorThing/%/%.16">
+      <details key="start" value="915"/>
+      <details key="end" value="1006"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generateSensorThing/%/%.16/%">
+      <details key="start" value="915"/>
+      <details key="end" value="925"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generateSensorThing/%/%.16/%/%">
+      <details key="start" value="915"/>
+      <details key="end" value="918"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.47" references="/0/generateSensorThing/%/%.16/%/VEname">
+      <details key="start" value="919"/>
+      <details key="end" value="925"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.48" references="/0/generateSensorThing/%/%.16/%.1">
+      <details key="start" value="926"/>
+      <details key="end" value="1006"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.49" references="/0/generateSensorThing/%/%.16/%.1/%">
+      <details key="start" value="926"/>
+      <details key="end" value="987"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.50" references="/0/generateSensorThing/%/%.16/%.1/%/%">
+      <details key="start" value="926"/>
+      <details key="end" value="961"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.51" references="/0/generateSensorThing/%/%.16/%.1/%/%/%">
+      <details key="start" value="926"/>
+      <details key="end" value="944"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.52" references="/0/generateSensorThing/%/%.16/%.1/%/%/%/%">
+      <details key="start" value="926"/>
+      <details key="end" value="929"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.53" references="/0/generateSensorThing/%/%.16/%.1/%/%/%/VEname">
+      <details key="start" value="937"/>
+      <details key="end" value="943"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.54" references="/0/generateSensorThing/%/%.16/%.1/%/%/%.1">
+      <details key="start" value="952"/>
+      <details key="end" value="960"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.55" references="/0/generateSensorThing/%/%.16/%.1/%/%.1">
+      <details key="start" value="969"/>
+      <details key="end" value="986"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.56" references="/0/generateSensorThing/%/%.16/%.1/%/%.1/component_me">
+      <details key="start" value="969"/>
+      <details key="end" value="981"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.57" references="/0/generateSensorThing/%/%.16/%.1/%.1">
+      <details key="start" value="995"/>
+      <details key="end" value="1005"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.58" references="/0/generateSensorThing/component_me">
+      <details key="start" value="653"/>
+      <details key="end" value="677"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.59" references="/0/generateSensorThing/aPackage">
+      <details key="start" value="678"/>
+      <details key="end" value="694"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.60" references="/0/generateSensorThing/VEname">
+      <details key="start" value="696"/>
+      <details key="end" value="709"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.61" references="/0/generateSensorReadFunction">
+      <details key="start" value="1747"/>
+      <details key="end" value="1993"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+    <eAnnotations source="positions.62" references="/0/generateSensorReadFunction/%">
+      <details key="start" value="1818"/>
+      <details key="end" value="1981"/>
+      <details key="line" value="37"/>
+    </eAnnotations>
+    <eAnnotations source="positions.63" references="/0/generateSensorReadFunction/%/%">
+      <details key="start" value="1886"/>
+      <details key="end" value="1896"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.64" references="/0/generateSensorReadFunction/%/%.1">
+      <details key="start" value="1897"/>
+      <details key="end" value="1903"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.65" references="/0/generateSensorReadFunction/%/%.1/o">
+      <details key="start" value="1897"/>
+      <details key="end" value="1898"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.66" references="/0/generateSensorReadFunction/%/%.2">
+      <details key="start" value="1905"/>
+      <details key="end" value="1975"/>
+      <details key="line" value="38"/>
+    </eAnnotations>
+    <eAnnotations source="positions.67" references="/0/generateSensorReadFunction/%/o">
+      <details key="start" value="1824"/>
+      <details key="end" value="1836"/>
+      <details key="line" value="37"/>
+    </eAnnotations>
+    <eAnnotations source="positions.68" references="/0/generateSensorReadFunction/%/%.3">
+      <details key="start" value="1839"/>
+      <details key="end" value="1866"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.69" references="/0/generateSensorReadFunction/%/%.3/component_me">
+      <details key="start" value="1839"/>
+      <details key="end" value="1851"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.70" references="/0/generateSensorReadFunction/%/%.4">
+      <details key="start" value="1878"/>
+      <details key="end" value="1882"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.71" references="/0/generateSensorReadFunction/component_me">
+      <details key="start" value="1791"/>
+      <details key="end" value="1815"/>
+      <details key="line" value="36"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

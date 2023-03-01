@@ -9,21 +9,22 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DataDistributionService;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.ExternalService;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.StorageService;
 
@@ -92,16 +93,16 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 				return createMQTTBrokerAdapter();
 			}
 			@Override
-			public Adapter caseOrchestratingAgent(OrchestratingAgent object) {
-				return createOrchestratingAgentAdapter();
+			public Adapter caseDeploymentAgent(DeploymentAgent object) {
+				return createDeploymentAgentAdapter();
 			}
 			@Override
-			public Adapter caseEndUserApplication(EndUserApplication object) {
-				return createEndUserApplicationAdapter();
+			public Adapter caseApplication(Application object) {
+				return createApplicationAdapter();
 			}
 			@Override
-			public Adapter caseCloudOrchestrator(CloudOrchestrator object) {
-				return createCloudOrchestratorAdapter();
+			public Adapter caseCloudDepAgent(CloudDepAgent object) {
+				return createCloudDepAgentAdapter();
 			}
 			@Override
 			public Adapter caseFogNode(FogNode object) {
@@ -112,24 +113,24 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 				return createNodeAdapter();
 			}
 			@Override
+			public Adapter caseMachine(Machine object) {
+				return createMachineAdapter();
+			}
+			@Override
 			public Adapter caseDeviceNode(DeviceNode object) {
 				return createDeviceNodeAdapter();
 			}
 			@Override
-			public Adapter caseDeviceResources(DeviceResources object) {
-				return createDeviceResourcesAdapter();
-			}
-			@Override
-			public Adapter caseFogOrchestrator(FogOrchestrator object) {
-				return createFogOrchestratorAdapter();
-			}
-			@Override
-			public Adapter caseContainer(Container object) {
-				return createContainerAdapter();
+			public Adapter caseOnDeviceApp(OnDeviceApp object) {
+				return createOnDeviceAppAdapter();
 			}
 			@Override
 			public Adapter caseCloudNode(CloudNode object) {
 				return createCloudNodeAdapter();
+			}
+			@Override
+			public Adapter caseFogDepAgent(FogDepAgent object) {
+				return createFogDepAgentAdapter();
 			}
 			@Override
 			public Adapter caseExternalService(ExternalService object) {
@@ -148,8 +149,12 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 				return createSystemAdapter();
 			}
 			@Override
-			public Adapter caseOrchestratingServer(OrchestratingServer object) {
-				return createOrchestratingServerAdapter();
+			public Adapter caseDeploymentServer(DeploymentServer object) {
+				return createDeploymentServerAdapter();
+			}
+			@Override
+			public Adapter caseDeviceDepAgent(DeviceDepAgent object) {
+				return createDeviceDepAgentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -200,44 +205,44 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent <em>Orchestrating Agent</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent <em>Deployment Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingAgent
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent
 	 * @generated
 	 */
-	public Adapter createOrchestratingAgentAdapter() {
+	public Adapter createDeploymentAgentAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication <em>End User Application</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application <em>Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.EndUserApplication
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Application
 	 * @generated
 	 */
-	public Adapter createEndUserApplicationAdapter() {
+	public Adapter createApplicationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator <em>Cloud Orchestrator</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent <em>Cloud Dep Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudDepAgent
 	 * @generated
 	 */
-	public Adapter createCloudOrchestratorAdapter() {
+	public Adapter createCloudDepAgentAdapter() {
 		return null;
 	}
 
@@ -270,6 +275,20 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine <em>Machine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine
+	 * @generated
+	 */
+	public Adapter createMachineAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceNode <em>Device Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -284,44 +303,16 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources <em>Device Resources</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp <em>On Device App</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceResources
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OnDeviceApp
 	 * @generated
 	 */
-	public Adapter createDeviceResourcesAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator <em>Fog Orchestrator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogOrchestrator
-	 * @generated
-	 */
-	public Adapter createFogOrchestratorAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container
-	 * @generated
-	 */
-	public Adapter createContainerAdapter() {
+	public Adapter createOnDeviceAppAdapter() {
 		return null;
 	}
 
@@ -336,6 +327,20 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCloudNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent <em>Fog Dep Agent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogDepAgent
+	 * @generated
+	 */
+	public Adapter createFogDepAgentAdapter() {
 		return null;
 	}
 
@@ -396,16 +401,30 @@ public class CHESSIoTDeploymentAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer <em>Orchestrating Server</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer <em>Deployment Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.OrchestratingServer
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentServer
 	 * @generated
 	 */
-	public Adapter createOrchestratingServerAdapter() {
+	public Adapter createDeploymentServerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent <em>Device Dep Agent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeviceDepAgent
+	 * @generated
+	 */
+	public Adapter createDeviceDepAgentAdapter() {
 		return null;
 	}
 

@@ -13,8 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getContainer <em>Container</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getCloudresources <em>Cloudresources</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudNode#getFognode <em>Fognode</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getCloudNode()
@@ -23,35 +22,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CloudNode extends Node {
 	/**
-	 * Returns the value of the '<em><b>Container</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Container}.
+	 * Returns the value of the '<em><b>Fognode</b></em>' reference list.
+	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode}.
+	 * It is bidirectional and its opposite is '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getCloudnode <em>Cloudnode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Container</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Fognode</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container</em>' reference list.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getCloudNode_Container()
-	 * @model required="true" ordered="false"
+	 * @return the value of the '<em>Fognode</em>' reference list.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getCloudNode_Fognode()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.FogNode#getCloudnode
+	 * @model opposite="cloudnode" required="true" ordered="false"
 	 * @generated
 	 */
-	EList<Container> getContainer();
-
-	/**
-	 * Returns the value of the '<em><b>Cloudresources</b></em>' reference list.
-	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CloudOrchestrator}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Cloudresources</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Cloudresources</em>' reference list.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getCloudNode_Cloudresources()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	EList<CloudOrchestrator> getCloudresources();
+	EList<FogNode> getFognode();
 
 } // CloudNode

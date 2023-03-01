@@ -2,6 +2,8 @@
  */
 package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Component;
@@ -15,10 +17,9 @@ import org.eclipse.uml2.uml.Component;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getOpSystem <em>Op System</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getBase_Component <em>Base Component</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMemory <em>Memory</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMachine <em>Machine</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getDeploymentagent <em>Deploymentagent</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode()
@@ -26,58 +27,6 @@ import org.eclipse.uml2.uml.Component;
  * @generated
  */
 public interface Node extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode_Name()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Op System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Op System</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Op System</em>' attribute.
-	 * @see #setOpSystem(String)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode_OpSystem()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
-	 * @generated
-	 */
-	String getOpSystem();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getOpSystem <em>Op System</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Op System</em>' attribute.
-	 * @see #getOpSystem()
-	 * @generated
-	 */
-	void setOpSystem(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Base Component</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -105,29 +54,35 @@ public interface Node extends EObject {
 	void setBase_Component(Component value);
 
 	/**
-	 * Returns the value of the '<em><b>Memory</b></em>' attribute.
+	 * Returns the value of the '<em><b>Machine</b></em>' reference list.
+	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Machine}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Memory</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Machine</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Memory</em>' attribute.
-	 * @see #setMemory(String)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode_Memory()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
+	 * @return the value of the '<em>Machine</em>' reference list.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode_Machine()
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	String getMemory();
+	EList<Machine> getMachine();
 
 	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Node#getMemory <em>Memory</em>}' attribute.
+	 * Returns the value of the '<em><b>Deploymentagent</b></em>' reference list.
+	 * The list contents are of type {@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.DeploymentAgent}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Deploymentagent</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Memory</em>' attribute.
-	 * @see #getMemory()
+	 * @return the value of the '<em>Deploymentagent</em>' reference list.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getNode_Deploymentagent()
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
-	void setMemory(String value);
+	EList<DeploymentAgent> getDeploymentagent();
 
 } // Node

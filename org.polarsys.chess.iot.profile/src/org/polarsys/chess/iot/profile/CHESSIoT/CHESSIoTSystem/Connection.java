@@ -19,7 +19,6 @@ import org.eclipse.uml2.uml.Connector;
  * <ul>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getBase_Connector <em>Base Connector</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getIotport <em>Iotport</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getCommMode <em>Comm Mode</em>}</li>
  * </ul>
  *
  * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage#getConnection()
@@ -68,31 +67,5 @@ public interface Connection extends EObject {
 	 * @generated
 	 */
 	EList<IoTPort> getIotport();
-
-	/**
-	 * Returns the value of the '<em><b>Comm Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Comm Mode</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Comm Mode</em>' attribute.
-	 * @see #setCommMode(String)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage#getConnection_CommMode()
-	 * @model dataType="org.eclipse.uml2.types.String" required="true" ordered="false"
-	 * @generated
-	 */
-	String getCommMode();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getCommMode <em>Comm Mode</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Comm Mode</em>' attribute.
-	 * @see #getCommMode()
-	 * @generated
-	 */
-	void setCommMode(String value);
 
 } // Connection

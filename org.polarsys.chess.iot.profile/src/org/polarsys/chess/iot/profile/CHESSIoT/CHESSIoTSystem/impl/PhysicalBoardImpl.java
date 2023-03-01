@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatingBlock;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Gateway;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard;
@@ -52,7 +51,7 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	 * @generated
 	 * @ordered
 	 */
-	protected static final BoardModel MODEL_EDEFAULT = BoardModel.RASBERRY_PI;
+	protected static final String MODEL_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getModel() <em>Model</em>}' attribute.
@@ -62,7 +61,7 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	 * @generated
 	 * @ordered
 	 */
-	protected BoardModel model = MODEL_EDEFAULT;
+	protected String model = MODEL_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getGateway() <em>Gateway</em>}' reference list.
@@ -128,7 +127,7 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoardModel getModel() {
+	public String getModel() {
 		return model;
 	}
 
@@ -137,9 +136,9 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModel(BoardModel newModel) {
-		BoardModel oldModel = model;
-		model = newModel == null ? MODEL_EDEFAULT : newModel;
+	public void setModel(String newModel) {
+		String oldModel = model;
+		model = newModel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_BOARD__MODEL, oldModel, model));
 	}
@@ -284,7 +283,7 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CHESSIoTSystemPackage.PHYSICAL_BOARD__MODEL:
-				setModel((BoardModel)newValue);
+				setModel((String)newValue);
 				return;
 			case CHESSIoTSystemPackage.PHYSICAL_BOARD__GATEWAY:
 				getGateway().clear();
@@ -341,7 +340,7 @@ public class PhysicalBoardImpl extends PhysicalElementImpl implements PhysicalBo
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case CHESSIoTSystemPackage.PHYSICAL_BOARD__MODEL:
-				return model != MODEL_EDEFAULT;
+				return MODEL_EDEFAULT == null ? model != null : !MODEL_EDEFAULT.equals(model);
 			case CHESSIoTSystemPackage.PHYSICAL_BOARD__GATEWAY:
 				return gateway != null && !gateway.isEmpty();
 			case CHESSIoTSystemPackage.PHYSICAL_BOARD__ACTUATINGBLOCK:

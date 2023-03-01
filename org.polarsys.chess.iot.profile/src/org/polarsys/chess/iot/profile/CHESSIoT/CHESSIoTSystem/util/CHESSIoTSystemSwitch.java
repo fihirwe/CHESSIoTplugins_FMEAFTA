@@ -11,7 +11,19 @@ import org.eclipse.papyrus.sysml.blocks.Block;
 
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.*;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatingBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Gateway;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.IoTPort;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,10 +149,10 @@ public class CHESSIoTSystemSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTSystemPackage.SYSTEM_HW: {
-				SYSTEM_Hw systeM_Hw = (SYSTEM_Hw)theEObject;
-				T result = caseSYSTEM_Hw(systeM_Hw);
-				if (result == null) result = caseBlock(systeM_Hw);
+			case CHESSIoTSystemPackage.SYSTEM: {
+				org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System system = (org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System)theEObject;
+				T result = caseSystem(system);
+				if (result == null) result = caseBlock(system);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -151,19 +163,19 @@ public class CHESSIoTSystemSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTSystemPackage.ACTIVE: {
-				Active active = (Active)theEObject;
-				T result = caseActive(active);
-				if (result == null) result = caseConsumerEntity(active);
-				if (result == null) result = caseBlock(active);
+			case CHESSIoTSystemPackage.EXTERNAL_ACTIVE_ENTITY: {
+				ExternalActiveEntity externalActiveEntity = (ExternalActiveEntity)theEObject;
+				T result = caseExternalActiveEntity(externalActiveEntity);
+				if (result == null) result = caseConsumerEntity(externalActiveEntity);
+				if (result == null) result = caseBlock(externalActiveEntity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case CHESSIoTSystemPackage.PASSIVE: {
-				Passive passive = (Passive)theEObject;
-				T result = casePassive(passive);
-				if (result == null) result = caseConsumerEntity(passive);
-				if (result == null) result = caseBlock(passive);
+			case CHESSIoTSystemPackage.EXTERNAL_PASSIVE_ENTITY: {
+				ExternalPassiveEntity externalPassiveEntity = (ExternalPassiveEntity)theEObject;
+				T result = caseExternalPassiveEntity(externalPassiveEntity);
+				if (result == null) result = caseConsumerEntity(externalPassiveEntity);
+				if (result == null) result = caseBlock(externalPassiveEntity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -307,17 +319,17 @@ public class CHESSIoTSystemSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>SYSTEM Hw</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>System</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>SYSTEM Hw</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>System</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSYSTEM_Hw(SYSTEM_Hw object) {
+	public T caseSystem(org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System object) {
 		return null;
 	}
 
@@ -337,32 +349,32 @@ public class CHESSIoTSystemSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Active</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>External Active Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Active</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>External Active Entity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseActive(Active object) {
+	public T caseExternalActiveEntity(ExternalActiveEntity object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Passive</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>External Passive Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Passive</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>External Passive Entity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T casePassive(Passive object) {
+	public T caseExternalPassiveEntity(ExternalPassiveEntity object) {
 		return null;
 	}
 

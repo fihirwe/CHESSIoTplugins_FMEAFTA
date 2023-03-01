@@ -13,6 +13,7 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Action;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Actuator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Assignemt;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwarePackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Condition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ConditionEvent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Event;
@@ -200,6 +201,10 @@ public class CHESSIoTSoftwareAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMQTTPort(MQTTPort object) {
 				return createMQTTPortAdapter();
+			}
+			@Override
+			public Adapter caseClockPort(ClockPort object) {
+				return createClockPortAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -596,6 +601,20 @@ public class CHESSIoTSoftwareAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMQTTPortAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort <em>Clock Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort
+	 * @generated
+	 */
+	public Adapter createClockPortAdapter() {
 		return null;
 	}
 

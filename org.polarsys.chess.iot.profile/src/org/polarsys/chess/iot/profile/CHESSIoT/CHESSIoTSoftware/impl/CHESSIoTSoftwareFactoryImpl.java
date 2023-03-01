@@ -17,6 +17,7 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Actuator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Assignemt;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwareFactory;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwarePackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Condition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ConditionEvent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Event;
@@ -35,6 +36,8 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Print;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SYSTEM_Sw;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Send;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.StateMachine;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.StateTransition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.VirtualBoard;
@@ -112,6 +115,7 @@ public class CHESSIoTSoftwareFactoryImpl extends EFactoryImpl implements CHESSIo
 			case CHESSIoTSoftwarePackage.ERROR: return createError();
 			case CHESSIoTSoftwarePackage.FUNCTION_CALL: return createFunctionCall();
 			case CHESSIoTSoftwarePackage.MQTT_PORT: return createMQTTPort();
+			case CHESSIoTSoftwarePackage.CLOCK_PORT: return createClockPort();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -125,6 +129,10 @@ public class CHESSIoTSoftwareFactoryImpl extends EFactoryImpl implements CHESSIo
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case CHESSIoTSoftwarePackage.SENSOR_CATEGORY:
+				return createSensorCategoryFromString(eDataType, initialValue);
+			case CHESSIoTSoftwarePackage.SENSOR_TYPE:
+				return createSensorTypeFromString(eDataType, initialValue);
 			case CHESSIoTSoftwarePackage.ACCESS_MODE:
 				return createAccessModeFromString(eDataType, initialValue);
 			default:
@@ -140,6 +148,10 @@ public class CHESSIoTSoftwareFactoryImpl extends EFactoryImpl implements CHESSIo
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case CHESSIoTSoftwarePackage.SENSOR_CATEGORY:
+				return convertSensorCategoryToString(eDataType, instanceValue);
+			case CHESSIoTSoftwarePackage.SENSOR_TYPE:
+				return convertSensorTypeToString(eDataType, instanceValue);
 			case CHESSIoTSoftwarePackage.ACCESS_MODE:
 				return convertAccessModeToString(eDataType, instanceValue);
 			default:
@@ -415,6 +427,56 @@ public class CHESSIoTSoftwareFactoryImpl extends EFactoryImpl implements CHESSIo
 	public MQTTPort createMQTTPort() {
 		MQTTPortImpl mqttPort = new MQTTPortImpl();
 		return mqttPort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClockPort createClockPort() {
+		ClockPortImpl clockPort = new ClockPortImpl();
+		return clockPort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SensorCategory createSensorCategoryFromString(EDataType eDataType, String initialValue) {
+		SensorCategory result = SensorCategory.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSensorCategoryToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SensorType createSensorTypeFromString(EDataType eDataType, String initialValue) {
+		SensorType result = SensorType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertSensorTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

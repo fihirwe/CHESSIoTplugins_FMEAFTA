@@ -22,6 +22,14 @@
 				</postAction>
 			</aspectTool>
 			
+			<aspectTool description="Create a Machine" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif" id="Machine" name="Machine" refToolId="clazz.tool.component">
+			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::Machine"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
 			<aspectTool description="Create a Device Node" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif" id="DeviceNode" name="DeviceNode" refToolId="clazz.tool.component">
 			<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
@@ -92,37 +100,46 @@
 			<aspectTool description="Create a EndUserApplication" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" id="EndUserApplication" name="Application" refToolId="clazz.tool.class">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::EndUserApplication"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::Application"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a OnDeviceApp" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" id="OnDeviceApp" name="OnDeviceApp" refToolId="clazz.tool.class">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::OnDeviceApp"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>
 		</drawer>
-		<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSIoT__DEPLOY_RESOURCES" name="Deployment Resources">		
-			
-			<aspectTool description="Create a Fog Orchestrator agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="FogOrchestrator" name="Orchestrating agent (Fog)" refToolId="clazz.tool.constraint">
+		<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSIoT__DEPLOY_RESOURCES" name="Deployment Agents">		
+
+			<aspectTool description="Create a Device DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="DeviceDepAgent" name="Deployment agent (Device)" refToolId="clazz.tool.constraint">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::FogOrchestrator"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::DeviceDepAgent"/>
+					</stereotypesToApply>
+				</postAction>
+			</aspectTool>
+			
+			<aspectTool description="Create a Fog DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="FogDepAgent" name="Deployment agent (Fog)" refToolId="clazz.tool.constraint">
+				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
+					<stereotypesToApply>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::FogDepAgent"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>	
 			
-			<aspectTool description="Create a Cloud Orchestrator agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="CloudOrchestrator" name="Orchestrating agent (Cloud)" refToolId="clazz.tool.constraint">
+			<aspectTool description="Create a Cloud DepAgent agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif" id="CloudDepAgent" name="Deployment agent (Cloud)" refToolId="clazz.tool.constraint">
 				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
 					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::CloudOrchestrator"/>
-					</stereotypesToApply>
-				</postAction>
-			</aspectTool>
-
-			<aspectTool description="Create a Device Resources agent" iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif" id="DeviceResources" name="Device Resources" refToolId="clazz.tool.comment">
-				<postAction id="org.eclipse.papyrus.applystereotypeactionprovider">
-					<stereotypesToApply>
-						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::DeviceResources"/>
+						<stereotype stereotypeName="CHESSIoT::CHESSIoTDeployment::CloudDepAgent"/>
 					</stereotypesToApply>
 				</postAction>
 			</aspectTool>
 		</drawer>
+		
 		<drawer iconpath="platform:/plugin/org.polarsys.chess.core/resources/CHESSicon.gif"  id="CHESSEdgeDeploymentViewDrawerIDIoT" name="Edges">
 			<aspectTool description="Create a generalization"
 				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
@@ -163,7 +180,7 @@
 				iconpath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				id="clazz.tool.dependency_1301932902690" name="Depends-on (Service)"
 				refToolId="clazz.tool.dependency" />
-			<aspectTool description="Link an Orchestrator" id="clazz.tool.link_13167799276791" name="Link (Node-Orchestrator)" refToolId="clazz.tool.link"/>
+			<aspectTool description="Link an DepAgent" id="clazz.tool.link_13167799276791" name="Link (Node-DepAgent)" refToolId="clazz.tool.link"/>
 				
 		</drawer>
 	</content>

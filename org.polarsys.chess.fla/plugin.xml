@@ -23,7 +23,7 @@
                label="Dependability">
             <command
                   commandId="org.polarsys.chess.fla.analysis.command"
-                  label="Failure Logic Analysis (Concerto-FLA)"
+                  label="Failure Logic Analysis "
                   style="push">
                <visibleWhen
                      checkEnabled="false">
@@ -49,7 +49,7 @@
             </command>
             <command
                   commandId="org.polarsys.chess.fla.analysis.command.xml"
-                  label="Failure Logic Analysis (Concerto-FLA) from XML"
+                  label="Failure Logic Analysis from XML"
                   style="push">
             </command>
          </menu>

@@ -4,7 +4,6 @@ package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -90,31 +89,22 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int PHYSICAL_ELEMENT__BASE_CLASS = BlocksPackage.BLOCK__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ELEMENT__ID = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ELEMENT__NAME = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ELEMENT__LATITUDE = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ELEMENT__LONGITUDE = BlocksPackage.BLOCK_FEATURE_COUNT + 2;
+	int PHYSICAL_ELEMENT__NAME = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -123,7 +113,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ELEMENT__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 3;
+	int PHYSICAL_ELEMENT__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Physical Element</em>' class.
@@ -132,7 +122,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ELEMENT_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 4;
+	int PHYSICAL_ELEMENT_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Physical Element</em>' class.
@@ -172,6 +162,15 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int PHYSICAL_BOARD__BASE_CLASS = PHYSICAL_ELEMENT__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_BOARD__ID = PHYSICAL_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -179,24 +178,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int PHYSICAL_BOARD__NAME = PHYSICAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_BOARD__LATITUDE = PHYSICAL_ELEMENT__LATITUDE;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_BOARD__LONGITUDE = PHYSICAL_ELEMENT__LONGITUDE;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -372,6 +353,15 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int GATEWAY__BASE_CLASS = PHYSICAL_ELEMENT__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GATEWAY__ID = PHYSICAL_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,24 +369,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int GATEWAY__NAME = PHYSICAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GATEWAY__LATITUDE = PHYSICAL_ELEMENT__LATITUDE;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GATEWAY__LONGITUDE = PHYSICAL_ELEMENT__LONGITUDE;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -481,22 +453,13 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int SERVER__BASE_CLASS = BlocksPackage.BLOCK__BASE_CLASS;
 
 	/**
-	 * The feature id for the '<em><b>Op System</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVER__OP_SYSTEM = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
+	int SERVER__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Server</em>' class.
@@ -505,7 +468,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 2;
+	int SERVER_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Server</em>' class.
@@ -545,6 +508,15 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int ACTUATING_BLOCK__BASE_CLASS = PHYSICAL_ELEMENT__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTUATING_BLOCK__ID = PHYSICAL_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,24 +524,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTUATING_BLOCK__NAME = PHYSICAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUATING_BLOCK__LATITUDE = PHYSICAL_ELEMENT__LATITUDE;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTUATING_BLOCK__LONGITUDE = PHYSICAL_ELEMENT__LONGITUDE;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -645,6 +599,15 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int PHYSICAL_ENTITY__BASE_CLASS = PHYSICAL_ELEMENT__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PHYSICAL_ENTITY__ID = PHYSICAL_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -652,24 +615,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int PHYSICAL_ENTITY__NAME = PHYSICAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ENTITY__LATITUDE = PHYSICAL_ELEMENT__LATITUDE;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ENTITY__LONGITUDE = PHYSICAL_ELEMENT__LONGITUDE;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -681,22 +626,13 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int PHYSICAL_ENTITY__IOTPORT = PHYSICAL_ELEMENT__IOTPORT;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PHYSICAL_ENTITY__ID = PHYSICAL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Physicalentity</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ENTITY__PHYSICALENTITY = PHYSICAL_ELEMENT_FEATURE_COUNT + 1;
+	int PHYSICAL_ENTITY__PHYSICALENTITY = PHYSICAL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Physical Entity</em>' class.
@@ -705,7 +641,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PHYSICAL_ENTITY_FEATURE_COUNT = PHYSICAL_ELEMENT_FEATURE_COUNT + 2;
+	int PHYSICAL_ENTITY_FEATURE_COUNT = PHYSICAL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Physical Entity</em>' class.
@@ -745,6 +681,15 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int SENSOR_BLOCK__BASE_CLASS = PHYSICAL_ELEMENT__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SENSOR_BLOCK__ID = PHYSICAL_ELEMENT__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -752,24 +697,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @ordered
 	 */
 	int SENSOR_BLOCK__NAME = PHYSICAL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Latitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_BLOCK__LATITUDE = PHYSICAL_ELEMENT__LATITUDE;
-
-	/**
-	 * The feature id for the '<em><b>Longitude</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SENSOR_BLOCK__LONGITUDE = PHYSICAL_ELEMENT__LONGITUDE;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -854,22 +781,13 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int CONNECTION__IOTPORT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Comm Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION__COMM_MODE = 2;
-
-	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_FEATURE_COUNT = 3;
+	int CONNECTION_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Connection</em>' class.
@@ -881,14 +799,14 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int CONNECTION_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SYSTEM_HwImpl <em>SYSTEM Hw</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SystemImpl <em>System</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SYSTEM_HwImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SystemImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSystem()
 	 * @generated
 	 */
-	int SYSTEM_HW = 9;
+	int SYSTEM = 9;
 
 	/**
 	 * The feature id for the '<em><b>Is Encapsulated</b></em>' attribute.
@@ -897,7 +815,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__IS_ENCAPSULATED = BlocksPackage.BLOCK__IS_ENCAPSULATED;
+	int SYSTEM__IS_ENCAPSULATED = BlocksPackage.BLOCK__IS_ENCAPSULATED;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -906,7 +824,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__BASE_CLASS = BlocksPackage.BLOCK__BASE_CLASS;
+	int SYSTEM__BASE_CLASS = BlocksPackage.BLOCK__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Physicalentity</b></em>' containment reference list.
@@ -915,7 +833,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__PHYSICALENTITY = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
+	int SYSTEM__PHYSICALENTITY = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Iotport</b></em>' containment reference list.
@@ -924,7 +842,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
+	int SYSTEM__IOTPORT = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Server</b></em>' containment reference list.
@@ -933,7 +851,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__SERVER = BlocksPackage.BLOCK_FEATURE_COUNT + 2;
+	int SYSTEM__SERVER = BlocksPackage.BLOCK_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -942,7 +860,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__NAME = BlocksPackage.BLOCK_FEATURE_COUNT + 3;
+	int SYSTEM__NAME = BlocksPackage.BLOCK_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Physicalelement</b></em>' containment reference list.
@@ -951,7 +869,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__PHYSICALELEMENT = BlocksPackage.BLOCK_FEATURE_COUNT + 4;
+	int SYSTEM__PHYSICALELEMENT = BlocksPackage.BLOCK_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>System hw</b></em>' reference.
@@ -960,25 +878,25 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW__SYSTEM_HW = BlocksPackage.BLOCK_FEATURE_COUNT + 5;
+	int SYSTEM__SYSTEM_HW = BlocksPackage.BLOCK_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>SYSTEM Hw</em>' class.
+	 * The number of structural features of the '<em>System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 6;
+	int SYSTEM_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of operations of the '<em>SYSTEM Hw</em>' class.
+	 * The number of operations of the '<em>System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_HW_OPERATION_COUNT = BlocksPackage.BLOCK_OPERATION_COUNT + 0;
+	int SYSTEM_OPERATION_COUNT = BlocksPackage.BLOCK_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ConsumerEntityImpl <em>Consumer Entity</em>}' class.
@@ -1009,13 +927,22 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int CONSUMER_ENTITY__BASE_CLASS = BlocksPackage.BLOCK__BASE_CLASS;
 
 	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSUMER_ENTITY__SERVER = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Consumer Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSUMER_ENTITY_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 0;
+	int CONSUMER_ENTITY_FEATURE_COUNT = BlocksPackage.BLOCK_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Consumer Entity</em>' class.
@@ -1027,14 +954,14 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	int CONSUMER_ENTITY_OPERATION_COUNT = BlocksPackage.BLOCK_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ActiveImpl <em>Active</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalActiveEntityImpl <em>External Active Entity</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ActiveImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getActive()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalActiveEntityImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getExternalActiveEntity()
 	 * @generated
 	 */
-	int ACTIVE = 11;
+	int EXTERNAL_ACTIVE_ENTITY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Is Encapsulated</b></em>' attribute.
@@ -1043,7 +970,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVE__IS_ENCAPSULATED = CONSUMER_ENTITY__IS_ENCAPSULATED;
+	int EXTERNAL_ACTIVE_ENTITY__IS_ENCAPSULATED = CONSUMER_ENTITY__IS_ENCAPSULATED;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1052,7 +979,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVE__BASE_CLASS = CONSUMER_ENTITY__BASE_CLASS;
+	int EXTERNAL_ACTIVE_ENTITY__BASE_CLASS = CONSUMER_ENTITY__BASE_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Server</b></em>' reference list.
@@ -1061,35 +988,35 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVE__SERVER = CONSUMER_ENTITY_FEATURE_COUNT + 0;
+	int EXTERNAL_ACTIVE_ENTITY__SERVER = CONSUMER_ENTITY__SERVER;
 
 	/**
-	 * The number of structural features of the '<em>Active</em>' class.
+	 * The number of structural features of the '<em>External Active Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVE_FEATURE_COUNT = CONSUMER_ENTITY_FEATURE_COUNT + 1;
+	int EXTERNAL_ACTIVE_ENTITY_FEATURE_COUNT = CONSUMER_ENTITY_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of operations of the '<em>Active</em>' class.
+	 * The number of operations of the '<em>External Active Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVE_OPERATION_COUNT = CONSUMER_ENTITY_OPERATION_COUNT + 0;
+	int EXTERNAL_ACTIVE_ENTITY_OPERATION_COUNT = CONSUMER_ENTITY_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PassiveImpl <em>Passive</em>}' class.
+	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalPassiveEntityImpl <em>External Passive Entity</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PassiveImpl
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getPassive()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalPassiveEntityImpl
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getExternalPassiveEntity()
 	 * @generated
 	 */
-	int PASSIVE = 12;
+	int EXTERNAL_PASSIVE_ENTITY = 12;
 
 	/**
 	 * The feature id for the '<em><b>Is Encapsulated</b></em>' attribute.
@@ -1098,7 +1025,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSIVE__IS_ENCAPSULATED = CONSUMER_ENTITY__IS_ENCAPSULATED;
+	int EXTERNAL_PASSIVE_ENTITY__IS_ENCAPSULATED = CONSUMER_ENTITY__IS_ENCAPSULATED;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -1107,7 +1034,16 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSIVE__BASE_CLASS = CONSUMER_ENTITY__BASE_CLASS;
+	int EXTERNAL_PASSIVE_ENTITY__BASE_CLASS = CONSUMER_ENTITY__BASE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Server</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNAL_PASSIVE_ENTITY__SERVER = CONSUMER_ENTITY__SERVER;
 
 	/**
 	 * The feature id for the '<em><b>Physicalentity</b></em>' reference list.
@@ -1116,55 +1052,25 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PASSIVE__PHYSICALENTITY = CONSUMER_ENTITY_FEATURE_COUNT + 0;
+	int EXTERNAL_PASSIVE_ENTITY__PHYSICALENTITY = CONSUMER_ENTITY_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Passive</em>' class.
+	 * The number of structural features of the '<em>External Passive Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSIVE_FEATURE_COUNT = CONSUMER_ENTITY_FEATURE_COUNT + 1;
+	int EXTERNAL_PASSIVE_ENTITY_FEATURE_COUNT = CONSUMER_ENTITY_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>Passive</em>' class.
+	 * The number of operations of the '<em>External Passive Entity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASSIVE_OPERATION_COUNT = CONSUMER_ENTITY_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel <em>Board Model</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getBoardModel()
-	 * @generated
-	 */
-	int BOARD_MODEL = 13;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType <em>Actuator Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getActuatorType()
-	 * @generated
-	 */
-	int ACTUATOR_TYPE = 14;
-
-	/**
-	 * The meta object id for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType <em>Sensor Type</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSensorType()
-	 * @generated
-	 */
-	int SENSOR_TYPE = 15;
+	int EXTERNAL_PASSIVE_ENTITY_OPERATION_COUNT = CONSUMER_ENTITY_OPERATION_COUNT + 0;
 
 
 	/**
@@ -1243,6 +1149,17 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	EClass getPhysicalElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getId()
+	 * @see #getPhysicalElement()
+	 * @generated
+	 */
+	EAttribute getPhysicalElement_Id();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1252,28 +1169,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPhysicalElement_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getLatitude <em>Latitude</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Latitude</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getLatitude()
-	 * @see #getPhysicalElement()
-	 * @generated
-	 */
-	EAttribute getPhysicalElement_Latitude();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getLongitude <em>Longitude</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Longitude</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getLongitude()
-	 * @see #getPhysicalElement()
-	 * @generated
-	 */
-	EAttribute getPhysicalElement_Longitude();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement#getIotport <em>Iotport</em>}'.
@@ -1350,17 +1245,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	EClass getServer();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server#getOpSystem <em>Op System</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Op System</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server#getOpSystem()
-	 * @see #getServer()
-	 * @generated
-	 */
-	EAttribute getServer_OpSystem();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server#getIotport <em>Iotport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1412,17 +1296,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPhysicalEntity();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity#getId()
-	 * @see #getPhysicalEntity()
-	 * @generated
-	 */
-	EAttribute getPhysicalEntity_Id();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity#getPhysicalentity <em>Physicalentity</em>}'.
@@ -1511,91 +1384,80 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	EReference getConnection_Iotport();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getCommMode <em>Comm Mode</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System <em>System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Comm Mode</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection#getCommMode()
-	 * @see #getConnection()
+	 * @return the meta object for class '<em>System</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System
 	 * @generated
 	 */
-	EAttribute getConnection_CommMode();
+	EClass getSystem();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw <em>SYSTEM Hw</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>SYSTEM Hw</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw
-	 * @generated
-	 */
-	EClass getSYSTEM_Hw();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getPhysicalentity <em>Physicalentity</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getPhysicalentity <em>Physicalentity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Physicalentity</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getPhysicalentity()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getPhysicalentity()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EReference getSYSTEM_Hw_Physicalentity();
+	EReference getSystem_Physicalentity();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getIotport <em>Iotport</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getIotport <em>Iotport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Iotport</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getIotport()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getIotport()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EReference getSYSTEM_Hw_Iotport();
+	EReference getSystem_Iotport();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getServer <em>Server</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Server</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getServer()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getServer()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EReference getSYSTEM_Hw_Server();
+	EReference getSystem_Server();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getName()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getName()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EAttribute getSYSTEM_Hw_Name();
+	EAttribute getSystem_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getPhysicalelement <em>Physicalelement</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getPhysicalelement <em>Physicalelement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Physicalelement</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getPhysicalelement()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getPhysicalelement()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EReference getSYSTEM_Hw_Physicalelement();
+	EReference getSystem_Physicalelement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getSystem_hw <em>System hw</em>}'.
+	 * Returns the meta object for the reference '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getSystem_hw <em>System hw</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>System hw</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw#getSystem_hw()
-	 * @see #getSYSTEM_Hw()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System#getSystem_hw()
+	 * @see #getSystem()
 	 * @generated
 	 */
-	EReference getSYSTEM_Hw_System_hw();
+	EReference getSystem_System_hw();
 
 	/**
 	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity <em>Consumer Entity</em>}'.
@@ -1608,76 +1470,46 @@ public interface CHESSIoTSystemPackage extends EPackage {
 	EClass getConsumerEntity();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active <em>Active</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Active</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active
-	 * @generated
-	 */
-	EClass getActive();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active#getServer <em>Server</em>}'.
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity#getServer <em>Server</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Server</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active#getServer()
-	 * @see #getActive()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity#getServer()
+	 * @see #getConsumerEntity()
 	 * @generated
 	 */
-	EReference getActive_Server();
+	EReference getConsumerEntity_Server();
 
 	/**
-	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive <em>Passive</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity <em>External Active Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Passive</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive
+	 * @return the meta object for class '<em>External Active Entity</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity
 	 * @generated
 	 */
-	EClass getPassive();
+	EClass getExternalActiveEntity();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive#getPhysicalentity <em>Physicalentity</em>}'.
+	 * Returns the meta object for class '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity <em>External Passive Entity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>External Passive Entity</em>'.
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity
+	 * @generated
+	 */
+	EClass getExternalPassiveEntity();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity#getPhysicalentity <em>Physicalentity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Physicalentity</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive#getPhysicalentity()
-	 * @see #getPassive()
+	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity#getPhysicalentity()
+	 * @see #getExternalPassiveEntity()
 	 * @generated
 	 */
-	EReference getPassive_Physicalentity();
-
-	/**
-	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel <em>Board Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Board Model</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel
-	 * @generated
-	 */
-	EEnum getBoardModel();
-
-	/**
-	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType <em>Actuator Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Actuator Type</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType
-	 * @generated
-	 */
-	EEnum getActuatorType();
-
-	/**
-	 * Returns the meta object for enum '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType <em>Sensor Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Sensor Type</em>'.
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType
-	 * @generated
-	 */
-	EEnum getSensorType();
+	EReference getExternalPassiveEntity_Physicalentity();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1763,28 +1595,20 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		EClass PHYSICAL_ELEMENT = eINSTANCE.getPhysicalElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PHYSICAL_ELEMENT__ID = eINSTANCE.getPhysicalElement_Id();
+
+		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute PHYSICAL_ELEMENT__NAME = eINSTANCE.getPhysicalElement_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Latitude</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PHYSICAL_ELEMENT__LATITUDE = eINSTANCE.getPhysicalElement_Latitude();
-
-		/**
-		 * The meta object literal for the '<em><b>Longitude</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PHYSICAL_ELEMENT__LONGITUDE = eINSTANCE.getPhysicalElement_Longitude();
 
 		/**
 		 * The meta object literal for the '<em><b>Iotport</b></em>' containment reference list feature.
@@ -1849,14 +1673,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		EClass SERVER = eINSTANCE.getServer();
 
 		/**
-		 * The meta object literal for the '<em><b>Op System</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SERVER__OP_SYSTEM = eINSTANCE.getServer_OpSystem();
-
-		/**
 		 * The meta object literal for the '<em><b>Iotport</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1899,14 +1715,6 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PHYSICAL_ENTITY = eINSTANCE.getPhysicalEntity();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PHYSICAL_ENTITY__ID = eINSTANCE.getPhysicalEntity_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>Physicalentity</b></em>' reference feature.
@@ -1977,22 +1785,14 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		EReference CONNECTION__IOTPORT = eINSTANCE.getConnection_Iotport();
 
 		/**
-		 * The meta object literal for the '<em><b>Comm Mode</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SystemImpl <em>System</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SystemImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSystem()
 		 * @generated
 		 */
-		EAttribute CONNECTION__COMM_MODE = eINSTANCE.getConnection_CommMode();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SYSTEM_HwImpl <em>SYSTEM Hw</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.SYSTEM_HwImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSYSTEM_Hw()
-		 * @generated
-		 */
-		EClass SYSTEM_HW = eINSTANCE.getSYSTEM_Hw();
+		EClass SYSTEM = eINSTANCE.getSystem();
 
 		/**
 		 * The meta object literal for the '<em><b>Physicalentity</b></em>' containment reference list feature.
@@ -2000,7 +1800,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SYSTEM_HW__PHYSICALENTITY = eINSTANCE.getSYSTEM_Hw_Physicalentity();
+		EReference SYSTEM__PHYSICALENTITY = eINSTANCE.getSystem_Physicalentity();
 
 		/**
 		 * The meta object literal for the '<em><b>Iotport</b></em>' containment reference list feature.
@@ -2008,7 +1808,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SYSTEM_HW__IOTPORT = eINSTANCE.getSYSTEM_Hw_Iotport();
+		EReference SYSTEM__IOTPORT = eINSTANCE.getSystem_Iotport();
 
 		/**
 		 * The meta object literal for the '<em><b>Server</b></em>' containment reference list feature.
@@ -2016,7 +1816,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SYSTEM_HW__SERVER = eINSTANCE.getSYSTEM_Hw_Server();
+		EReference SYSTEM__SERVER = eINSTANCE.getSystem_Server();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -2024,7 +1824,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SYSTEM_HW__NAME = eINSTANCE.getSYSTEM_Hw_Name();
+		EAttribute SYSTEM__NAME = eINSTANCE.getSystem_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Physicalelement</b></em>' containment reference list feature.
@@ -2032,7 +1832,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SYSTEM_HW__PHYSICALELEMENT = eINSTANCE.getSYSTEM_Hw_Physicalelement();
+		EReference SYSTEM__PHYSICALELEMENT = eINSTANCE.getSystem_Physicalelement();
 
 		/**
 		 * The meta object literal for the '<em><b>System hw</b></em>' reference feature.
@@ -2040,7 +1840,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SYSTEM_HW__SYSTEM_HW = eINSTANCE.getSYSTEM_Hw_System_hw();
+		EReference SYSTEM__SYSTEM_HW = eINSTANCE.getSystem_System_hw();
 
 		/**
 		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ConsumerEntityImpl <em>Consumer Entity</em>}' class.
@@ -2053,32 +1853,32 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		EClass CONSUMER_ENTITY = eINSTANCE.getConsumerEntity();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ActiveImpl <em>Active</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ActiveImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getActive()
-		 * @generated
-		 */
-		EClass ACTIVE = eINSTANCE.getActive();
-
-		/**
 		 * The meta object literal for the '<em><b>Server</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ACTIVE__SERVER = eINSTANCE.getActive_Server();
+		EReference CONSUMER_ENTITY__SERVER = eINSTANCE.getConsumerEntity_Server();
 
 		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PassiveImpl <em>Passive</em>}' class.
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalActiveEntityImpl <em>External Active Entity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PassiveImpl
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getPassive()
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalActiveEntityImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getExternalActiveEntity()
 		 * @generated
 		 */
-		EClass PASSIVE = eINSTANCE.getPassive();
+		EClass EXTERNAL_ACTIVE_ENTITY = eINSTANCE.getExternalActiveEntity();
+
+		/**
+		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalPassiveEntityImpl <em>External Passive Entity</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.ExternalPassiveEntityImpl
+		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getExternalPassiveEntity()
+		 * @generated
+		 */
+		EClass EXTERNAL_PASSIVE_ENTITY = eINSTANCE.getExternalPassiveEntity();
 
 		/**
 		 * The meta object literal for the '<em><b>Physicalentity</b></em>' reference list feature.
@@ -2086,37 +1886,7 @@ public interface CHESSIoTSystemPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PASSIVE__PHYSICALENTITY = eINSTANCE.getPassive_Physicalentity();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel <em>Board Model</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getBoardModel()
-		 * @generated
-		 */
-		EEnum BOARD_MODEL = eINSTANCE.getBoardModel();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType <em>Actuator Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getActuatorType()
-		 * @generated
-		 */
-		EEnum ACTUATOR_TYPE = eINSTANCE.getActuatorType();
-
-		/**
-		 * The meta object literal for the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType <em>Sensor Type</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType
-		 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.CHESSIoTSystemPackageImpl#getSensorType()
-		 * @generated
-		 */
-		EEnum SENSOR_TYPE = eINSTANCE.getSensorType();
+		EReference EXTERNAL_PASSIVE_ENTITY__PHYSICALENTITY = eINSTANCE.getExternalPassiveEntity_Physicalentity();
 
 	}
 

@@ -22,7 +22,6 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker;
  * <ul>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl#isAnonymous <em>Anonymous</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl#isPersistence <em>Persistence</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.MQTTBrokerImpl#getPassword <em>Password</em>}</li>
  * </ul>
@@ -69,26 +68,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 	 * @ordered
 	 */
 	protected boolean anonymous = ANONYMOUS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isPersistence() <em>Persistence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPersistence()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean PERSISTENCE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isPersistence() <em>Persistence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isPersistence()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean persistence = PERSISTENCE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getUsername() <em>Username</em>}' attribute.
@@ -196,27 +175,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isPersistence() {
-		return persistence;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPersistence(boolean newPersistence) {
-		boolean oldPersistence = persistence;
-		persistence = newPersistence;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.MQTT_BROKER__PERSISTENCE, oldPersistence, persistence));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getUsername() {
 		return username;
 	}
@@ -266,8 +224,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 				return getType();
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__ANONYMOUS:
 				return isAnonymous();
-			case CHESSIoTDeploymentPackage.MQTT_BROKER__PERSISTENCE:
-				return isPersistence();
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__USERNAME:
 				return getUsername();
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__PASSWORD:
@@ -289,9 +245,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 				return;
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__ANONYMOUS:
 				setAnonymous((Boolean)newValue);
-				return;
-			case CHESSIoTDeploymentPackage.MQTT_BROKER__PERSISTENCE:
-				setPersistence((Boolean)newValue);
 				return;
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__USERNAME:
 				setUsername((String)newValue);
@@ -317,9 +270,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__ANONYMOUS:
 				setAnonymous(ANONYMOUS_EDEFAULT);
 				return;
-			case CHESSIoTDeploymentPackage.MQTT_BROKER__PERSISTENCE:
-				setPersistence(PERSISTENCE_EDEFAULT);
-				return;
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__USERNAME:
 				setUsername(USERNAME_EDEFAULT);
 				return;
@@ -342,8 +292,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 				return type != TYPE_EDEFAULT;
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__ANONYMOUS:
 				return anonymous != ANONYMOUS_EDEFAULT;
-			case CHESSIoTDeploymentPackage.MQTT_BROKER__PERSISTENCE:
-				return persistence != PERSISTENCE_EDEFAULT;
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__USERNAME:
 				return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
 			case CHESSIoTDeploymentPackage.MQTT_BROKER__PASSWORD:
@@ -366,8 +314,6 @@ public class MQTTBrokerImpl extends ServiceImpl implements MQTTBroker {
 		result.append(type);
 		result.append(", anonymous: ");
 		result.append(anonymous);
-		result.append(", persistence: ");
-		result.append(persistence);
 		result.append(", username: ");
 		result.append(username);
 		result.append(", password: ");

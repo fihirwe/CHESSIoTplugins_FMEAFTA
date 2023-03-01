@@ -35,6 +35,9 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.Service;
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#getServicePriority <em>Service Priority</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#getBase_Class <em>Base Class</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#getService <em>Service</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#isPersistence <em>Persistence</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#isCustomConfig <em>Custom Config</em>}</li>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.impl.ServiceImpl#getConfig <em>Config</em>}</li>
  * </ul>
  *
  * @generated
@@ -149,6 +152,66 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 	 * @ordered
 	 */
 	protected Service service;
+
+	/**
+	 * The default value of the '{@link #isPersistence() <em>Persistence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPersistence()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PERSISTENCE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPersistence() <em>Persistence</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPersistence()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean persistence = PERSISTENCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCustomConfig() <em>Custom Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCustomConfig()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CUSTOM_CONFIG_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCustomConfig() <em>Custom Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCustomConfig()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean customConfig = CUSTOM_CONFIG_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getConfig() <em>Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConfig()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONFIG_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getConfig() <em>Config</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConfig()
+	 * @generated
+	 * @ordered
+	 */
+	protected String config = CONFIG_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -375,6 +438,69 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isPersistence() {
+		return persistence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPersistence(boolean newPersistence) {
+		boolean oldPersistence = persistence;
+		persistence = newPersistence;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.SERVICE__PERSISTENCE, oldPersistence, persistence));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isCustomConfig() {
+		return customConfig;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCustomConfig(boolean newCustomConfig) {
+		boolean oldCustomConfig = customConfig;
+		customConfig = newCustomConfig;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.SERVICE__CUSTOM_CONFIG, oldCustomConfig, customConfig));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getConfig() {
+		return config;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConfig(String newConfig) {
+		String oldConfig = config;
+		config = newConfig;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTDeploymentPackage.SERVICE__CONFIG, oldConfig, config));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -397,6 +523,12 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 			case CHESSIoTDeploymentPackage.SERVICE__SERVICE:
 				if (resolve) return getService();
 				return basicGetService();
+			case CHESSIoTDeploymentPackage.SERVICE__PERSISTENCE:
+				return isPersistence();
+			case CHESSIoTDeploymentPackage.SERVICE__CUSTOM_CONFIG:
+				return isCustomConfig();
+			case CHESSIoTDeploymentPackage.SERVICE__CONFIG:
+				return getConfig();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -436,6 +568,15 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 			case CHESSIoTDeploymentPackage.SERVICE__SERVICE:
 				setService((Service)newValue);
 				return;
+			case CHESSIoTDeploymentPackage.SERVICE__PERSISTENCE:
+				setPersistence((Boolean)newValue);
+				return;
+			case CHESSIoTDeploymentPackage.SERVICE__CUSTOM_CONFIG:
+				setCustomConfig((Boolean)newValue);
+				return;
+			case CHESSIoTDeploymentPackage.SERVICE__CONFIG:
+				setConfig((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -472,6 +613,15 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 			case CHESSIoTDeploymentPackage.SERVICE__SERVICE:
 				setService((Service)null);
 				return;
+			case CHESSIoTDeploymentPackage.SERVICE__PERSISTENCE:
+				setPersistence(PERSISTENCE_EDEFAULT);
+				return;
+			case CHESSIoTDeploymentPackage.SERVICE__CUSTOM_CONFIG:
+				setCustomConfig(CUSTOM_CONFIG_EDEFAULT);
+				return;
+			case CHESSIoTDeploymentPackage.SERVICE__CONFIG:
+				setConfig(CONFIG_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -500,6 +650,12 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 				return base_Class != null;
 			case CHESSIoTDeploymentPackage.SERVICE__SERVICE:
 				return service != null;
+			case CHESSIoTDeploymentPackage.SERVICE__PERSISTENCE:
+				return persistence != PERSISTENCE_EDEFAULT;
+			case CHESSIoTDeploymentPackage.SERVICE__CUSTOM_CONFIG:
+				return customConfig != CUSTOM_CONFIG_EDEFAULT;
+			case CHESSIoTDeploymentPackage.SERVICE__CONFIG:
+				return CONFIG_EDEFAULT == null ? config != null : !CONFIG_EDEFAULT.equals(config);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -524,6 +680,12 @@ public class ServiceImpl extends MinimalEObjectImpl.Container implements Service
 		result.append(volumes);
 		result.append(", servicePriority: ");
 		result.append(servicePriority);
+		result.append(", persistence: ");
+		result.append(persistence);
+		result.append(", customConfig: ");
+		result.append(customConfig);
+		result.append(", config: ");
+		result.append(config);
 		result.append(')');
 		return result.toString();
 	}

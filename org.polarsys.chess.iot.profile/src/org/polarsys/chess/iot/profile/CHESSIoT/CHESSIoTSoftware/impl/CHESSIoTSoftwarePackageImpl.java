@@ -26,6 +26,7 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Actuator;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Assignemt;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwareFactory;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftwarePackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ClockPort;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Condition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.ConditionEvent;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Event;
@@ -44,6 +45,8 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Print;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SYSTEM_Sw;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Send;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.Sensor;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorCategory;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.SensorType;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.StateMachine;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.StateTransition;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.VirtualBoard;
@@ -249,6 +252,27 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 	 * @generated
 	 */
 	private EClass mqttPortEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass clockPortEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum sensorCategoryEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum sensorTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -865,8 +889,35 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSensor_Category() {
+		return (EAttribute)sensorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSensor_Type() {
+		return (EAttribute)sensorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSensor_Pin() {
+		return (EAttribute)sensorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getSensor_Computingnode() {
-		return (EReference)sensorEClass.getEStructuralFeatures().get(0);
+		return (EReference)sensorEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1027,6 +1078,42 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getClockPort() {
+		return clockPortEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getClockPort_Clock() {
+		return (EAttribute)clockPortEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSensorCategory() {
+		return sensorCategoryEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getSensorType() {
+		return sensorTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getAccessMode() {
 		return accessModeEEnum;
 	}
@@ -1134,6 +1221,9 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 		createEReference(virtualBoardEClass, VIRTUAL_BOARD__ACTUATOR);
 
 		sensorEClass = createEClass(SENSOR);
+		createEAttribute(sensorEClass, SENSOR__CATEGORY);
+		createEAttribute(sensorEClass, SENSOR__TYPE);
+		createEAttribute(sensorEClass, SENSOR__PIN);
 		createEReference(sensorEClass, SENSOR__COMPUTINGNODE);
 
 		actuatorEClass = createEClass(ACTUATOR);
@@ -1163,7 +1253,12 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 		createEAttribute(mqttPortEClass, MQTT_PORT__TOPIC);
 		createEAttribute(mqttPortEClass, MQTT_PORT__TYPE);
 
+		clockPortEClass = createEClass(CLOCK_PORT);
+		createEAttribute(clockPortEClass, CLOCK_PORT__CLOCK);
+
 		// Create enums
+		sensorCategoryEEnum = createEEnum(SENSOR_CATEGORY);
+		sensorTypeEEnum = createEEnum(SENSOR_TYPE);
 		accessModeEEnum = createEEnum(ACCESS_MODE);
 	}
 
@@ -1214,6 +1309,7 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 		errorEClass.getESuperTypes().add(this.getGeneric());
 		functionCallEClass.getESuperTypes().add(this.getGeneric());
 		mqttPortEClass.getESuperTypes().add(this.getIoTPort());
+		clockPortEClass.getESuperTypes().add(this.getIoTPort());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(virtualEntityEClass, VirtualEntity.class, "VirtualEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1291,6 +1387,9 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 		initEReference(getVirtualBoard_Actuator(), this.getActuator(), null, "actuator", null, 0, -1, VirtualBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(sensorEClass, Sensor.class, "Sensor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSensor_Category(), this.getSensorCategory(), "category", null, 1, 1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSensor_Type(), this.getSensorType(), "type", null, 1, 1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSensor_Pin(), theTypesPackage.getString(), "pin", "2", 1, -1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSensor_Computingnode(), this.getVirtualBoard(), this.getVirtualBoard_Sensor(), "computingnode", null, 1, 1, Sensor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(actuatorEClass, Actuator.class, "Actuator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1320,7 +1419,36 @@ public class CHESSIoTSoftwarePackageImpl extends EPackageImpl implements CHESSIo
 		initEAttribute(getMQTTPort_Topic(), theTypesPackage.getString(), "topic", null, 1, 1, MQTTPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getMQTTPort_Type(), this.getAccessMode(), "type", null, 1, 1, MQTTPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(clockPortEClass, ClockPort.class, "ClockPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClockPort_Clock(), theTypesPackage.getInteger(), "clock", null, 1, 1, ClockPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
 		// Initialize enums and add enum literals
+		initEEnum(sensorCategoryEEnum, SensorCategory.class, "SensorCategory");
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.TEMP_HUMIDITY);
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.GAZ);
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.PRESSURE);
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.MOTION);
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.ULTRASONIC);
+		addEEnumLiteral(sensorCategoryEEnum, SensorCategory.LIGHT);
+
+		initEEnum(sensorTypeEEnum, SensorType.class, "SensorType");
+		addEEnumLiteral(sensorTypeEEnum, SensorType.TEMP_DHT11);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.TEMP_DHT22);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ2_METHANE_BUTANE_LPG_SMOKE);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ3_ALCOHOL_ETHANOL_SMOKE);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ4_METHANE_CNG_GAS);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ5_NATURAL_GAS_LPG);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ6_LPG_BUTANE_GAS);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ7_CARBON_MONOXIDE);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ8_HYDROGEN_GAS);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ_MQ9_CARBON_MONOXIDE_FLAMMABLE_GASSES);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.PRESSURE_BMP280);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.PRESSURE_DPS310_BAROMETRIC);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.MOTION_HCSR501_PIR_SENSOR);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.ULTRASONIC_HCSR04_ULTRASONIC_SENSOR);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.LIGHT_LDR);
+		addEEnumLiteral(sensorTypeEEnum, SensorType.LIGHT_TSL235R);
+
 		initEEnum(accessModeEEnum, AccessMode.class, "AccessMode");
 		addEEnumLiteral(accessModeEEnum, AccessMode.SUBSCRIBER);
 		addEEnumLiteral(accessModeEEnum, AccessMode.PUBLISHER);

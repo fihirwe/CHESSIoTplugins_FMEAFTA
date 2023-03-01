@@ -4,17 +4,23 @@
 
 [template public generateStorageService(c : Class, EV: Class){
 StorageService : String = 'CHESSIoT::CHESSIoTDeployment::StorageService';}]
-
     [c.name/]:
         image: [c.name/]
         hostname: [EV.name/]
+		container_name: [c.name/]
         ports:
-            [for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'ports'))]
-            - [it.toString()/]:[it.toString()/]
+            [if (c.getValue(c.getAppliedStereotype(StorageService), 'ports')->size()>1)]
+      		[for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'ports'))]
+      		- [it.toString()/]:[it.toString()/]
+      		[/for]
+      		[else] #no ports specified
+			[/if]
+		[if (c.getValue(c.getAppliedStereotype(StorageService), 'persistence').toString().toLowerCase().contains('true'))]
+		volumes:
+			[for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'volumes'))]
+            - [it.toString()/]:[c.name/]_data_[i/]
             [/for]
-        volumes:
-            [for(it : OclAny | c.getValue(c.getAppliedStereotype(StorageService), 'volumes'))]
-            - [it.toString()/]:[it.toString()/]
-            [/for]
-
+		[/if]
+		networks:
+		- [c.name/]_net
 [/template]

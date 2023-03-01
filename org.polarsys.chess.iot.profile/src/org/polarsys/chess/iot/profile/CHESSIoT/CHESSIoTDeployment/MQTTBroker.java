@@ -14,7 +14,6 @@ package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment;
  * <ul>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#getType <em>Type</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#isAnonymous <em>Anonymous</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#isPersistence <em>Persistence</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#getUsername <em>Username</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#getPassword <em>Password</em>}</li>
  * </ul>
@@ -78,32 +77,6 @@ public interface MQTTBroker extends Service {
 	 * @generated
 	 */
 	void setAnonymous(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Persistence</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Persistence</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Persistence</em>' attribute.
-	 * @see #setPersistence(boolean)
-	 * @see org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.CHESSIoTDeploymentPackage#getMQTTBroker_Persistence()
-	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isPersistence();
-
-	/**
-	 * Sets the value of the '{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTDeployment.MQTTBroker#isPersistence <em>Persistence</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Persistence</em>' attribute.
-	 * @see #isPersistence()
-	 * @generated
-	 */
-	void setPersistence(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Username</b></em>' attribute.

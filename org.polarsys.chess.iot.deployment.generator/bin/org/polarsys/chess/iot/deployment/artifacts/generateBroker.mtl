@@ -5,28 +5,26 @@
 [template public generateBroker(c : Class, EV: Class,path:String){
 MQTTBroker : String = 'CHESSIoT::CHESSIoTDeployment::MQTTBroker';}]
 [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'type').toString().toLowerCase().contains('mosquitto'))]
-  [c.name/]:
-    image: eclipse-mosquitto
-    hostname: [EV.name/]
-    container_name: [c.name/]
-    ports:
-	  [if (not c.getValue(c.getAppliedStereotype(MQTTBroker), 'volumes')->isEmpty())]
-      [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
-      [if(it.toString().contains('1883'))]- [it.toString()/]:1883 /tcp[elseif (it.toString().contains('9001'))]- [it.toString()/]:9001 /udp[/if]
-      [/for]
-      [else]
-      [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/]
-      - 1883:1883 /tcp
-      - 9001:9001 /udp
-      [/if]
-    [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
-    volumes:
-      - ./conf:/mosquitto/conf
-      - ./data:/mosquitto/data
-      - ./log:/mosquitto/log
+[c.name/]:
+  image: eclipse-mosquitto
+  hostname: [EV.name/]
+  container_name: [c.name/]
+  ports:
+    [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports')->size()>1)]
+    [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
+    [if(it.toString().contains('1883'))]- [it.toString()/]:1883 /tcp[elseif (it.toString().contains('9001'))]- [it.toString()/]:9001 /udp[else]- [it.toString()/]:[it.toString()/][/if]
+    [/for][else][comment]    [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/][/comment]
+    - 1883:1883 /tcp
+    - 9001:9001 /udp
     [/if]
-    networks:
-      - [c.name/]_net
+  [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
+  volumes:
+    - ./conf:/mosquitto/conf
+    - ./data:/mosquitto/data
+    - ./log:/mosquitto/log
+  [/if]
+  networks:
+    - [c.name/]_net
 [file (path+'mosquitto.conf', false, 'UTF-8')]
 [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
 persistence true
@@ -50,25 +48,25 @@ password: [c.getValue(c.getAppliedStereotype(MQTTBroker), 'password')/]
 [/file]
 [elseif (c.getValue(c.getAppliedStereotype(MQTTBroker), 'type').toString().toLowerCase().contains('rabbitmq'))]
   [c.name/]:
-    image: rabbitmq:3-management-alpine
-    hostname: [EV.name/]
-    container_name: [c.name/]
-    ports:
-	  [if (not c.getValue(c.getAppliedStereotype(MQTTBroker), 'volumes')->isEmpty())]
-      [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
-      [if(it.toString().contains('5672'))]- [it.toString()/]:5672 /tcp[elseif (it.toString().contains('15672'))]- [it.toString()/]:15672 /udp[/if]
-      [/for]
-      [else]
-      [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/]
-      - 5672:5672 /tcp
-      - 15672:15672 /udp
-      [/if]
-    [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
-    volumes:
-      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  image: rabbitmq:3-management-alpine
+  hostname: [EV.name/]
+  container_name: [c.name/]
+  ports:
+	[if (not c.getValue(c.getAppliedStereotype(MQTTBroker), 'volumes')->isEmpty())]
+    [for(it : OclAny | c.getValue(c.getAppliedStereotype(MQTTBroker), 'ports'))]
+    [if(it.toString().contains('5672'))]- [it.toString()/]:5672 /tcp[elseif (it.toString().contains('15672'))]- [it.toString()/]:15672 /udp[/if]
+    [/for]
+    [else]
+    [printMe('No ports was been specified on '+c.name+' service , Default ports will be used instead')/]
+    - 5672:5672 /tcp
+    - 15672:15672 /udp
     [/if]
-    networks:
-      - [c.name/]_net
+  [if (c.getValue(c.getAppliedStereotype(MQTTBroker), 'persistence').toString().toLowerCase().contains('true'))]
+  volumes:
+    - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+    - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+  [/if]
+  networks:
+    - [c.name/]_net
 [/if]
 [/template]

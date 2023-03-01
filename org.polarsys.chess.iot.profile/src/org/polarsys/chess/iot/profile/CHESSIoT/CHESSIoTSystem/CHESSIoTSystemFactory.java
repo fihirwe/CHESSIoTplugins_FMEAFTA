@@ -103,13 +103,13 @@ public interface CHESSIoTSystemFactory extends EFactory {
 	Connection createConnection();
 
 	/**
-	 * Returns a new object of class '<em>SYSTEM Hw</em>'.
+	 * Returns a new object of class '<em>System</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>SYSTEM Hw</em>'.
+	 * @return a new object of class '<em>System</em>'.
 	 * @generated
 	 */
-	SYSTEM_Hw createSYSTEM_Hw();
+	System createSystem();
 
 	/**
 	 * Returns a new object of class '<em>Consumer Entity</em>'.
@@ -121,22 +121,22 @@ public interface CHESSIoTSystemFactory extends EFactory {
 	ConsumerEntity createConsumerEntity();
 
 	/**
-	 * Returns a new object of class '<em>Active</em>'.
+	 * Returns a new object of class '<em>External Active Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Active</em>'.
+	 * @return a new object of class '<em>External Active Entity</em>'.
 	 * @generated
 	 */
-	Active createActive();
+	ExternalActiveEntity createExternalActiveEntity();
 
 	/**
-	 * Returns a new object of class '<em>Passive</em>'.
+	 * Returns a new object of class '<em>External Passive Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Passive</em>'.
+	 * @return a new object of class '<em>External Passive Entity</em>'.
 	 * @generated
 	 */
-	Passive createPassive();
+	ExternalPassiveEntity createExternalPassiveEntity();
 
 	/**
 	 * Returns the package supported by this factory.

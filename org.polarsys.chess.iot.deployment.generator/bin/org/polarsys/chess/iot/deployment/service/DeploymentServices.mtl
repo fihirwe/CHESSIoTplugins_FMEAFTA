@@ -31,6 +31,11 @@
 = invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getSubClass(org.eclipse.uml2.uml.Component,org.eclipse.uml2.uml.Package)', Sequence{c,aPackage})
 /]
 
+[query public getSubComponent(c : Component, aPackage: Package) : Sequence(Component) 
+= invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getSubComponent(org.eclipse.uml2.uml.Component,org.eclipse.uml2.uml.Package)', Sequence{c,aPackage})
+/]
+
+
 [query public getSubComNames(component : Component) : Sequence(String) 
 = invoke('org.polarsys.chess.iot.deployment.service.DeploymentServices','getSubComNames(org.eclipse.uml2.uml.Component)', Sequence{component})
 /]

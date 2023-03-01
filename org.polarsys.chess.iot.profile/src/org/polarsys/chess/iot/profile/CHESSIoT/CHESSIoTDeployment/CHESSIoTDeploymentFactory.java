@@ -40,31 +40,31 @@ public interface CHESSIoTDeploymentFactory extends EFactory {
 	MQTTBroker createMQTTBroker();
 
 	/**
-	 * Returns a new object of class '<em>Orchestrating Agent</em>'.
+	 * Returns a new object of class '<em>Deployment Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Orchestrating Agent</em>'.
+	 * @return a new object of class '<em>Deployment Agent</em>'.
 	 * @generated
 	 */
-	OrchestratingAgent createOrchestratingAgent();
+	DeploymentAgent createDeploymentAgent();
 
 	/**
-	 * Returns a new object of class '<em>End User Application</em>'.
+	 * Returns a new object of class '<em>Application</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>End User Application</em>'.
+	 * @return a new object of class '<em>Application</em>'.
 	 * @generated
 	 */
-	EndUserApplication createEndUserApplication();
+	Application createApplication();
 
 	/**
-	 * Returns a new object of class '<em>Cloud Orchestrator</em>'.
+	 * Returns a new object of class '<em>Cloud Dep Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Cloud Orchestrator</em>'.
+	 * @return a new object of class '<em>Cloud Dep Agent</em>'.
 	 * @generated
 	 */
-	CloudOrchestrator createCloudOrchestrator();
+	CloudDepAgent createCloudDepAgent();
 
 	/**
 	 * Returns a new object of class '<em>Fog Node</em>'.
@@ -85,6 +85,15 @@ public interface CHESSIoTDeploymentFactory extends EFactory {
 	Node createNode();
 
 	/**
+	 * Returns a new object of class '<em>Machine</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Machine</em>'.
+	 * @generated
+	 */
+	Machine createMachine();
+
+	/**
 	 * Returns a new object of class '<em>Device Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,31 +103,13 @@ public interface CHESSIoTDeploymentFactory extends EFactory {
 	DeviceNode createDeviceNode();
 
 	/**
-	 * Returns a new object of class '<em>Device Resources</em>'.
+	 * Returns a new object of class '<em>On Device App</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Device Resources</em>'.
+	 * @return a new object of class '<em>On Device App</em>'.
 	 * @generated
 	 */
-	DeviceResources createDeviceResources();
-
-	/**
-	 * Returns a new object of class '<em>Fog Orchestrator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fog Orchestrator</em>'.
-	 * @generated
-	 */
-	FogOrchestrator createFogOrchestrator();
-
-	/**
-	 * Returns a new object of class '<em>Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Container</em>'.
-	 * @generated
-	 */
-	Container createContainer();
+	OnDeviceApp createOnDeviceApp();
 
 	/**
 	 * Returns a new object of class '<em>Cloud Node</em>'.
@@ -128,6 +119,15 @@ public interface CHESSIoTDeploymentFactory extends EFactory {
 	 * @generated
 	 */
 	CloudNode createCloudNode();
+
+	/**
+	 * Returns a new object of class '<em>Fog Dep Agent</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fog Dep Agent</em>'.
+	 * @generated
+	 */
+	FogDepAgent createFogDepAgent();
 
 	/**
 	 * Returns a new object of class '<em>External Service</em>'.
@@ -166,13 +166,22 @@ public interface CHESSIoTDeploymentFactory extends EFactory {
 	System createSystem();
 
 	/**
-	 * Returns a new object of class '<em>Orchestrating Server</em>'.
+	 * Returns a new object of class '<em>Deployment Server</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Orchestrating Server</em>'.
+	 * @return a new object of class '<em>Deployment Server</em>'.
 	 * @generated
 	 */
-	OrchestratingServer createOrchestratingServer();
+	DeploymentServer createDeploymentServer();
+
+	/**
+	 * Returns a new object of class '<em>Device Dep Agent</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Device Dep Agent</em>'.
+	 * @generated
+	 */
+	DeviceDepAgent createDeviceDepAgent();
 
 	/**
 	 * Returns the package supported by this factory.

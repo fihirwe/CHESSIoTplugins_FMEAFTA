@@ -4,7 +4,6 @@ package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -28,23 +27,19 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.CHESSIoTSoftware
 
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSoftware.impl.CHESSIoTSoftwarePackageImpl;
 
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Active;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatingBlock;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatorType;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.BoardModel;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemFactory;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Gateway;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.IoTPort;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Passive;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SYSTEM_Hw;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorBlock;
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorType;
 import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server;
 
 /**
@@ -122,7 +117,7 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass systeM_HwEClass = null;
+	private EClass systemEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -136,35 +131,14 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass activeEClass = null;
+	private EClass externalActiveEntityEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass passiveEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum boardModelEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum actuatorTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum sensorTypeEEnum = null;
+	private EClass externalPassiveEntityEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -306,7 +280,7 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPhysicalElement_Name() {
+	public EAttribute getPhysicalElement_Id() {
 		return (EAttribute)physicalElementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -315,7 +289,7 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPhysicalElement_Latitude() {
+	public EAttribute getPhysicalElement_Name() {
 		return (EAttribute)physicalElementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -324,17 +298,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPhysicalElement_Longitude() {
-		return (EAttribute)physicalElementEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getPhysicalElement_Iotport() {
-		return (EReference)physicalElementEClass.getEStructuralFeatures().get(3);
+		return (EReference)physicalElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -396,17 +361,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getServer_OpSystem() {
-		return (EAttribute)serverEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getServer_Iotport() {
-		return (EReference)serverEClass.getEStructuralFeatures().get(1);
+		return (EReference)serverEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -450,17 +406,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getPhysicalEntity_Id() {
-		return (EAttribute)physicalEntityEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getPhysicalEntity_Physicalentity() {
-		return (EReference)physicalEntityEClass.getEStructuralFeatures().get(1);
+		return (EReference)physicalEntityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -531,8 +478,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConnection_CommMode() {
-		return (EAttribute)connectionEClass.getEStructuralFeatures().get(2);
+	public EClass getSystem() {
+		return systemEClass;
 	}
 
 	/**
@@ -540,8 +487,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSYSTEM_Hw() {
-		return systeM_HwEClass;
+	public EReference getSystem_Physicalentity() {
+		return (EReference)systemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -549,8 +496,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSYSTEM_Hw_Physicalentity() {
-		return (EReference)systeM_HwEClass.getEStructuralFeatures().get(0);
+	public EReference getSystem_Iotport() {
+		return (EReference)systemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -558,8 +505,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSYSTEM_Hw_Iotport() {
-		return (EReference)systeM_HwEClass.getEStructuralFeatures().get(1);
+	public EReference getSystem_Server() {
+		return (EReference)systemEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -567,8 +514,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSYSTEM_Hw_Server() {
-		return (EReference)systeM_HwEClass.getEStructuralFeatures().get(2);
+	public EAttribute getSystem_Name() {
+		return (EAttribute)systemEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -576,8 +523,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSYSTEM_Hw_Name() {
-		return (EAttribute)systeM_HwEClass.getEStructuralFeatures().get(3);
+	public EReference getSystem_Physicalelement() {
+		return (EReference)systemEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -585,17 +532,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSYSTEM_Hw_Physicalelement() {
-		return (EReference)systeM_HwEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSYSTEM_Hw_System_hw() {
-		return (EReference)systeM_HwEClass.getEStructuralFeatures().get(5);
+	public EReference getSystem_System_hw() {
+		return (EReference)systemEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -612,8 +550,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getActive() {
-		return activeEClass;
+	public EReference getConsumerEntity_Server() {
+		return (EReference)consumerEntityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -621,8 +559,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getActive_Server() {
-		return (EReference)activeEClass.getEStructuralFeatures().get(0);
+	public EClass getExternalActiveEntity() {
+		return externalActiveEntityEClass;
 	}
 
 	/**
@@ -630,8 +568,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getPassive() {
-		return passiveEClass;
+	public EClass getExternalPassiveEntity() {
+		return externalPassiveEntityEClass;
 	}
 
 	/**
@@ -639,35 +577,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPassive_Physicalentity() {
-		return (EReference)passiveEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getBoardModel() {
-		return boardModelEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getActuatorType() {
-		return actuatorTypeEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEnum getSensorType() {
-		return sensorTypeEEnum;
+	public EReference getExternalPassiveEntity_Physicalentity() {
+		return (EReference)externalPassiveEntityEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -706,9 +617,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		createEReference(physicalBoardEClass, PHYSICAL_BOARD__PHYSICALENTITY);
 
 		physicalElementEClass = createEClass(PHYSICAL_ELEMENT);
+		createEAttribute(physicalElementEClass, PHYSICAL_ELEMENT__ID);
 		createEAttribute(physicalElementEClass, PHYSICAL_ELEMENT__NAME);
-		createEAttribute(physicalElementEClass, PHYSICAL_ELEMENT__LATITUDE);
-		createEAttribute(physicalElementEClass, PHYSICAL_ELEMENT__LONGITUDE);
 		createEReference(physicalElementEClass, PHYSICAL_ELEMENT__IOTPORT);
 
 		ioTPortEClass = createEClass(IO_TPORT);
@@ -719,7 +629,6 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		createEReference(gatewayEClass, GATEWAY__COMPUTINGBOARD);
 
 		serverEClass = createEClass(SERVER);
-		createEAttribute(serverEClass, SERVER__OP_SYSTEM);
 		createEReference(serverEClass, SERVER__IOTPORT);
 
 		actuatingBlockEClass = createEClass(ACTUATING_BLOCK);
@@ -727,7 +636,6 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		createEReference(actuatingBlockEClass, ACTUATING_BLOCK__PHYSICALENTITY);
 
 		physicalEntityEClass = createEClass(PHYSICAL_ENTITY);
-		createEAttribute(physicalEntityEClass, PHYSICAL_ENTITY__ID);
 		createEReference(physicalEntityEClass, PHYSICAL_ENTITY__PHYSICALENTITY);
 
 		sensorBlockEClass = createEClass(SENSOR_BLOCK);
@@ -738,28 +646,22 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		connectionEClass = createEClass(CONNECTION);
 		createEReference(connectionEClass, CONNECTION__BASE_CONNECTOR);
 		createEReference(connectionEClass, CONNECTION__IOTPORT);
-		createEAttribute(connectionEClass, CONNECTION__COMM_MODE);
 
-		systeM_HwEClass = createEClass(SYSTEM_HW);
-		createEReference(systeM_HwEClass, SYSTEM_HW__PHYSICALENTITY);
-		createEReference(systeM_HwEClass, SYSTEM_HW__IOTPORT);
-		createEReference(systeM_HwEClass, SYSTEM_HW__SERVER);
-		createEAttribute(systeM_HwEClass, SYSTEM_HW__NAME);
-		createEReference(systeM_HwEClass, SYSTEM_HW__PHYSICALELEMENT);
-		createEReference(systeM_HwEClass, SYSTEM_HW__SYSTEM_HW);
+		systemEClass = createEClass(SYSTEM);
+		createEReference(systemEClass, SYSTEM__PHYSICALENTITY);
+		createEReference(systemEClass, SYSTEM__IOTPORT);
+		createEReference(systemEClass, SYSTEM__SERVER);
+		createEAttribute(systemEClass, SYSTEM__NAME);
+		createEReference(systemEClass, SYSTEM__PHYSICALELEMENT);
+		createEReference(systemEClass, SYSTEM__SYSTEM_HW);
 
 		consumerEntityEClass = createEClass(CONSUMER_ENTITY);
+		createEReference(consumerEntityEClass, CONSUMER_ENTITY__SERVER);
 
-		activeEClass = createEClass(ACTIVE);
-		createEReference(activeEClass, ACTIVE__SERVER);
+		externalActiveEntityEClass = createEClass(EXTERNAL_ACTIVE_ENTITY);
 
-		passiveEClass = createEClass(PASSIVE);
-		createEReference(passiveEClass, PASSIVE__PHYSICALENTITY);
-
-		// Create enums
-		boardModelEEnum = createEEnum(BOARD_MODEL);
-		actuatorTypeEEnum = createEEnum(ACTUATOR_TYPE);
-		sensorTypeEEnum = createEEnum(SENSOR_TYPE);
+		externalPassiveEntityEClass = createEClass(EXTERNAL_PASSIVE_ENTITY);
+		createEReference(externalPassiveEntityEClass, EXTERNAL_PASSIVE_ENTITY__PHYSICALENTITY);
 	}
 
 	/**
@@ -786,8 +688,8 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		BlocksPackage theBlocksPackage = (BlocksPackage)EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		BlocksPackage theBlocksPackage = (BlocksPackage)EPackage.Registry.INSTANCE.getEPackage(BlocksPackage.eNS_URI);
 		PortandflowsPackage thePortandflowsPackage = (PortandflowsPackage)EPackage.Registry.INSTANCE.getEPackage(PortandflowsPackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
@@ -804,23 +706,22 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		actuatingBlockEClass.getESuperTypes().add(this.getPhysicalElement());
 		physicalEntityEClass.getESuperTypes().add(this.getPhysicalElement());
 		sensorBlockEClass.getESuperTypes().add(this.getPhysicalElement());
-		systeM_HwEClass.getESuperTypes().add(theBlocksPackage.getBlock());
+		systemEClass.getESuperTypes().add(theBlocksPackage.getBlock());
 		consumerEntityEClass.getESuperTypes().add(theBlocksPackage.getBlock());
-		activeEClass.getESuperTypes().add(this.getConsumerEntity());
-		passiveEClass.getESuperTypes().add(this.getConsumerEntity());
+		externalActiveEntityEClass.getESuperTypes().add(this.getConsumerEntity());
+		externalPassiveEntityEClass.getESuperTypes().add(this.getConsumerEntity());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(physicalBoardEClass, PhysicalBoard.class, "PhysicalBoard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPhysicalBoard_Model(), this.getBoardModel(), "model", null, 1, 1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPhysicalBoard_Model(), theTypesPackage.getString(), "model", null, 1, 1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalBoard_Gateway(), this.getGateway(), this.getGateway_Computingboard(), "gateway", null, 1, -1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalBoard_Actuatingblock(), this.getActuatingBlock(), null, "actuatingblock", null, 1, -1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalBoard_Sensorblock(), this.getSensorBlock(), this.getSensorBlock_Computingboard(), "sensorblock", null, 1, -1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalBoard_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, 1, PhysicalBoard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(physicalElementEClass, PhysicalElement.class, "PhysicalElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPhysicalElement_Id(), theTypesPackage.getString(), "id", null, 1, 1, PhysicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getPhysicalElement_Name(), theTypesPackage.getString(), "name", null, 1, 1, PhysicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPhysicalElement_Latitude(), theTypesPackage.getString(), "latitude", null, 1, 1, PhysicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPhysicalElement_Longitude(), theTypesPackage.getString(), "longitude", null, 1, 1, PhysicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalElement_Iotport(), this.getIoTPort(), null, "iotport", null, 1, -1, PhysicalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(ioTPortEClass, IoTPort.class, "IoTPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -831,7 +732,6 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		initEReference(getGateway_Computingboard(), this.getPhysicalBoard(), this.getPhysicalBoard_Gateway(), "computingboard", null, 1, -1, Gateway.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(serverEClass, Server.class, "Server", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getServer_OpSystem(), theTypesPackage.getString(), "opSystem", null, 1, 1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getServer_Iotport(), this.getIoTPort(), null, "iotport", null, 1, -1, Server.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(actuatingBlockEClass, ActuatingBlock.class, "ActuatingBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -839,7 +739,6 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		initEReference(getActuatingBlock_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, 1, ActuatingBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(physicalEntityEClass, PhysicalEntity.class, "PhysicalEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPhysicalEntity_Id(), theTypesPackage.getInteger(), "id", null, 1, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPhysicalEntity_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, 1, PhysicalEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(sensorBlockEClass, SensorBlock.class, "SensorBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -850,47 +749,22 @@ public class CHESSIoTSystemPackageImpl extends EPackageImpl implements CHESSIoTS
 		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConnection_Base_Connector(), theUMLPackage.getConnector(), null, "base_Connector", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getConnection_Iotport(), this.getIoTPort(), null, "iotport", null, 1, 2, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getConnection_CommMode(), theTypesPackage.getString(), "commMode", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(systeM_HwEClass, SYSTEM_Hw.class, "SYSTEM_Hw", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSYSTEM_Hw_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, -1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSYSTEM_Hw_Iotport(), this.getIoTPort(), null, "iotport", null, 1, -1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSYSTEM_Hw_Server(), this.getServer(), null, "server", null, 1, -1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSYSTEM_Hw_Name(), theTypesPackage.getString(), "name", null, 1, 1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSYSTEM_Hw_Physicalelement(), this.getPhysicalElement(), null, "physicalelement", null, 1, -1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSYSTEM_Hw_System_hw(), this.getSYSTEM_Hw(), null, "system_hw", null, 1, 1, SYSTEM_Hw.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(systemEClass, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, "System", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSystem_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, -1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSystem_Iotport(), this.getIoTPort(), null, "iotport", null, 1, -1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSystem_Server(), this.getServer(), null, "server", null, 1, -1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSystem_Name(), theTypesPackage.getString(), "name", null, 1, 1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSystem_Physicalelement(), this.getPhysicalElement(), null, "physicalelement", null, 1, -1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSystem_System_hw(), this.getSystem(), null, "system_hw", null, 1, 1, org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(consumerEntityEClass, ConsumerEntity.class, "ConsumerEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConsumerEntity_Server(), this.getServer(), null, "server", null, 1, -1, ConsumerEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(activeEClass, Active.class, "Active", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActive_Server(), this.getServer(), null, "server", null, 1, -1, Active.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(externalActiveEntityEClass, ExternalActiveEntity.class, "ExternalActiveEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(passiveEClass, Passive.class, "Passive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPassive_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, -1, Passive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(boardModelEEnum, BoardModel.class, "BoardModel");
-		addEEnumLiteral(boardModelEEnum, BoardModel.RASBERRY_PI);
-		addEEnumLiteral(boardModelEEnum, BoardModel.ARDUINO);
-		addEEnumLiteral(boardModelEEnum, BoardModel.TEENSY);
-		addEEnumLiteral(boardModelEEnum, BoardModel.BEAGLE_BONE_BLACK);
-		addEEnumLiteral(boardModelEEnum, BoardModel.ADAFRUIT);
-		addEEnumLiteral(boardModelEEnum, BoardModel.THINGS_BOARD);
-		addEEnumLiteral(boardModelEEnum, BoardModel.OTHER);
-
-		initEEnum(actuatorTypeEEnum, ActuatorType.class, "ActuatorType");
-		addEEnumLiteral(actuatorTypeEEnum, ActuatorType.LED);
-		addEEnumLiteral(actuatorTypeEEnum, ActuatorType.BUZZER);
-		addEEnumLiteral(actuatorTypeEEnum, ActuatorType.SERVO);
-		addEEnumLiteral(actuatorTypeEEnum, ActuatorType.OTHER);
-
-		initEEnum(sensorTypeEEnum, SensorType.class, "SensorType");
-		addEEnumLiteral(sensorTypeEEnum, SensorType.HUMIDITY);
-		addEEnumLiteral(sensorTypeEEnum, SensorType.TEMPERATURE);
-		addEEnumLiteral(sensorTypeEEnum, SensorType.GAZ);
-		addEEnumLiteral(sensorTypeEEnum, SensorType.MOTION);
-		addEEnumLiteral(sensorTypeEEnum, SensorType.ULTRASONIC);
-		addEEnumLiteral(sensorTypeEEnum, SensorType.OTHER);
+		initEClass(externalPassiveEntityEClass, ExternalPassiveEntity.class, "ExternalPassiveEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExternalPassiveEntity_Physicalentity(), this.getPhysicalEntity(), null, "physicalentity", null, 1, -1, ExternalPassiveEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

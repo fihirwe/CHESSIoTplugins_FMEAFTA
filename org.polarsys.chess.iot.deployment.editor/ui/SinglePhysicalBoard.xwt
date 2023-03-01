@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalBoard:model"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalElement:id"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalElement:name"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="2"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:BooleanRadio input="{Binding}"
+			property="SysML:Blocks:Block:isEncapsulated"></ppe:BooleanRadio>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalBoard:physicalentity"></ppe:ReferenceDialog>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalBoard:gateway"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalBoard:actuatingblock"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalBoard:sensorblock"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="CHESSIoT:CHESSIoTSystem:PhysicalElement:iotport"></ppe:MultiReference>
+	</Composite>
+</Composite>

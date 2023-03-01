@@ -3,7 +3,6 @@
 package org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -11,7 +10,20 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.*;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ActuatingBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemFactory;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.CHESSIoTSystemPackage;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Connection;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ConsumerEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalActiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.ExternalPassiveEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Gateway;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.IoTPort;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalBoard;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalEntity;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.SensorBlock;
+import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.Server;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,50 +78,12 @@ public class CHESSIoTSystemFactoryImpl extends EFactoryImpl implements CHESSIoTS
 			case CHESSIoTSystemPackage.PHYSICAL_ENTITY: return createPhysicalEntity();
 			case CHESSIoTSystemPackage.SENSOR_BLOCK: return createSensorBlock();
 			case CHESSIoTSystemPackage.CONNECTION: return createConnection();
-			case CHESSIoTSystemPackage.SYSTEM_HW: return createSYSTEM_Hw();
+			case CHESSIoTSystemPackage.SYSTEM: return createSystem();
 			case CHESSIoTSystemPackage.CONSUMER_ENTITY: return createConsumerEntity();
-			case CHESSIoTSystemPackage.ACTIVE: return createActive();
-			case CHESSIoTSystemPackage.PASSIVE: return createPassive();
+			case CHESSIoTSystemPackage.EXTERNAL_ACTIVE_ENTITY: return createExternalActiveEntity();
+			case CHESSIoTSystemPackage.EXTERNAL_PASSIVE_ENTITY: return createExternalPassiveEntity();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case CHESSIoTSystemPackage.BOARD_MODEL:
-				return createBoardModelFromString(eDataType, initialValue);
-			case CHESSIoTSystemPackage.ACTUATOR_TYPE:
-				return createActuatorTypeFromString(eDataType, initialValue);
-			case CHESSIoTSystemPackage.SENSOR_TYPE:
-				return createSensorTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case CHESSIoTSystemPackage.BOARD_MODEL:
-				return convertBoardModelToString(eDataType, instanceValue);
-			case CHESSIoTSystemPackage.ACTUATOR_TYPE:
-				return convertActuatorTypeToString(eDataType, instanceValue);
-			case CHESSIoTSystemPackage.SENSOR_TYPE:
-				return convertSensorTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -208,9 +182,9 @@ public class CHESSIoTSystemFactoryImpl extends EFactoryImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SYSTEM_Hw createSYSTEM_Hw() {
-		SYSTEM_HwImpl systeM_Hw = new SYSTEM_HwImpl();
-		return systeM_Hw;
+	public org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.System createSystem() {
+		SystemImpl system = new SystemImpl();
+		return system;
 	}
 
 	/**
@@ -228,9 +202,9 @@ public class CHESSIoTSystemFactoryImpl extends EFactoryImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Active createActive() {
-		ActiveImpl active = new ActiveImpl();
-		return active;
+	public ExternalActiveEntity createExternalActiveEntity() {
+		ExternalActiveEntityImpl externalActiveEntity = new ExternalActiveEntityImpl();
+		return externalActiveEntity;
 	}
 
 	/**
@@ -238,69 +212,9 @@ public class CHESSIoTSystemFactoryImpl extends EFactoryImpl implements CHESSIoTS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Passive createPassive() {
-		PassiveImpl passive = new PassiveImpl();
-		return passive;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoardModel createBoardModelFromString(EDataType eDataType, String initialValue) {
-		BoardModel result = BoardModel.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertBoardModelToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ActuatorType createActuatorTypeFromString(EDataType eDataType, String initialValue) {
-		ActuatorType result = ActuatorType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertActuatorTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SensorType createSensorTypeFromString(EDataType eDataType, String initialValue) {
-		SensorType result = SensorType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertSensorTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public ExternalPassiveEntity createExternalPassiveEntity() {
+		ExternalPassiveEntityImpl externalPassiveEntity = new ExternalPassiveEntityImpl();
+		return externalPassiveEntity;
 	}
 
 	/**

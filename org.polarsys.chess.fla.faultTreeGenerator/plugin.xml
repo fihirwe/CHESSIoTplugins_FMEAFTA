@@ -52,7 +52,7 @@
                label="Dependability">
             <command
                   commandId="ftaGenerator.commands.generateFTA"
-                  label="Generate FT via Concerto-FLA"
+                  label="Generate the Fault-Tree"
                   style="push">
             </command>
          </menu>

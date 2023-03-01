@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns="http://www.eclipse.org/xwt/presentation"
+	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESS:Dependability:DependableComponent:FailureMode:description"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESS:Dependability:DependableComponent:FailureMode:severity"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESS:Dependability:DependableComponent:FailureMode:exposure"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESS:Dependability:DependableComponent:FailureMode:controllability"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="CHESS:Dependability:DependableComponent:FailureMode:likelihood "></ppe:StringEditor>
+	</Composite>
+</Composite>

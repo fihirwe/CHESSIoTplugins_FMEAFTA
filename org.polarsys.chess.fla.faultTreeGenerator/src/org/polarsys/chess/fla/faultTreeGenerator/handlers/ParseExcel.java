@@ -67,7 +67,8 @@ public class ParseExcel {
 			String desc= failureData.getName().toLowerCase();
 			if (desc.contains(name[0].toLowerCase()) && desc.contains(name[1].toLowerCase()) && desc.contains(name[2].toLowerCase())) {
 				if (failureData.getDescription().replaceAll(" ", "").length()>0) {
-						return name[0]+"+"+name[1]+" \n--------------\n "+basic+failureData.getDescription();
+//						return name[0]+"+"+name[1]+" \n--------------\n "+basic+failureData.getDescription();
+					return name[0]+"+"+name[1]+" \n--------------\n "+failureData.getDescription(); // REMOVED THE BASIC PART TO SAVE SPACE IN THE EVENT BOX
 				}
 
 			}

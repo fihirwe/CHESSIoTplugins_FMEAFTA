@@ -31,15 +31,34 @@ import org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.PhysicalElement;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalElementImpl#getLatitude <em>Latitude</em>}</li>
- *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalElementImpl#getLongitude <em>Longitude</em>}</li>
  *   <li>{@link org.polarsys.chess.iot.profile.CHESSIoT.CHESSIoTSystem.impl.PhysicalElementImpl#getIotport <em>Iotport</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
+	/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -59,46 +78,6 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLatitude()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LATITUDE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLatitude() <em>Latitude</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLatitude()
-	 * @generated
-	 * @ordered
-	 */
-	protected String latitude = LATITUDE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLongitude()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LONGITUDE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLongitude() <em>Longitude</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLongitude()
-	 * @generated
-	 * @ordered
-	 */
-	protected String longitude = LONGITUDE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getIotport() <em>Iotport</em>}' containment reference list.
@@ -134,6 +113,27 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_ELEMENT__ID, oldId, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getName() {
 		return name;
 	}
@@ -148,48 +148,6 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_ELEMENT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLatitude() {
-		return latitude;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLatitude(String newLatitude) {
-		String oldLatitude = latitude;
-		latitude = newLatitude;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LATITUDE, oldLatitude, latitude));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getLongitude() {
-		return longitude;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLongitude(String newLongitude) {
-		String oldLongitude = longitude;
-		longitude = newLongitude;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LONGITUDE, oldLongitude, longitude));
 	}
 
 	/**
@@ -226,12 +184,10 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__ID:
+				return getId();
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__NAME:
 				return getName();
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LATITUDE:
-				return getLatitude();
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LONGITUDE:
-				return getLongitude();
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__IOTPORT:
 				return getIotport();
 		}
@@ -247,14 +203,11 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__ID:
+				setId((String)newValue);
+				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__NAME:
 				setName((String)newValue);
-				return;
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LATITUDE:
-				setLatitude((String)newValue);
-				return;
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LONGITUDE:
-				setLongitude((String)newValue);
 				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__IOTPORT:
 				getIotport().clear();
@@ -272,14 +225,11 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__ID:
+				setId(ID_EDEFAULT);
+				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__NAME:
 				setName(NAME_EDEFAULT);
-				return;
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LATITUDE:
-				setLatitude(LATITUDE_EDEFAULT);
-				return;
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LONGITUDE:
-				setLongitude(LONGITUDE_EDEFAULT);
 				return;
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__IOTPORT:
 				getIotport().clear();
@@ -296,12 +246,10 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LATITUDE:
-				return LATITUDE_EDEFAULT == null ? latitude != null : !LATITUDE_EDEFAULT.equals(latitude);
-			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__LONGITUDE:
-				return LONGITUDE_EDEFAULT == null ? longitude != null : !LONGITUDE_EDEFAULT.equals(longitude);
 			case CHESSIoTSystemPackage.PHYSICAL_ELEMENT__IOTPORT:
 				return iotport != null && !iotport.isEmpty();
 		}
@@ -318,12 +266,10 @@ public class PhysicalElementImpl extends BlockImpl implements PhysicalElement {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (id: ");
+		result.append(id);
+		result.append(", name: ");
 		result.append(name);
-		result.append(", latitude: ");
-		result.append(latitude);
-		result.append(", longitude: ");
-		result.append(longitude);
 		result.append(')');
 		return result.toString();
 	}
